@@ -21,7 +21,6 @@ CREATE TABLE professor(
 	email VARCHAR(100),
 	telefone VARCHAR(50),
 	imagem VARCHAR(255)
-	
 );
 
 

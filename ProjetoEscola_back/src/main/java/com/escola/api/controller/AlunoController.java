@@ -1,12 +1,13 @@
 package com.escola.api.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,9 +18,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.escola.api.model.Aluno;
 
+import com.escola.api.model.Aluno;
 import com.escola.api.repository.AlunoRepository;
+import com.escola.api.repository.filter.AlunoFilter;
 
 @RestController
 @RequestMapping("/aluno")
@@ -29,14 +31,14 @@ public class AlunoController {
 	private AlunoRepository alunoRepository;
 	
 	@GetMapping
-	public List<Aluno> listarAlunos(){
-		return this.alunoRepository.findAll();
+	public Page<Aluno> listarAlunos(AlunoFilter alunoFilter, Pageable pageable){
+		return this.alunoRepository.filtrar(alunoFilter, pageable);
 	}
 	
 	@GetMapping("/{matricula}")
 	public ResponseEntity<Aluno> listarAlunoPorMatricula(@Valid @PathVariable Long matricula){
 		Optional<Aluno> aluno = this.alunoRepository.findById(matricula);
-		return aluno.isPresent() ? ResponseEntity.ok(aluno.get()) : ResponseEntity.notFound().build();
+		return aluno.isPresent() ? ResponseEntity.ok(aluno.get()) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping

@@ -1,0 +1,39 @@
+• CRONOGRAMA:
+
+(X) Alunos CRUD
+(X) Alunos campos validados
+(X) Alunos filter
+(x) Alunos paginação
+(X) Alunos code status *Retornar recurso não encontrado no delete
+
+( ) BD de notas
+( ) BD de faltas
+
+(X) Professores CRUD
+(X) Professores campos validados
+(X) Professores filter
+(-) Professores paginação
+( ) Professores code status
+
+
+
+
+
+
+
+
+• Validando campos:
+
+ - Campo vazio
+ - Atributos desconhecidos
+ - Tamanho máximo e mínimo
+
+• Erros:
+ - Página não encontrada
+ - Recurso não encontrado
+ - Frases para todos os erros
+ - Status code
+
+
+
+

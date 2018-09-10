@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.escola.api.model.Professor;
 import com.escola.api.repository.ProfessorRepository;
+import com.escola.api.repository.filter.ProfessorFilter;
 
 @RestController
 @RequestMapping("/professor")
@@ -29,12 +30,12 @@ public class ProfessorController {
 	private ProfessorRepository professorRepository;
 	
 	@GetMapping
-	public List<Professor> listarProfessores(){
-		return this.professorRepository.findAll();
+	public List<Professor> listarProfessores(ProfessorFilter professorFilter){
+		return this.professorRepository.filtrar(professorFilter);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Professor> listarProfessorPorId(@Valid @PathVariable Long id){
+	public ResponseEntity<Professor> listarProfessorPorId(@PathVariable Long id){
 		Optional<Professor> professor = this.professorRepository.findById(id);
 		return professor.isPresent() ? ResponseEntity.ok(professor.get()) : ResponseEntity.notFound().build();
 	}
