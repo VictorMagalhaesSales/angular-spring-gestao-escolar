@@ -11,8 +11,6 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class AlunoFilter {
-
-	private Long matricula;
 	
 	private String nome;
 
@@ -27,14 +25,6 @@ public class AlunoFilter {
 	private String email;
 
 	private String telefone;
-
-	public Long getMatricula() {
-		return matricula;
-	}
-
-	public void setMatricula(Long matricula) {
-		this.matricula = matricula;
-	}
 
 	public String getNome() {
 		return nome;

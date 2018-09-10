@@ -37,7 +37,7 @@ public class ProfessorController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Professor> listarProfessorPorId(@PathVariable Long id){
 		Optional<Professor> professor = this.professorRepository.findById(id);
-		return professor.isPresent() ? ResponseEntity.ok(professor.get()) : ResponseEntity.notFound().build();
+		return professor.isPresent() ? ResponseEntity.ok(professor.get()) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping

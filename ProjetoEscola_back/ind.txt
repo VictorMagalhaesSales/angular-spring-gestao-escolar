@@ -13,12 +13,7 @@
 (X) Professores campos validados
 (X) Professores filter
 (-) Professores paginação
-( ) Professores code status
-
-
-
-
-
+(X) Professores code status
 
 
 
@@ -33,6 +28,17 @@
  - Recurso não encontrado
  - Frases para todos os erros
  - Status code
+
+
+Listar: 200 OK
+Listar ID: 200 OK
+Listar ID error: 204 No Content
+Atualizar: 200 OK
+Atualizar error: 400 Bad Request
+Adicionar: 200 OK
+Adicionar error: 400 Bad Request
+Deletar: 200 OK
+Deletar error: 500 Internal Server Error
 
 
 

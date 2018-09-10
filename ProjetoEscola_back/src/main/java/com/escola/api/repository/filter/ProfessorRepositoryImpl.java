@@ -36,9 +36,6 @@ public class ProfessorRepositoryImpl implements ProfessorRepositoryQuery{
 	private Predicate[] criarRestricoes(ProfessorFilter professorFIlter, CriteriaBuilder builder, Root<Professor> root) {
 List<Predicate> predicates = new ArrayList<>();
 		
-		if(professorFIlter.getId()!= null) {
-			predicates.add( builder.like( builder.lower(root.get("id")), "%" + professorFIlter.getId() + "%" ) );
-		}
 		
 		if(professorFIlter.getNome() != null) {
 			predicates.add( builder.like( builder.lower(root.get("nome")), "%" + professorFIlter.getNome() + "%" ) );

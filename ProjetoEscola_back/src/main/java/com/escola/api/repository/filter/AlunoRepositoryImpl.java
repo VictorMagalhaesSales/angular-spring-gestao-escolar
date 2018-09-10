@@ -43,10 +43,6 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery{
 		
 		List<Predicate> predicates = new ArrayList<>();
 		
-		if(alunoFilter.getMatricula()!= null) {
-			predicates.add( builder.like( builder.lower(root.get("matricula")), "%" + alunoFilter.getMatricula() + "%" ) );
-		}
-		
 		if(alunoFilter.getNome() != null) {
 			predicates.add( builder.like( builder.lower(root.get("nome")), "%" + alunoFilter.getNome() + "%" ) );
 			
