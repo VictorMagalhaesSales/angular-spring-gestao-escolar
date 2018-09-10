@@ -1,0 +1,8 @@
+CREATE TABLE aluno(
+	matricula BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	sobrenome VARCHAR(50) NOT NULL,
+	curso VARCHAR(50) NOT NULL
+);  ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO aluno VALUES (0,"Victor","Magalhães","Informática"),
