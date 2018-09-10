@@ -1,0 +1,5 @@
+package com.escola.api.repository;
+
+public class ProfessorRepository {
+
+}

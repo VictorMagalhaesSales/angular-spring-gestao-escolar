@@ -1,0 +1,26 @@
+package com.escola.api.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.escola.api.model.Aluno;
+import com.escola.api.repository.AlunoRepository;
+
+@Service
+public class AlunoService {
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
+	
+	public Aluno atualizarAluno(Aluno alunoDepois, Long matricula){
+		Optional<Aluno> aluno = this.alunoRepository.findById(matricula);
+		
+		BeanUtils.copyProperties(alunoDepois, aluno, "matricula");
+		return alunoRepository.save(aluno.get());
+	}
+
+}

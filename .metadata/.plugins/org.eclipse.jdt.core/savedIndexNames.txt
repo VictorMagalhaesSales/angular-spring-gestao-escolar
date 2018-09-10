@@ -6,12 +6,10 @@ INDEX VERSION 1.131+C:\Users\Victor\Desktop\Projetos\ProjetoEscola\.metadata\.pl
 1960829413.index
 3418744009.index
 3172317750.index
-1634722258.index
 1772446211.index
 1678513114.index
 351924944.index
 1231519283.index
-1829426321.index
 551633537.index
 3022612881.index
 3507270468.index
