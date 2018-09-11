@@ -18,33 +18,33 @@ public class Aluno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long matricula;
 	
-	@Size(max = 50)
-	@NotNull
+	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'nome'")
+	@NotNull(message="O campo 'nome' não pode ser nulo!")
 	private String nome;
 
-	@Size(max = 50)
-	@NotNull
+	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'sobrenome'")
+	@NotNull(message="O campo 'sobrenome' não pode ser nulo!")
 	private String sobrenome;
 
-	@Size(max = 50)
-	@NotNull
+	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'login'")
+	@NotNull(message="O campo 'login' não pode ser nulo!")
 	private String login;
 
-	@Size(max = 50)
-	@NotNull
+	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'senha'")
+	@NotNull(message="O campo 'senha' não pode ser nulo!")
 	private String senha;
 	
-	@NotNull
+	@NotNull(message="O campo 'nascimento' não pode ser nulo!")
 	private Date nascimento;
 	
-	@Size(max = 100)
-	@NotNull
+	@Size(max = 100, message="O você não pode digitar mais do que 50 caracteres no campo 'email'")
+	@NotNull(message="O campo 'email' não pode ser nulo!")
 	private String email;
 
-	@Size(max = 50)
+	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'telefone'")
 	private String telefone;
 
-	@Size(max = 255)
+	@Size(max = 255, message="o caminho da imagem não pode conter mais do que 255 caracteres!")
 	private String imagem;
 
 	public Long getMatricula() {

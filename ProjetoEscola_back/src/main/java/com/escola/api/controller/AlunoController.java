@@ -54,6 +54,7 @@ public class AlunoController {
 	
 	@PutMapping("/{matricula}")
 	public ResponseEntity<Aluno> atualizarAluno(@PathVariable Long matricula, @Valid @RequestBody Aluno alunoReq){
+		
 		Optional<Aluno> alunoOpt = this.alunoRepository.findById(matricula);		
 		BeanUtils.copyProperties(alunoReq, alunoOpt.get(), "matricula");
 		Aluno alunoDepois =  alunoRepository.save(alunoOpt.get());

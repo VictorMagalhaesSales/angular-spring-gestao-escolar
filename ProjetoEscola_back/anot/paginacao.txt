@@ -1,0 +1,12 @@
+0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0
+0•0•0•0•0• CRIANDO PAGINAÇÃO •0•0•0•0•0
+0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0
+
+1- Adicionar o parâmetro 'Pageable pageable' no método listarAlunos e mudar seu retorno para Page<Aluno>.
+
+// Isso pois o método não vai retornar uma lista, mas sim uma página. Logo, teremos que passar na requisição o número de elementos que queremos e a página atual.
+
+2- O método filtrar() receberá, além do filtro, o pageable
+3- Ir na implementação do filtrar() e mudar o retorno para 'return new PageImpl<>(query.getResultList(), pageable, total(alunoFilter));'
+4- A partir dai criaremos o método tota(alunoFIlter) que retorna a quantidade de elementos totais para o filtro
+5- E o adicionarRestricoesDePaginacao(query, pageable) total de registros e quando começa

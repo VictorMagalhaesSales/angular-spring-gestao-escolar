@@ -7,12 +7,12 @@
 (X) Alunos code status *Retornar recurso não encontrado no delete
 
 (X) Notas BD
-( ) Notas CRUD
-( ) Notas status code 
+(X) Notas CRUD
+(X) Notas status code 
 
 (X) Faltas BD
-( ) Faltas visualizar e deletar
-( ) Faltas status code
+(X) Faltas visualizar, criar e deletar
+(X) Faltas status code
 
 (X) Professores CRUD
 (X) Professores campos validados
@@ -29,18 +29,20 @@
  - Tamanho máximo e mínimo
 
 • Erros:
- - Página não encontrada
- - Recurso não encontrado
- - Frases para todos os erros
- - Status code
+ - Página não encontrada 	( )
+ - Recurso não encontrado 	( )
+ - Status code 			(X)
+ - Mensagem inválida		(X)
+ - Tratando validações 		(X)
 
 
-insert into notas values('Filosofia','3','5.5');
+(X) Mensagem inválida
+(X) Valores inválidos (Bean)
+( ) Tabela inexistente (validando inconsistências)
+( ) Not null com Handler
 
 
 
 
-
-
-
+(    )  REST GLORY!!!!!!!!!
 

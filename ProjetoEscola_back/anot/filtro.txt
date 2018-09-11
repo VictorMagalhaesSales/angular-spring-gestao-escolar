@@ -1,0 +1,41 @@
+•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
+•0•0•0•0• CRIANDO UM FILTRO •0•0•0•0•
+•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
+
+// http://blog.caelum.com.br/consultas-fortemente-tipadas-com-jpa/
+// https://www.devmedia.com.br/hibernate-api-criteria-realizando-consultas/29627
+
+=-=- PARTE 1 -=-=
+
+1- Objeto lançamentoFilter em repository/filter/lancamentofilter
+2- Criar uma interface lancamentoRepositoryQuery com o metodo filtrar
+3- Criar uma implementação para ela com o método filtrar com a lógica
+4- Extender essa interface com o método em LancamentoRepository
+3- Mudar no LancamentoResource para o "filtrar"
+
+=-=- PARTE 2 -=-=
+
+1- Injetar o EntityManager para trabalhar com as consultas;
+2- Criar o método de filtrar com o seguinte código:
+
+	CriteriaBuilder criteriaBuilder = manager.getCriteriaBuilder() // ESSE CARA QUE CONSTROI AS CRITERIAS
+	CriteriaQuery<Aluno> criteria = criteriaBuilder.createQuery(Aluno.class) // CRITERIA DE ALUNO
+
+	Root<Aluno> root = criteria.from(Aluno.class); // CRIA AS RESTRIÇÕES, CRIAR OS FILTROS
+	
+	Predicate[] predicates = criarRestricoes(alunoFilter, builder, root); e criteria.where(predicates); CRIAM AS RESTRIÇÕES ATRAVÉS DO MÉTODO criarRestricoes()
+
+	// NESSE NOVO MÉTODO VOCÊ TESTA OS CAMPOS QUE NÃO SÃO NULOS. OS QUE NÃO FOREM VOCÊ CRIA UMA LÓGICA
+
+	List<Predicate> predicates = new ArrayList<>(); // VAI RECEBER A LISTA DE PREDICATES
+
+	// ESSA LOGICA CONSISTE NO predicates.add()
+	// DENTRO DO ADD UTILIZAMOS O BUILDER.LIKE QUE RECEBE 2 PARÂMETROS: O NOME DA COLUMA E A STRING COM O LIKE ( root.get("matricula"),"%ictor%" )
+	// UTILIZAMOS O builder.lower() -> builder.lower( root.get("matricula") )
+
+	//APÓS ISSO, VOLTAMOS AO MÉTODO filtrar() E ADICIONAMOS ISSO:
+
+	return predicates.toArray(new Predicate[predicates.size()]); // RETORNA A LISTA DE PREDICATES
+	TypedQuery<Aluno> query = manager.createQuery(criteria); E return query.getResultList(); // RETORNA O RESULTADO
+
+3- Agora é só rodar e ser feliz!!

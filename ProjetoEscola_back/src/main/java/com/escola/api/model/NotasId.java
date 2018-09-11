@@ -3,27 +3,38 @@ package com.escola.api.model;
 import java.io.Serializable;
 
 import javax.persistence.Embeddable;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Embeddable
 public class NotasId implements Serializable{
 	
-	@NotNull
+	@NotNull(message="O campo matéria não pode ficar vazio")
 	private String materia;
 	
-	@NotNull
+	@NotNull(message="O campo bimestre não pode ficar vazio")
+	@Size(max = 4, message = "Só existem 4 bimestres!")
 	private Long bimestre;
-
+	
+	@NotNull(message="O campo alunp não pode ficar vazio")
+	private Long aluno;
+	
 	public NotasId() {
 		
 	}
 	
+	public Long getAluno() {
+		return aluno;
+	}
+
+
+
+	public void setAluno(Long aluno) {
+		this.aluno = aluno;
+	}
+
+
+
 	public String getMateria() {
 		return materia;
 	}
@@ -44,6 +55,7 @@ public class NotasId implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
 		result = prime * result + ((bimestre == null) ? 0 : bimestre.hashCode());
 		result = prime * result + ((materia == null) ? 0 : materia.hashCode());
 		return result;
@@ -58,6 +70,11 @@ public class NotasId implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		NotasId other = (NotasId) obj;
+		if (aluno == null) {
+			if (other.aluno != null)
+				return false;
+		} else if (!aluno.equals(other.aluno))
+			return false;
 		if (bimestre == null) {
 			if (other.bimestre != null)
 				return false;
@@ -70,6 +87,8 @@ public class NotasId implements Serializable{
 			return false;
 		return true;
 	}
+
+	
 	
 	
 }

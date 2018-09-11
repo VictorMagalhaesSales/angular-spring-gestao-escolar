@@ -8,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "notas")
@@ -15,8 +17,9 @@ public class Notas implements Serializable{
 	
 	@EmbeddedId
 	private NotasId notasid;
-	
-	private Double nota;
+
+	@NotNull(message= "O campo nota não pode estar vazio!")
+	private Float nota;
 
 	public NotasId getNotasid() {
 		return notasid;
@@ -26,11 +29,11 @@ public class Notas implements Serializable{
 		this.notasid = notasid;
 	}
 
-	public Double getNota() {
+	public Float getNota() {
 		return nota;
 	}
 
-	public void setNota(Double nota) {
+	public void setNota(Float nota) {
 		this.nota = nota;
 	}
 

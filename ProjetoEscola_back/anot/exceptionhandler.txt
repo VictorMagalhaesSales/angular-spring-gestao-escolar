@@ -1,0 +1,13 @@
+ExceptionHandle serve para interceptar os erros e trata-los, devolvendo uma resposta personalizada.
+
+1- Adicionamos a anotação @ControllerAdvice na classe
+
+2 - Extendemos a classe ResponseEntityExceptionHandler que terá diversos métodos prontos de tratamento de erro.
+
+// Neles, podemos usar o retorno return handleExceptionInternal(ex, body, headers, status, request) e passarmos o body que desejamos.
+
+// Então, podemos personalizar o nosso body da maneira que quisermos
+
+// Se quisermos pegar os erros, usamos ex.getCause().toString();
+
+// Através da anotação @ExceptionHandler(NomeDoErro.class), em um método, o spring sempre chamará esse método quando o erro ocorrer.
