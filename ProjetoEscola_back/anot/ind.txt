@@ -30,7 +30,7 @@
 
 • Erros:
  - Página não encontrada 	( )
- - Recurso não encontrado 	( )
+ - Recurso não encontrado 	(X)
  - Status code 			(X)
  - Mensagem inválida		(X)
  - Tratando validações 		(X)
@@ -38,7 +38,7 @@
 
 (X) Mensagem inválida
 (X) Valores inválidos (Bean)
-( ) Tabela inexistente (validando inconsistências)
+(X) Tabela inexistente (validando inconsistências)
 ( ) Not null com Handler
 
 
