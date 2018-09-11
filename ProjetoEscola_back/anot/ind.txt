@@ -21,7 +21,6 @@
 (X) Professores code status
 
 
-
 • Validando campos:
 
  - Campo vazio
@@ -29,17 +28,17 @@
  - Tamanho máximo e mínimo
 
 • Erros:
- - Página não encontrada 	( )
  - Recurso não encontrado 	(X)
  - Status code 			(X)
  - Mensagem inválida		(X)
  - Tratando validações 		(X)
 
+====--- ALGAWORKS - TRATAMENTO DE ERROS ---====
 
 (X) Mensagem inválida
 (X) Valores inválidos (Bean)
 (X) Tabela inexistente (validando inconsistências)
-( ) Not null com Handler
+(X) Not null com Handler
 
 
 
