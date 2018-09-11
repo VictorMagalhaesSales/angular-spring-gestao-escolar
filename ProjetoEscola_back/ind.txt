@@ -6,8 +6,13 @@
 (x) Alunos paginação
 (X) Alunos code status *Retornar recurso não encontrado no delete
 
-( ) BD de notas
-( ) BD de faltas
+(X) Notas BD
+( ) Notas CRUD
+( ) Notas status code 
+
+(X) Faltas BD
+( ) Faltas visualizar e deletar
+( ) Faltas status code
 
 (X) Professores CRUD
 (X) Professores campos validados
@@ -30,15 +35,11 @@
  - Status code
 
 
-Listar: 200 OK
-Listar ID: 200 OK
-Listar ID error: 204 No Content
-Atualizar: 200 OK
-Atualizar error: 400 Bad Request
-Adicionar: 200 OK
-Adicionar error: 400 Bad Request
-Deletar: 200 OK
-Deletar error: 500 Internal Server Error
+insert into notas values('Filosofia','3','5.5');
+
+
+
+
 
 
 

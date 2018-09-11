@@ -32,6 +32,10 @@ public class Professor {
 
 	@Size(max = 50)
 	@NotNull
+	private String disciplina;
+
+	@Size(max = 50)
+	@NotNull
 	private String senha;
 	
 	@NotNull
@@ -69,6 +73,14 @@ public class Professor {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
+	}
+
+	public String getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(String disciplina) {
+		this.disciplina = disciplina;
 	}
 
 	public String getLogin() {

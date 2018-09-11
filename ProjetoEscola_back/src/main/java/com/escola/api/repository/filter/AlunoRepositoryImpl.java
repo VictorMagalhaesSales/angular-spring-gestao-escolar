@@ -53,11 +53,6 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery{
 			
 		}
 		
-		if(alunoFilter.getCurso() != null) {
-			predicates.add( builder.like( builder.lower(root.get("curso")), "%" + alunoFilter.getCurso() + "%" ) );
-			
-		}
-		
 		if(alunoFilter.getLogin() != null) {
 			predicates.add( builder.like( builder.lower(root.get("login")), "%" + alunoFilter.getLogin() + "%" ) );
 			

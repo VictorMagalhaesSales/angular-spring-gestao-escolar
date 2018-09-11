@@ -9,6 +9,8 @@ public class ProfessorFilter {
 	private String nome;
 
 	private String sobrenome;
+	
+	private String disciplina;
 
 	private String login;
 	
@@ -17,6 +19,14 @@ public class ProfessorFilter {
 	private String email;
 
 	private String telefone;
+
+	public String getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(String disciplina) {
+		this.disciplina = disciplina;
+	}
 
 	public String getNome() {
 		return nome;

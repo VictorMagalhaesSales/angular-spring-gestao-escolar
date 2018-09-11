@@ -47,6 +47,11 @@ List<Predicate> predicates = new ArrayList<>();
 			
 		}
 		
+		if(professorFIlter.getDisciplina() != null) {
+			predicates.add( builder.like( builder.lower(root.get("disciplina")), "%" + professorFIlter.getDisciplina() + "%" ) );
+			
+		}
+		
 		if(professorFIlter.getLogin() != null) {
 			predicates.add( builder.like( builder.lower(root.get("login")), "%" + professorFIlter.getLogin() + "%" ) );
 			

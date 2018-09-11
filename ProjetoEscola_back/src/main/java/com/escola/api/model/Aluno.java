@@ -28,10 +28,6 @@ public class Aluno {
 
 	@Size(max = 50)
 	@NotNull
-	private String curso;
-
-	@Size(max = 50)
-	@NotNull
 	private String login;
 
 	@Size(max = 50)
@@ -73,14 +69,6 @@ public class Aluno {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
-	}
-
-	public String getCurso() {
-		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 
 	public String getLogin() {

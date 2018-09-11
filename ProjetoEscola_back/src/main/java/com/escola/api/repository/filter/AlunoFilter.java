@@ -16,8 +16,6 @@ public class AlunoFilter {
 
 	private String sobrenome;
 
-	private String curso;
-
 	private String login;
 	
 	private Date nascimento;
@@ -40,14 +38,6 @@ public class AlunoFilter {
 
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
-	}
-
-	public String getCurso() {
-		return curso;
-	}
-
-	public void setCurso(String curso) {
-		this.curso = curso;
 	}
 
 	public String getLogin() {
