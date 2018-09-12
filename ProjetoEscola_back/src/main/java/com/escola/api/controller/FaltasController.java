@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.escola.api.model.Faltas;
 import com.escola.api.model.FaltasId;
-import com.escola.api.model.NotasId;
 import com.escola.api.repository.FaltasRepository;
 
 @RestController
@@ -42,6 +42,6 @@ public class FaltasController {
 		faltasid.setAluno(aluno);
 		faltasid.setBimestre(bimestre);
 		faltasid.setMateria(materia);
-		this.faltasRepository.deleteById(faltasid);
+		this.faltasRepository.delete(faltasid);
 	}
 }

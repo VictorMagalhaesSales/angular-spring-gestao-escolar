@@ -9,7 +9,8 @@
 4 - O método configure( resources) define o estado da API;
 
 
-======------ AUTHENTICATION SERVER -----======
+
+============----------- AUTHENTICATION SERVER ----------============
 1 - Criaremos o 'AuthenticationServerConfig' para controlar o servidor de autenticação. Anotações: @Configuration/@EnableAuthorizationServer. Extende do AuthorizationServerConfigurerAdapter;
 2 - O método configure(clients) serve para defiinir o login do cliente;
 3 - O método configure(endpoints) para definirmos onde será armazenado o login do usuário;
@@ -18,7 +19,8 @@
 // *** Agora, precisamos pegar um TOKEN na url: localhost:8080/oauth/token, passando os logins do cliente e depois do usuário como POST. Receberemos um token através do body que terá um tempo de expiração que usaremos nas requisições para ter a autorização *** //
 
 
-======------ JASON WEB TOKEN -----======
+
+============----------- JASON WEB TOKEN ----------============
 1 - Conversor de TOKEN: no AuthorizationServerEndpointsConfigurer, botaremos um .acessTokenConverter(acessTokenConverter());
 2 - O método @Bean acessTokenConverter() converte o JWT TOKEN;
 3 - Modificaremos o tokenStore(), botando o retorno para JWTTokenStore(acessTokenConverter());
@@ -26,7 +28,8 @@
 // *** A partir de agora, o nosso token estará no formato JWT. Então, ele será maior e mais seguro *** //
 
 
-======------ REFRESH TOKEN -----======
+
+============----------- REFRESH TOKEN ----------============
 1 - Adicionamos, no authorizedGrantTypes, o "refresh_token";
 2 - Setaremos um tempo de vida para o refresh token no método configure(http) com: '.refreshTokenValidSeconds(segundos)';
 3 - Em configure(endpoints), setamos '.reuseRefreshToken(false)';
@@ -34,7 +37,8 @@
 // *** O Refresh Token sempre retorna um novo Acess Token, quando este espira(é recomendado ter o tempo de vida muito pequeno) *** //
 
 
-======------ REFRESH TOKEN NO COOKIE -----======
+
+============----------- REFRESH TOKEN NO COOKIE ----------============
 1 - Criaremos uma classe que deve receber a anotação @ControllerAdvice, o que lhe permite interceptar as requisições, token e tirar o refresh token do body e coloca-lo no cookie;
 2 - A classe implementa 'ResponseBodyAdvice<OAuth2AccessToken>'. O que está entre < > é o tipo de dado que, quando for retornado no body, será interceptado;
 3 - Ao implementar, teremos 2 métodos. O supports(), quando retornar 'true', automaticamente executa o método beforeBodyWrite().
@@ -44,14 +48,25 @@
 // *** Agora estamos tirando o refresh token da requisição, botando no corpo e depois no cookie *** //
 
 
-======------ REFRESH TOKEN DO COOKIE PARA REQUISIÇÃO -----======
+
+============----------- REFRESH TOKEN DO COOKIE PARA REQUISIÇÃO ----------============
 1 - Criar classe com @Component, @Order(Odered.HIGHEST_PRECEDENCE), que implementa FIlter;
 2 - No método doFilter(), verificamos se a requisição está em 'lh:8080/au/tk',  se tem o parâmetro 'grant_type' com o 'refresh_token' e se tem algum cookie(no caso, o refres). Se for verdadeiro, pegaremos o cookie e adicionamos dentro do mapa de parâmetros dentro da requisição;
 
 
-======------ AUTENTICAÇÃO PELO BANCO DE DADOS -----======
+
+============----------- AUTENTICAÇÃO PELO BANCO DE DADOS ----------============
 1 - No método configure(auth), do ResourceServerConfig, substituiremos os métodos por '.userDetailsService()';
-2 - Injeção de dependência do UserDe;tailsService
+2 - Injeção de dependência do UserDetailsService;
+3 - Criaremos a classe AppUserDetailsService que implementa UserDatilsService e adicionamos o método loadUserByUsername, para fazer a busca do usuário no banco de dados; ( @Service )
+4 - Criaremos o usuário que recebe a busca do usuário pelo login, atravez do método criado no Repository, FindBy...();
+5 - Testaremos se esse usuário está vazio, se sim retornaremos um new UsernameNotFoundException("Usuário/senha incorreto(s)");
+6 - Se der certo, retorno um new User(username, senha, permissoes);
+7 - Adicionaremos o método .passwordEncoder(passwordEncoder()) no configure(auth);
+8 - Criaremos um método @Bean passwordEncoder() que retorne new BCryptPasswordEncoder();
+
+
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= OBS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  •• Para resolver o erro com o AuthenticationManager:

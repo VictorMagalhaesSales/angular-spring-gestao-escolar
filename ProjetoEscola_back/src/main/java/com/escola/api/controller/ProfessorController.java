@@ -36,8 +36,8 @@ public class ProfessorController {
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Professor> listarProfessorPorId(@PathVariable Long id){
-		Optional<Professor> professor = this.professorRepository.findById(id);
-		return professor.isPresent() ? ResponseEntity.ok(professor.get()) : ResponseEntity.noContent().build();
+		Professor professor = this.professorRepository.findOne(id);
+		return professor != null ? ResponseEntity.ok(professor) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping
@@ -48,14 +48,14 @@ public class ProfessorController {
 	
 	@DeleteMapping("/{id}")
 	public void deletarAluno(@Valid @PathVariable Long id) {
-		this.professorRepository.deleteById(id);
+		this.professorRepository.delete(id);
 	}
 	
 	@PutMapping("/{id}")
 	public ResponseEntity<Professor> atualizarProfessor(@PathVariable Long id, @Valid @RequestBody Professor professorReq){
-		Optional<Professor> professorOpt = this.professorRepository.findById(id);		
-		BeanUtils.copyProperties(professorReq, professorOpt.get(), "id");
-		Professor professorDepois =  professorRepository.save(professorOpt.get());
+		Professor professorOpt = this.professorRepository.findOne(id);		
+		BeanUtils.copyProperties(professorReq, professorOpt, "id");
+		Professor professorDepois =  professorRepository.save(professorOpt);
 		
 		return ResponseEntity.ok(professorDepois);
 	}

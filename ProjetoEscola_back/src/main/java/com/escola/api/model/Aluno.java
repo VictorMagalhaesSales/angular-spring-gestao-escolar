@@ -1,12 +1,18 @@
 package com.escola.api.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -46,6 +52,12 @@ public class Aluno {
 
 	@Size(max = 255, message="o caminho da imagem não pode conter mais do que 255 caracteres!")
 	private String imagem;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "aluno_permissao", joinColumns = @JoinColumn(name = "codigo_aluno")
+		, inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
+	private List<Permissao> permissoes;
+
 
 	public Long getMatricula() {
 		return matricula;
@@ -117,6 +129,14 @@ public class Aluno {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+	
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
 	}
 
 	@Override

@@ -5,7 +5,21 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-11T16:43:55Z</updated>
+  <updated>2018-09-12T11:52:00Z</updated>
+  <entry>
+    <title>Spring Boot 2.0.5</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/12/spring-boot-2-0-5" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Andy Wilkinson</name>
+    </author>
+    <id>tag:spring.io,2018-09-12:3392</id>
+    <updated>2018-09-12T11:52:00Z</updated>
+    <content type="html">&lt;p&gt;It is my pleasure to announce that Spring Boot 2.0.5 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Spring Boot 2.0.5 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.0.5.RELEASE"&gt;87 fixes, improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.0.5.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Boot 1.5.16</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/11/spring-boot-1-5-16" />
@@ -14,9 +28,9 @@
       <name>Andy Wilkinson</name>
     </author>
     <id>tag:spring.io,2018-09-11:3391</id>
-    <updated>2018-09-11T16:43:55Z</updated>
+    <updated>2018-09-11T16:43:00Z</updated>
     <content type="html">&lt;p&gt;On behalf of the team, I am pleased to announce that Spring Boot 1.5.16 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 1.5.16 includes &lt;a href="https://github.com/spring-projects/spring-boot/milestone/116?closed=1"&gt;27 fixes, improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;Spring Boot 1.5.16 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v1.5.16.RELEASE"&gt;27 fixes, improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
@@ -1433,75 +1447,5 @@ class SubscriberConfig {&#xD;
   &lt;li&gt;Check out this next nice installment of &lt;a href="https://www.youtube.com/watch?v=g59Q529fna0&amp;feature=youtu.be"&gt;a video series looking at Apache Geode&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="https://twitter.com/sebastien_pel/status/1031884585829888001?s=12"&gt;The latest release of the Assembler project&lt;/a&gt;, which is a functional, type-safe and stateless Java API for solving the N + 1 query problem in multi-databases and microservices aggregation, is now available. Of course, it also supports Reactor for composition!&lt;/li&gt;
 &lt;/ul&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Cloud Stream Fishtown.M2 /2.1.0.M2 Release Announcement</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/08/28/spring-cloud-stream-fishtown-m2-2-1-0-m2-release-announcement" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Oleg Zhurakousky</name>
-    </author>
-    <id>tag:spring.io,2018-08-28:3376</id>
-    <updated>2018-08-28T15:36:00Z</updated>
-    <content type="html">&lt;p&gt;We are pleased to announce the second Milestone of the Spring Cloud Stream Fishtown release train - Fishtown.M2/2.1.0.M2.&lt;/p&gt;
-&lt;p&gt;Spring Cloud Stream Fishtown 2.1.0.M2 is available for use in the &lt;a href="http://repo.spring.io/libs-milestone-local/org/springframework/cloud/spring-cloud-stream/2.1.0.M2/"&gt;Spring Milestone&lt;/a&gt; repository. The &lt;a href="https://github.com/spring-cloud/spring-cloud-stream-starters/releases/tag/vFishtown.M2"&gt;release notes&lt;/a&gt; include relevant information about version compatibility with Spring Boot, Spring Cloud, Spring AMQP, and Spring for Apache Kafka. &lt;/p&gt;
-&lt;p&gt;The following section provides a brief summary of features and improvements included in this release.&lt;/p&gt;&lt;h3&gt;&lt;a href="#notable-dependency-upgrades" class="anchor" name="notable-dependency-upgrades"&gt;&lt;/a&gt;Notable Dependency Upgrades&lt;/h3&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Boot 2.1.0.M2 (now fully compatible with &lt;a href="https://start.spring.io/"&gt;Spring Initializr&lt;/a&gt;)&lt;/li&gt;
-  &lt;li&gt;Reactor Californium M2&lt;/li&gt;
-&lt;/ul&gt;&lt;h3&gt;&lt;a href="#spring-cloud-function-support" class="anchor" name="spring-cloud-function-support"&gt;&lt;/a&gt;Spring Cloud Function support&lt;/h3&gt;
-&lt;p&gt;The main theme for this release is the introduction of a new programming model which uses &lt;a href="https://cloud.spring.io/spring-cloud-function/"&gt;Spring Cloud Function&lt;/a&gt; as an alternative for defining &lt;em&gt;stream handlers&lt;/em&gt; and &lt;em&gt;sources&lt;/em&gt; which can now be expressed as beans of&lt;br/&gt; type &lt;code&gt;java.util.function.[Supplier/Function/Consumer]&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;To specify which functional bean to bind to the external destination(s) exposed by the bindings, you must provide &lt;code&gt;spring.cloud.stream.function.definition&lt;/code&gt; property.&lt;/p&gt;
-&lt;p&gt;Here is the example of the Processor application exposing message handler as &lt;code&gt;java.util.function.Function&lt;/code&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;@SpringBootApplication&#xD;
-@EnableBinding(Processor.class)&#xD;
-public class MyFunctionBootApp {&#xD;
-&#xD;
-	public static void main(String[] args) {&#xD;
-		SpringApplication.run(MyFunctionBootApp.class, &#xD;
-                  &amp;quot;--spring.cloud.stream.function.definition=toUpperCase&amp;quot;);&#xD;
-	}&#xD;
-&#xD;
-	@Bean&#xD;
-	public Function&amp;lt;String, String&amp;gt; toUpperCase() {&#xD;
-		return s -&amp;gt; s.toUpperCase();&#xD;
-	}&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;In the above you we simply define a bean of type &lt;code&gt;java.util.function.Function&lt;/code&gt; called &lt;em&gt;toUpperCase&lt;/em&gt; and identify it as a bean to be used as message handler&lt;br/&gt;whose &lt;em&gt;input&lt;/em&gt; and &lt;em&gt;output&lt;/em&gt; will be bound to the external destinations exposed by the Processor binding.&lt;/p&gt;&lt;h4&gt;&lt;a href="#function-composition" class="anchor" name="function-composition"&gt;&lt;/a&gt;Function composition&lt;/h4&gt;
-&lt;p&gt;Using this programming model you can also benefit from &lt;em&gt;functional composition&lt;/em&gt; where you can dynamically compose complex handlers from a set of simple functions.&lt;br/&gt;As an example add the following function bean to the application defined above&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;@Bean&#xD;
-public Function&amp;lt;String, String&amp;gt; wrapInQuotes() {&#xD;
-	return s -&amp;gt; &amp;quot;\&amp;quot;&amp;quot; + s + &amp;quot;\&amp;quot;&amp;quot;;&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;and modify the &lt;code&gt;spring.cloud.stream.function.definition&lt;/code&gt; property to reflect your intention to compose a new function from both &lt;em&gt;toUpperCase&lt;/em&gt; and &lt;em&gt;wrapInQuotes&lt;/em&gt;.&lt;br/&gt;To do so Spring Cloud Function allows you to use &lt;code&gt;|&lt;/code&gt; (pipe) symbol. So to finish our example our property will now look like this:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;--spring.cloud.stream.function.definition=toUpperCase|wrapInQuotes
-&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a href="#other-notable-features-improvements-amp-enhancements" class="anchor" name="other-notable-features-improvements-amp-enhancements"&gt;&lt;/a&gt;Other Notable Features, Improvements &amp;amp; enhancements&lt;/h3&gt;&lt;h4&gt;&lt;a href="#core" class="anchor" name="core"&gt;&lt;/a&gt;Core&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Improvements and enhancements around multi-binder scenarios&lt;/li&gt;
-&lt;/ul&gt;&lt;h4&gt;&lt;a href="#rabbit-binder" class="anchor" name="rabbit-binder"&gt;&lt;/a&gt;Rabbit Binder&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Support for customization of the &lt;a href="https://github.com/spring-cloud/spring-cloud-stream-binder-rabbit/issues/164"&gt;Consumer tags&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;h4&gt;&lt;a href="#kafka-binder" class="anchor" name="kafka-binder"&gt;&lt;/a&gt;Kafka Binder&lt;/h4&gt;
-&lt;ul&gt;
-  &lt;li&gt;Upgrade Kafka Client to 2.0&lt;/li&gt;
-&lt;/ul&gt;&lt;h4&gt;&lt;a href="#quality-improvements" class="anchor" name="quality-improvements"&gt;&lt;/a&gt;Quality improvements&lt;/h4&gt;
-&lt;p&gt;As part of the continuing efforts to improve the code quality and to evaluate the framework components for its contract correctness, we have a new &lt;a href="https://github.com/spring-cloud/spring-cloud-stream-acceptance-tests"&gt;Acceptance Test project&lt;/a&gt; to bootstrap Spring Cloud Stream applications on Cloud Foundry and Kubernetes. These tests run multiple times in a day on a freshly repaved environment. We hope this provides a foundation for the community and customers to build more automation pipelines on target platforms.&lt;/p&gt;&lt;h4&gt;&lt;a href="#kinesis-binder" class="anchor" name="kinesis-binder"&gt;&lt;/a&gt;Kinesis Binder&lt;/h4&gt;
-&lt;p&gt;With this release we also want to highlight the recently release &lt;a href="https://spring.io/blog/2018/08/21/spring-integration-for-aws-2-0-ga-and-spring-cloud-stream-kinesis-binder-1-0-ga"&gt;Kinesis Binder&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Various other enhancements and bug fixes:&lt;br/&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-stream/milestone/46?closed=1"&gt;Core&lt;/a&gt;&lt;br/&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-stream-binder-rabbit/milestone/27?closed=1"&gt;Rabbit Binder&lt;/a&gt;&lt;br/&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka/milestone/30?closed=1"&gt;Kafka Binder&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;NOTE:&lt;br/&gt;If the applications are created from Spring Initializr, they need to add this BOM snippet in maven dependency management before the spring-cloud BOM declaration, otherwise you&amp;rsquo;ll end up with the latest snapshot (which may be ok since it would include all the work from M2):&lt;/p&gt;
-  &lt;pre&gt;&lt;code class="prettyprint"&gt;&amp;lt;dependency&amp;gt;&#xD;
-           &amp;lt;groupId&amp;gt;org.springframework.cloud&amp;lt;/groupId&amp;gt;&#xD;
-           &amp;lt;artifactId&amp;gt;spring-cloud-stream-dependencies&amp;lt;/artifactId&amp;gt;&#xD;
-           &amp;lt;version&amp;gt;Fishtown.M2&amp;lt;/version&amp;gt;&#xD;
-           &amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;&#xD;
-           &amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;&#xD;
-&amp;lt;/dependency&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/blockquote&gt;&lt;h4&gt;&lt;a href="#next-steps" class="anchor" name="next-steps"&gt;&lt;/a&gt;Next Steps&lt;/h4&gt;
-&lt;p&gt;The M3 is planned for the end of September and will contain primarily new binding features as well as more features and improvements around to support &lt;a href="https://cloud.spring.io/spring-cloud-function/"&gt;Spring Cloud Function&lt;/a&gt; as a programming model.&lt;/p&gt;
-&lt;p&gt;As always, we welcome feedback and contributions, so please reach out to us on &lt;a href="https://stackoverflow.com/questions/tagged/spring-cloud-stream"&gt;Stackoverflow&lt;/a&gt; or &lt;a href="https://github.com/spring-cloud/spring-cloud-stream/"&gt;GitHub&lt;/a&gt; or via &lt;a href="https://gitter.im/spring-cloud/spring-cloud-stream"&gt;Gitter&lt;/a&gt;. &lt;/p&gt;</content>
   </entry>
 </feed>

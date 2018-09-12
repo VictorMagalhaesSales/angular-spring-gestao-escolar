@@ -37,8 +37,11 @@ public class AlunoController {
 	
 	@GetMapping("/{matricula}")
 	public ResponseEntity<Aluno> listarAlunoPorMatricula(@Valid @PathVariable Long matricula){
-		Optional<Aluno> aluno = this.alunoRepository.findById(matricula);
-		return aluno.isPresent() ? ResponseEntity.ok(aluno.get()) : ResponseEntity.noContent().build();
+		//Aluno aluno = this.alunoRepository.findOne(matricula);
+		Optional<Aluno> alunoOpt = this.alunoRepository.findByLogin("admin@algamoney.com");
+		System.out.println(alunoOpt.get().getSenha());
+		return ResponseEntity.ok(alunoOpt.get());
+		//return aluno != null ? ResponseEntity.ok(aluno) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping
@@ -49,15 +52,15 @@ public class AlunoController {
 	
 	@DeleteMapping("/{matricula}")
 	public void deletarAluno(@Valid @PathVariable Long matricula) {
-		this.alunoRepository.deleteById(matricula);
+		this.alunoRepository.delete(matricula);
 	}
 	
 	@PutMapping("/{matricula}")
 	public ResponseEntity<Aluno> atualizarAluno(@PathVariable Long matricula, @Valid @RequestBody Aluno alunoReq){
 		
-		Optional<Aluno> alunoOpt = this.alunoRepository.findById(matricula);		
-		BeanUtils.copyProperties(alunoReq, alunoOpt.get(), "matricula");
-		Aluno alunoDepois =  alunoRepository.save(alunoOpt.get());
+		Aluno alunoOpt = this.alunoRepository.findOne(matricula);		
+		BeanUtils.copyProperties(alunoReq, alunoOpt, "matricula");
+		Aluno alunoDepois =  alunoRepository.save(alunoOpt);
 		
 		return ResponseEntity.ok(alunoDepois);
 	}

@@ -1,7 +1,6 @@
 package com.escola.api.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -46,7 +45,7 @@ public class NotasController {
 		notasid.setAluno(aluno);
 		notasid.setBimestre(bimestre);
 		notasid.setMateria(materia);
-		this.notasRepository.deleteById(notasid);
+		this.notasRepository.delete(notasid);
 	}
 	
 	@PutMapping("/{aluno}/{bimestre}/{materia}")
@@ -56,12 +55,12 @@ public class NotasController {
 		notasid.setBimestre(bimestre);
 		notasid.setMateria(materia);
 			
-		Optional<Notas> notas = this.notasRepository.findById(notasid);
+		Notas notas = this.notasRepository.findOne(notasid);
 		
-		BeanUtils.copyProperties(notaMod, notas.get(), "notasId");
+		BeanUtils.copyProperties(notaMod, notas, "notasId");
 		
 		//this.notasRepository.deleteById(notasid);
-		Notas notaDepois = this.notasRepository.save(notas.get());
+		Notas notaDepois = this.notasRepository.save(notas);
 		
 		
 		return ResponseEntity.ok(notaDepois);

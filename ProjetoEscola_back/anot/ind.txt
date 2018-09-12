@@ -41,6 +41,11 @@
 (X) Not null com Handler
 
 
+====--- ALGAWORKS - AUTENTICAÇÃO DE USUÁRIOS ---====,
+
+( ) Autenticação de aluno
+( ) Autenticação de professor
+( ) Autenticação de administrador
 
 
 (    )  REST GLORY!!!!!!!!!
