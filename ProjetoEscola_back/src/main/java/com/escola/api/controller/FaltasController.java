@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,17 +27,20 @@ public class FaltasController {
 	private FaltasRepository faltasRepository;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTAS')")
 	public List<Faltas> listarFaltas(){
 		return this.faltasRepository.findAll();
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTA')")
 	public ResponseEntity<Faltas> adicionarFalta(@Valid @RequestBody Faltas falta){
 		Faltas faltaok = this.faltasRepository.save(falta);
 		return ResponseEntity.ok(falta);
 	}
 	
 	@DeleteMapping("/{aluno}/{bimestre}/{materia}")
+	@PreAuthorize("hasAuthority('ROLE_DELETAR_FALTA')")
 	public void deletarFalta(@PathVariable("aluno") Long aluno, @PathVariable("bimestre") Long bimestre, @PathVariable("materia") String materia) {
 		FaltasId faltasid = new FaltasId();
 		faltasid.setAluno(aluno);

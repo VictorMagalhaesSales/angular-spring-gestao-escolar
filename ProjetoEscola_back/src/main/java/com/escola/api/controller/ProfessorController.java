@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,28 +31,33 @@ public class ProfessorController {
 	private ProfessorRepository professorRepository;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_PROFESSORES')")
 	public List<Professor> listarProfessores(ProfessorFilter professorFilter){
 		return this.professorRepository.filtrar(professorFilter);
 	}
 	
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_PROFESSOR')")
 	public ResponseEntity<Professor> listarProfessorPorId(@PathVariable Long id){
 		Professor professor = this.professorRepository.findOne(id);
 		return professor != null ? ResponseEntity.ok(professor) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_SALVAR_PROFESSOR')")
 	public ResponseEntity<Professor> salvarProfessor(@Valid @RequestBody Professor professor){
 		Professor professorSalvo = this.professorRepository.save(professor);
 		return ResponseEntity.status(HttpStatus.CREATED).body(professorSalvo);
 	}
 	
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_DELETAR_PROFESSOR')")
 	public void deletarAluno(@Valid @PathVariable Long id) {
 		this.professorRepository.delete(id);
 	}
 	
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_PROFESSOR')")
 	public ResponseEntity<Professor> atualizarProfessor(@PathVariable Long id, @Valid @RequestBody Professor professorReq){
 		Professor professorOpt = this.professorRepository.findOne(id);		
 		BeanUtils.copyProperties(professorReq, professorOpt, "id");

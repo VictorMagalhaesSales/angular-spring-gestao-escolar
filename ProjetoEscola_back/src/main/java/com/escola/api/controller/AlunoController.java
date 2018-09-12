@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,11 +32,13 @@ public class AlunoController {
 	private AlunoRepository alunoRepository;
 	
 	@GetMapping
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_ALUNOS')")
 	public Page<Aluno> listarAlunos(AlunoFilter alunoFilter, Pageable pageable){
 		return this.alunoRepository.filtrar(alunoFilter, pageable);
 	}
 	
 	@GetMapping("/{matricula}")
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_ALUNO')")
 	public ResponseEntity<Aluno> listarAlunoPorMatricula(@Valid @PathVariable Long matricula){
 		Aluno aluno = this.alunoRepository.findOne(matricula);
 		//Optional<Aluno> alunoOpt = this.alunoRepository.findByLogin("admin@algamoney.com");
@@ -45,17 +48,20 @@ public class AlunoController {
 	}
 	
 	@PostMapping
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_ALUNO')")
 	public ResponseEntity<Aluno> salvarAluno(@Valid @RequestBody Aluno aluno){
 		Aluno alunoSalvo = this.alunoRepository.save(aluno);
 		return ResponseEntity.status(HttpStatus.CREATED).body(alunoSalvo);
 	}
 	
 	@DeleteMapping("/{matricula}")
+	@PreAuthorize("hasAuthority('ROLE_DELETAR_ALUNO')")
 	public void deletarAluno(@Valid @PathVariable Long matricula) {
 		this.alunoRepository.delete(matricula);
 	}
 	
 	@PutMapping("/{matricula}")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_ALUNO')")
 	public ResponseEntity<Aluno> atualizarAluno(@PathVariable Long matricula, @Valid @RequestBody Aluno alunoReq){
 		
 		Aluno alunoOpt = this.alunoRepository.findOne(matricula);		

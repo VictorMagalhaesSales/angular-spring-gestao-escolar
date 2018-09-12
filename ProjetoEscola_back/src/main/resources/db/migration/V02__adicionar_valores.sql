@@ -54,7 +54,7 @@ INSERT INTO aluno_permissao(codigo_aluno,codigo_permissao) VALUES
 (1,13);
 
 -- professor
-INSERT INTO professor_permissao(codigo_aluno,codigo_permissao) VALUES 
+INSERT INTO professor_permissao(codigo_professor,codigo_permissao) VALUES 
 (1,1),
 (1,6),
 (1,7),
