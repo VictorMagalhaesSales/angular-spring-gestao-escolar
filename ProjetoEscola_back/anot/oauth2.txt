@@ -1,0 +1,55 @@
+•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
+•0•0•0•0•0•0• OAUTH 2 •0•0•0•0•0•0•
+•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
+
+======------ RESOURCE SERVER -----======
+1 - Criaremos o 'ResourceServerConfig' que tem 3 anotações (@Configuration, @EnableResourceServer, @EnableWebSecurity ) e extende da classe 'ResourceServerConfigurerAdapter';
+2 - O método configure(auth) define os usuários(login e senha);
+3 - O método configure(http) define a segurança;
+4 - O método configure( resources) define o estado da API;
+
+======------ AUTHENTICATION SERVER -----======
+1 - Criaremos o 'AuthenticationServerConfig' para controlar o servidor de autenticação. Anotações: @Configuration/@EnableAuthorizationServer. Extende do AuthorizationServerConfigurerAdapter;
+2 - O método configure(clients) serve para defiinir o login do cliente;
+3 - O método configure(endpoints) para definirmos onde será armazenado o login do usuário;
+4 - O método @Bean TokenStore tokenStore() para informar como armazenaremos o token;
+
+// *** Agora, precisamos pegar um TOKEN na url: localhost:8080/oauth/token, passando os logins do cliente e depois do usuário como POST. Receberemos um token através do body que terá um tempo de expiração que usaremos nas requisições para ter a autorização *** //
+
+======------ JASON WEB TOKEN -----======
+1 - Conversor de TOKEN: no AuthorizationServerEndpointsConfigurer, botaremos um .acessTokenConverter(acessTokenConverter());
+2 - O método @Bean acessTokenConverter() converte o JWT TOKEN;
+3 - Modificaremos o tokenStore(), botando o retorno para JWTTokenStore(acessTokenConverter());
+
+// *** A partir de agora, o nosso token estará no formato JWT. Então, ele será maior e mais seguro *** //
+
+======------ REFRESH TOKEN -----======
+1 - Adicionamos, no authorizedGrantTypes, o "refresh_token";
+2 - Setaremos um tempo de vida para o refresh token no método configure(http) com: '.refreshTokenValidSeconds(segundos)';
+3 - Em configure(endpoints), setamos '.reuseRefreshToken(false)';
+
+// *** O Refresh Token sempre retorna um novo Acess Token, quando este espira(é recomendado ter o tempo de vida muito pequeno) *** //
+
+======------ REFRESH TOKEN NO COOKIE -----======
+1 - Criaremos uma classe que deve receber a anotação @ControllerAdvice, o que lhe permite interceptar as requisições, token e tirar o refresh token do body e coloca-lo no cookie;
+2 - A classe implementa 'ResponseBodyAdvice<OAuth2AccessToken>'. O que está entre < > é o tipo de dado que, quando for retornado no body, será interceptado;
+3 - Ao implementar, teremos 2 métodos. O supports(), quando retornar 'true', automaticamente executa o método beforeBodyWrite().
+4 - Botaremos o retorno do supports() como: return returnType.getMethod().getName().equals("postAccessToken");
+5 - No 'beforeBodyWrite()' vamos recuperar o corpo da requisição, tirar o refresh e bota-lo no cookie;
+
+// *** Agora estamos tirando o refresh token da requisição, botando no corpo e depois no cookie *** //
+
+
+======------ REFRESH TOKEN DO COOKIE PARA REQUISIÇÃO -----======
+1 - Criar classe com @Component, @Order(Odered.HIGHEST_PRECEDENCE), que implementa FIlter;
+2 - No método doFilter(), verificamos se a requisição está em 'lh:8080/au/tk',  se tem o parâmetro 'grant_type' com o 'refresh_token' e se tem algum cookie(no caso, o refres). Se for verdadeiro, pegaremos o cookie e adicionamos dentro do mapa de parâmetros dentro da requisição;
+
+
+
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= OBS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ •• Para resolver o erro com o AuthenticationManager:
+      Devemos manter uma classe de segurança que extende de WebSecurityConfigurerAdapter, com o método 'AuthenticationManager authenticationManagerBean()', com a anotação @Bean
+
+•• Para resolver o erro 'There is no PasswordEncoder mapped for the id "null" '
+     Devemos adicionar um {noop} na String de senha do usuário e do cliente: .secret("{noop}angular") e .password("{noop}admin")
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

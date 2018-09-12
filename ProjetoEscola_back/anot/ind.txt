@@ -28,7 +28,7 @@
  - Tamanho máximo e mínimo
 
 • Erros:
- - Recurso não encontrado 	(X)
+ - Recurso não encontrado 		(X)
  - Status code 			(X)
  - Mensagem inválida		(X)
  - Tratando validações 		(X)

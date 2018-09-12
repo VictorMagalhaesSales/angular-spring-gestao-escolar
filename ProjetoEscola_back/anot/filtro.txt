@@ -1,5 +1,5 @@
 •0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
-•0•0•0•0• CRIANDO UM FILTRO •0•0•0•0•
+•0•0•0• CRIANDO UM FILTRO •0•0•0•
 •0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
 
 // http://blog.caelum.com.br/consultas-fortemente-tipadas-com-jpa/

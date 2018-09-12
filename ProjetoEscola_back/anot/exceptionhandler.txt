@@ -1,3 +1,7 @@
+•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
+•0•0•0• EXCEPTION HANDLER •0•0•0•
+•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•0•
+
 ExceptionHandle serve para interceptar os erros e trata-los, devolvendo uma resposta personalizada.
 
 1- Adicionamos a anotação @ControllerAdvice na classe
