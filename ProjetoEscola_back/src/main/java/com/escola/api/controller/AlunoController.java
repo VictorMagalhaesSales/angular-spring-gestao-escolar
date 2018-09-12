@@ -37,11 +37,11 @@ public class AlunoController {
 	
 	@GetMapping("/{matricula}")
 	public ResponseEntity<Aluno> listarAlunoPorMatricula(@Valid @PathVariable Long matricula){
-		//Aluno aluno = this.alunoRepository.findOne(matricula);
-		Optional<Aluno> alunoOpt = this.alunoRepository.findByLogin("admin@algamoney.com");
-		System.out.println(alunoOpt.get().getSenha());
-		return ResponseEntity.ok(alunoOpt.get());
-		//return aluno != null ? ResponseEntity.ok(aluno) : ResponseEntity.noContent().build();
+		Aluno aluno = this.alunoRepository.findOne(matricula);
+		//Optional<Aluno> alunoOpt = this.alunoRepository.findByLogin("admin@algamoney.com");
+		//System.out.println(alunoOpt.get().getSenha());
+		//return ResponseEntity.ok(alunoOpt.get());
+		return aluno != null ? ResponseEntity.ok(aluno) : ResponseEntity.noContent().build();
 	}
 	
 	@PostMapping
