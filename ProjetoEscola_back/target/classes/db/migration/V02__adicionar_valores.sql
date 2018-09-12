@@ -5,9 +5,9 @@ INSERT INTO aluno VALUES
 (0,"Lucas","Sousa","lucas","$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.","2001-10-15","lucassousa@gmail.com","(85)988400644","c://imagems/ae.png");
 
 INSERT INTO professor VALUES
-(0,"Edy","vidal","Biologia","edyvidal","$2a$10$CGa/84j80Y45c2SW99cSYep5mZy.SYtcId0YNQOQbDEAz50gRVz7q","2001-01-01","edy@gmail.com","988400644","c://imagems/ae.png"),
-(0,"Kelmy","Carmurça","Português","kelmy","$2a$10$CGa/84j80Y45c2SW99cSYep5mZy.SYtcId0YNQOQbDEAz50gRVz7q","2001-01-01","kelmy@@gmail.com","988400644","c://imagems/ae.png"),
-(0,"Jhonnys","Sousa","Física","jhonnys","$2a$10$CGa/84j80Y45c2SW99cSYep5mZy.SYtcId0YNQOQbDEAz50gRVz7q","2001-01-01","jhony@gmail.com","988400644;d","c://imagems/ae.png");
+(0,"Edy","vidal","Biologia","edyvidal","$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.","2001-01-01","edy@gmail.com","988400644","c://imagems/ae.png"),
+(0,"Kelmy","Carmurça","Português","kelmy","$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.","2001-01-01","kelmy@@gmail.com","988400644","c://imagems/ae.png"),
+(0,"Jhonnys","Sousa","Física","jhonnys","$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.","2001-01-01","jhony@gmail.com","988400644;d","c://imagems/ae.png");
 
 INSERT INTO materia VALUES("Portugues");
 INSERT INTO materia VALUES("Matematica");
