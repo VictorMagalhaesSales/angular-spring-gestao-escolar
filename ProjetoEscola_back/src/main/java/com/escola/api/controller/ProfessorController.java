@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.escola.api.model.Aluno;
 import com.escola.api.model.Professor;
+import com.escola.api.repository.AlunoRepository;
 import com.escola.api.repository.ProfessorRepository;
 import com.escola.api.repository.filter.ProfessorFilter;
 
@@ -29,6 +32,9 @@ public class ProfessorController {
 
 	@Autowired
 	private ProfessorRepository professorRepository;
+	
+	@Autowired
+	private AlunoRepository alunoRepository;
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_LISTAR_PROFESSORES')")
@@ -44,8 +50,13 @@ public class ProfessorController {
 	}
 	
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_SALVAR_PROFESSOR')")
+	//@PreAuthorize("hasAuthority('ROLE_SALVAR_PROFESSOR')")
 	public ResponseEntity<Professor> salvarProfessor(@Valid @RequestBody Professor professor){
+		for (Aluno aluno: this.alunoRepository.findAll()) {
+			if(aluno.getEmail().equalsIgnoreCase(professor.getEmail())) {
+				throw new DataIntegrityViolationException("Email já cadastrado");
+			}
+		}
 		Professor professorSalvo = this.professorRepository.save(professor);
 		return ResponseEntity.status(HttpStatus.CREATED).body(professorSalvo);
 	}
@@ -57,8 +68,13 @@ public class ProfessorController {
 	}
 	
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ROLE_EDITAR_PROFESSOR')")
+	//@PreAuthorize("hasAuthority('ROLE_EDITAR_PROFESSOR')")
 	public ResponseEntity<Professor> atualizarProfessor(@PathVariable Long id, @Valid @RequestBody Professor professorReq){
+		for (Aluno aluno: this.alunoRepository.findAll()) {
+			if(aluno.getEmail().equalsIgnoreCase(professorReq.getEmail())) {
+				throw new DataIntegrityViolationException("Email já cadastrado");
+			}
+		}
 		Professor professorOpt = this.professorRepository.findOne(id);		
 		BeanUtils.copyProperties(professorReq, professorOpt, "id");
 		Professor professorDepois =  professorRepository.save(professorOpt);

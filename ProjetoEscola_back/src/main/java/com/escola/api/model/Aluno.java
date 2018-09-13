@@ -32,11 +32,7 @@ public class Aluno {
 	@NotNull(message="O campo 'sobrenome' não pode ser nulo!")
 	private String sobrenome;
 
-	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'login'")
-	@NotNull(message="O campo 'login' não pode ser nulo!")
-	private String login;
-
-	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'senha'")
+	@Size(max = 255, message="O você não pode digitar mais do que 255 caracteres no campo 'senha'")
 	@NotNull(message="O campo 'senha' não pode ser nulo!")
 	private String senha;
 	
@@ -83,13 +79,6 @@ public class Aluno {
 		this.sobrenome = sobrenome;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
 
 	public String getSenha() {
 		return senha;

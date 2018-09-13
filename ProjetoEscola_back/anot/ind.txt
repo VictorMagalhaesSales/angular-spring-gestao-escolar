@@ -43,9 +43,13 @@
 
 ====--- ALGAWORKS - AUTENTICAÇÃO DE USUÁRIOS ---====,
 
-( ) Autenticação de aluno
-( ) Autenticação de professor
-( ) Autenticação de administrador
+(X) Autenticação de aluno
+(X) Autenticação de professor
+(X) Autenticação de administrador
+
+(X) Permissões aluno
+(X) Permissões professor
+(X) Permissões administrador
 
 
 (    )  REST GLORY!!!!!!!!!

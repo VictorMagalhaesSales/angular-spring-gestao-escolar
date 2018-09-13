@@ -47,19 +47,20 @@ public class EscolaExceptionHandler extends ResponseEntityExceptionHandler{
 	
 	@ExceptionHandler({ DataIntegrityViolationException.class } )
 	public ResponseEntity<Object> handleDataIntegrityViolationException(DataIntegrityViolationException ex, WebRequest request) {
-		String mensagemParaOUsuario = "Entidade requerida não encontrada";
+		String mensagemParaOUsuario = "Operação não permitida";
 		String mensagemParaODesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
 		List<Erro> erros = Arrays.asList(new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor));
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 	
-	@ExceptionHandler({EmptyResultDataAccessException.class})
+	@ExceptionHandler({ EmptyResultDataAccessException.class})
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request){
 		String mensagemParaOUsuario = "Entidade requerida não encontrada";
 		String mensagemParaODesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
 		List<Erro> erros = Arrays.asList(new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor));
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
+	
 		
 	
 	

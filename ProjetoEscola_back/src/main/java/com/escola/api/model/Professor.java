@@ -1,11 +1,16 @@
 package com.escola.api.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -30,11 +35,7 @@ public class Professor {
 	@NotNull(message="O campo 'disciplina' não pode ser nulo!")
 	private String disciplina;
 
-	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'login'")
-	@NotNull(message="O campo 'login' não pode ser nulo!")
-	private String login;
-
-	@Size(max = 50, message="O você não pode digitar mais do que 50 caracteres no campo 'senha'")
+	@Size(max = 255, message="O você não pode digitar mais do que 255 caracteres no campo 'senha'")
 	@NotNull(message="O campo 'senha' não pode ser nulo!")
 	private String senha;
 	
@@ -50,6 +51,11 @@ public class Professor {
 
 	@Size(max = 255, message="o caminho da imagem não pode conter mais do que 255 caracteres!")
 	private String imagem;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "professor_permissao", joinColumns = @JoinColumn(name = "codigo_professor")
+		, inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
+	private List<Permissao> permissoes;
 
 	public Long getId() {
 		return id;
@@ -81,14 +87,6 @@ public class Professor {
 
 	public void setDisciplina(String disciplina) {
 		this.disciplina = disciplina;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
 	}
 
 	public String getSenha() {
@@ -129,6 +127,14 @@ public class Professor {
 
 	public void setImagem(String imagem) {
 		this.imagem = imagem;
+	}
+	
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
 	}
 
 	@Override

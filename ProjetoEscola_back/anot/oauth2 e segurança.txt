@@ -67,6 +67,18 @@
 
 
 
+============----------- PERMISSÕES ----------============
+1 - Adicionar a anotação @EnableGlobalMethodSecurity(prePostEnable = true) no ResourceServerConfig;
+2 - Adicoinar, na mesma classe, um @Bean MethodSecurityExpressionHandler;
+3 - Por fim, nos métodos get,post,put e delete adicionamos a anotação @PreAuthorize("hasAuthority('ROLE_...')");
+
+
+
+
+============----------- LOGOUT----------============
+1 - Criamos um controler com para o token ( RequestMapping, Restcont...);
+2 - Criaremos um metodo DeleteMapping que cria um cookie com o nome refreshToken e com um valor null. Esse cookie será adicionado na response;
+
 
 =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= OBS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
  •• Para resolver o erro com o AuthenticationManager:

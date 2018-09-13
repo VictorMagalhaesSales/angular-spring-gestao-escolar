@@ -9,7 +9,5 @@ import com.escola.api.repository.filter.AlunoRepositoryQuery;
 
 public interface AlunoRepository extends JpaRepository<Aluno, Long>, AlunoRepositoryQuery{
 	
-	public Optional<Aluno> findByLogin(String login);
-
 	public Optional<Aluno> findByEmail(String email);
 }
