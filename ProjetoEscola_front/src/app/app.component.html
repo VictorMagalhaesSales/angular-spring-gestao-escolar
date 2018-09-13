@@ -1,10 +1,4 @@
 <app-navbar></app-navbar>
-<app-login></app-login>
-<div class="inicio" *ngIf="false" >
-    <div class="row">
-        <img src="./../../assets/imgs/aprendiz.png" class="animated zoomIn col-6 offset-3" style="margin-top: 10%">
-    </div>
-    <div class="row offset-5">
-        <button mdbBtn type="button" color="success" class="waves-light col-4 animated zoomIn" mdbWavesEffect><b>FAzer login</b> <i class="fa fa-sign-in ml-2 fa-1x  animated flip"></i></button>
-    </div>
+<div class="container">
+    <router-outlet></router-outlet>
 </div>

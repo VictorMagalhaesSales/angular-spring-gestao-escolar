@@ -1,0 +1,17 @@
+|=-=-=-=--=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=| 
+|=-=-=-=--=-=-=-=-= ANGULAR =-=-=-=--=-=-=-=-=|
+|=-=-=-=--=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=| 
+
+
+
+==-- CONSULTAS --==
+1 - método pesquisar que retorna uma Promisse<any>;
+2 - Nele, criaremos um headers e adicionaremos a autorização(token) ( headers.append.('auth...','token');
+3 - chamaremos o método http.get(injeção de dependência já tem q ter sido feita) e passar como parâmetro a requisição;
+4 - Para adicionar o header na requisição get, passamos ele junto com a url;
+
+==-- PESQUISAS POR DESCRICAO --==
+1 - No método 'pesquisar', adicionaremos uma variável filtro do tipo any;
+2 - Criaremos uma variável const params que recebe a instância do URLSearchParams();
+3 - Criaremos um if testando se o atributo filtro existe. Se sim, params.set('descricao'), filtro.descricao);
+4 - Depois é só adicionar o 'search: params' na url da requisição get;
