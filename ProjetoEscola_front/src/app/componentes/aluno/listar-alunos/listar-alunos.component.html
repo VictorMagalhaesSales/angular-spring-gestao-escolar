@@ -1,19 +1,19 @@
 <div class="lista">
-        <h1>Lista de  Alunos</h1>
-        <p-table [value]="cars" [columns]="cols" [paginator]="true" [rows]="10">
-          <ng-template pTemplate="header" let-columns>
-              <tr>
-                  <th *ngFor="let col of columns">
-                      {{col.header}}
-                  </th>
-              </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-car let-columns="columns">
-              <tr>
-                  <td *ngFor="let col of columns">
-                     {{car[col.field]}}
-                  </td>
-              </tr>
-          </ng-template>
-        </p-table>
-      </div>
+    <h1>Lista de  Alunos</h1>
+    <p-table [value]="cars" [columns]="cols" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-car let-columns="columns">
+            <tr>
+                <td *ngFor="let col of columns">
+                    {{car[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
