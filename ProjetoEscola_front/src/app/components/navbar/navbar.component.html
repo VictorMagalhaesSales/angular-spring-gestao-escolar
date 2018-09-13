@@ -1,0 +1,37 @@
+<mdb-navbar SideClass="navbar navbar-dark green darken-2">
+    <mdb-navbar-brand>
+        <a color="deep-orange" style="padding: 10px; background-color: transparent; color: white;" 
+        data-toggle="modal" data-target="#basicExample" (click)="frame.show()" class="fa fa-bars fa-1x"></a>
+    </mdb-navbar-brand>
+</mdb-navbar>
+
+<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
+    <div class="modal-content">
+
+      <div class="modal-header green darken-2">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()" style=" color: #ad1457;">
+            <span aria-hidden="true" class="white-text"><b>×</b></span>
+        </button>
+        <img src="./../../assets/imgs/aprendiz.png" width="350px"><br>
+      </div>
+
+      <div class="modal-body animated bounceInRight">
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action" > <i class="fa fa-sign-in mr-3 green-text"></i> Login</a>
+            <a class="list-group-item list-group-item-action" > <i class="fa fa-plus-square mr-3 green-text"></i>Criar conta</a>
+            <a class="list-group-item list-group-item-action" ><i class="fa fa-user mr-3 green-text"></i> Usuários</a>
+            <a class="list-group-item list-group-item-action" > <i class="fa fa-ticket mr-3 green-text"></i> Tickets</a>
+            <a class="list-group-item list-group-item-action" > <i class="fa fa-address-book mr-3 green-text"></i> Resumo</a>
+        </div>  
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        <div class="text-center view overlay">
+            <img src="./../../assets/imgs/spring.png" width="250px" class="animated bounceInUp">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
