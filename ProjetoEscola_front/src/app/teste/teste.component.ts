@@ -1,14 +1,11 @@
-import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-listar-alunos',
-  templateUrl: './listar-alunos.component.html',
-  styleUrls: ['./listar-alunos.component.scss']
+  selector: 'app-teste',
+  templateUrl: './teste.component.html',
+  styleUrls: ['./teste.component.scss']
 })
-export class ListarAlunosComponent implements OnInit {
-
-  alunos = [];
+export class TesteComponent implements OnInit {
 
   cars: any[] = [
     {vin: "asdsd", year: "asd", brand: "asdasd", color:"asdas"},
@@ -26,23 +23,12 @@ export class ListarAlunosComponent implements OnInit {
     {vin: "asd-sd", year: "asd", brand: "asdasd", color:"asdas"}
   ]
 
-  cols: any[] = [
-    { field: 'vin', header: 'Vin' },
-    { field: 'year', header: 'Year' },
-    { field: 'brand', header: 'Brand' },
-    { field: 'color', header: 'Color' }
-];
+  cols: any[];
 
-  constructor(private alunoService: AlunoService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.pesquisar();
-  }
 
-  pesquisar(){
-    
-    this.alunoService.pesquisarAlunos()
-      .then( alunos => this.alunos = alunos );
   }
 
 }

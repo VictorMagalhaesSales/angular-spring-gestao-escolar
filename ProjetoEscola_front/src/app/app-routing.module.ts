@@ -1,3 +1,4 @@
+import { TesteComponent } from './teste/teste.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -9,7 +10,8 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 const AppRoutes: Routes = [
   { path: '', component: InicioComponent} ,
   { path: 'login', component: LoginComponent },
-  { path: 'listaralunos', component: ListarAlunosComponent }
+  { path: 'listaralunos', component: ListarAlunosComponent },
+  { path: 'teste', component: TesteComponent }
 
 ]
 

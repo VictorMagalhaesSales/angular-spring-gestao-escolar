@@ -14,13 +14,17 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { TesteComponent } from './teste/teste.component';
+
+import {TableModule} from 'primeng/table';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    InicioComponent
+    InicioComponent,
+    TesteComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +33,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    TableModule,
    // MAATERIAL DESIGN FOR BOOTSTRAP - ANGULAR
     NavbarModule,
     WavesModule,
