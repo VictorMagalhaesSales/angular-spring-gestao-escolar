@@ -1,0 +1,41 @@
+import { TableModule } from 'primeng/table';
+import { CalendarModule } from 'primeng/calendar';
+import { GrowlModule } from 'primeng/growl';
+import { ButtonModule } from 'primeng/button';
+import { WavesModule, ButtonsModule, TooltipModule, ModalModule, InputsModule } from 'angular-bootstrap-md';
+import { AppRoutingModule } from './../../app-routing.module';
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { ListarProfessorComponent } from './listar-professor/listar-professor.component';
+import { AdicionarProfessorComponent } from './adicionar-professor/adicionar-professor.component';
+import { PerfilComponent } from './perfil/perfil.component';
+
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    AppRoutingModule,
+
+    // MDB
+    WavesModule,
+    ButtonsModule,
+    ButtonModule,
+    TooltipModule,
+    ModalModule,
+    GrowlModule,
+    CalendarModule,
+
+    // NG PRIME
+    TableModule,
+    InputsModule
+  ],
+  declarations: [
+    AdicionarProfessorComponent,
+    ListarProfessorComponent,
+    PerfilComponent
+  ],
+  exports: [AdicionarProfessorComponent]
+})
+export class ProfessorModule { }

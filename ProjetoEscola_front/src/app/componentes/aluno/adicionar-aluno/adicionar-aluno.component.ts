@@ -1,6 +1,7 @@
-import { AlunoModel } from './../aluno.model';
+import { AlunoModel } from './../../model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-adicionar-aluno',
@@ -9,14 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdicionarAlunoComponent implements OnInit {
 
-  constructor(private alunoService: AlunoService) { }
+  aluno = new AlunoModel();
+
+  constructor(private alunoService: AlunoService, private rota: Router) { }
 
   ngOnInit() {
   }
 
-
-  adicionarAluno(aluno : AlunoModel){
-    this.alunoService.adicionarAluno(aluno).then(() => null);
+c
+  adicionarAluno(){
+    this.alunoService.adicionarAluno(this.aluno).then(() => this.rota.navigate(['../../aluno/listaraluno']));
   }
 
 }

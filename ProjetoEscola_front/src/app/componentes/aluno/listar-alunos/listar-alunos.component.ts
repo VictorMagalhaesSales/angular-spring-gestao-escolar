@@ -1,4 +1,4 @@
-import { AlunoModel } from './../aluno.model';
+import { AlunoModel } from './../../model';
 import { AlunoFiltro } from './../aluno-filtro.model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
@@ -54,7 +54,7 @@ export class ListarAlunosComponent implements OnInit {
     if(this.paraExcluir == null){
       console.log("Sem código");
     }else{
-      this.alunoService.deletarAluno(this.paraExcluir).then( () => {this.pesquisar("")}, () => {alert("Encontramos outros registros relacionados a esse usuário. Por favor, apague-os e tente novamente.")} );
+      this.alunoService.deletarAluno(this.paraExcluir).then( () => {this.pesquisar("")}, () => {alert("Encontramos outros registros relacionados a esse aluno. Por favor, apague-os e tente novamente.")} );
       this.paraExcluir = null;
     }
   }

@@ -1,21 +1,53 @@
 <div class="lista">
-    <div class="animated zoomIn">
-      <h1>Adicionar um alunos</h1><br>
-      <div class="col-12">
-        <form class="col-8">
+  <div class="animated zoomIn">
+    <h1>Matricular alunos</h1><br>
+    <span>Para matricular um aluno, preencha todos os campos abaixo e confirme.</span><br>
+    <div class="col-7" style="float: left;">
+      <form>
+          <div class="md-form">
+            <i class="fa fa-user-circle prefix"></i>
+            <input mdbInputDirective type="text" id="nome" name="nome" class="form-control"  [(ngModel)]="aluno.nome">
+            <label for="nome">Nome</label>
+          </div>
 
-            <div class="md-form">
-              <i class="fa fa-envelope prefix"></i>
-              <input mdbInputDirective type="text" id="email" class="form-control">
-              <label for="email">Nome</label>
-            </div>
+          <div class="md-form">
+            <i class="fa fa-user-circle-o prefix"></i>
+            <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control"  [(ngModel)]="aluno.sobrenome">
+            <label for="sobrenome">Sobrenome</label>
+          </div>
 
-            <div class="md-form">
-              <i class="fa fa-envelope prefix"></i>
-              <input mdbInputDirective type="text" id="email" class="form-control">
-              <label for="email">Email</label>
-            </div>
-        </form>
-      </div>
+          <div class="md-form">
+            <i class="fa fa-envelope prefix"></i> 
+            <input mdbInputDirective type="email" id="email" class="form-control" name="email"  [(ngModel)]="aluno.email">
+            <label for="email">Email</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-lock prefix"></i>
+            <input mdbInputDirective type="password" id="senha" class="form-control" name="senha"  [(ngModel)]="aluno.senha">
+            <label for="senha">Senha</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-phone prefix"></i> 
+            <input mdbInputDirective type="text" id="telefone" class="form-control" name="telefone"  [(ngModel)]="aluno.telefone">
+            <label for="telefone">Telefone</label>
+          </div>
+
+          <div class="md-form">
+            <i class="fa fa-calendar prefix"></i> 
+            <input mdbInputDirective type="text" id="nascimento" class="form-control" name="nascimento"  [(ngModel)]="aluno.nascimento">
+            <label for="telefone">Data de nascimento</label>
+          </div>
+
+
+          <br><br>
+          <button mdbBtn type="button" color="default" class="waves-light" block="true" mdbWavesEffect (click)="adicionarAluno()">Cadastrar</button>
+      </form>
+    </div>
+  </div>
+  <div class="col-5 animated fadeInRightBig" style="float: right;">
+    <br><br><br><br><br>
+    <img src="../../../../assets/imgs/aluno.png" alt="" width="500" style="opacity: .8;">
   </div>
 </div>

@@ -18,9 +18,12 @@
 
       <div class="modal-body animated bounceInRight">
         <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action" [routerLink]="['']"> <i class="fa fa-home mr-3 green-text" aria-hidden="true"></i> Início</a>
             <a class="list-group-item list-group-item-action" [routerLink]="['login']"> <i class="fa fa-sign-in mr-3 green-text"></i> Login</a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['listaralunos']"><i class="fa fa-search mr-3 green-text" aria-hidden="true"></i>Exibir alunos</a>
-            <a class="list-group-item list-group-item-action" [routerLink]="['adicionaraluno']"> <i class="fa fa-plus-square mr-3 green-text"></i>Adicionar aluno</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['aluno/listaraluno']"><i class="fa fa-search mr-3 green-text" aria-hidden="true"></i>Exibir alunos</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['aluno/adicionaraluno']"> <i class="fa fa-plus-square mr-3 green-text"></i>Adicionar aluno</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['professor/listarprofessor']"><i class="fa fa-search mr-3 green-text" aria-hidden="true"></i>Exibir professores</a>
+            <a class="list-group-item list-group-item-action" [routerLink]="['professor/adicionarprofessor']"> <i class="fa fa-plus-square mr-3 green-text"></i>Adicionar professor</a>
         </div>  
       </div>
 

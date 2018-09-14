@@ -1,0 +1,121 @@
+<div class="lista">
+        <div class="animated zoomIn">
+            <h1>Pesquisa de professores adicionados</h1>
+            <table class="col-12 md-form">
+                <tr>
+                    <td><input mdbInputDirective type="text" name="nome" [(ngModel)]="nome" (keyup)="pesquisar()" class="form-control" placeholder="Nome" autocomplete="off" [mdbValidate]="false"></td>
+                    <td><input mdbInputDirective type="text" name="sobrenome" [(ngModel)]="sobrenome" (keyup)="pesquisar()" class="form-control" placeholder="Sobrenome" autocomplete="off" [mdbValidate]="false"></td>
+                    <td><input mdbInputDirective type="text" name="disciplina" [(ngModel)]="disciplina" (keyup)="pesquisar()" class="form-control" placeholder="Disciplina" autocomplete="off" [mdbValidate]="false"></td>
+                    <td><input mdbInputDirective type="text" name="email" [(ngModel)]="email" (keyup)="pesquisar()" class="form-control" placeholder="Email" autocomplete="off" [mdbValidate]="false"></td>
+                    <td><input mdbInputDirective type="text" name="telefone" [(ngModel)]="telefone" (keyup)="pesquisar()" class="form-control" placeholder="Telefone" autocomplete="off" [mdbValidate]="false"></td>
+                </tr>
+            </table>     
+    
+            <div class="col-12">
+                <p-table [value]="cars" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" class="titulo" style="color: white;">
+                                {{col.header}}
+                            </th>
+                            <th  style="background-color: #007E33; color: white;">Ações</th>
+                        </tr>
+                    </ng-template>
+                      
+                 
+                    <ng-template pTemplate="body" let-car let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                <span *ngIf="col.field == 'nascimento'" >
+                                    {{car[col.field] | date:'dd/MM/yyyy'}} 
+                                </span>
+                                <span *ngIf="col.field != 'nascimento'" >
+                                    {{car[col.field]}}
+                                </span>
+                            </td>
+                            <td>
+                                <button mdbBtn (click)="editarProfessor1(car)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
+                                <button mdbBtn (click)="acionarExcluir(car)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+            <br><Br>
+            <a mdbBtn type="button" block="true" color="success" outline="true" mdbWavesEffect [routerLink]="['../adicionarprofessor']">Adicionar professor</a>
+        </div>
+    </div>
+    
+    <div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+        <div class="modal-content text-center">
+          <div class="modal-header d-flex justify-content-center">
+            <p class="heading">Deseja excluir professor?</p>
+          </div>
+          <div class="modal-body">
+            <i class="fa fa-times fa-4x animated rotateIn"></i>
+          </div>
+          <div class="modal-footer flex-center">
+            <a mdbBtn color="danger"class="waves-effect" mdbWavesEffect (click)="excluirProfessor()" (click)="frame.hide()">Sim</a>
+            <a type="button" mdbBtn color="danger" outline="true"  class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Não</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog cascading-modal modal-avatar" role="document">
+        <div class="modal-content">
+          <div class="modal-header text-center">
+                <img src="https://freeiconshop.com/wp-content/uploads/edd/document-edit-flat.png" alt="avatar" class="rounded-circle img-responsive">
+          </div>
+          <div class="modal-body">
+             <table>
+                 <tr>
+                     <td>
+                        <div class="md-form">
+                            <i class="fa fa-user prefix grey-text"></i>
+                            <input type="text" id="nome" class="form-control validate" mdbInputDirective [(ngModel)]="professorAtualizar.nome" mdbTooltip="Nome">
+                        </div> 
+                     </td>
+                     <td>
+                        <div class="md-form">
+                            <i class="fa fa-user prefix grey-text"></i>
+                            <input type="text" id="sn" class="form-control validate" mdbInputDirective [(ngModel)]="professorAtualizar.sobrenome" mdbTooltip="Sobrenome">
+                        </div>
+                     </td>
+                 </tr>
+                 <tr>
+                     <td colspan=2>
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <input type="email" id="ema" class="form-control validate" mdbInputDirective [(ngModel)]="professorAtualizar.email" mdbTooltip="Email">
+                        </div>
+                    </td>
+                 </tr>
+                 <tr>
+                     <td>
+                        <div class="md-form">
+                            <i class="fa fa-calendar prefix grey-text"></i>
+                            <input type="text" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="professorAtualizar.nascimento" mdbTooltip="Nascimento">
+                        </div>
+                     </td>
+                     <td>
+                        <div class="md-form">
+                            <i class="fa fa-phone prefix grey-text"></i>
+                            <input type="text" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="professorAtualizar.telefone" mdbTooltip="Telefone">
+                        </div>
+                     </td>
+                 </tr>
+             </table> 
+            
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarProfessor2()" (click)="frame3.hide()">Atualizar
+                <i class="fa fa-paper-plane-o ml-1"></i>
+                </button>
+            </div>
+        </div>
+      </div>
+    </div>
+    
+    

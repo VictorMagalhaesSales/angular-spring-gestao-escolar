@@ -1,3 +1,5 @@
+import { AdicionarProfessorComponent } from './componentes/professor/adicionar-professor/adicionar-professor.component';
+import { ListarProfessorComponent } from './componentes/professor/listar-professor/listar-professor.component';
 import { AdicionarAlunoComponent } from './componentes/aluno/adicionar-aluno/adicionar-aluno.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -10,9 +12,10 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 const AppRoutes: Routes = [
   { path: '', component: InicioComponent} ,
   { path: 'login', component: LoginComponent },
-  { path: 'listaralunos', component: ListarAlunosComponent },
-  { path: 'listaraluno', component: ListarAlunosComponent },
-  { path: 'adicionaraluno', component: AdicionarAlunoComponent }
+  { path: 'aluno/listaraluno', component: ListarAlunosComponent },
+  { path: 'aluno/adicionaraluno', component: AdicionarAlunoComponent },
+  { path: 'professor/listarprofessor', component: ListarProfessorComponent },
+  { path: 'professor/adicionarprofessor', component: AdicionarProfessorComponent }
 
 ]
 

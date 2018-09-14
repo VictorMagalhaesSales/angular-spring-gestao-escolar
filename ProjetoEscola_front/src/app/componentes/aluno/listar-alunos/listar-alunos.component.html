@@ -1,13 +1,12 @@
 <div class="lista">
     <div class="animated zoomIn">
-        <h1>Pesquisa de  alunos matriculados</h1><br>
-
+        <h1>Pesquisa de alunos matriculados</h1>
         <table class="col-12 md-form">
             <tr>
-                <td><input mdbInputDirective type="text" name="nome" [(ngModel)]="nome" (keyup)="pesquisar()" class="form-control" placeholder="Nome"></td>
-                <td><input mdbInputDirective type="text" name="sobrenome" [(ngModel)]="sobrenome" (keyup)="pesquisar()" class="form-control" placeholder="Sobrenome"></td>
-                <td><input mdbInputDirective type="text" name="email" [(ngModel)]="email" (keyup)="pesquisar()" class="form-control" placeholder="Email"></td>
-                <td><input mdbInputDirective type="text" name="telefone" [(ngModel)]="telefone" (keyup)="pesquisar()" class="form-control" placeholder="Telefone"></td>
+                <td><input mdbInputDirective type="text" name="nome" [(ngModel)]="nome" (keyup)="pesquisar()" class="form-control" placeholder="Nome" autocomplete="off" [mdbValidate]="false"></td>
+                <td><input mdbInputDirective type="text" name="sobrenome" [(ngModel)]="sobrenome" (keyup)="pesquisar()" class="form-control" placeholder="Sobrenome" autocomplete="off" [mdbValidate]="false"></td>
+                <td><input mdbInputDirective type="text" name="email" [(ngModel)]="email" (keyup)="pesquisar()" class="form-control" placeholder="Email" autocomplete="off" [mdbValidate]="false"></td>
+                <td><input mdbInputDirective type="text" name="telefone" [(ngModel)]="telefone" (keyup)="pesquisar()" class="form-control" placeholder="Telefone" autocomplete="off" [mdbValidate]="false"></td>
             </tr>
         </table>     
 
@@ -18,7 +17,7 @@
                         <th *ngFor="let col of columns" class="titulo" style="color: white;">
                             {{col.header}}
                         </th>
-                        <th>Ações</th>
+                        <th  style="background-color: #007E33; color: white;">Ações</th>
                     </tr>
                 </ng-template>
                   
@@ -41,6 +40,8 @@
                 </ng-template>
             </p-table>
         </div>
+        <br><Br>
+        <a mdbBtn type="button" block="true" color="success" outline="true" mdbWavesEffect [routerLink]="['../adicionaraluno']">Adicionar aluno</a>
     </div>
 </div>
 
@@ -115,3 +116,4 @@
     </div>
   </div>
 </div>
+

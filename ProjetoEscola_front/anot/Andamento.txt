@@ -3,39 +3,46 @@
 ==========--------------------------==========
 
 
-• Template
+• Template e outros
 (x) Adaptando template
 (x) Início
-( ) Barra de menu
-( ) Imagem
-( ) Mascaras
-( ) Mensagens de erro
+( ) Barra de menu com permissões
+( ) Imagem no BD
+( ) Mascaras nos input's
+( ) Tratamentos de erros
+( ) Validações no formulário
 
-• Alunos ---===
+•===--- Alunos ---===•
  (x) Listar alunos
- ( ) Adicionar alunos
+ (X) Adicionar alunos
  (x) Editar alunos
  (x) Deletar alunos
 
-• Professor ---===
- ( ) Listar professores
- ( ) Adicionar professores
- ( ) Editar professores
- ( ) Deletar professores
 
-• Perfil ---===
+•===--- Professor ---===•
+ (X) Listar professores
+ (x) Adicionar professores
+ (x) Editar professores
+ (x) Deletar professores
+
+
+•===--- Perfil ---===•
  ( ) Perfil aluno
  ( ) Perfil professor
 
-• Faltas ---===
+
+•===--- Faltas ---===•
  ( ) Listar faltas
  ( ) Deletar faltas
 
-• Notas ---===
+
+•===--- Notas ---===•
  ( ) Adicionar notas
  ( ) Listar notas
  ( ) Editar notas
  ( ) Deletar notas
-• Login ---===
+
+
+•===--- Login ---===•
  ( ) Autenticar login
  ( ) Manter usuário logado

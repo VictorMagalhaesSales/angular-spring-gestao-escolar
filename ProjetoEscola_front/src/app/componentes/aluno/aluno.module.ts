@@ -1,3 +1,4 @@
+import { AppRoutingModule } from './../../app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -11,15 +12,21 @@ import { AlunoService } from './../../servicos/aluno.service';
 import { ListarAlunosComponent } from './listar-alunos/listar-alunos.component';
 import { AdicionarAlunoComponent } from './adicionar-aluno/adicionar-aluno.component';
 import {CalendarModule} from 'primeng/calendar';
+import { InicioComponent } from '../inicio/inicio.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
       ListarAlunosComponent,
-      AdicionarAlunoComponent
+      AdicionarAlunoComponent,
+      InicioComponent,
+      PerfilComponent                               
+    
   ],
   imports: [
     CommonModule,
     FormsModule,
+    AppRoutingModule,
 
     // MDB
     WavesModule,

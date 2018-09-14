@@ -16,18 +16,20 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {TableModule} from 'primeng/table';
 import {AccordionModule} from 'primeng/accordion';
+import { ListarProfessorComponent } from './componentes/professor/listar-professor/listar-professor.component';
+import { ProfessorModule } from './componentes/professor/professor.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    LoginComponent,
-    InicioComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AlunoModule,
+    ProfessorModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
