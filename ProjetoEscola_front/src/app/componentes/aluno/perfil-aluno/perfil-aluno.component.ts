@@ -1,4 +1,6 @@
+import { AlunoModel } from './../../model';
 import { Component, OnInit } from '@angular/core';
+import { AlunoService } from '../../../servicos/aluno.service';
 
 @Component({
   selector: 'app-perfil-aluno',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilAlunoComponent implements OnInit {
 
-  constructor() { }
+  aluno = new AlunoModel();
+
+  constructor(private alunoService: AlunoService) { }
 
   ngOnInit() {
+    this.chamarAluno(28);
+  }
+
+  chamarAluno(matricula: number){
+    this.alunoService.pesquisarAlunoPorId(matricula).then( aluno => this.aluno = aluno );
   }
 
 }
