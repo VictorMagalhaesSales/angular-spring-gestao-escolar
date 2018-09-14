@@ -8,6 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ListarAlunosComponent } from './componentes/aluno/listar-alunos/listar-alunos.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
+import { PerfilAlunoComponent } from './componentes/aluno/perfil-aluno/perfil-aluno.component';
 
 const AppRoutes: Routes = [
   { path: '', component: InicioComponent} ,
@@ -15,7 +16,8 @@ const AppRoutes: Routes = [
   { path: 'aluno/listaraluno', component: ListarAlunosComponent },
   { path: 'aluno/adicionaraluno', component: AdicionarAlunoComponent },
   { path: 'professor/listarprofessor', component: ListarProfessorComponent },
-  { path: 'professor/adicionarprofessor', component: AdicionarProfessorComponent }
+  { path: 'professor/adicionarprofessor', component: AdicionarProfessorComponent },
+  { path: 'aluno/perfil', component: PerfilAlunoComponent }
 
 ]
 

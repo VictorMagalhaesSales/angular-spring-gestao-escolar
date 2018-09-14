@@ -10,9 +10,12 @@ import { FormsModule } from '@angular/forms';
 
 import { ListarProfessorComponent } from './listar-professor/listar-professor.component';
 import { AdicionarProfessorComponent } from './adicionar-professor/adicionar-professor.component';
-import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
+  declarations: [
+    AdicionarProfessorComponent,
+    ListarProfessorComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,11 +33,6 @@ import { PerfilComponent } from './perfil/perfil.component';
     // NG PRIME
     TableModule,
     InputsModule
-  ],
-  declarations: [
-    AdicionarProfessorComponent,
-    ListarProfessorComponent,
-    PerfilComponent
   ],
   exports: [AdicionarProfessorComponent]
 })
