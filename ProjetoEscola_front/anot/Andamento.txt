@@ -1,0 +1,41 @@
+==========--------------------------==========
+= ESCOLA FULLSTACK - FrontEnd Angular =
+==========--------------------------==========
+
+
+• Template
+(x) Adaptando template
+(x) Início
+( ) Barra de menu
+( ) Imagem
+( ) Mascaras
+( ) Mensagens de erro
+
+• Alunos ---===
+ (x) Listar alunos
+ ( ) Adicionar alunos
+ (x) Editar alunos
+ (x) Deletar alunos
+
+• Professor ---===
+ ( ) Listar professores
+ ( ) Adicionar professores
+ ( ) Editar professores
+ ( ) Deletar professores
+
+• Perfil ---===
+ ( ) Perfil aluno
+ ( ) Perfil professor
+
+• Faltas ---===
+ ( ) Listar faltas
+ ( ) Deletar faltas
+
+• Notas ---===
+ ( ) Adicionar notas
+ ( ) Listar notas
+ ( ) Editar notas
+ ( ) Deletar notas
+• Login ---===
+ ( ) Autenticar login
+ ( ) Manter usuário logado

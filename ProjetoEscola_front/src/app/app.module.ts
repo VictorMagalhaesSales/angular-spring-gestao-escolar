@@ -6,7 +6,6 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {AccordionModule} from 'primeng/accordion';
 
 import { MDBBootstrapModule, NavbarModule, WavesModule, ButtonsModule, InputsModule, CardsFreeModule  } from 'angular-bootstrap-md';
 import { LoginComponent } from './componentes/login/login.component';
@@ -14,17 +13,16 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import { TesteComponent } from './teste/teste.component';
 
 import {TableModule} from 'primeng/table';
+import {AccordionModule} from 'primeng/accordion';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    InicioComponent,
-    TesteComponent
+    InicioComponent
   ],
   imports: [
     BrowserModule,

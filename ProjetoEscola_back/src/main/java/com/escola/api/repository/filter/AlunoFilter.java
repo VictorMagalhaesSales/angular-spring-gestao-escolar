@@ -1,5 +1,6 @@
 package com.escola.api.repository.filter;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.GeneratedValue;
@@ -15,10 +16,8 @@ public class AlunoFilter {
 	private String nome;
 
 	private String sobrenome;
-
-	private String login;
 	
-	private Date nascimento;
+	private LocalDate nascimento;
 	
 	private String email;
 
@@ -40,20 +39,12 @@ public class AlunoFilter {
 		this.sobrenome = sobrenome;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	public Date getNascimento() {
+	public LocalDate getNascimento() {
 		return nascimento;
 	}
 
-	public void setNascimento(Date nascimento) {
+	public void setNascimento(LocalDate nascimento) {
 		this.nascimento = nascimento;
 	}
 

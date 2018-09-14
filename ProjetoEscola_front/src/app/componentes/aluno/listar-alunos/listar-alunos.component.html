@@ -1,19 +1,117 @@
 <div class="lista">
-    <h1>Lista de  Alunos</h1>
-    <p-table [value]="cars" [columns]="cols" [paginator]="true" [rows]="10">
-        <ng-template pTemplate="header" let-columns>
+    <div class="animated zoomIn">
+        <h1>Pesquisa de  alunos matriculados</h1><br>
+
+        <table class="col-12 md-form">
             <tr>
-                <th *ngFor="let col of columns">
-                    {{col.header}}
-                </th>
+                <td><input mdbInputDirective type="text" name="nome" [(ngModel)]="nome" (keyup)="pesquisar()" class="form-control" placeholder="Nome"></td>
+                <td><input mdbInputDirective type="text" name="sobrenome" [(ngModel)]="sobrenome" (keyup)="pesquisar()" class="form-control" placeholder="Sobrenome"></td>
+                <td><input mdbInputDirective type="text" name="email" [(ngModel)]="email" (keyup)="pesquisar()" class="form-control" placeholder="Email"></td>
+                <td><input mdbInputDirective type="text" name="telefone" [(ngModel)]="telefone" (keyup)="pesquisar()" class="form-control" placeholder="Telefone"></td>
             </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-car let-columns="columns">
-            <tr>
-                <td *ngFor="let col of columns">
-                    {{car[col.field]}}
+        </table>     
+
+        <div class="col-12">
+            <p-table [value]="cars" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" class="titulo" style="color: white;">
+                            {{col.header}}
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </ng-template>
+                  
+             
+                <ng-template pTemplate="body" let-car let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            <span *ngIf="col.field == 'nascimento'" >
+                                {{car[col.field] | date:'dd/MM/yyyy'}} 
+                            </span>
+                            <span *ngIf="col.field != 'nascimento'" >
+                                {{car[col.field]}}
+                            </span>
+                        </td>
+                        <td>
+                            <button mdbBtn (click)="editarAluno1(car)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
+                            <button mdbBtn (click)="acionarExcluir(car)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</div>
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
+    <div class="modal-content text-center">
+      <div class="modal-header d-flex justify-content-center">
+        <p class="heading">Deseja excluir aluno?</p>
+      </div>
+      <div class="modal-body">
+        <i class="fa fa-times fa-4x animated rotateIn"></i>
+      </div>
+      <div class="modal-footer flex-center">
+        <a mdbBtn color="danger"class="waves-effect" mdbWavesEffect (click)="excluirAluno()" (click)="frame.hide()">Sim</a>
+        <a type="button" mdbBtn color="danger" outline="true"  class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Não</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog cascading-modal modal-avatar" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+            <img src="https://freeiconshop.com/wp-content/uploads/edd/document-edit-flat.png" alt="avatar" class="rounded-circle img-responsive">
+      </div>
+      <div class="modal-body">
+         <table>
+             <tr>
+                 <td>
+                    <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="nome" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.nome" mdbTooltip="Nome">
+                    </div> 
+                 </td>
+                 <td>
+                    <div class="md-form">
+                        <i class="fa fa-user prefix grey-text"></i>
+                        <input type="text" id="sn" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.sobrenome" mdbTooltip="Sobrenome">
+                    </div>
+                 </td>
+             </tr>
+             <tr>
+                 <td colspan=2>
+                    <div class="md-form">
+                        <i class="fa fa-envelope prefix grey-text"></i>
+                        <input type="email" id="ema" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.email" mdbTooltip="Email">
+                    </div>
                 </td>
-            </tr>
-        </ng-template>
-    </p-table>
+             </tr>
+             <tr>
+                 <td>
+                    <div class="md-form">
+                        <i class="fa fa-calendar prefix grey-text"></i>
+                        <input type="text" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.nascimento" mdbTooltip="Nascimento">
+                    </div>
+                 </td>
+                 <td>
+                    <div class="md-form">
+                        <i class="fa fa-phone prefix grey-text"></i>
+                        <input type="text" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.telefone" mdbTooltip="Telefone">
+                    </div>
+                 </td>
+             </tr>
+         </table> 
+        
+        <div class="modal-footer d-flex justify-content-center">
+            <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAluno2()" (click)="frame3.hide()">Atualizar
+            <i class="fa fa-paper-plane-o ml-1"></i>
+            </button>
+        </div>
+    </div>
+  </div>
 </div>

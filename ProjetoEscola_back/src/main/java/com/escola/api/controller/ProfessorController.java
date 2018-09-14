@@ -50,7 +50,7 @@ public class ProfessorController {
 	}
 	
 	@PostMapping
-	//@PreAuthorize("hasAuthority('ROLE_SALVAR_PROFESSOR')")
+	@PreAuthorize("hasAuthority('ROLE_SALVAR_PROFESSOR')")
 	public ResponseEntity<Professor> salvarProfessor(@Valid @RequestBody Professor professor){
 		for (Aluno aluno: this.alunoRepository.findAll()) {
 			if(aluno.getEmail().equalsIgnoreCase(professor.getEmail())) {
@@ -68,7 +68,7 @@ public class ProfessorController {
 	}
 	
 	@PutMapping("/{id}")
-	//@PreAuthorize("hasAuthority('ROLE_EDITAR_PROFESSOR')")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_PROFESSOR')")
 	public ResponseEntity<Professor> atualizarProfessor(@PathVariable Long id, @Valid @RequestBody Professor professorReq){
 		for (Aluno aluno: this.alunoRepository.findAll()) {
 			if(aluno.getEmail().equalsIgnoreCase(professorReq.getEmail())) {

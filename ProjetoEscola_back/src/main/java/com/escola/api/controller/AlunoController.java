@@ -72,7 +72,7 @@ public class AlunoController {
 	}
 	
 	@PutMapping("/{matricula}")
-	//@PreAuthorize("hasAuthority('ROLE_EDITAR_ALUNO')")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_ALUNO')")
 	public ResponseEntity<Aluno> atualizarAluno(@PathVariable Long matricula, @Valid @RequestBody Aluno alunoReq){
 		for (Professor professor: this.professorRepository.findAll()) {
 			if(professor.getEmail().equalsIgnoreCase(alunoReq.getEmail())) {

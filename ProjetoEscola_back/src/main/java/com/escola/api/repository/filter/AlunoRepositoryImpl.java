@@ -53,13 +53,8 @@ public class AlunoRepositoryImpl implements AlunoRepositoryQuery{
 			
 		}
 		
-		if(alunoFilter.getLogin() != null) {
-			predicates.add( builder.like( builder.lower(root.get("login")), "%" + alunoFilter.getLogin() + "%" ) );
-			
-		}
-		
 		if(alunoFilter.getNascimento() != null) {
-			predicates.add( builder.like( builder.lower(root.get("nascimento")), "%" + alunoFilter.getNascimento() + "%" ) );
+			predicates.add( builder.greaterThanOrEqualTo( builder.lower(root.get("nascimento")), "%" + alunoFilter.getNascimento() + "%" ) );
 			
 		}
 		

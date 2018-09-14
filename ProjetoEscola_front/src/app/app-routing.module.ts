@@ -1,4 +1,4 @@
-import { TesteComponent } from './teste/teste.component';
+import { AdicionarAlunoComponent } from './componentes/aluno/adicionar-aluno/adicionar-aluno.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,7 +11,8 @@ const AppRoutes: Routes = [
   { path: '', component: InicioComponent} ,
   { path: 'login', component: LoginComponent },
   { path: 'listaralunos', component: ListarAlunosComponent },
-  { path: 'teste', component: TesteComponent }
+  { path: 'listaraluno', component: ListarAlunosComponent },
+  { path: 'adicionaraluno', component: AdicionarAlunoComponent }
 
 ]
 
