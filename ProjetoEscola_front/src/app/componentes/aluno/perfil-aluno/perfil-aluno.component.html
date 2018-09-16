@@ -34,17 +34,13 @@
                 </table>
             </div>
             <div class="row col-s8 offset-2">
-                <button mdbBtn type="button" color="indigo" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame3.show()"><i class="fa fa-vcard" aria-hidden="true"></i> Editar perfil</button>
+                <button mdbBtn type="button" color="indigo" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" (click)="passarAluno()"><i class="fa fa-vcard" aria-hidden="true"></i> Editar perfil</button>
                 <button mdbBtn type="button" color="dark-green" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame1.show()"><i class="fa fa-lock" aria-hidden="true"></i> Alterar senha</button>
                 <button mdbBtn type="button" color="pink" class="waves-light" mdbWavesEffect><i class="fa fa-image" aria-hidden="true"></i> Alterar foto de perfil</button>
             </div>
         </div>
     </div>
 </div>
-
-
-
-
 
 <div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog cascading-modal modal-avatar" role="document">
@@ -101,10 +97,9 @@
         </div>
       </div>
 </div>      
-
       
 <div mdbModal #frame1="mdbModal" class="modal fade left" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-        <div class="modal-dialog cascading-modal modal-avatar" role="document">
+        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
           <div class="modal-content">
             <div class="modal-header text-center">
                   <img src="../../../../assets/imgs/senha.png" alt="avatar" class="rounded-circle img-responsive">
@@ -130,7 +125,7 @@
                     </table> 
     
               <div class="modal-footer d-flex justify-content-center">
-                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="alterarSenha()" (click)="frame1.hide()">Atualizar senha
+                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="alterarSenha()" (click)="frame1.hide()">Atualizar
                   <i class="fa fa-paper-plane-o ml-1"></i>
                   </button>
               </div>

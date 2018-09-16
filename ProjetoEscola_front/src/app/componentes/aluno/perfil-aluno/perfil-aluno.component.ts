@@ -18,17 +18,36 @@ export class PerfilAlunoComponent implements OnInit {
   constructor(private alunoService: AlunoService,private router: Router) { }
 
   ngOnInit() {
-    this.chamarAluno(2);
+    this.chamarAluno(9);
   }
 
   chamarAluno(matricula: number){
-    this.alunoService.pesquisarAlunoPorId(matricula).then( aluno => { this.aluno = aluno; this.alunoAtualizar = aluno; } );
+    this.alunoService.pesquisarAlunoPorId(matricula).then( aluno => { this.aluno = aluno; } );
   }
 
+  passarAluno(){
+    let matricula = this.aluno.matricula;
+    let sobrenome = this.aluno.sobrenome ;
+    let nome = this.aluno.nome;
+    let email = this.aluno.email;
+    let senha = this.aluno.senha;
+    let nascimento = this.aluno.nascimento;
+    let telefone = this.aluno.telefone;
+    this.passar2(matricula,nome,sobrenome,email,senha,nascimento,telefone);
+  }
+
+  passar2( matricula: number,  nome: string, sobrenome: string, email: string, senha: string, nascimento: string, telefone: string){
+    this.alunoAtualizar.matricula = matricula;
+    this.alunoAtualizar.nome = nome;
+    this.alunoAtualizar.sobrenome = sobrenome;
+    this.alunoAtualizar.email = email;
+    this.alunoAtualizar.senha = senha;
+    this.alunoAtualizar.nascimento = nascimento;
+    this.alunoAtualizar.telefone = telefone;
+  }
   
   editarAluno2(){
-    this.alunoService.atualizarAluno(this.aluno.matricula, this.alunoAtualizar).then( () => null );
-    this.aluno = this.alunoAtualizar;
+    this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar).then( () => this.chamarAluno(this.aluno.matricula) );
   }
 
   alterarSenha(){

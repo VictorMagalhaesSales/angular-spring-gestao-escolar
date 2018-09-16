@@ -1,4 +1,4 @@
-import { AlunoModel } from './../componentes/model';
+import { AlunoModel, NotasModel, FaltasModel } from './../componentes/model';
 import { AlunoFiltro } from './../componentes/aluno/aluno-filtro.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -65,5 +65,24 @@ export class AlunoService {
       .toPromise()
       .then((al) => al);
 
+  }
+
+  atualizarNotas(matricula: number, materia: string, nota: NotasModel): Promise<any>{
+    return this.http.put(`http://localhost:8080/notas/${matricula}/${materia}`,nota,{ headers: { "Authorization": this.token } } )
+      .toPromise()
+      .then(al => al);
+  }
+
+  pesquisarFaltas(): Promise<any>{
+    return this.http.get("http://localhost:8080/faltas", { headers: { "Authorization": this.token } } )
+      .toPromise()
+      .then((al) => al);
+
+  }
+
+  atualizarFaltas(matricula: number, materia: string, faltas: FaltasModel): Promise<any>{
+    return this.http.put(`http://localhost:8080/faltas/${matricula}/${materia}`,faltas,{ headers: { "Authorization": this.token } } )
+      .toPromise()
+      .then(al => al);
   }
 }

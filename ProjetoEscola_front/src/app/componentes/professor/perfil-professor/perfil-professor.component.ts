@@ -22,13 +22,34 @@ export class PerfilProfessorComponent implements OnInit {
   }
 
   chamarProfessor(matricula: number){
-    this.professorService.pesquisarProfessorPorId(matricula).then( professor => { this.professor = professor; this.professorAtualizar = professor; } );
+    this.professorService.pesquisarProfessorPorId(matricula).then( professor => { this.professor = professor} );
   }
 
+  passarProfessor(){
+    let id = this.professor.id;
+    let sobrenome = this.professor.sobrenome ;
+    let nome = this.professor.nome;
+    let email = this.professor.email;
+    let senha = this.professor.senha;
+    let nascimento = this.professor.nascimento;
+    let telefone = this.professor.telefone;
+    let disciplina = this.professor.disciplina;
+    this.passar2(id,nome,sobrenome,email,senha,nascimento,telefone,disciplina);
+  }
+
+  passar2( id: number,  nome: string, sobrenome: string, email: string, senha: string, nascimento: string, telefone: string,disciplina: string){
+    this.professorAtualizar.id = id;
+    this.professorAtualizar.nome = nome;
+    this.professorAtualizar.sobrenome = sobrenome;
+    this.professorAtualizar.email = email;
+    this.professorAtualizar.senha = senha;
+    this.professorAtualizar.nascimento = nascimento;
+    this.professorAtualizar.telefone = telefone;
+    this.professorAtualizar.disciplina = disciplina;
+  }
   
   editarProfessor2(){
-    this.professorService.atualizarProfessor(this.professor.id, this.professorAtualizar).then( () => null );
-    this.professor = this.professorAtualizar;
+    this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar).then( () => this.chamarProfessor(this.professor.id) );
   }
 
   alterarSenha(){

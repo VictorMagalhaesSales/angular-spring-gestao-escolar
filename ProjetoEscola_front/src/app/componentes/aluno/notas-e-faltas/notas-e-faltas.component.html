@@ -1,19 +1,11 @@
 <div class="corpo">
-  <div class="notas">
-      <table border="1">
-        <thead>
-          <th>Matéria</th> <th>1° Bimestre</th> <th>2° Bimestre</th> <th>3° Bimestre</th> <th>4° Bimestre</th>
+  <div class="notas col-5 offset-1">
+      <h1><i class="fa fa-tasks" aria-hidden="true"></i> Boletim de notas</h1>
+      <table  class="table table-hover table-lg" *ngIf="!aparecidoNotas">
+        <thead >
+          <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
         </thead>
         <tbody>
-          <tr>
-            <th>Java</th>  <td ></td> <td ></td> <td ></td> <td ></td>
-          </tr>
-          <tr>
-            <th>PHP</th> <td ></td> <td ></td> <td ></td> <td ></td>
-          </tr>
-          <tr>
-            <th>JavaScript</th> <td ></td> <td ></td> <td ></td> <td ></td>
-          </tr>
           <tr>
             <th>Java</th>
             <td>
@@ -303,24 +295,995 @@
           </tr>
         </tbody>
       </table>
+      <table class="table table-hover table-sm" *ngIf="aparecidoNotas">
+          <thead >
+            <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
+          </thead>
+          <tbody>
+              <tr>
+                  <th>Java</th>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                  </div>
+                  </td>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                  </div>
+                  </td>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                  </div>
+                  </td>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                  </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>PHP</th>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                  </div>
+                  </td>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                  </div>
+                  </td>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                  </div>
+                  </td>
+                  <td>
+                  <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                  </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>JavaScript</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>C++</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>Angular</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>Spring</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>TypeScript</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>React</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          
+              <tr>
+                  <th>MySql</th>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                      <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                      </div>
+                  </td>
+                  <td>
+                      <div *ngFor="let n of arrayNotasAt; let i = index" >
+                          <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+      <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApNotas()" (click)="passarNotas1()" *ngIf="!aparecidoNotas">
+          <i class="fa fa-edit ml-1"></i> Editar notas</button>
+      <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApNotas()" (click)="editarNotas()" *ngIf="aparecidoNotas">
+          <i class="fa fa-paper-plane-o ml-1"></i> Atualizar notas</button>
   </div>
-  {{ arrayNotas | json }}
+  <div class="faltas col-5">
+    <h1><i class="fa fa-window-close" aria-hidden="true"></i> Faltas</h1>
+    <table  class="table table-hover table-lg" *ngIf="!aparecidoFaltas">
+        <thead >
+          <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Java</th>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'Java'" >
+                  {{ n.numero1 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'Java'" >
+                  {{ n.numero2 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'Java'" >
+                  {{ n.numero2 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'Java'" >
+                  {{ n.numero3 }}
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>PHP</th>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'PHP'" >
+                  {{ n.numero1 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'PHP'" >
+                  {{ n.numero2 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'PHP'" >
+                  {{ n.numero3 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayFaltas" >
+                <div *ngIf="n.faltasid.materia == 'PHP'" >
+                  {{ n.numero4 }}
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+              <th>JavaScript</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'JavaScript'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'JavaScript'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'JavaScript'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'JavaScript'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>C++</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'C++'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'C++'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'C++'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'C++'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>Angular</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Angular'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Angular'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Angular'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Angular'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>Spring</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Spring'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Spring'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Spring'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'Spring'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>TypeScript</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'TypeScript'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'TypeScript'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'TypeScript'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'TypeScript'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>React</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'React'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'React'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'React'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'React'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>MySql</th>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'MySql'" >
+                    {{ n.numero1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'MySql'" >
+                    {{ n.numero2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'MySql'" >
+                    {{ n.numero3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayFaltas" >
+                  <div *ngIf="n.faltasid.materia == 'MySql'" >
+                    {{ n.numero4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    <table class="table table-hover table-sm" *ngIf="aparecidoFaltas">
+        <thead >
+          <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
+        </thead>
+        <tbody>
+            <tr>
+                <th>Java</th>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Java'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                </div>
+                </td>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Java'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                </div>
+                </td>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Java'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                </div>
+                </td>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Java'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>PHP</th>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'PHP'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                </div>
+                </td>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'PHP'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                </div>
+                </td>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'PHP'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                </div>
+                </td>
+                <td>
+                <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'PHP'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>JavaScript</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'JavaScript'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'JavaScript'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'JavaScript'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'JavaScript'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>C++</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'C++'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'C++'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'C++'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'C++'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>Angular</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Angular'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Angular'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Angular'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Angular'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>Spring</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Spring'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Spring'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Spring'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'Spring'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>TypeScript</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'TypeScript'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'TypeScript'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'TypeScript'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'TypeScript'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>React</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'React'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'React'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'React'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'React'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        
+            <tr>
+                <th>MySql</th>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                    <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'MySql'" [(ngModel)]="arrayFaltasAt[i].falta1"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'MySql'" [(ngModel)]="arrayFaltasAt[i].falta2"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'MySql'" [(ngModel)]="arrayFaltasAt[i].falta3"/>
+                    </div>
+                </td>
+                <td>
+                    <div *ngFor="let n of arrayFaltasAt; let i = index" >
+                        <input type="number" max="10" class="form-control" *ngIf="n.faltasid.materia == 'MySql'" [(ngModel)]="arrayFaltasAt[i].falta4"/>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApFaltas()" (click)="passarFaltas1()" *ngIf="!aparecidoFaltas">
+        <i class="fa fa-edit ml-1"></i> Editar faltas</button>
+    <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApFaltas()" (click)="editarFaltas()" *ngIf="aparecidoFaltas">
+        <i class="fa fa-paper-plane-o ml-1"></i> Atualizar faltas</button>
+  </div>
+  
 </div>
 
-<!-- 
-<div *ngFor="let obj of arrayNotas">
-    <td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota1}}</td><td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota2}}</td><td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota3}}</td><td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota4}}</td>
-</div> 
-
-<div *ngFor="let obj of arrayNotas">
-              <tr *ngIf="obj.notasid.materia == 'Filosofia'" >
-              <th>Filosofia</th>
-                  <td> {{ obj.nota1 }} </td>  <td> {{ obj.nota2 }} </td>  <td> {{ obj.nota3 }} </td>  <td> {{ obj.nota4 }} </td>
-              </tr>
-            </div> 
--->   
-
-
-
-
-
+<!--<div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal modal-avatar modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+              <img src="../../../../assets/imgs/notas.jpg" alt="avatar" class="rounded-circle img-responsive">
+        </div>
+        <div class="modal-body">
+            <table class="table table-hover table-sm" *ngIf="aparecido" >
+                <thead >
+                  <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Java</th>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                        </div>
+                        </td>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                        </div>
+                        </td>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                        </div>
+                        </td>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Java'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                        </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>PHP</th>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                        </div>
+                        </td>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                        </div>
+                        </td>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                        </div>
+                        </td>
+                        <td>
+                        <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'PHP'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                        </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>JavaScript</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'JavaScript'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>C++</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'C++'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>Angular</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Angular'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>Spring</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'Spring'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>TypeScript</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'TypeScript'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>React</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'React'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <th>MySql</th>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                            <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota1"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota2"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota3"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div *ngFor="let n of arrayNotasAt; let i = index" >
+                                <input type="number" max="10" class="form-control" *ngIf="n.notasid.materia == 'MySql'" [(ngModel)]="arrayNotasAt[i].nota4"/>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+              </table>
+          <div class="modal-footer d-flex justify-content-center">
+              <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="frame3.hide()" (click)="editarNotas()">Atualizar notas
+              <i class="fa fa-paper-plane-o ml-1"></i>
+              </button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>    
+-->

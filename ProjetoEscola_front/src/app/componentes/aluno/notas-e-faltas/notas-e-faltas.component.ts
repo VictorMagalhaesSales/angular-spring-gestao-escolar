@@ -1,6 +1,7 @@
-import { NotasModel } from './../../model';
+import { NotasModel, FaltasModel } from './../../model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notas-e-faltas',
@@ -9,23 +10,116 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotasEFaltasComponent implements OnInit {
 
-  notas: NotasModel = new NotasModel();
   arrayNotas: Array<NotasModel> = new Array<NotasModel>();
+  arrayNotasAt: Array<NotasModel> = new Array<NotasModel>();
+  arrayFaltas: Array<FaltasModel> = new Array<FaltasModel>();
+  arrayFaltasAt: Array<FaltasModel> = new Array<FaltasModel>();
+
+  aparecidoNotas: boolean;
+  aparecidoFaltas: boolean;
+
   constructor(private alunoService: AlunoService) { }
 
   ngOnInit() {
-    this.pesquisarNotas(1);  
-  }b   
+    this.pesquisarNotas(9);  
+    this.pesquisarFaltas(9);  
+  }
+
+  
+  // ==================================================================== Notas ====================================================================
+
+  mudarApNotas(){
+    this.aparecidoNotas = !this.aparecidoNotas;
+  }
 
   pesquisarNotas(matricula: number){
+    this.arrayNotas.length = 0;
+    this.arrayNotasAt.length = 0;
     this.alunoService.pesquisarNotas().then( (notas)  => {
       for(let n of notas){
         if(n.notasid.aluno == matricula){
           this.arrayNotas.push(n);
         }
       }
-      console.log(this.arrayNotas);
     } );
+  }
+
+  passarNotas1(){
+    let arrayNotas1: Array<NotasModel> = new Array<NotasModel>(); 
+    for (let pas of this.arrayNotas) {
+      arrayNotas1.push(pas);
+    }
+
+    this.passarNotas2(arrayNotas1);
+    arrayNotas1.length = 0;
+  }
+
+  passarNotas2(notas: Array<NotasModel>){
+    //his.arrayNotasAt = notas;
+    for (let pas of notas) {
+      this.arrayNotasAt.push(pas)
+    }
+    notas.length = 0;
+  }
+
+  editarNotas(){
+    let ver: boolean = true;
+    for (let notas of this.arrayNotasAt) {
+      this.alunoService.atualizarNotas(notas.notasid.aluno, notas.notasid.materia, notas).then(() => {
+        if(ver){
+          this.pesquisarNotas(notas.notasid.aluno);
+          ver = false;
+        }
+      });
+    }
+  }
+
+  // ==================================================================== Faltas ====================================================================
+
+  mudarApFaltas(){
+    this.aparecidoFaltas = !this.aparecidoFaltas;
+  }
+
+  pesquisarFaltas(matricula: number){
+    this.arrayFaltas.length = 0;
+    this.arrayFaltasAt.length = 0;
+    this.alunoService.pesquisarFaltas().then( (faltas)  => {
+      for(let n of faltas){
+        if(n.faltasid.aluno == matricula){
+          this.arrayFaltas.push(n);
+        }
+      }
+    } );
+  }
+
+  passarFaltas1(){
+    let arrayFaltas1: Array<FaltasModel> = new Array<FaltasModel>(); 
+    for (let pas of this.arrayFaltas) {
+      arrayFaltas1.push(pas);
+    }
+
+    this.passarFaltas2(arrayFaltas1);
+    arrayFaltas1.length = 0;
+  }
+
+  passarFaltas2(faltas: Array<FaltasModel>){
+    //his.arrayFaltasAt = faltas;
+    for (let pas of faltas) {
+      this.arrayFaltasAt.push(pas)
+    }
+    faltas.length = 0;
+  }
+
+  editarFaltas(){
+    let ver: boolean = true;
+    for (let faltas of this.arrayFaltasAt) {
+      this.alunoService.atualizarFaltas(faltas.faltasid.aluno , faltas.faltasid.materia, faltas).then(() => {
+        if(ver){
+          this.pesquisarFaltas(faltas.faltasid.aluno);
+          ver = false;
+        }
+      });
+    }
   }
 
 }

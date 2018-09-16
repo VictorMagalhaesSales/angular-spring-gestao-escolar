@@ -14,16 +14,12 @@ public class Faltas implements Serializable{
 	@EmbeddedId
 	private FaltasId faltasid;
 	
-	@NotNull(message="O campo de faltas do primerio bimestre não pode estar vazio!")
 	private Long numero1;
 	
-	@NotNull(message="O campo de faltas do segundo bimestre não pode estar vazio!")
 	private Long numero2;
 	
-	@NotNull(message="O campo de faltas do terceiro bimestre não pode estar vazio!")
 	private Long numero3;
 	
-	@NotNull(message="O campo de faltas do quarto bimestre não pode estar vazio!")
 	private Long numero4;
 
 	public FaltasId getFaltasid() {

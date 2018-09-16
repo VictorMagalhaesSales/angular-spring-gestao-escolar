@@ -103,3 +103,14 @@ export class NotasModel {
         aluno,
     }
 }
+
+export class FaltasModel {
+    faltasid: {
+        materia,
+        aluno,
+    };
+    numero1;
+    numero2;
+    numero3;
+    numero4;
+}

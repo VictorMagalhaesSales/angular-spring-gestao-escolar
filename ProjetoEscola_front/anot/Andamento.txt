@@ -37,10 +37,10 @@
 
 
 •===--- Notas ---===•
- ( ) Adicionar notas
- ( ) Listar notas
- ( ) Editar notas
- ( ) Deletar notas
+ (x) Adicionar notas
+ (x) Listar notas
+ (x) Editar notas
+ (x) Deletar notas
 
 
 •===--- Login ---===•

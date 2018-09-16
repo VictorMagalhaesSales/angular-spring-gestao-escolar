@@ -12,7 +12,7 @@ public class NotasId implements Serializable{
 	@NotNull(message="O campo matéria não pode ficar vazio")
 	private String materia;
 	
-	@NotNull(message="O campo alunp não pode ficar vazio")
+	@NotNull(message="O campo aluno não pode ficar vazio")
 	private Long aluno;
 	
 	public NotasId() {

@@ -59,6 +59,6 @@ export class ProfessorService {
   adicionarProfessor(professor: ProfessorModel): Promise<any>{
     return this.http.post("http://localhost:8080/professor", professor, { headers: { "Authorization": this.token } } )
       .toPromise()
-      .then(al => al)
+      .then(() => null)
   }
 }
