@@ -14,8 +14,17 @@ public class Faltas implements Serializable{
 	@EmbeddedId
 	private FaltasId faltasid;
 	
-	@NotNull(message="O campo número não pode estar vazio!")
-	private Long numero;
+	@NotNull(message="O campo de faltas do primerio bimestre não pode estar vazio!")
+	private Long numero1;
+	
+	@NotNull(message="O campo de faltas do segundo bimestre não pode estar vazio!")
+	private Long numero2;
+	
+	@NotNull(message="O campo de faltas do terceiro bimestre não pode estar vazio!")
+	private Long numero3;
+	
+	@NotNull(message="O campo de faltas do quarto bimestre não pode estar vazio!")
+	private Long numero4;
 
 	public FaltasId getFaltasid() {
 		return faltasid;
@@ -24,13 +33,39 @@ public class Faltas implements Serializable{
 	public void setFaltasid(FaltasId faltasid) {
 		this.faltasid = faltasid;
 	}
+	
+	
 
-	public Long getNumero() {
-		return numero;
+	public Long getNumero1() {
+		return numero1;
 	}
 
-	public void setNumero(Long numero) {
-		this.numero = numero;
+	public void setNumero1(Long numero1) {
+		this.numero1 = numero1;
+	}
+
+	public Long getNumero2() {
+		return numero2;
+	}
+
+	public void setNumero2(Long numero2) {
+		this.numero2 = numero2;
+	}
+
+	public Long getNumero3() {
+		return numero3;
+	}
+
+	public void setNumero3(Long numero3) {
+		this.numero3 = numero3;
+	}
+
+	public Long getNumero4() {
+		return numero4;
+	}
+
+	public void setNumero4(Long numero4) {
+		this.numero4 = numero4;
 	}
 
 	@Override
@@ -38,7 +73,10 @@ public class Faltas implements Serializable{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((faltasid == null) ? 0 : faltasid.hashCode());
-		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		result = prime * result + ((numero1 == null) ? 0 : numero1.hashCode());
+		result = prime * result + ((numero2 == null) ? 0 : numero2.hashCode());
+		result = prime * result + ((numero3 == null) ? 0 : numero3.hashCode());
+		result = prime * result + ((numero4 == null) ? 0 : numero4.hashCode());
 		return result;
 	}
 
@@ -56,13 +94,30 @@ public class Faltas implements Serializable{
 				return false;
 		} else if (!faltasid.equals(other.faltasid))
 			return false;
-		if (numero == null) {
-			if (other.numero != null)
+		if (numero1 == null) {
+			if (other.numero1 != null)
 				return false;
-		} else if (!numero.equals(other.numero))
+		} else if (!numero1.equals(other.numero1))
+			return false;
+		if (numero2 == null) {
+			if (other.numero2 != null)
+				return false;
+		} else if (!numero2.equals(other.numero2))
+			return false;
+		if (numero3 == null) {
+			if (other.numero3 != null)
+				return false;
+		} else if (!numero3.equals(other.numero3))
+			return false;
+		if (numero4 == null) {
+			if (other.numero4 != null)
+				return false;
+		} else if (!numero4.equals(other.numero4))
 			return false;
 		return true;
 	}
+
+	
 	
 	
 

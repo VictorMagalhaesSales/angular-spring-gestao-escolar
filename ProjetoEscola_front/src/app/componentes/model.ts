@@ -92,3 +92,14 @@ export class ProfessorModel {
         }
     ]
 }
+
+export class NotasModel {
+    nota1;
+    nota2;
+    nota3;
+    nota4;
+    notasid: {
+        materia,
+        aluno,
+    }
+}

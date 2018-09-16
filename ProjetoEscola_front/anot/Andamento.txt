@@ -27,8 +27,8 @@
 
 
 •===--- Perfil ---===•
- ( ) Perfil aluno
- ( ) Perfil professor
+ (x) Perfil aluno
+ (x) Perfil professor
 
 
 •===--- Faltas ---===•

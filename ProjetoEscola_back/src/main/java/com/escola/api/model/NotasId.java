@@ -12,10 +12,6 @@ public class NotasId implements Serializable{
 	@NotNull(message="O campo matéria não pode ficar vazio")
 	private String materia;
 	
-	@NotNull(message="O campo bimestre não pode ficar vazio")
-	@Size(max = 4, message = "Só existem 4 bimestres!")
-	private Long bimestre;
-	
 	@NotNull(message="O campo alunp não pode ficar vazio")
 	private Long aluno;
 	
@@ -27,13 +23,9 @@ public class NotasId implements Serializable{
 		return aluno;
 	}
 
-
-
 	public void setAluno(Long aluno) {
 		this.aluno = aluno;
 	}
-
-
 
 	public String getMateria() {
 		return materia;
@@ -43,20 +35,11 @@ public class NotasId implements Serializable{
 		this.materia = materia;
 	}
 
-	public Long getBimestre() {
-		return bimestre;
-	}
-
-	public void setBimestre(Long bimestre) {
-		this.bimestre = bimestre;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((aluno == null) ? 0 : aluno.hashCode());
-		result = prime * result + ((bimestre == null) ? 0 : bimestre.hashCode());
 		result = prime * result + ((materia == null) ? 0 : materia.hashCode());
 		return result;
 	}
@@ -74,11 +57,6 @@ public class NotasId implements Serializable{
 			if (other.aluno != null)
 				return false;
 		} else if (!aluno.equals(other.aluno))
-			return false;
-		if (bimestre == null) {
-			if (other.bimestre != null)
-				return false;
-		} else if (!bimestre.equals(other.bimestre))
 			return false;
 		if (materia == null) {
 			if (other.materia != null)

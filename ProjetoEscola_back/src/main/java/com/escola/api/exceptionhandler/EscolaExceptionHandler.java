@@ -25,6 +25,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.mysql.jdbc.exceptions.MySQLIntegrityConstraintViolationException;
+
 @ControllerAdvice
 public class EscolaExceptionHandler extends ResponseEntityExceptionHandler{
 	
@@ -55,7 +57,15 @@ public class EscolaExceptionHandler extends ResponseEntityExceptionHandler{
 	
 	@ExceptionHandler({ EmptyResultDataAccessException.class})
 	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request){
-		String mensagemParaOUsuario = "Entidade requerida não encontrada";
+		String mensagemParaOUsuario = "Entidade referida não encontrada";
+		String mensagemParaODesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
+		List<Erro> erros = Arrays.asList(new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor));
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+	}
+	
+	@ExceptionHandler({ MySQLIntegrityConstraintViolationException.class})
+	public ResponseEntity<Object> handleMySQLIntegrityConstraintViolationException(MySQLIntegrityConstraintViolationException ex, WebRequest request){
+		String mensagemParaOUsuario = "Entidade referida não encontrada";
 		String mensagemParaODesenvolvedor = ExceptionUtils.getRootCauseMessage(ex);
 		List<Erro> erros = Arrays.asList(new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor));
 		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.BAD_REQUEST, request);

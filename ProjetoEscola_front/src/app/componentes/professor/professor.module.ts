@@ -10,11 +10,13 @@ import { FormsModule } from '@angular/forms';
 
 import { ListarProfessorComponent } from './listar-professor/listar-professor.component';
 import { AdicionarProfessorComponent } from './adicionar-professor/adicionar-professor.component';
+import { PerfilProfessorComponent } from './perfil-professor/perfil-professor.component';
 
 @NgModule({
   declarations: [
     AdicionarProfessorComponent,
-    ListarProfessorComponent
+    ListarProfessorComponent,
+    PerfilProfessorComponent
   ],
   imports: [
     CommonModule,

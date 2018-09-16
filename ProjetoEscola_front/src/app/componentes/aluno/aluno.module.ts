@@ -14,13 +14,15 @@ import { AdicionarAlunoComponent } from './adicionar-aluno/adicionar-aluno.compo
 import {CalendarModule} from 'primeng/calendar';
 import { InicioComponent } from '../inicio/inicio.component';
 import { PerfilAlunoComponent } from './perfil-aluno/perfil-aluno.component';
+import { NotasEFaltasComponent } from './notas-e-faltas/notas-e-faltas.component';
 
 @NgModule({
   declarations: [
       ListarAlunosComponent,
       AdicionarAlunoComponent,
       InicioComponent,
-      PerfilAlunoComponent
+      PerfilAlunoComponent,
+      NotasEFaltasComponent
   ],
   imports: [
     CommonModule,

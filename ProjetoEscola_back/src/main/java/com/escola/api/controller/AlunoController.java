@@ -38,6 +38,8 @@ public class AlunoController {
 	@Autowired
 	private ProfessorRepository professorRepository;
 	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_LISTAR_ALUNOS')")
 	public Page<Aluno> listarAlunos(AlunoFilter alunoFilter, Pageable pageable){
@@ -79,6 +81,7 @@ public class AlunoController {
 				throw new DataIntegrityViolationException("Email já cadastrado");
 			}
 		}
+		alunoReq.setSenha(encoder.encode(alunoReq.getSenha()));
 		Aluno alunoOpt = this.alunoRepository.findOne(matricula);		
 		BeanUtils.copyProperties(alunoReq, alunoOpt, "matricula");
 		Aluno alunoDepois =  alunoRepository.save(alunoOpt);

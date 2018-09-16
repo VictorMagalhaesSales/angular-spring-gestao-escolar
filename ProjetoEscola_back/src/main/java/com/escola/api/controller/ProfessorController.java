@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,6 +36,8 @@ public class ProfessorController {
 	
 	@Autowired
 	private AlunoRepository alunoRepository;
+	
+	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_LISTAR_PROFESSORES')")
@@ -75,6 +78,7 @@ public class ProfessorController {
 				throw new DataIntegrityViolationException("Email já cadastrado");
 			}
 		}
+		professorReq.setSenha(encoder.encode(professorReq.getSenha()));
 		Professor professorOpt = this.professorRepository.findOne(id);		
 		BeanUtils.copyProperties(professorReq, professorOpt, "id");
 		Professor professorDepois =  professorRepository.save(professorOpt);

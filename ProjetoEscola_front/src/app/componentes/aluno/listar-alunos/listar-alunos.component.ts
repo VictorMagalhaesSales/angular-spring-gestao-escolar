@@ -38,7 +38,6 @@ export class ListarAlunosComponent implements OnInit {
 
   pesquisar(iniciar: string){
     let filtro = new AlunoFiltro(this.nome, this.sobrenome, this.email, this.telefone);
-    
     if(iniciar == "a" ){
       filtro.nome = "";
       filtro.sobrenome = "";

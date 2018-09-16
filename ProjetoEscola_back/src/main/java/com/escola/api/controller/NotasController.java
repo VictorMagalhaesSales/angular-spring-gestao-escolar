@@ -42,22 +42,20 @@ public class NotasController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(n);
 	}
 	
-	@DeleteMapping("/{aluno}/{bimestre}/{materia}")
+	@DeleteMapping("/{aluno}/{materia}")
 	@PreAuthorize("hasAuthority('ROLE_DELETAR_NOTA')")
-	public void deletarNota(@PathVariable("aluno") Long aluno, @PathVariable("bimestre") Long bimestre, @PathVariable("materia") String materia) {
+	public void deletarNota(@PathVariable("aluno") Long aluno, @PathVariable("materia") String materia) {
 		NotasId notasid = new NotasId();
 		notasid.setAluno(aluno);
-		notasid.setBimestre(bimestre);
 		notasid.setMateria(materia);
 		this.notasRepository.delete(notasid);
 	}
 	
-	@PutMapping("/{aluno}/{bimestre}/{materia}")
+	@PutMapping("/{aluno}/{materia}")
 	@PreAuthorize("hasAuthority('ROLE_EDITAR_FALTA')")
-	public ResponseEntity<Notas> atualizarNota(@PathVariable("aluno") Long aluno, @PathVariable("bimestre") Long bimestre, @PathVariable("materia") String materia,@Valid @RequestBody Notas notaMod) {
+	public ResponseEntity<Notas> atualizarNota(@PathVariable("aluno") Long aluno, @PathVariable("materia") String materia,@Valid @RequestBody Notas notaMod) {
 		NotasId notasid = new NotasId();
 		notasid.setAluno(aluno);
-		notasid.setBimestre(bimestre);
 		notasid.setMateria(materia);
 			
 		Notas notas = this.notasRepository.findOne(notasid);

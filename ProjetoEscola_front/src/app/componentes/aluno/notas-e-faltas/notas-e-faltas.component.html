@@ -1,0 +1,326 @@
+<div class="corpo">
+  <div class="notas">
+      <table border="1">
+        <thead>
+          <th>Matéria</th> <th>1° Bimestre</th> <th>2° Bimestre</th> <th>3° Bimestre</th> <th>4° Bimestre</th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Java</th>  <td ></td> <td ></td> <td ></td> <td ></td>
+          </tr>
+          <tr>
+            <th>PHP</th> <td ></td> <td ></td> <td ></td> <td ></td>
+          </tr>
+          <tr>
+            <th>JavaScript</th> <td ></td> <td ></td> <td ></td> <td ></td>
+          </tr>
+          <tr>
+            <th>Java</th>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'Java'" >
+                  {{ n.nota1 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'Java'" >
+                  {{ n.nota2 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'Java'" >
+                  {{ n.nota3 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'Java'" >
+                  {{ n.nota4 }}
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <th>PHP</th>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'PHP'" >
+                  {{ n.nota1 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'PHP'" >
+                  {{ n.nota2 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'PHP'" >
+                  {{ n.nota3 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'PHP'" >
+                  {{ n.nota4 }}
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+              <th>JavaScript</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'JavaScript'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'JavaScript'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'JavaScript'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'JavaScript'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>C++</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'C++'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'C++'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'C++'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'C++'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>Angular</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Angular'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Angular'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Angular'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Angular'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>Spring</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Spring'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Spring'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Spring'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Spring'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>TypeScript</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'TypeScript'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'TypeScript'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'TypeScript'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'TypeScript'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>React</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'React'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'React'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'React'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'React'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+
+          <tr>
+              <th>MySql</th>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'MySql'" >
+                    {{ n.nota1 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'MySql'" >
+                    {{ n.nota2 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'MySql'" >
+                    {{ n.nota3 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'MySql'" >
+                    {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+  {{ arrayNotas | json }}
+</div>
+
+<!-- 
+<div *ngFor="let obj of arrayNotas">
+    <td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota1}}</td><td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota2}}</td><td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota3}}</td><td *ngIf="obj.notasid.materia=='Filosofia'">{{obj.nota4}}</td>
+</div> 
+
+<div *ngFor="let obj of arrayNotas">
+              <tr *ngIf="obj.notasid.materia == 'Filosofia'" >
+              <th>Filosofia</th>
+                  <td> {{ obj.nota1 }} </td>  <td> {{ obj.nota2 }} </td>  <td> {{ obj.nota3 }} </td>  <td> {{ obj.nota4 }} </td>
+              </tr>
+            </div> 
+-->   
+
+
+
+
+

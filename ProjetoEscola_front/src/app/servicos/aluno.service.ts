@@ -59,4 +59,11 @@ export class AlunoService {
       .toPromise()
       .then(al => al)
   }
+
+  pesquisarNotas(): Promise<any>{
+    return this.http.get("http://localhost:8080/notas", { headers: { "Authorization": this.token } } )
+      .toPromise()
+      .then((al) => al);
+
+  }
 }

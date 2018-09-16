@@ -1,13 +1,141 @@
 <div class="perfil">
     <div class="informacoes">
-        <div class="row">
-            <div class="imagem col-3">
-                <img src="../../../../assets/imgs/g.jpg" width="300" class="rounded-circle img-responsive">
+        <div class="cabecalho">
+            <hr>
+            <div class="row col-10 offset-1">
+                <div class="imagem col-2">
+                    <img src="../../../../assets/imgs/g.jpg" width="200" class="rounded-circle img-responsive">
+                </div>
+                <div class="infprincipais col-9">
+                    <br><br>
+                    <h1>Seja bem-vindo ao perfil de <b>{{ aluno.nome }} {{ aluno.sobrenome }}</b>!</h1>
+                    <p>Aqui você tem a possibilidade de visualizar as suas informações, editá-las e salvá-las.</p>
+                </div>
             </div>
-            <div class="infprincipais col-9">
-                <h1>Seja bem vindo ao perfil de {{ aluno.nome }} {{ aluno.sobrenome }}!</h1>
-                <p>Edite as suas informações e salve-as.</p>
+            <hr>
+        </div>
+        <div class="dados col-8 offset-2">
+            <h4 style="color: #007E33;"><i class="fa fa-user" aria-hidden="true"></i> Informações do aluno</h4>
+            <br>
+            <div class="row">
+                <table class="table  table-hover">
+                    <tr>
+                        <th><i class="fa fa-barcode" aria-hidden="true"></i> Matrícula</th> <td> {{ aluno.matricula }}</td> <th><i class="fa fa-calendar prefix"></i> Email </th> <td> {{ aluno.email }} </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fa fa-user-circle prefix"></i> Nome</th><td>{{ aluno.nome }}</td> <th><i class="fa fa-phone prefix"></i> Telefone </th> <td> {{ aluno.telefone }} </td>
+                    </tr>
+                    <tr>
+                        <th><i class="fa fa-user-circle-o prefix"></i> Sobrenome</th><td>{{ aluno.sobrenome }}</td> <td> </td> <td>
+                    </tr>
+                    <tr>
+                        <th><i class="fa fa-calendar prefix"></i> Nascimento </th> <td> {{ aluno.nascimento }} </td> <td colspan="2"> </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row col-s8 offset-2">
+                <button mdbBtn type="button" color="indigo" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame3.show()"><i class="fa fa-vcard" aria-hidden="true"></i> Editar perfil</button>
+                <button mdbBtn type="button" color="dark-green" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame1.show()"><i class="fa fa-lock" aria-hidden="true"></i> Alterar senha</button>
+                <button mdbBtn type="button" color="pink" class="waves-light" mdbWavesEffect><i class="fa fa-image" aria-hidden="true"></i> Alterar foto de perfil</button>
             </div>
         </div>
     </div>
 </div>
+
+
+
+
+
+<div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+                  <img src="../../../../assets/imgs/g.jpg" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <div class="modal-body">
+               <table>
+                   <tr>
+                       <td>
+                          <div class="md-form">
+                              <i class="fa fa-user prefix grey-text"></i>
+                              <input type="text" id="nome" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.nome" mdbTooltip="Nome">
+                          </div> 
+                       </td>
+                       <td>
+                          <div class="md-form">
+                              <i class="fa fa-user prefix grey-text"></i>
+                              <input type="text" id="sn" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.sobrenome" mdbTooltip="Sobrenome">
+                          </div>
+                       </td>
+                   </tr>
+                   <tr>
+                       <td colspan=2>
+                          <div class="md-form">
+                              <i class="fa fa-envelope prefix grey-text"></i>
+                              <input type="email" id="email" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.email" mdbTooltip="Email">
+                          </div>
+                      </td>
+                   </tr>
+                   <tr>
+                       <td>
+                          <div class="md-form">
+                              <i class="fa fa-calendar prefix grey-text"></i>
+                              <input type="text" id="nascimento" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.nascimento" mdbTooltip="Nascimento">
+                          </div>
+                       </td>
+                       <td>
+                          <div class="md-form">
+                              <i class="fa fa-phone prefix grey-text"></i>
+                              <input type="text" id="telefone" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.telefone" mdbTooltip="Telefone">
+                          </div>
+                       </td>
+                   </tr>
+               </table> 
+              
+              <div class="modal-footer d-flex justify-content-center">
+                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAluno2()" (click)="frame3.hide()">Atualizar
+                  <i class="fa fa-paper-plane-o ml-1"></i>
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+</div>      
+
+      
+<div mdbModal #frame1="mdbModal" class="modal fade left" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+        <div class="modal-dialog cascading-modal modal-avatar" role="document">
+          <div class="modal-content">
+            <div class="modal-header text-center">
+                  <img src="../../../../assets/imgs/senha.png" alt="avatar" class="rounded-circle img-responsive">
+            </div>
+            <div class="modal-body">
+                    <table>
+                        <Tr>
+                            <td>
+                                <div class="md-form">
+                                    <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
+                                    <input type="password" id="novasenha" class="form-control" mdbInputDirective [(ngModel)]="novaSenha" mdbTooltip="Nova senha" placeholder="Nova senha">
+                                </div>
+                            </td>
+                        </Tr>
+                        <tr>
+                            <td colspan=2>
+                                <div class="md-form">
+                                    <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
+                                    <input type="password" id="novasenha2" class="form-control" mdbInputDirective [(ngModel)]="novaSenha2" mdbTooltip="Repita a nova senha" placeholder="Repita aova senha">
+                                </div>
+                            </td>
+                        </tr>
+                    </table> 
+    
+              <div class="modal-footer d-flex justify-content-center">
+                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="alterarSenha()" (click)="frame1.hide()">Atualizar senha
+                  <i class="fa fa-paper-plane-o ml-1"></i>
+                  </button>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      

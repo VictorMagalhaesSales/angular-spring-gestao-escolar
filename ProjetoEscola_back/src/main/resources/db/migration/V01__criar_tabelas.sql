@@ -49,31 +49,27 @@ CREATE TABLE materia(
 	materia VARCHAR(50) PRIMARY KEY
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
-CREATE TABLE bimestre(
-	bimestre BIGINT(2) PRIMARY KEY
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 CREATE TABLE notas(
-	nota float(10,2) NOT NULL DEFAULT 9.5,
+	nota1 float(10,2),
+	nota2 float(10,2),
+	nota3 float(10,2),
+	nota4 float(10,2),
 	materia VARCHAR(50),
-	bimestre BIGINT(2),
 	aluno BIGINT(20),
 	FOREIGN KEY(materia) REFERENCES materia(materia),
-	FOREIGN KEY(bimestre) REFERENCES bimestre(bimestre),
 	FOREIGN KEY(aluno) REFERENCES aluno(matricula),
-	PRIMARY KEY(materia,bimestre,aluno)
+	PRIMARY KEY(materia,aluno)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE faltas(
 	materia VARCHAR(50),
-	bimestre BIGINT(2),
 	aluno BIGINT(20),
-	numero BIGINT(20),
+	numero1 BIGINT(20),
+	numero2 BIGINT(20),
+	numero3 BIGINT(20),
+	numero4 BIGINT(20),
 	FOREIGN KEY(materia) REFERENCES materia(materia),
-	FOREIGN KEY(bimestre) REFERENCES bimestre(bimestre),
 	FOREIGN KEY(aluno) REFERENCES aluno(matricula),
-	PRIMARY KEY(materia,bimestre,aluno)
+	PRIMARY KEY(materia,aluno)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

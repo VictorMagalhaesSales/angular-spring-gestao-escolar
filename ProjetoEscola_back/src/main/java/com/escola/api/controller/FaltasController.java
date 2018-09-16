@@ -31,7 +31,7 @@ public class FaltasController {
 	public List<Faltas> listarFaltas(){
 		return this.faltasRepository.findAll();
 	}
-	
+	 
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTA')")
 	public ResponseEntity<Faltas> adicionarFalta(@Valid @RequestBody Faltas falta){
@@ -39,12 +39,11 @@ public class FaltasController {
 		return ResponseEntity.ok(falta);
 	}
 	
-	@DeleteMapping("/{aluno}/{bimestre}/{materia}")
+	@DeleteMapping("/{aluno}/{materia}")
 	@PreAuthorize("hasAuthority('ROLE_DELETAR_FALTA')")
-	public void deletarFalta(@PathVariable("aluno") Long aluno, @PathVariable("bimestre") Long bimestre, @PathVariable("materia") String materia) {
+	public void deletarFalta(@PathVariable("aluno") Long aluno, @PathVariable("materia") String materia) {
 		FaltasId faltasid = new FaltasId();
 		faltasid.setAluno(aluno);
-		faltasid.setBimestre(bimestre);
 		faltasid.setMateria(materia);
 		this.faltasRepository.delete(faltasid);
 	}
