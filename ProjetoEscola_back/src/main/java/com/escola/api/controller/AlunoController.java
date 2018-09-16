@@ -269,10 +269,10 @@ public class AlunoController {
 
 	private Faltas faltaJava(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("Java");
@@ -282,10 +282,10 @@ public class AlunoController {
 	
 	private Faltas faltaPHP(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("PHP");
@@ -295,10 +295,10 @@ public class AlunoController {
 	
 	private Faltas faltaJavaScript(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("JavaScript");
@@ -308,10 +308,10 @@ public class AlunoController {
 	
 	private Faltas faltaC(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("C++");
@@ -321,10 +321,10 @@ public class AlunoController {
 	
 	private Faltas faltaAngular(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("Angular");
@@ -334,10 +334,10 @@ public class AlunoController {
 	
 	private Faltas faltaSpring(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("Spring");
@@ -347,10 +347,10 @@ public class AlunoController {
 	
 	private Faltas faltaTypeScript(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("TypeScript");
@@ -360,10 +360,10 @@ public class AlunoController {
 	
 	private Faltas faltaReact(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("React");

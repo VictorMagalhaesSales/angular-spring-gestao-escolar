@@ -21,8 +21,8 @@ export class NotasEFaltasComponent implements OnInit {
   constructor(private alunoService: AlunoService) { }
 
   ngOnInit() {
-    this.pesquisarNotas(9);  
-    this.pesquisarFaltas(9);  
+    this.pesquisarNotas(10);  
+    this.pesquisarFaltas(10);  
   }
 
   

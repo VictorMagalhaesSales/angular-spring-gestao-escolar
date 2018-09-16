@@ -18,7 +18,7 @@ export class PerfilAlunoComponent implements OnInit {
   constructor(private alunoService: AlunoService,private router: Router) { }
 
   ngOnInit() {
-    this.chamarAluno(9);
+    this.chamarAluno(10);
   }
 
   chamarAluno(matricula: number){
