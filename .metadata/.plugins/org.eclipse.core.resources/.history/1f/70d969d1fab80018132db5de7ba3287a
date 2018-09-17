@@ -1,0 +1,104 @@
+package com.escola.api.model;
+
+import java.io.Serializable;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="faltas")
+public class Faltas implements Serializable{
+	
+	@EmbeddedId
+	private FaltasId faltasid;
+	
+	@NotNull(message="O campo de faltas do primerio bimestre não pode estar vazio!")
+	private Long numero1;
+	
+	@NotNull(message="O campo de faltas do segundo bimestre não pode estar vazio!")
+	private Long numero2;
+	
+	@NotNull(message="O campo de faltas do terceiro bimestre não pode estar vazio!")
+	private Long numero3;
+	
+	@NotNull(message="O campo de faltas do quarto bimestre não pode estar vazio!")
+	private Long numero4;
+
+	public FaltasId getFaltasid() {
+		return faltasid;
+	}
+
+	public void setFaltasid(FaltasId faltasid) {
+		this.faltasid = faltasid;
+	}
+	
+	
+
+	public Long getNumero1() {
+		return numero1;
+	}
+
+	public void setNumero1(Long numero1) {
+		this.numero1 = numero1;
+	}
+
+	public Long getNumero2() {
+		return numero2;
+	}
+
+	public void setNumero2(Long numero2) {
+		this.numero2 = numero2;
+	}
+
+	public Long getNumero3() {
+		return numero3;
+	}
+
+	public void setNumero3(Long numero3) {
+		this.numero3 = numero3;
+	}
+
+	public Long getNumero4() {
+		return numero4;
+	}
+
+	public void setNumero4(Long numero4) {
+		this.numero4 = numero4;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((faltasid == null) ? 0 : faltasid.hashCode());
+		result = prime * result + ((numero == null) ? 0 : numero.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Faltas other = (Faltas) obj;
+		if (faltasid == null) {
+			if (other.faltasid != null)
+				return false;
+		} else if (!faltasid.equals(other.faltasid))
+			return false;
+		if (numero == null) {
+			if (other.numero != null)
+				return false;
+		} else if (!numero.equals(other.numero))
+			return false;
+		return true;
+	}
+	
+	
+
+}

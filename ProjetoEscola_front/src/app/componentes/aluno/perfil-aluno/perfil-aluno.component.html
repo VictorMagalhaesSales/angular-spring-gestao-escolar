@@ -1,5 +1,5 @@
 <div class="perfil">
-    <div class="informacoes">
+    <div class="informacoes animated zoomIn">
         <div class="cabecalho">
             <hr>
             <div class="row col-10 offset-1">
@@ -20,16 +20,29 @@
             <div class="row">
                 <table class="table  table-hover">
                     <tr>
-                        <th><i class="fa fa-barcode" aria-hidden="true"></i> Matrícula</th> <td> {{ aluno.matricula }}</td> <th><i class="fa fa-calendar prefix"></i> Email </th> <td> {{ aluno.email }} </td>
+                        <th><i class="fa fa-barcode" aria-hidden="true"></i> Matrícula</th> <td> {{ aluno.matricula }}</td><th><i class="fa fa-calendar prefix"></i> Nascimento </th> <td> {{ aluno.nascimento }}</td>
+                        <td rowspan="3">
+                                <i class="fa fa-arrow-down prefix" aria-hidden="true"></i> <b>Aprovado em:</b>
+                                <div *ngFor="let nota of arrayNotas">
+                                    <div *ngIf="nota.media >= 6" class="green-text" >
+                                        {{ nota.notasid.materia }};
+                                    </div>
+                                </div>
+                            </td>
+                        <td rowspan="3">
+                            <i class="fa fa-arrow-down prefix" aria-hidden="true"></i> <b>Reprovado em:</b>
+                            <div *ngFor="let nota of arrayNotas" class="red-text" >
+                                <div *ngIf="nota.media < 6" >
+                                    {{ nota.notasid.materia }};
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
-                        <th><i class="fa fa-user-circle prefix"></i> Nome</th><td>{{ aluno.nome }}</td> <th><i class="fa fa-phone prefix"></i> Telefone </th> <td> {{ aluno.telefone }} </td>
+                        <th><i class="fa fa-user-circle prefix"></i> Nome</th><td>{{ aluno.nome }}</td>  <th><i class="fa fa-calendar prefix"></i> Email </th> <td> {{ aluno.email }} </td>
                     </tr>
                     <tr>
-                        <th><i class="fa fa-user-circle-o prefix"></i> Sobrenome</th><td>{{ aluno.sobrenome }}</td> <td> </td> <td>
-                    </tr>
-                    <tr>
-                        <th><i class="fa fa-calendar prefix"></i> Nascimento </th> <td> {{ aluno.nascimento }} </td> <td colspan="2"> </td>
+                        <th><i class="fa fa-user-circle-o prefix"></i> Sobrenome</th><td>{{ aluno.sobrenome }}</td><th><i class="fa fa-phone prefix"></i> Telefone </th> <td> {{ aluno.telefone }} </td>
                     </tr>
                 </table>
             </div>

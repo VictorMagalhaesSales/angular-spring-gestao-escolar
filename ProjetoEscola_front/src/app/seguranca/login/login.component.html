@@ -1,0 +1,29 @@
+<div class="col-6 offset-3 animated fadeInUpBig" style="margin-top: 10%;">
+  <mdb-card>
+    <div class="card-header green-text" style="padding: 5%">
+      <h4 class="card-header-title text-center"><i class="fa fa-lock" aria-hidden="true"></i><b> Acesse a sua conta</b></h4>
+    </div>
+    
+    <mdb-card-body>
+      <form #f="ngForm"  style="padding: 5%">
+        <div class="md-form">
+          <i class="fa fa-envelope prefix"></i>
+          <input type="email" id="email" name="email" class="form-control" mdbInputDirective required #usuario>
+          <label  for="email">Seu email</label>
+        </div>
+
+        <div class="md-form">
+          <i class="fa fa-lock prefix"></i>
+          <input type="password" id="fpassword" name="password" class="form-control" mdbInputDirective required #senha>
+          <label for="fpassword">Sua senha</label>
+        </div>
+        <br><br>
+        <div class="modal-footer d-flex justify-content-center">
+          <button mdbBtn type="button" color="success" class="waves-light" (click)="login(usuario.value, senha.value)" mdbWavesEffect>Login<i class="fa fa-sign-in ml-2 fa-1x  animated flip"></i></button>
+        </div>
+      </form> 
+    </mdb-card-body>
+  </mdb-card>    
+</div> 
+
+

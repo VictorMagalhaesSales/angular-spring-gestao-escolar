@@ -1,3 +1,5 @@
+import { Title } from '@angular/platform-browser';
+import { Disciplina } from './../adicionar-professor/adicionar-professor.component';
 import { ProfessorFiltro } from './../professor-filtro.model';
 import { ProfessorService } from './../../../servicos/professor.service';
 import { ProfessorModel } from './../../model';
@@ -18,6 +20,11 @@ export class ListarProfessorComponent implements OnInit {
   telefone: string;
   paraExcluir: any;
 
+  professor = new ProfessorModel();
+  disciplinaM: Disciplina[];
+
+  disci: Disciplina;
+
   professorAtualizar = new ProfessorModel();
 
   cars = [];
@@ -32,10 +39,23 @@ export class ListarProfessorComponent implements OnInit {
     { field: 'telefone', header: 'Telefone' }
 ];
 
-  constructor(private professorService: ProfessorService) { }
+  constructor(private professorService: ProfessorService, private title: Title) {
+    this.disciplinaM = [
+      {nome: 'Java'},
+      {nome: 'PHP'},
+      {nome: 'JavaScript'},
+      {nome: 'C++'},
+      {nome: 'Angular'},
+      {nome: 'Spring'},
+      {nome: 'TypeScript'},
+      {nome: 'React'},
+      {nome: 'MySql'}
+  ];
+   }
 
   ngOnInit() {
     this.pesquisar("a");
+    this.title.setTitle("Listar professores");
   }
 
   pesquisar(iniciar: string){
@@ -66,6 +86,7 @@ export class ListarProfessorComponent implements OnInit {
     this.professorService.pesquisarProfessorPorId(professor.id).then( al => this.professorAtualizar = al);
   }
   editarProfessor2(){
+    this.professorAtualizar.disciplina = this.disci.nome;
     this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar).then(()=> this.pesquisar(""));
   }
 

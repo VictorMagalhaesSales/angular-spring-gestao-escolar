@@ -25,6 +25,18 @@ public class Notas implements Serializable{
 	private Float nota3;
 	
 	private Float nota4;
+	
+	private float media;
+	
+	
+
+	public float getMedia() {
+		return media;
+	}
+
+	public void setMedia(float media) {
+		this.media = media;
+	}
 
 	public NotasId getNotasid() {
 		return notasid;
@@ -70,6 +82,7 @@ public class Notas implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + Float.floatToIntBits(media);
 		result = prime * result + ((nota1 == null) ? 0 : nota1.hashCode());
 		result = prime * result + ((nota2 == null) ? 0 : nota2.hashCode());
 		result = prime * result + ((nota3 == null) ? 0 : nota3.hashCode());
@@ -87,6 +100,8 @@ public class Notas implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Notas other = (Notas) obj;
+		if (Float.floatToIntBits(media) != Float.floatToIntBits(other.media))
+			return false;
 		if (nota1 == null) {
 			if (other.nota1 != null)
 				return false;

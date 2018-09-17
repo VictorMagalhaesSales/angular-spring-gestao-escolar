@@ -1,9 +1,9 @@
 <div class="corpo">
-  <div class="notas col-5 offset-1">
+  <div class="notas col-5 offset-1 animated zoomIn">
       <h1><i class="fa fa-tasks" aria-hidden="true"></i> Boletim de notas</h1>
       <table  class="table table-hover table-lg" *ngIf="!aparecidoNotas">
         <thead >
-          <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
+          <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th> <th scope="col">Média</th>
         </thead>
         <tbody>
           <tr>
@@ -33,6 +33,13 @@
               <div *ngFor="let n of arrayNotas" >
                 <div *ngIf="n.notasid.materia == 'Java'" >
                   {{ n.nota4 }}
+                </div>
+              </div>
+            </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'Java'" >
+                    <font [ngClass]="{'red-text font-weight-bold': n.media < 6 , 'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
                 </div>
               </div>
             </td>
@@ -68,6 +75,13 @@
                 </div>
               </div>
             </td>
+            <td>
+              <div *ngFor="let n of arrayNotas" >
+                <div *ngIf="n.notasid.materia == 'PHP'" >
+                  <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
+                </div>
+              </div>
+            </td>
           </tr>
 
           <tr>
@@ -97,6 +111,13 @@
                 <div *ngFor="let n of arrayNotas" >
                   <div *ngIf="n.notasid.materia == 'JavaScript'" >
                     {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'JavaScript'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
                   </div>
                 </div>
               </td>
@@ -132,6 +153,13 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'C++'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
+                  </div>
+                </div>
+              </td>
           </tr>
 
           <tr>
@@ -161,6 +189,13 @@
                 <div *ngFor="let n of arrayNotas" >
                   <div *ngIf="n.notasid.materia == 'Angular'" >
                     {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Angular'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
                   </div>
                 </div>
               </td>
@@ -196,6 +231,13 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'Spring'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
+                  </div>
+                </div>
+              </td>
           </tr>
 
           <tr>
@@ -225,6 +267,13 @@
                 <div *ngFor="let n of arrayNotas" >
                   <div *ngIf="n.notasid.materia == 'TypeScript'" >
                     {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'TypeScript'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
                   </div>
                 </div>
               </td>
@@ -260,6 +309,13 @@
                   </div>
                 </div>
               </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'React'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
+                  </div>
+                </div>
+              </td>
           </tr>
 
           <tr>
@@ -289,6 +345,13 @@
                 <div *ngFor="let n of arrayNotas" >
                   <div *ngIf="n.notasid.materia == 'MySql'" >
                     {{ n.nota4 }}
+                  </div>
+                </div>
+              </td>
+              <td>
+                <div *ngFor="let n of arrayNotas" >
+                  <div *ngIf="n.notasid.materia == 'MySql'" >
+                      <font [ngClass]="{'red-text font-weight-bold': n.media < 6,'green-text font-weight-bold': n.media >= 6}"> {{ n.media }} </font>
                   </div>
                 </div>
               </td>
@@ -522,7 +585,7 @@
       <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApNotas()" (click)="editarNotas()" *ngIf="aparecidoNotas">
           <i class="fa fa-paper-plane-o ml-1"></i> Atualizar notas</button>
   </div>
-  <div class="faltas col-5">
+  <div class="faltas col-5 animated zoomIn">
     <h1><i class="fa fa-window-close" aria-hidden="true"></i> Faltas</h1>
     <table  class="table table-hover table-lg" *ngIf="!aparecidoFaltas">
         <thead >
@@ -533,7 +596,7 @@
             <th>Java</th>
             <td>
               <div *ngFor="let n of arrayFaltas" >
-                <div *ngIf="n.faltasid.materia == 'Java'" >
+                <div *ngIf="n.faltasid.materia == 'Java'" [ngClass]="{'text-red': true}">
                   {{ n.numero1 }}
                 </div>
               </div>

@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { ProfessorService } from './../../../servicos/professor.service';
 import { Router } from '@angular/router';
 import { ProfessorModel } from './../../model';
@@ -15,10 +16,11 @@ export class PerfilProfessorComponent implements OnInit {
   novaSenha: string;
   novaSenha2: string;
 
-  constructor(private professorService: ProfessorService,private router: Router) { }
+  constructor(private professorService: ProfessorService,private router: Router, private title: Title) { }
 
   ngOnInit() {
     this.chamarProfessor(2);
+    this.title.setTitle("Meu perfil");
   }
 
   chamarProfessor(matricula: number){

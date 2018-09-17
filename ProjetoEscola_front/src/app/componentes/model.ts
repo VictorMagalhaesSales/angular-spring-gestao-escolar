@@ -98,6 +98,7 @@ export class NotasModel {
     nota2;
     nota3;
     nota4;
+    media;
     notasid: {
         materia,
         aluno,

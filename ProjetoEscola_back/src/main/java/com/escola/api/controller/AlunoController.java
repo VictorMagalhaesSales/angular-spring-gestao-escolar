@@ -373,10 +373,10 @@ public class AlunoController {
 
 	private Faltas faltaMySql(Long matricula) {
 		Faltas nJava = new Faltas();
-		nJava.setNumero1(null);
-		nJava.setNumero2(null);
-		nJava.setNumero3(null);
-		nJava.setNumero4(null);
+		nJava.setNumero1(0l);
+		nJava.setNumero2(0l);
+		nJava.setNumero3(0l);
+		nJava.setNumero4(0l);
 		FaltasId nId = new FaltasId();
 		nId.setAluno(matricula);
 		nId.setMateria("MySql");

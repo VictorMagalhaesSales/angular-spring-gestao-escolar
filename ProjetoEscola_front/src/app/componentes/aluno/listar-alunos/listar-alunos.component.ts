@@ -1,3 +1,4 @@
+import { Title } from '@angular/platform-browser';
 import { AlunoModel } from './../../model';
 import { AlunoFiltro } from './../aluno-filtro.model';
 import { AlunoService } from './../../../servicos/aluno.service';
@@ -30,10 +31,11 @@ export class ListarAlunosComponent implements OnInit {
     { field: 'telefone', header: 'Telefone' }
 ];
 
-  constructor(private alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService, private title: Title) { }
 
   ngOnInit() {
     this.pesquisar("a");
+    this.title.setTitle("Listar alunos");
   }
 
   pesquisar(iniciar: string){

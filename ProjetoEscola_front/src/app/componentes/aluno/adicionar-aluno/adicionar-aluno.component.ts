@@ -2,6 +2,7 @@ import { AlunoModel } from './../../model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-adicionar-aluno',
@@ -12,9 +13,10 @@ export class AdicionarAlunoComponent implements OnInit {
 
   aluno = new AlunoModel();
 
-  constructor(private alunoService: AlunoService, private rota: Router) { }
+  constructor(private alunoService: AlunoService, private rota: Router, private title: Title) { }
 
   ngOnInit() {
+    this.title.setTitle("Adicionar aluno");
   }
 
 c

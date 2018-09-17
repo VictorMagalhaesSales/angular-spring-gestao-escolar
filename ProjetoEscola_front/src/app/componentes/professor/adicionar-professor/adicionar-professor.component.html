@@ -16,10 +16,9 @@
               <label for="sobrenome">Sobrenome</label>
             </div>
   
-            <div class="md-form">
-              <i class="fa fa-mortar-board prefix"></i>
-              <input mdbInputDirective type="text" id="disciplina" name="disciplina" class="form-control"  [(ngModel)]="professor.disciplina">
-              <label for="disciplina">Disciplina</label>
+            <div>
+              <i class="fa fa-mortar-board fa-2x mr-2"></i>
+              <p-dropdown name="disciplina" [options]="disciplina" [(ngModel)]="disci" placeholder="Selecione a disciplina" optionLabel="nome" [showClear]="true" [filter]="true"></p-dropdown>
             </div>
   
             <div class="md-form">

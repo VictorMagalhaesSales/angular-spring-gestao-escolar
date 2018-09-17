@@ -1,7 +1,7 @@
+import { Title } from '@angular/platform-browser';
 import { NotasModel, FaltasModel } from './../../model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notas-e-faltas',
@@ -18,11 +18,12 @@ export class NotasEFaltasComponent implements OnInit {
   aparecidoNotas: boolean;
   aparecidoFaltas: boolean;
 
-  constructor(private alunoService: AlunoService) { }
+  constructor(private alunoService: AlunoService, private title: Title) { }
 
   ngOnInit() {
-    this.pesquisarNotas(10);  
-    this.pesquisarFaltas(10);  
+    this.pesquisarNotas(2);  
+    this.pesquisarFaltas(2); 
+    this.title.setTitle("Notas e faltas"); 
   }
 
   
@@ -64,6 +65,12 @@ export class NotasEFaltasComponent implements OnInit {
 
   editarNotas(){
     let ver: boolean = true;
+    for (let notas of this.arrayNotasAt) {  
+      if(notas.nota1 != null  && notas.nota2 != null && notas.nota3 != null && notas.nota4 != null){
+        notas.media = (notas.nota1 + notas.nota2 + notas.nota3 + notas.nota4)/4;
+      }
+    }
+
     for (let notas of this.arrayNotasAt) {
       this.alunoService.atualizarNotas(notas.notasid.aluno, notas.notasid.materia, notas).then(() => {
         if(ver){

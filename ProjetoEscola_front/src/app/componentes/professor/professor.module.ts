@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { ListarProfessorComponent } from './listar-professor/listar-professor.component';
 import { AdicionarProfessorComponent } from './adicionar-professor/adicionar-professor.component';
 import { PerfilProfessorComponent } from './perfil-professor/perfil-professor.component';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PerfilProfessorComponent } from './perfil-professor/perfil-professor.co
 
     // NG PRIME
     TableModule,
-    InputsModule
+    InputsModule,
+    DropdownModule
   ],
   exports: [AdicionarProfessorComponent]
 })

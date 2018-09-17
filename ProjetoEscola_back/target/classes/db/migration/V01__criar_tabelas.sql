@@ -54,6 +54,7 @@ CREATE TABLE notas(
 	nota2 float(10,2),
 	nota3 float(10,2),
 	nota4 float(10,2),
+	media float(10,2),
 	materia VARCHAR(50),
 	aluno BIGINT(20),
 	FOREIGN KEY(materia) REFERENCES materia(materia),

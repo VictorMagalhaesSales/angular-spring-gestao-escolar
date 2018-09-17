@@ -1,4 +1,5 @@
-import { AlunoModel } from './../../model';
+import { Title } from '@angular/platform-browser';
+import { AlunoModel, NotasModel } from './../../model';
 import { Component, OnInit } from '@angular/core';
 import { AlunoService } from '../../../servicos/aluno.service';
 import { Router } from '@angular/router';
@@ -14,11 +15,15 @@ export class PerfilAlunoComponent implements OnInit {
   alunoAtualizar = new OutroModel();
   novaSenha: string;
   novaSenha2: string;
+  
+  arrayNotas: Array<NotasModel> = new Array<NotasModel>();
 
-  constructor(private alunoService: AlunoService,private router: Router) { }
+  constructor(private alunoService: AlunoService,private router: Router, private title: Title ){ }
 
   ngOnInit() {
-    this.chamarAluno(10);
+    this.chamarAluno(2);
+    this.pesquisarNotas(2);
+    this.title.setTitle("Meu perfil");
   }
 
   chamarAluno(matricula: number){
@@ -60,10 +65,17 @@ export class PerfilAlunoComponent implements OnInit {
     }
   }
 
+  pesquisarNotas(matricula: number){
+    this.alunoService.pesquisarNotas().then( (notas)  => {
+      for(let n of notas){
+        if(n.notasid.aluno == matricula){
+          this.arrayNotas.push(n);
+        }
+      }
+    } );
+  }
+
 }
-
-
-
 
 export class OutroModel {
   matricula: number;

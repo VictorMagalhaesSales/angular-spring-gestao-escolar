@@ -106,7 +106,12 @@
                             <input type="text" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="professorAtualizar.telefone" mdbTooltip="Telefone">
                         </div>
                      </td>
-                 </tr>
+                     <tr>
+                        <td colspan="2">
+                            <i class="fa fa-mortar-board fa-2x mr-2"></i>
+                            <p-dropdown name="disciplinaM" [options]="disciplinaM" [(ngModel)]="disci" placeholder="Selecione a disciplina" optionLabel="nome" [showClear]="true" [filter]="true"></p-dropdown>
+                        </td>
+                     </tr>
              </table> 
             
             <div class="modal-footer d-flex justify-content-center">
