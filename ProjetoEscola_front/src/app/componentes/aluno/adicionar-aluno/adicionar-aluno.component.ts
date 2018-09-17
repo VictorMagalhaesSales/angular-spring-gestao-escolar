@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { AlunoModel } from './../../model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ export class AdicionarAlunoComponent implements OnInit {
 
   aluno = new AlunoModel();
 
-  constructor(private alunoService: AlunoService, private rota: Router, private title: Title) { }
+  constructor(private alunoService: AlunoService, private rota: Router, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
     this.title.setTitle("Adicionar aluno");
@@ -21,7 +22,15 @@ export class AdicionarAlunoComponent implements OnInit {
 
 c
   adicionarAluno(){
-    this.alunoService.adicionarAluno(this.aluno).then(() => this.rota.navigate(['../../aluno/listaraluno']));
+    this.alunoService.adicionarAluno(this.aluno)
+      .then(() => this.rota.navigate(['../../aluno/listaraluno']))
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
+  }
+
+  fecharAviso() {
+    this.messageService.clear('c');
   }
 
 }

@@ -4,4 +4,5 @@
 
 1 - Serviço oauth faz uma requisição para http://localhost:8080/oauth/token, passando authorization do cliente ( angular, angular (codificado)), passando o Content-Type e no corpo passando o login e senha do usuário;
 2 - Instalamos a lib angular2-jwt que serve para decodificar o acess token gerado no passo acima;
-3 - Após botar no módulo e fazer a injeção de dependência no authService, criaremos uma função que de codifica o token e chamaremos ela no post da requisição;
+3 - Após botar no módulo e fazer a injeção de dependência no authService, criaremos uma função que recebe um token, de codifica-o e será armazenado em uma variavel Payload. Chamaremos ela no post da requisição. Nessa mesma função, armazenaremos o token passado via parâmetro no LocalStorage do browser;
+4 - Agora, antes de fazer qualquer requisição, em vez de pegarmos um token manualmente, pegaremos diretamente do LocalStore;

@@ -1,3 +1,4 @@
+import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './../../app-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -40,7 +41,8 @@ import { NotasEFaltasComponent } from './notas-e-faltas/notas-e-faltas.component
 
     // NG PRIME
     TableModule,
-    InputsModule
+    InputsModule,
+    ToastModule
   ],
   exports: [
     ListarAlunosComponent

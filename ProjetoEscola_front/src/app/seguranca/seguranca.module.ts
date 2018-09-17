@@ -1,3 +1,5 @@
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/components/common/messageservice';
 import { JwtHelperService, JwtModule } from '@auth0/angular-jwt';
 import { NavbarModule, WavesModule, ButtonsModule, InputsModule, CardsFreeModule, MDBBootstrapModule } from 'angular-bootstrap-md';
 import { FormsModule } from '@angular/forms';
@@ -19,8 +21,9 @@ import { CommonModule } from '@angular/common';
     InputsModule,
     CardsFreeModule,
     MDBBootstrapModule.forRoot(),
+    ToastModule
   ],
-  providers: [JwtHelperService],
+  providers: [JwtHelperService, MessageService],
   declarations: [LoginComponent]
 })
 export class SegurancaModule { }

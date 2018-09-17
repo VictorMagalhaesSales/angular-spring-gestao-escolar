@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { NotasModel, FaltasModel } from './../../model';
 import { AlunoService } from './../../../servicos/aluno.service';
@@ -18,7 +19,7 @@ export class NotasEFaltasComponent implements OnInit {
   aparecidoNotas: boolean;
   aparecidoFaltas: boolean;
 
-  constructor(private alunoService: AlunoService, private title: Title) { }
+  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
     this.pesquisarNotas(2);  
@@ -42,7 +43,10 @@ export class NotasEFaltasComponent implements OnInit {
           this.arrayNotas.push(n);
         }
       }
-    } );
+    })
+    .catch(erro => {
+      this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+    });
   }
 
   passarNotas1(){
@@ -77,6 +81,9 @@ export class NotasEFaltasComponent implements OnInit {
           this.pesquisarNotas(notas.notasid.aluno);
           ver = false;
         }
+      })
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
       });
     }
   }
@@ -96,7 +103,10 @@ export class NotasEFaltasComponent implements OnInit {
           this.arrayFaltas.push(n);
         }
       }
-    } );
+    })
+    .catch(erro => {
+      this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+    });
   }
 
   passarFaltas1(){
@@ -125,6 +135,9 @@ export class NotasEFaltasComponent implements OnInit {
           this.pesquisarFaltas(faltas.faltasid.aluno);
           ver = false;
         }
+      })
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
       });
     }
   }

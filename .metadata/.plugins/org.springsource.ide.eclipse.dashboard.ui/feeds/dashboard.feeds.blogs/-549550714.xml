@@ -5,7 +5,241 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-13T19:03:16Z</updated>
+  <updated>2018-09-17T07:34:00Z</updated>
+  <entry>
+    <title>Introducing Spring Data JDBC</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/17/introducing-spring-data-jdbc" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Jens Schauder</name>
+    </author>
+    <id>tag:spring.io,2018-09-14:3396</id>
+    <updated>2018-09-17T07:34:00Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;With the upcoming Lovelace GA release, we&amp;#8217;re going to ship a new Spring Data Module: &lt;a href="https://projects.spring.io/spring-data-jdbc/"&gt;Spring Data JDBC&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The idea behind Spring Data JDBC is to provide access to relational databases without submitting to the complexities of JPA. JPA offers such features as lazy loading, caching, and dirty tracking. While these are great if you need them, they can actually make thinking about JPA and its behavior harder than it has to be.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Lazy loading might trigger expensive statements when you don&amp;#8217;t expect it or it might fail with an exception.
+Caching can get in your way when you actually want to compare two versions of an entity and being dirty makes it hard to find a single point where all persistence operations pass through.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Data JDBC aims at a much simpler model.
+There won&amp;#8217;t be caching, dirty tracking, or lazy loading.
+Instead, SQL statements are issued when and only when you invoke a repository method.
+The object returned as result of that method is fully loaded before the method returns.
+There is no "session" and no proxies for entities.
+All this should make Spring Data JDBC easier to reason about.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Of course, this simpler approach results in constraints which will be covered in a future post.
+Also, it is the first version, so there are many features that we want and plan to implement, but that we had to postpone in order to get something into your hands early.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="let-s-take-a-look-at-a-simple-example"&gt;&lt;a class="anchor" href="#let-s-take-a-look-at-a-simple-example"&gt;&lt;/a&gt;Let&amp;#8217;s take a look at a simple example.&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;First, we need an entity:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;class Customer {
+    @Id
+    Long id;
+    String firstName;
+    LocalDate dob;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Note that you don&amp;#8217;t need getters or setters.
+It is perfectly okay to use them if you prefer to do so.
+Really, the only requirement is that the entity has a property annotated with &lt;code&gt;Id&lt;/code&gt; (that is, &lt;code&gt;@org.springframework.data.annotation.Id&lt;/code&gt;, not the &lt;code&gt;javax.persistence&lt;/code&gt; one).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Next, we need to declare a repository.
+The easiest way to do that is to extend &lt;code&gt;CrudRepository&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;interface CustomerRepository extends CrudRepository&amp;lt;Customer, Long&amp;gt; {}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Finally, we need to configure the &lt;code&gt;ApplicationContext&lt;/code&gt; to enable the creation of repositories:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Configuration
+@EnableJdbcRepositories &lt;b class="conum"&gt;(1)&lt;/b&gt;
+public class CustomerConfig extends JdbcConfiguration { &lt;b class="conum"&gt;(2)&lt;/b&gt;
+
+    @Bean
+    NamedParameterJdbcOperations operations() { &lt;b class="conum"&gt;(3)&lt;/b&gt;
+        return new NamedParameterJdbcTemplate(dataSource());
+    }
+
+    @Bean
+    PlatformTransactionManager transactionManager() { &lt;b class="conum"&gt;(4)&lt;/b&gt;
+        return new DataSourceTransactionManager(dataSource());
+	}
+
+    @Bean
+    DataSource dataSource(){ &lt;b class="conum"&gt;(5)&lt;/b&gt;
+        return new EmbeddedDatabaseBuilder()
+                .generateUniqueName(true)
+                .setType(EmbeddedDatabaseType.HSQL)
+                .addScript("create-customer-schema.sql")
+                .build();
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Let&amp;#8217;s go through the configuration step by step.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="colist arabic"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;EnableJdbcRepositories&lt;/code&gt; enables the creation of repositories.
+Since it requires the presence of some beans, we need the rest of the configuration.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Extending &lt;code&gt;JdbcConfiguration&lt;/code&gt; adds some default beans to the &lt;code&gt;ApplicationContext&lt;/code&gt;.
+You can overwrite its methods to customize some of the behavior of Spring Data JDBC.
+For now, we go with the default implementations.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The really important part is &lt;code&gt;NamedParameterJdbcOperations&lt;/code&gt;, which is used internally to submit SQL statements to the database.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;The transaction manager is, strictly speaking, not necessary.
+But you&amp;#8217;d be working without support for transactions that span more than a single statement, and nobody wants that, right?&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Data JDBC doesn&amp;#8217;t directly use the &lt;code&gt;DataSource&lt;/code&gt;, but, since the &lt;code&gt;TransactionManager&lt;/code&gt; and the &lt;code&gt;NamedParameterJdbcOperations&lt;/code&gt; need it, registering it as a bean is an easy way to ensure both use the same instance.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;That is all you need to get started on working with it.
+Now let&amp;#8217;s play with it in a test:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@RunWith(SpringRunner.class)
+@Transactional
+@ContextConfiguration(classes = CustomerConfig.class)
+public class CustomerRepositoryTest {
+
+    @Autowired CustomerRepository customerRepo;
+
+    @Test
+    public void createSimpleCustomer() {
+
+        Customer customer = new Customer();
+        customer.dob = LocalDate.of(1904, 5, 14);
+        customer.firstName = "Albert";
+
+        Customer saved = customerRepo.save(customer);
+
+        assertThat(saved.id).isNotNull();
+
+        saved.firstName = "Hans Albert";
+
+        customerRepo.save(saved);
+
+        Optional&amp;lt;Customer&amp;gt; reloaded = customerRepo.findById(saved.id);
+
+        assertThat(reloaded).isNotEmpty();
+
+        assertThat(reloaded.get().firstName).isEqualTo("Hans Albert");
+    }
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="code-query-code-annotation"&gt;&lt;a class="anchor" href="#code-query-code-annotation"&gt;&lt;/a&gt;&lt;code&gt;@Query&lt;/code&gt; annotation&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;You probably won&amp;#8217;t get far with just the basic CRUD methods from the &lt;code&gt;CrudRepository&lt;/code&gt;.
+We decided to postpone query derivation, the popular feature where Spring Data derives the query to use from a method name, to a later version.
+Until that arrives you can use a simple &lt;code&gt;@Query&lt;/code&gt; annotation to specify a query on a repository method:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Query("select id, first_name, dob from customer where upper(first_name) like '%' || upper(:name) || '%' ")
+List&amp;lt;Customer&amp;gt; findByName(@Param("name") String name);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Note that the &lt;code&gt;@Param&lt;/code&gt; annotation is not required if you compile with the &lt;code&gt;-parameters&lt;/code&gt; flag.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If you want to execute an update or delete statement, you can add a &lt;code&gt;@Modifying&lt;/code&gt; annotation to the method.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Let&amp;#8217;s create another test in order to try out the new method.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Test
+public void findByName() {
+
+    Customer customer = new Customer();
+    customer.dob = LocalDate.of(1904, 5, 14);
+    customer.firstName = "Albert";
+
+    Customer saved = customerRepo.save(customer);
+
+    assertThat(saved.id).isNotNull();
+
+    customer.id= null; &lt;b class="conum"&gt;(1)&lt;/b&gt;
+    customer.firstName = "Bertram";
+
+    customerRepo.save(customer);
+
+    customer.id= null;
+    customer.firstName = "Beth";
+
+    customerRepo.save(customer);
+
+    assertThat(customerRepo.findByName("bert")).hasSize(2); &lt;b class="conum"&gt;(2)&lt;/b&gt;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="colist arabic"&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Since the connection between a Java object and its corresponding row is just its &lt;code&gt;Id&lt;/code&gt; plus its type, setting the &lt;code&gt;Id&lt;/code&gt; to &lt;code&gt;null&lt;/code&gt; and saving it again creates another row in the database.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We are doing a case-insensitive (like) search, and, therefore, we find "Albert" and "Bertram" but not "Beth".&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="closing-notes"&gt;&lt;a class="anchor" href="#closing-notes"&gt;&lt;/a&gt;Closing Notes&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There is more to learn about Spring Data JDBC, but that will have to wait for another article.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In the meantime, you can take a &lt;a href="https://github.com/spring-projects/spring-data-examples/tree/master/jdbc"&gt;look at the examples&lt;/a&gt;,
+the &lt;a href="https://docs.spring.io/spring-data/jdbc/docs/1.0.0.RC2/reference/html/"&gt;documentation&lt;/a&gt;,
+and, of course, &lt;a href="https://github.com/spring-projects/spring-data-jdbc"&gt;the source code&lt;/a&gt;.
+If you have questions, &lt;a href="https://stackoverflow.com/questions/tagged/spring-data-jdbc"&gt;ask away on StackOverflow&lt;/a&gt;.
+And if you find a bug or want to request a feature &lt;a href="https://jira.spring.io/projects/DATAJDBC"&gt;please create an issue&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>Spring IO Platform Cairo SR4</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/13/spring-io-platform-cairo-sr4" />
@@ -184,7 +418,7 @@ cf restart $APP_NAME
     <id>tag:spring.io,2018-09-12:3392</id>
     <updated>2018-09-12T11:52:00Z</updated>
     <content type="html">&lt;p&gt;It is my pleasure to announce that Spring Boot 2.0.5 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 2.0.5 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.0.5.RELEASE"&gt;87 fixes, improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;Spring Boot 2.0.5 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.0.5.RELEASE"&gt;87 fixes, improvements and dependency updates&lt;/a&gt; (including &lt;a href="https://pivotal.io/security/cve-2018-11087"&gt;an important security fix for Spring AMQP&lt;/a&gt;). Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.0.5.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
@@ -198,7 +432,7 @@ cf restart $APP_NAME
     <id>tag:spring.io,2018-09-11:3391</id>
     <updated>2018-09-11T16:43:00Z</updated>
     <content type="html">&lt;p&gt;On behalf of the team, I am pleased to announce that Spring Boot 1.5.16 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 1.5.16 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v1.5.16.RELEASE"&gt;27 fixes, improvements and dependency updates&lt;/a&gt;. Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;Spring Boot 1.5.16 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v1.5.16.RELEASE"&gt;27 fixes, improvements and dependency updates&lt;/a&gt; (including &lt;a href="https://pivotal.io/security/cve-2018-11087"&gt;an important security fix for Spring AMQP&lt;/a&gt;). Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
 &lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
@@ -1145,67 +1379,5 @@ curl http://localhost:8080/greeting&#xD;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Batch 4.1.0.M3 Released!</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/08/31/spring-batch-4-1-0-m3-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Mahmoud Ben Hassine</name>
-    </author>
-    <id>tag:spring.io,2018-08-31:3381</id>
-    <updated>2018-08-31T14:58:00Z</updated>
-    <content type="html">&lt;p&gt;We are pleased to announce that Spring Batch 4.1.0.M3 is now available on Github and the Pivotal download repository. What&amp;rsquo;s new in this milestone? Here is a list of new features and enhancements:&lt;/p&gt;&lt;h1&gt;&lt;a href="#jsr-305-support" class="anchor" name="jsr-305-support"&gt;&lt;/a&gt;JSR-305 support&lt;/h1&gt;
-&lt;p&gt;The main theme of this milestone is adding support for JSR-305 annotations. We leveraged Spring Framework&amp;rsquo;s &lt;a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#null-safety"&gt;Null-safety&lt;/a&gt; annotations and added them where appropriate in all public APIs of Spring Batch.&lt;/p&gt;
-&lt;p&gt;These annotations will not only enforce null-safety when using Spring Batch APIs, but also can be used by IDEs to provide useful information related to nullability. For example, if a user wants to implement the &lt;code&gt;ItemReader&lt;/code&gt; interface, any IDE supporting JSR-305 annotations will generate something like:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint java"&gt;public class MyItemReader implements ItemReader&amp;lt;String&amp;gt; {&#xD;
-&#xD;
-	@Nullable&#xD;
-	public String read() throws Exception {&#xD;
-		return null;&#xD;
-	}&#xD;
-&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The &lt;code&gt;@Nullable&lt;/code&gt; annotation present on the &lt;code&gt;read&lt;/code&gt; method makes it clear that the contract of this method says it may return &lt;code&gt;null&lt;/code&gt;. This enforces what is said in its Javadoc, that the &lt;code&gt;read&lt;/code&gt; method should return &lt;code&gt;null&lt;/code&gt; when the data source is exhausted.&lt;/p&gt;&lt;h1&gt;&lt;a href="#flatfileitemwriter-builder-enhancements" class="anchor" name="flatfileitemwriter-builder-enhancements"&gt;&lt;/a&gt;FlatFileItemWriter Builder enhancements&lt;/h1&gt;
-&lt;p&gt;Another small feature added in this release is a simplification of the configuration for the writing of a flat file. Specifically, these updates simplify the configuration of both a delimited and fixed width file. Below is an example of before and after the change.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint"&gt;// Before&#xD;
-@Bean&#xD;
-public FlatFileItemWriter&amp;lt;Item&amp;gt; itemWriter(Resource resource) {&#xD;
-	BeanWrapperFieldExtractor&amp;lt;Item&amp;gt; fieldExtractor = &#xD;
-            new BeanWrapperFieldExtractor&amp;lt;Item&amp;gt;();&#xD;
-	fieldExtractor.setNames(new String[] {&amp;quot;field1&amp;quot;, &amp;quot;field2&amp;quot;, &amp;quot;field3&amp;quot;});&#xD;
-	fieldExtractor.afterPropertiesSet();&#xD;
-	&#xD;
-	DelimitedLineAggregator aggregator = new DelimitedLineAggregator();&#xD;
-	aggregator.setFieldExtractor(fieldExtractor);&#xD;
-	aggregator.setDelimiter(&amp;quot;;&amp;quot;);&#xD;
-&#xD;
-	return new FlatFileItemWriterBuilder&amp;lt;Item&amp;gt;()&#xD;
-			.name(&amp;quot;itemWriter&amp;quot;)&#xD;
-			.resource(resource)&#xD;
-			.lineAggregator(aggregator)&#xD;
-			.build();&#xD;
-}&#xD;
-&#xD;
-// After&#xD;
-@Bean&#xD;
-public FlatFileItemWriter&amp;lt;Item&amp;gt; itemWriter(Resource resource) {&#xD;
-	return new FlatFileItemWriterBuilder&amp;lt;Item&amp;gt;()&#xD;
-			.name(&amp;quot;itemWriter&amp;quot;)&#xD;
-			.resource(resource)&#xD;
-			.delimited()&#xD;
-			.delimiter(&amp;quot;;&amp;quot;)&#xD;
-			.names(new String[] {&amp;quot;field1&amp;quot;, &amp;quot;field2&amp;quot;, &amp;quot;field3&amp;quot;})&#xD;
-			.build();&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;h1&gt;&lt;a href="#other-improvements" class="anchor" name="other-improvements"&gt;&lt;/a&gt;Other improvements&lt;/h1&gt;
-&lt;p&gt;This milestone also includes other improvements like:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Adding the ability to provide a custom transaction manager by subclassing &lt;code&gt;DefaultBatchConfigurer&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Fixing minor inconsistencies in some method names&lt;/li&gt;
-&lt;/ul&gt;&lt;h1&gt;&lt;a href="#feedback" class="anchor" name="feedback"&gt;&lt;/a&gt;Feedback&lt;/h1&gt;
-&lt;p&gt;For a complete list of changes, please check the &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10090&amp;version=16889"&gt;change log&lt;/a&gt;. This is the last milestone before the first RC! So we really look forward to hearing your feedback on this milestone! Please feel free to ping &lt;a href="https://www.twitter.com/michaelminella"&gt;@michaelminella&lt;/a&gt; or &lt;a href="https://www.twitter.com/_benas_"&gt;@_benas_&lt;/a&gt; on Twitter or ask your question on &lt;a href="https://stackoverflow.com/questions/tagged/spring-batch"&gt;StackOverflow&lt;/a&gt; or &lt;a href="https://gitter.im/spring-batch/Lobby"&gt;Gitter&lt;/a&gt;. If you find any issue, please open a ticket on &lt;a href="https://jira.spring.io/projects/BATCH/summary"&gt;Jira&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-batch"&gt;Spring Batch Home&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-batch"&gt;Source on GitHub&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-batch/4.1.x/reference/html/index.html"&gt;Reference Documentation&lt;/a&gt;&lt;/p&gt;</content>
   </entry>
 </feed>

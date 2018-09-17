@@ -8,9 +8,12 @@ import { Injectable } from '@angular/core';
 })
 export class ProfessorService {
 
-  token: string = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1Mzk5NDU4ODUsInVzZXJfbmFtZSI6ImFkbUBhZG0uY29tIiwiYXV0aG9yaXRpZXMiOlsiUk9MRV9ERUxFVEFSX1BST0ZFU1NPUiIsIlJPTEVfREVMRVRBUl9OT1RBIiwiUk9MRV9MSVNUQVJfQUxVTk8iLCJST0xFX0xJU1RBUl9BTFVOT1MiLCJST0xFX0xJU1RBUl9QUk9GRVNTT1JFUyIsIlJPTEVfRURJVEFSX0FMVU5PIiwiUk9MRV9MSVNUQVJfUFJPRkVTU09SIiwiUk9MRV9MSVNUQVJfRkFMVEFTIiwiUk9MRV9TQUxWQVJfUFJPRkVTU09SIiwiUk9MRV9TQUxWQVJfQUxVTk8iLCJST0xFX0RFTEVUQVJfQUxVTk8iLCJST0xFX0xJU1RBUl9OT1RBUyIsIlJPTEVfREVMRVRBUl9GQUxUQSIsIlJPTEVfRURJVEFSX05PVEEiLCJST0xFX0VESVRBUl9QUk9GRVNTT1IiLCJST0xFX1NBTFZBUl9OT1RBIiwiUk9MRV9TQUxWQVJfRkFMVEEiXSwianRpIjoiYzJiOTk1OTMtNjAxNS00YTRhLWFlYTgtM2MyNzJkYTE2ZWZkIiwiY2xpZW50X2lkIjoiYW5ndWxhciIsInNjb3BlIjpbInJlYWQiLCJ3cml0ZSJdfQ.hZtI5k3BBHwr4GF3a5ZPvetC95TS68mi02wuUx_txxQ";
+  token: string = "Bearer " + localStorage.getItem('token');
 
-  constructor(private http: HttpClient ) {}
+
+  constructor(private http: HttpClient){
+    console.log(localStorage.getItem('token'));
+  }
 
 
   pesquisarProfessores(filtro: ProfessorFiltro): Promise<any>{
@@ -26,39 +29,58 @@ export class ProfessorService {
     }if(filtro.telefone == null){
       filtro.telefone = "";
     }
-    console.log("1");
     return this.http.get("http://localhost:8080/professor", {
       headers: { "Authorization": this.token}, 
       params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "disciplina": filtro.disciplina, "email": filtro.email, "telefone": filtro.telefone},
     })
           .toPromise()
-          .then(response => response );
+          .then(response => response)
+          .catch( response => {
+            console.log(response);
+              return Promise.reject("Você não tem autorização para operar esse conteúdo.");
+          });
   }
 
   pesquisarProfessorPorId(id: number): Promise<any>{
 
     return this.http.get(`http://localhost:8080/professor/${id}`, { headers: { "Authorization": this.token} } )
           .toPromise()
-          .then(response =>response  );
+          .then(response =>response)
+          .catch( response => {
+            console.log(response);
+              return Promise.reject("Você não tem autorização para operar esse conteúdo."); 
+          });
   }
 
   deletarProfessor(id: number): Promise<void>{
 
     return this.http.delete(`http://localhost:8080/professor/${id}`,{ headers: { "Authorization":  this.token}})
       .toPromise()
-      .then(() => null);
+      .then(() => null)
+      .catch( response => {
+        console.log(response);
+          return Promise.reject("Você não tem autorização para operar esse conteúdo.");
+      });
   }
 
   atualizarProfessor(id: number, professor: ProfessorModel): Promise<any>{
 
     return this.http.put(`http://localhost:8080/professor/${id}`,professor,{ headers: { "Authorization":  this.token}} )
       .toPromise()
-      .then(()=> null);
+      .then(()=> null)
+      .catch( response => {
+        console.log(response);
+          return Promise.reject("Você não tem autorização para operar esse conteúdo."); 
+      });
   }
 
   adicionarProfessor(professor: ProfessorModel): Promise<any>{
     return this.http.post("http://localhost:8080/professor", professor, { headers: { "Authorization": this.token } } )
       .toPromise()
       .then(() => null)
+      .catch( response => {
+        console.log(response);
+          return Promise.reject("Você não tem autorização para operar esse conteúdo.");
+      });
   }
 }

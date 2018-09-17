@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { Disciplina } from './../adicionar-professor/adicionar-professor.component';
 import { ProfessorFiltro } from './../professor-filtro.model';
@@ -39,7 +40,7 @@ export class ListarProfessorComponent implements OnInit {
     { field: 'telefone', header: 'Telefone' }
 ];
 
-  constructor(private professorService: ProfessorService, private title: Title) {
+  constructor(private professorService: ProfessorService, private title: Title, private messageService: MessageService) {
     this.disciplinaM = [
       {nome: 'Java'},
       {nome: 'PHP'},
@@ -67,9 +68,17 @@ export class ListarProfessorComponent implements OnInit {
       filtro.email = "";
       filtro.telefone = "";
       filtro.disciplina = "";
-      this.professorService.pesquisarProfessores(filtro).then( professores => this.cars = professores );
+      this.professorService.pesquisarProfessores(filtro)
+        .then( professores => this.cars = professores )
+        .catch(erro => {
+          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+        });
     }else{
-      this.professorService.pesquisarProfessores(filtro).then( professores => this.cars = professores );
+      this.professorService.pesquisarProfessores(filtro)
+        .then( professores => this.cars = professores )
+        .catch(erro => {
+          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+        });
     }
   }
 
@@ -77,7 +86,11 @@ export class ListarProfessorComponent implements OnInit {
     if(this.paraExcluir == null){
       console.log("Sem código");
     }else{
-      this.professorService.deletarProfessor(this.paraExcluir).then( () => {this.pesquisar("")}, () => {alert("Encontramos outros registros relacionados a esse professor. Por favor, apague-os e tente novamente.")} );
+      this.professorService.deletarProfessor(this.paraExcluir)
+        .then( () => {this.pesquisar("")})
+        .catch(erro => {
+          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+        });
       this.paraExcluir = null;
     }
   }
@@ -87,11 +100,19 @@ export class ListarProfessorComponent implements OnInit {
   }
   editarProfessor2(){
     this.professorAtualizar.disciplina = this.disci.nome;
-    this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar).then(()=> this.pesquisar(""));
+    this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar)
+      .then(()=> this.pesquisar(""))
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
   }
 
   acionarExcluir(professor: ProfessorModel){
     this.paraExcluir = professor.id;
+  }
+
+  fecharAviso() {
+    this.messageService.clear('c');
   }
 
 }

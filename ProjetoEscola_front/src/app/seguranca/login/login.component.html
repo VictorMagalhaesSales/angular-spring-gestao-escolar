@@ -1,9 +1,8 @@
-<div class="col-6 offset-3 animated fadeInUpBig" style="margin-top: 10%;">
+<div class="col-6 offset-3 animated fadeInUpBig login" style="margin-top: 7%;">
   <mdb-card>
     <div class="card-header green-text" style="padding: 5%">
       <h4 class="card-header-title text-center"><i class="fa fa-lock" aria-hidden="true"></i><b> Acesse a sua conta</b></h4>
     </div>
-    
     <mdb-card-body>
       <form #f="ngForm"  style="padding: 5%">
         <div class="md-form">
@@ -11,13 +10,11 @@
           <input type="email" id="email" name="email" class="form-control" mdbInputDirective required #usuario>
           <label  for="email">Seu email</label>
         </div>
-
         <div class="md-form">
           <i class="fa fa-lock prefix"></i>
           <input type="password" id="fpassword" name="password" class="form-control" mdbInputDirective required #senha>
           <label for="fpassword">Sua senha</label>
         </div>
-        <br><br>
         <div class="modal-footer d-flex justify-content-center">
           <button mdbBtn type="button" color="success" class="waves-light" (click)="login(usuario.value, senha.value)" mdbWavesEffect>Login<i class="fa fa-sign-in ml-2 fa-1x  animated flip"></i></button>
         </div>
@@ -25,5 +22,22 @@
     </mdb-card-body>
   </mdb-card>    
 </div> 
+
+<!-- MENSAGENS DE ERRO -->
+<p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="bottom-right"></p-toast>
+<p-toast position="center" key="c" (onClose)="fecharAviso()" [modal]="true" [baseZIndex]="5000">
+  <ng-template let-message pTemplate="message">
+      <div style="text-align: center">
+          <i class="pi pi-exclamation-triangle" style="font-size: 3em"></i>
+          <h3>{{message.summary}}</h3>
+          <p>{{message.detail}}</p>
+      </div>
+      <div class="ui-g ui-fluid">
+          <div class="ui-g-6">
+              <button type="button" pButton (click)="fecharAviso()" label="No" class="ui-button-secondary"></button>
+          </div>
+      </div>
+  </ng-template>
+</p-toast>
 
 

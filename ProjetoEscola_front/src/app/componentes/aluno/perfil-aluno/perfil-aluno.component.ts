@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { AlunoModel, NotasModel } from './../../model';
 import { Component, OnInit } from '@angular/core';
@@ -18,7 +19,7 @@ export class PerfilAlunoComponent implements OnInit {
   
   arrayNotas: Array<NotasModel> = new Array<NotasModel>();
 
-  constructor(private alunoService: AlunoService,private router: Router, private title: Title ){ }
+  constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService){ }
 
   ngOnInit() {
     this.chamarAluno(2);
@@ -52,27 +53,44 @@ export class PerfilAlunoComponent implements OnInit {
   }
   
   editarAluno2(){
-    this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar).then( () => this.chamarAluno(this.aluno.matricula) );
+    this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar)
+    .then( () => this.chamarAluno(this.aluno.matricula))
+    .catch(erro => {
+      this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+    });
   }
 
   alterarSenha(){
     if(this.novaSenha == this.novaSenha2){
       this.alunoAtualizar.senha = this.novaSenha;
       this.aluno.senha = this.novaSenha;
-      this.alunoService.atualizarAluno(this.aluno.matricula, this.alunoAtualizar).then(() => alert('deu certo'));
+      this.alunoService.atualizarAluno(this.aluno.matricula, this.alunoAtualizar)
+      .then(() => alert('deu certo'))
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
     }else{
       alert('As senhas não coincidem');
     }
   }
 
   pesquisarNotas(matricula: number){
-    this.alunoService.pesquisarNotas().then( (notas)  => {
+    this.alunoService.pesquisarNotas()
+    .then( (notas)  => {
       for(let n of notas){
         if(n.notasid.aluno == matricula){
           this.arrayNotas.push(n);
         }
       }
-    } );
+    })
+    .catch(erro => {
+      this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+    });
+  }
+
+  
+  fecharAviso() {
+    this.messageService.clear('c');
   }
 
 }

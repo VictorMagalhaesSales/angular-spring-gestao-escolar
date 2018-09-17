@@ -12,6 +12,7 @@ import { ListarProfessorComponent } from './listar-professor/listar-professor.co
 import { AdicionarProfessorComponent } from './adicionar-professor/adicionar-professor.component';
 import { PerfilProfessorComponent } from './perfil-professor/perfil-professor.component';
 import {DropdownModule} from 'primeng/dropdown';
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import {DropdownModule} from 'primeng/dropdown';
     // NG PRIME
     TableModule,
     InputsModule,
-    DropdownModule
+    DropdownModule,
+    ToastModule
   ],
   exports: [AdicionarProfessorComponent]
 })

@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { ProfessorService } from './../../../servicos/professor.service';
 import { Router } from '@angular/router';
@@ -16,7 +17,7 @@ export class PerfilProfessorComponent implements OnInit {
   novaSenha: string;
   novaSenha2: string;
 
-  constructor(private professorService: ProfessorService,private router: Router, private title: Title) { }
+  constructor(private professorService: ProfessorService,private router: Router, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
     this.chamarProfessor(2);
@@ -51,17 +52,29 @@ export class PerfilProfessorComponent implements OnInit {
   }
   
   editarProfessor2(){
-    this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar).then( () => this.chamarProfessor(this.professor.id) );
+    this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar)
+      .then( () => this.chamarProfessor(this.professor.id))
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
   }
 
   alterarSenha(){
     if(this.novaSenha == this.novaSenha2){
       this.professorAtualizar.senha = this.novaSenha;
       this.professor.senha = this.novaSenha;
-      this.professorService.atualizarProfessor(this.professor.id, this.professorAtualizar).then(() => alert('deu certo'));
+      this.professorService.atualizarProfessor(this.professor.id, this.professorAtualizar)
+        .then(() => alert('deu certo'))
+        .catch(erro => {
+          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+        });
     }else{
       alert('As senhas não coincidem');
     }
+  }
+
+  fecharAviso() {
+    this.messageService.clear('c');
   }
 
 }

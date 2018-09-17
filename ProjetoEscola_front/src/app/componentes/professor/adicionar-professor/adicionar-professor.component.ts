@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { ProfessorService } from './../../../servicos/professor.service';
 import { ProfessorModel } from './../../model';
@@ -18,7 +19,7 @@ export class AdicionarProfessorComponent implements OnInit {
   disci: Disciplina;
 
 
-  constructor(private professorService: ProfessorService, private rota: Router, private title: Title) {
+  constructor(private professorService: ProfessorService, private rota: Router, private title: Title, private messageService: MessageService) {
   this.disciplina = [
       {nome: 'Java'},
       {nome: 'PHP'},
@@ -38,7 +39,15 @@ export class AdicionarProfessorComponent implements OnInit {
 
   adicionarProfessor(){
     this.professor.disciplina = this.disci.nome;
-    this.professorService.adicionarProfessor(this.professor).then(() => this.rota.navigate(['../../professor/listarprofessor']));
+    this.professorService.adicionarProfessor(this.professor)
+      .then(() => this.rota.navigate(['../../professor/listarprofessor']))
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
+  }
+
+  fecharAviso() {
+    this.messageService.clear('c');
   }
 
 }

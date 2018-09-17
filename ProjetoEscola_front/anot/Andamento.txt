@@ -6,11 +6,8 @@
 • Template e outros
 (x) Adaptando template
 (x) Início
-( ) Barra de menu com permissões
 ( ) Imagem no BD
 ( ) Mascaras nos input's
-( ) Tratamentos de erros
-( ) Validações no formulário
 
 •===--- Alunos ---===•
  (x) Listar alunos
@@ -47,11 +44,16 @@
  (x) Página não encontrada
 
 
-•===--- Login ---===•
- ( ) Autenticar login
- ( ) Manter usuário logado
+•===--- Login permissões ---===•
+ (x) Autenticar login
+ (x) Manter usuário logado
+ (x) Permissões
+ (x) Mensagens de permissões
+ ( ) Componentes visualizados com permissões
 
-
+•===--- Tratamento de erros ---===•
+ ( ) Validações no formulário
+ ( ) Erros com mensagens padrão
 
 
 
@@ -78,9 +80,15 @@ Além do bean validator que controla o not null, size, manda mensagem bonitinha e
 Temos o crud de usuários, com paginação e filtro, bem como com os professores, temos o crud de notas e faltas também;
 
 0===--- FrontEnd---===0
+• Permissões:
  O projeto possui um sistema de autenticação, onde você pode logar como adm, professor ou aluno, ambos com funcionalidades diferentes.
    - ADM: pode listar alunos, editá-los e adicioná-los; pode listar professores, editá-los e adicioná-los; pode listar notas e faltas e editá-las.
    - Professor: pode listar aluno, editá-los e adicioná-los; pode listar professores; pode listar notas e faltas e editá-las; pode visualizar e editar seu  perfil;
    - Aluno: pode listar professores; pode listar suas notas e faltas; pode visualizar e editar seu perfil;
+• Erros:
+Estamos trantando o erro com mensagens na tela. Se você tentar entrar em uma página cujas funções você não tem acesso, aparecerá uma mensagem de erro.
+• Autenticação:
+Funciona via token, que é recebebido pela função post, pegando-o e jogando-o em uma variável Payload que será utilizada na aplicação para obtenção de dados. O token também é armazenado no LocalStore.
+
 
 
