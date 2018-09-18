@@ -52,6 +52,7 @@
  ( ) Componentes visualizados com permissões
 
 •===--- Tratamento de erros ---===•
+ ( ) Dados(email) duplicados
  ( ) Validações no formulário
  ( ) Erros com mensagens padrão
 

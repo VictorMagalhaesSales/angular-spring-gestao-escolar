@@ -1,6 +1,6 @@
 <div class="corpo">
   <div class="notas col-5 offset-1 animated zoomIn">
-      <h1><i class="fa fa-tasks" aria-hidden="true"></i> Boletim de notas</h1>
+      <h1><img src="../../../../assets/imgs/boletim.png" width="60px"> Boletim de notas</h1>
       <table  class="table table-hover table-lg" *ngIf="!aparecidoNotas">
         <thead >
           <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th> <th scope="col">Média</th>
@@ -580,13 +580,13 @@
               </tr>
           </tbody>
       </table>
-      <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApNotas()" (click)="passarNotas1()" *ngIf="!aparecidoNotas">
+      <button *ngIf="auth.temPermissao('ROLE_EDITAR_ALUNO')" mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApNotas()" (click)="passarNotas1()" *ngIf="!aparecidoNotas">
           <i class="fa fa-edit ml-1"></i> Editar notas</button>
-      <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApNotas()" (click)="editarNotas()" *ngIf="aparecidoNotas">
+      <button *ngIf="auth.temPermissao('ROLE_EDITAR_ALUNO')" mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApNotas()" (click)="editarNotas()" *ngIf="aparecidoNotas">
           <i class="fa fa-paper-plane-o ml-1"></i> Atualizar notas</button>
   </div>
   <div class="faltas col-5 animated zoomIn">
-    <h1><i class="fa fa-window-close" aria-hidden="true"></i> Faltas</h1>
+    <h1><img src="../../../../assets/imgs/faltas.png" width="60px"> Faltas</h1>
     <table  class="table table-hover table-lg" *ngIf="!aparecidoFaltas">
         <thead >
           <th scope="col">Matéria</th> <th scope="col">1° Bimestre</th> <th scope="col">2° Bimestre</th> <th scope="col">3° Bimestre</th> <th scope="col">4° Bimestre</th>
@@ -1103,7 +1103,7 @@
             </tr>
         </tbody>
     </table>
-    <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApFaltas()" (click)="passarFaltas1()" *ngIf="!aparecidoFaltas">
+    <button mdbBtn type="button" color="danger" class="waves-light" mdbWavesEffect (click)="mudarApFaltas()" (click)="passarFaltas1()" *ngIf="!aparecidoFaltas">
         <i class="fa fa-edit ml-1"></i> Editar faltas</button>
     <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApFaltas()" (click)="editarFaltas()" *ngIf="aparecidoFaltas">
         <i class="fa fa-paper-plane-o ml-1"></i> Atualizar faltas</button>

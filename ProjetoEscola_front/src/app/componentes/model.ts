@@ -10,7 +10,7 @@ export class AlunoModel {
     permissoes = [
       {
           codigo: 2,
-          descricao: "ROLE_LISTAR_ALUNO"
+          descricao: "ROLE_LISTAR_ALUNOS"
       },
       {
           codigo: 5,
@@ -81,10 +81,6 @@ export class ProfessorModel {
         {
             codigo: 14,
             descricao: "ROLE_LISTAR_PROFESSOR"
-        },
-        {
-            codigo: 15,
-            descricao: "ROLE_SALVAR_PROFESSOR"
         },
         {
             codigo: 17,

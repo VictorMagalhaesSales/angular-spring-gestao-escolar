@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Title } from '@angular/platform-browser';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,10 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InicioComponent implements OnInit {
 
-  constructor(private title: Title) { }
+  estaLogado: boolean;
+
+  constructor(private title: Title, private auth: AuthService) { }
 
   ngOnInit() {
+    this.isLogado();
     this.title.setTitle("Escola FullStack");
+  }
+
+  isLogado(){
+    if(localStorage.getItem('token') != null){
+      this.estaLogado = true;
+    }
+  }
+
+  pegarNome(){
+    return this.auth.jwtPayload.user_name;
   }
 
 }

@@ -13,7 +13,7 @@ INDEX VERSION 1.131+C:\Users\Victor\Desktop\Projetos\ProjetoEscola\.metadata\.pl
 1241942768.index
 2151069597.index
 3633445127.index
-3745797270.index
+1443440757.index
 3483771576.index
 1468759025.index
 1231519283.index
@@ -31,8 +31,8 @@ INDEX VERSION 1.131+C:\Users\Victor\Desktop\Projetos\ProjetoEscola\.metadata\.pl
 245248482.index
 3038617174.index
 2076545400.index
-2351991663.index
 389376882.index
+2351991663.index
 3061998098.index
 3168573857.index
 3567519892.index
@@ -100,4 +100,4 @@ INDEX VERSION 1.131+C:\Users\Victor\Desktop\Projetos\ProjetoEscola\.metadata\.pl
 1277433859.index
 1433506462.index
 1587012271.index
-1443440757.index
+3745797270.index

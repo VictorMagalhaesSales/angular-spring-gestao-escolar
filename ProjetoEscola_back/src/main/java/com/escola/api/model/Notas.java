@@ -26,15 +26,15 @@ public class Notas implements Serializable{
 	
 	private Float nota4;
 	
-	private float media;
+	private Float media;
 	
 	
 
-	public float getMedia() {
+	public Float getMedia() {
 		return media;
 	}
 
-	public void setMedia(float media) {
+	public void setMedia(Float media) {
 		this.media = media;
 	}
 

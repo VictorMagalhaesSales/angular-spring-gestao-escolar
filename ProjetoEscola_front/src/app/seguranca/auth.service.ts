@@ -41,7 +41,14 @@ export class AuthService {
 
     }
 
+    temPermissao(permissao: string){
+      return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+    }
 
+     (){
+      return this.jwtPayload != null;
+    }
+    
     private armazenarToken(token: any){
       this.jwtPayload = auth.decodeToken(token);
       localStorage.setItem('token', token);

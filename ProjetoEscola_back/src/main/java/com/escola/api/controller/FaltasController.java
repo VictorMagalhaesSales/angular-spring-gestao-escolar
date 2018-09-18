@@ -31,20 +31,20 @@ public class FaltasController {
 	private FaltasRepository faltasRepository;
 	
 	@GetMapping
-	//@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTAS')")
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTAS')")
 	public List<Faltas> listarFaltas(){
 		return this.faltasRepository.findAll();
 	}
 	 
 	@PostMapping
-	//@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTA')")
+	@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTA')")
 	public ResponseEntity<Faltas> adicionarFalta(@Valid @RequestBody Faltas falta){
 		Faltas faltaok = this.faltasRepository.save(falta);
 		return ResponseEntity.ok(falta);
 	}
 	
 	@DeleteMapping("/{aluno}/{materia}")
-	//@PreAuthorize("hasAuthority('ROLE_DELETAR_FALTA')")
+	@PreAuthorize("hasAuthority('ROLE_DELETAR_FALTA')")
 	public void deletarFalta(@PathVariable("aluno") Long aluno, @PathVariable("materia") String materia) {
 		FaltasId faltasid = new FaltasId();
 		faltasid.setAluno(aluno);
@@ -53,7 +53,7 @@ public class FaltasController {
 	}
 	
 	@PutMapping("/{aluno}/{materia}")
-	//@PreAuthorize("hasAuthority('ROLE_EDITAR_FALTA')")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_FALTA')")
 	public ResponseEntity<Faltas> atualizarFaltas(@PathVariable("aluno") Long aluno, @PathVariable("materia") String materia,@Valid @RequestBody Faltas faltasMod) {
 		FaltasId faltasid = new FaltasId();
 		faltasid.setAluno(aluno);

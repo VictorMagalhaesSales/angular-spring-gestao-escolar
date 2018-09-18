@@ -1,3 +1,4 @@
+import { AuthService } from './../../seguranca/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,13 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   
-  constructor() {
+  constructor(private auth: AuthService) {
+   }
+
+   estaLogado(){
+     return this.auth.jwtPayload != null;
+   }
+   pegarNome(){
+     return this.auth.jwtPayload.user_name;
    }
 }

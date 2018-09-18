@@ -1,3 +1,4 @@
+import { AuthService } from './../../../seguranca/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { NotasModel, FaltasModel } from './../../model';
@@ -19,7 +20,7 @@ export class NotasEFaltasComponent implements OnInit {
   aparecidoNotas: boolean;
   aparecidoFaltas: boolean;
 
-  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService) { }
+  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 
   ngOnInit() {
     this.pesquisarNotas(2);  
@@ -140,6 +141,9 @@ export class NotasEFaltasComponent implements OnInit {
         this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
       });
     }
+  }
+  fecharAviso() {
+    this.messageService.clear('c');
   }
 
 }
