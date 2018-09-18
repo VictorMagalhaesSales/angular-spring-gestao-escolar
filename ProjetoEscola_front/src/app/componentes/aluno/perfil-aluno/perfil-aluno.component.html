@@ -32,7 +32,7 @@
                         <td rowspan="3">
                             <i class="fa fa-arrow-down prefix" aria-hidden="true"></i> <b>Reprovado em:</b>
                             <div *ngFor="let nota of arrayNotas" class="red-text" >
-                                <div *ngIf="nota.media < 6" >
+                                <div *ngIf="nota.media < 6 && nota.media != null" >
                                     {{ nota.notasid.materia }};
                                 </div>
                             </div>

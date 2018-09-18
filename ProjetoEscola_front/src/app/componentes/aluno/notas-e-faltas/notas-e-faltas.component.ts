@@ -24,7 +24,7 @@ export class NotasEFaltasComponent implements OnInit {
   profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
   profEmail = [];
   profId: number;
-  alunoIdUrl: number = 6;
+  alunoIdUrl: number = 2;
 
   constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 

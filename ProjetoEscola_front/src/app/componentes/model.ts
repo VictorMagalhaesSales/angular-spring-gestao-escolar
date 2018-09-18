@@ -105,6 +105,10 @@ export class ProfessorModel {
         {
             codigo: 17,
             descricao: "ROLE_EDITAR_PROFESSOR"
+        },
+        {
+            codigo: 18,
+            descricao: "ROLE_EDITAR_FALTA"
         }
     ]
 }
