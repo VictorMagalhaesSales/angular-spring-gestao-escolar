@@ -9,10 +9,6 @@ export class AlunoModel {
     image: string;
     permissoes = [
       {
-          codigo: 2,
-          descricao: "ROLE_LISTAR_ALUNOS"
-      },
-      {
           codigo: 5,
           descricao: "ROLE_EDITAR_ALUNO"
       },

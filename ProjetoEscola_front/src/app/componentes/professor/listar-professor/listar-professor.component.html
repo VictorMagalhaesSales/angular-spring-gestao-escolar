@@ -18,11 +18,9 @@
                             <th *ngFor="let col of columns" class="titulo" style="color: white;">
                                 {{col.header}}
                             </th>
-                            <th  style="background-color: #007E33; color: white;">Ações</th>
+                            <th *ngIf="auth.temPermissao('ROLE_EDITAR_PROFESSOR')" style="background-color: #007E33; color: white;">Ações</th>
                         </tr>
                     </ng-template>
-                      
-                 
                     <ng-template pTemplate="body" let-car let-columns="columns">
                         <tr>
                             <td *ngFor="let col of columns">
@@ -33,7 +31,7 @@
                                     {{car[col.field]}}
                                 </span>
                             </td>
-                            <td>
+                            <td  *ngIf="auth.temPermissao('ROLE_EDITAR_PROFESSOR')">
                                 <button mdbBtn (click)="editarProfessor1(car)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
                                 <button mdbBtn (click)="acionarExcluir(car)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
                             </td>

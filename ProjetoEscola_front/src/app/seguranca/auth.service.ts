@@ -45,7 +45,7 @@ export class AuthService {
       return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
     }
 
-     (){
+    estaLogado(){
       return this.jwtPayload != null;
     }
     

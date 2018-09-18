@@ -1,3 +1,4 @@
+import { AuthService } from './../../../seguranca/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { Disciplina } from './../adicionar-professor/adicionar-professor.component';
@@ -40,7 +41,7 @@ export class ListarProfessorComponent implements OnInit {
     { field: 'telefone', header: 'Telefone' }
 ];
 
-  constructor(private professorService: ProfessorService, private title: Title, private messageService: MessageService) {
+  constructor(private professorService: ProfessorService, private title: Title, private messageService: MessageService, private auth: AuthService) {
     this.disciplinaM = [
       {nome: 'Java'},
       {nome: 'PHP'},
