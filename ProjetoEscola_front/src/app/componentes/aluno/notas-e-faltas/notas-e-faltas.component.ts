@@ -78,6 +78,8 @@ export class NotasEFaltasComponent implements OnInit {
     for (let notas of this.arrayNotasAt) {  
       if(notas.nota1 != null  && notas.nota2 != null && notas.nota3 != null && notas.nota4 != null){
         notas.media = (notas.nota1 + notas.nota2 + notas.nota3 + notas.nota4)/4;
+      }else{
+        notas
       }
     }
 
