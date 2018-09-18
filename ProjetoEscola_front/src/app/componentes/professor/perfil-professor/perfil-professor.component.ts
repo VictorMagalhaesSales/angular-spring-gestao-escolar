@@ -1,3 +1,5 @@
+import { AuthService } from './../../../seguranca/auth.service';
+import { ProfessorFiltro } from './../professor-filtro.model';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { ProfessorService } from './../../../servicos/professor.service';
@@ -17,10 +19,14 @@ export class PerfilProfessorComponent implements OnInit {
   novaSenha: string;
   novaSenha2: string;
 
-  constructor(private professorService: ProfessorService,private router: Router, private title: Title, private messageService: MessageService) { }
+  profFIltro: ProfessorFiltro = new ProfessorFiltro(null,null,null,null,null);
+  profEmail = [];
+  profId: number;
+
+  constructor(private professorService: ProfessorService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.chamarProfessor(2);
+    this.carregarProfessorPorEmail();
     this.title.setTitle("Meu perfil");
   }
 
@@ -75,6 +81,20 @@ export class PerfilProfessorComponent implements OnInit {
 
   fecharAviso() {
     this.messageService.clear('c');
+  }
+
+  carregarProfessorPorEmail(){
+   // let filtro = new ProfessorFiltro(this.nome, this.sobrenome, this.disciplina, this.email, this.telefone);
+    this.professorService.pesquisarProfessores(this.profFIltro).then( (profs) => {
+      this.profEmail = profs;
+      for (const ae of this.profEmail) {
+        if(ae.email == this.auth.jwtPayload.user_name){
+          this.chamarProfessor(ae.id);
+        }
+      }
+    }).catch( (erro) => console.log(erro));
+    
+    
   }
 
 }

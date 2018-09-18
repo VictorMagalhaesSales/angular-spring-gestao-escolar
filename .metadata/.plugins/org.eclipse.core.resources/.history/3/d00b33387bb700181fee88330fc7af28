@@ -1,0 +1,5 @@
+package com.escola.api.cors;
+
+public class CorsFilter {
+
+}

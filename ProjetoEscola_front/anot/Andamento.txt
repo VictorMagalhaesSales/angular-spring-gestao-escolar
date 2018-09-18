@@ -49,7 +49,11 @@
  (x) Manter usuário logado
  (x) Permissões
  (x) Mensagens de permissões
- ( ) Componentes visualizados com permissões
+ (x) Componentes visualizados com permissões
+ (x) Perfil professor automático
+ (x) Perfil aluno automático
+ ( ) Notas e faltas automático
+ ( ) Professor e master conseguem editar notas
 
 •===--- Tratamento de erros ---===•
  ( ) Dados(email) duplicados

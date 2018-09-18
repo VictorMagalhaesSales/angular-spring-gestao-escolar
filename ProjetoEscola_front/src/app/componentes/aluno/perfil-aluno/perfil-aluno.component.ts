@@ -1,9 +1,11 @@
+import { AlunoFiltro } from './../aluno-filtro.model';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { AlunoModel, NotasModel } from './../../model';
 import { Component, OnInit } from '@angular/core';
 import { AlunoService } from '../../../servicos/aluno.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../seguranca/auth.service';
 
 @Component({
   selector: 'app-perfil-aluno',
@@ -16,14 +18,18 @@ export class PerfilAlunoComponent implements OnInit {
   alunoAtualizar = new OutroModel();
   novaSenha: string;
   novaSenha2: string;
+
+  
+  profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
+  profEmail = [];
+  profId: number;
   
   arrayNotas: Array<NotasModel> = new Array<NotasModel>();
 
-  constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService){ }
+  constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService){ }
 
   ngOnInit() {
-    this.chamarAluno(2);
-    this.pesquisarNotas(2);
+    this.carregarAlunoPorEmail();
     this.title.setTitle("Meu perfil");
   }
 
@@ -92,6 +98,21 @@ export class PerfilAlunoComponent implements OnInit {
   fecharAviso() {
     this.messageService.clear('c');
   }
+
+  carregarAlunoPorEmail(){
+     this.alunoService.pesquisarAlunos(this.profFIltro).then( (profs) => {
+       this.profEmail = profs.content;
+       console.log(this.profEmail);
+       for (const ae of this.profEmail) {
+         console.log(this.auth.jwtPayload.user_name);
+         console.log(ae.email);
+         if(ae.email == this.auth.jwtPayload.user_name){
+          this.chamarAluno(ae.matricula);
+          this.pesquisarNotas(ae.matricula);
+         }
+       }
+     }).catch( (erro) => console.log(erro));
+   }
 
 }
 

@@ -1,0 +1,10 @@
+package com.escola.api.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="faltas")
+public class Faltas {
+
+}

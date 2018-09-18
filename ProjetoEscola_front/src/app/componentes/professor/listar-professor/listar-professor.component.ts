@@ -100,7 +100,6 @@ export class ListarProfessorComponent implements OnInit {
     this.professorService.pesquisarProfessorPorId(professor.id).then( al => this.professorAtualizar = al);
   }
   editarProfessor2(){
-    this.professorAtualizar.disciplina = this.disci.nome;
     this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar)
       .then(()=> this.pesquisar(""))
       .catch(erro => {
@@ -114,6 +113,12 @@ export class ListarProfessorComponent implements OnInit {
 
   fecharAviso() {
     this.messageService.clear('c');
+  }
+  
+  mostra(permissao: string){
+    if(this.auth.jwtPayload != null){
+      return this.auth.temPermissao(permissao);
+    }
   }
 
 }

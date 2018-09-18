@@ -12,7 +12,6 @@ export class ProfessorService {
 
 
   constructor(private http: HttpClient){
-    console.log(localStorage.getItem('token'));
   }
 
 

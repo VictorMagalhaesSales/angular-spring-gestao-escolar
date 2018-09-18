@@ -60,6 +60,9 @@ public class ProfessorController {
 				throw new DataIntegrityViolationException("Email já cadastrado");
 			}
 		}
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
+		professor.setSenha( encoder.encode(professor.getSenha()) );
 		Professor professorSalvo = this.professorRepository.save(professor);
 		return ResponseEntity.status(HttpStatus.CREATED).body(professorSalvo);
 	}

@@ -131,6 +131,14 @@ public class AlunoController {
 				this.notasRepository.delete(id);
 			}
 		}
+		for(Faltas falta : this.faltasRepository.findAll()) {
+			if(falta.getFaltasid().getAluno() == matricula) {
+				FaltasId id = new FaltasId();
+				id.setAluno(matricula);
+				id.setMateria(falta.getFaltasid().getMateria());
+				this.faltasRepository.delete(id);
+			}
+		}
 		this.alunoRepository.delete(matricula);
 	}
 	

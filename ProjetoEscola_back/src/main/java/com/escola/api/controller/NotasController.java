@@ -36,7 +36,7 @@ public class NotasController {
 	}
 	
 	@PostMapping
-	//@PreAuthorize("hasAuthority('ROLE_SALVAR_NOTA')")
+	@PreAuthorize("hasAuthority('ROLE_SALVAR_NOTA')")
 	public ResponseEntity<Notas> salvarNota(@Valid @RequestBody Notas nota){
 		Notas n = this.notasRepository.save(nota);
 		return ResponseEntity.status(HttpStatus.CREATED).body(n);
@@ -52,7 +52,7 @@ public class NotasController {
 	}
 	
 	@PutMapping("/{aluno}/{materia}")
-	@PreAuthorize("hasAuthority('ROLE_EDITAR_FALTA')")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_NOTA')")
 	public ResponseEntity<Notas> atualizarNota(@PathVariable("aluno") Long aluno, @PathVariable("materia") String materia,@Valid @RequestBody Notas notaMod) {
 		NotasId notasid = new NotasId();
 		notasid.setAluno(aluno);

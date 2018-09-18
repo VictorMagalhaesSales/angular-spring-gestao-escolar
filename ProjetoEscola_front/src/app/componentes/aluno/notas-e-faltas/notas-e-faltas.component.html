@@ -580,9 +580,9 @@
               </tr>
           </tbody>
       </table>
-      <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApNotas()" (click)="passarNotas1()" *ngIf="auth.temPermissao('ROLE_EDITAR_NOTA') && !aparecidoNotas">
+      <button mdbBtn type="button" color="info" class="waves-light" mdbWavesEffect (click)="mudarApNotas()" (click)="passarNotas1()" *ngIf="mostra('ROLE_EDITAR_NOTA') && !aparecidoNotas">
           <i class="fa fa-edit ml-1"></i> Editar notas</button>
-      <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApNotas()" (click)="editarNotas()" *ngIf="aparecidoNotas && auth.temPermissao('ROLE_EDITAR_NOTA') && aparecidoNotas">
+      <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApNotas()" (click)="editarNotas()" *ngIf="aparecidoNotas && mostra('ROLE_EDITAR_NOTA')">
           <i class="fa fa-paper-plane-o ml-1"></i> Atualizar notas</button>
   </div>
   <div class="faltas col-5 animated zoomIn">
@@ -1103,9 +1103,9 @@
             </tr>
         </tbody>
     </table>
-    <button mdbBtn type="button" color="danger" class="waves-light" mdbWavesEffect (click)="mudarApFaltas()" (click)="passarFaltas1()" *ngIf="auth.temPermissao('ROLE_EDITAR_FALTA') && !aparecidoFaltas">
+    <button mdbBtn type="button" color="danger" class="waves-light" mdbWavesEffect (click)="mudarApFaltas()" (click)="passarFaltas1()" *ngIf="mostra('ROLE_DELETAR_FALTA') && !aparecidoFaltas">
         <i class="fa fa-edit ml-1"></i> Editar faltas</button>
-    <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApFaltas()" (click)="editarFaltas()" *ngIf="auth.temPermissao('ROLE_EDITAR_FALTA') && aparecidoFaltas">
+    <button mdbBtn color="unique" class="waves-light" mdbWavesEffect  (click)="mudarApFaltas()" (click)="editarFaltas()" *ngIf="mostra('ROLE_DELETAR_FALTA') && aparecidoFaltas">
         <i class="fa fa-paper-plane-o ml-1"></i> Atualizar faltas</button>
   </div>
 </div>

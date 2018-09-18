@@ -1,3 +1,4 @@
+import { AlunoFiltro } from './../aluno-filtro.model';
 import { AuthService } from './../../../seguranca/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
@@ -20,11 +21,15 @@ export class NotasEFaltasComponent implements OnInit {
   aparecidoNotas: boolean;
   aparecidoFaltas: boolean;
 
+  profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
+  profEmail = [];
+  profId: number;
+  alunoIdUrl: number = 6;
+
   constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 
   ngOnInit() {
-    this.pesquisarNotas(2);  
-    this.pesquisarFaltas(2); 
+    this.carregarAlunoPorEmail();
     this.title.setTitle("Notas e faltas"); 
   }
 
@@ -144,6 +149,30 @@ export class NotasEFaltasComponent implements OnInit {
   }
   fecharAviso() {
     this.messageService.clear('c');
+  }
+  
+  mostra(permissao: string){
+    if(this.auth.jwtPayload != null){
+      return this.auth.temPermissao(permissao);
+    }
+  }
+
+  carregarAlunoPorEmail(){
+    if(this.alunoIdUrl == 0){
+      this.alunoService.pesquisarAlunos(this.profFIltro).then( (profs) => {
+        this.profEmail = profs.content;
+        for (const ae of this.profEmail) {
+          if(ae.email == this.auth.jwtPayload.user_name){
+            this.pesquisarNotas(ae.matricula);  
+            this.pesquisarFaltas(ae.matricula); 
+          }
+        }
+      }).catch( (erro) => console.log(erro));
+    }else{
+      console.log(this.alunoIdUrl);
+      this.pesquisarNotas(this.alunoIdUrl);  
+      this.pesquisarFaltas(this.alunoIdUrl); 
+    }
   }
 
 }

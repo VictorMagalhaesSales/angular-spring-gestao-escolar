@@ -1,0 +1,18 @@
+package com.escola.api.model;
+
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name="faltas")
+public class Faltas {
+	
+	@EmbeddedId
+	private FaltasId faltasid;
+	
+	@NotNull(message="O campo número não pode estar vazio!")
+	private Long numero;
+
+}

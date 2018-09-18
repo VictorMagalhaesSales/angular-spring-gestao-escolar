@@ -18,6 +18,7 @@ export class AuthService {
 
   constructor(private http: HttpClient, private rota: Router) {
     this.carregarToken();
+    console.log(this.jwtPayload);
    }
 
   login(usuario: string, senha: string): Promise<void>{
@@ -42,7 +43,7 @@ export class AuthService {
     }
 
     temPermissao(permissao: string){
-      return this.jwtPayload && this.jwtPayload.authorities.includes(permissao);
+      return this.jwtPayload.authorities.includes(permissao);
     }
 
     estaLogado(){

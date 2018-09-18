@@ -8,22 +8,30 @@ export class AlunoModel {
     telefone: string;
     image: string;
     permissoes = [
-      {
-          codigo: 5,
-          descricao: "ROLE_EDITAR_ALUNO"
-      },
-      {
-          codigo: 6,
-          descricao: "ROLE_LISTAR_FALTAS"
-      },
-      {
-          codigo: 9,
-          descricao: "ROLE_LISTAR_NOTAS"
-      },
-      {
-          codigo: 13,
-          descricao: "ROLE_LISTAR_PROFESSORES"
-      }
+        {
+            codigo: 1,
+            descricao: "ROLE_LISTAR_ALUNOS"
+        },
+        {
+            codigo: 5,
+            descricao: "ROLE_EDITAR_ALUNO"
+        },
+        {
+            codigo: 2,
+            descricao: "ROLE_LISTAR_ALUNO"
+        },
+        {
+            codigo: 6,
+            descricao: "ROLE_LISTAR_FALTAS"
+        },
+        {
+            codigo: 9,
+            descricao: "ROLE_LISTAR_NOTAS"
+        },
+        {
+            codigo: 13,
+            descricao: "ROLE_LISTAR_PROFESSORES"
+        }
     ]
 }
 
@@ -40,6 +48,22 @@ export class ProfessorModel {
     permissoes = [
         {
             codigo: 1,
+            descricao: "ROLE_LISTAR_ALUNOS"
+        },
+        {
+            codigo: 2,
+            descricao: "ROLE_LISTAR_ALUNOS"
+        },
+        {
+            codigo: 3,
+            descricao: "ROLE_LISTAR_ALUNOS"
+        },
+        {
+            codigo: 4,
+            descricao: "ROLE_LISTAR_ALUNOS"
+        },
+        {
+            codigo: 5,
             descricao: "ROLE_LISTAR_ALUNOS"
         },
         {
