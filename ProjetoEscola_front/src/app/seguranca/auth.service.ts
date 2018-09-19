@@ -18,12 +18,11 @@ export class AuthService {
 
   constructor(private http: HttpClient, private rota: Router) {
     this.carregarToken();
-    console.log(this.jwtPayload);
    }
 
   login(usuario: string, senha: string): Promise<void>{
     const body = `username=${usuario}&password=${senha}&grant_type=password`;
-    return this.http.post(this.url, body, { headers: { 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy==', 'Content-Type': 'application/x-www-form-urlencoded' }, withCredentials: true } )
+    return this.http.post(this.url, body, { headers: { 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy==' }, withCredentials: true } )
       .toPromise()
       .then( res => {
         this.obj = res;
@@ -37,21 +36,19 @@ export class AuthService {
         }
         return Promise.reject(response);
       });
-    }
+  }
 
     obterNovoAcessToken(): Promise<void>{
       const body = 'grant_type=refresh_token';
-      return this.http.post(this.url, body, { headers: { 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy==', 'Content-Type': 'application/x-www-form-urlencoded' }, withCredentials: true })
+
+      return this.http.post(this.url, body, { headers: { 'Authorization': 'Basic YW5ndWxhcjphbmd1bGFy=='}, withCredentials: true })
         .toPromise()
         .then( res => {
           this.obj = res;
           this.armazenarToken(this.obj.access_token);
-          console.log('Novo access token criado!');
-          return Promise.resolve(null)
         })
-        .catch(response => {
+        .catch(response =>{
           console.error('Erro ao renovar token.', response);
-          return Promise.resolve(null);
         });
     }
 
@@ -79,6 +76,12 @@ export class AuthService {
   
       if(token){
         this.armazenarToken(token);
+      }
+    }
+
+    atualizarToken(){
+      if (this.isAcessTokenInvalid()){
+        this.obterNovoAcessToken();
       }
     }
 }

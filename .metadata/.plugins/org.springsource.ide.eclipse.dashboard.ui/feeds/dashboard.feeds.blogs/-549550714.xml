@@ -5,7 +5,27 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-18T23:02:38Z</updated>
+  <updated>2018-09-19T13:40:00Z</updated>
+  <entry>
+    <title>Announcing Spring Cloud Function - 2.0.0.M2</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/19/announcing-spring-cloud-function-2-0-0-m2" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Oleg Zhurakousky</name>
+    </author>
+    <id>tag:spring.io,2018-09-19:3401</id>
+    <updated>2018-09-19T13:40:00Z</updated>
+    <content type="html">&lt;p&gt;We are pleased to announce the second Milestone of the Spring Cloud Function - 2.0.0.M2.&lt;/p&gt;
+&lt;p&gt;Individual modules of Spring Cloud Function 2.0.0.M2 are available for use in the &lt;a href="http://repo.spring.io/libs-milestone-local/org/springframework/cloud/"&gt;Spring Milestone&lt;/a&gt; repository. &lt;/p&gt;
+&lt;p&gt;Aside form general enhancements and bug fixes, the primary themes for this release are&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/09/11/kotlin-support-in-spring-cloud-function"&gt;Kotlin support&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;new programming model for Azure Functions (blog to follow)&lt;/li&gt;
+  &lt;li&gt;automatic (optional) export of &lt;code&gt;Supplier&lt;/code&gt; on startup in web adapter&lt;/li&gt;
+&lt;/ul&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
+&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-cloud/spring-cloud-function/labels/ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-cloud-function"&gt;&lt;code&gt;spring-cloud-function&lt;/code&gt; tag&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://cloud.spring.io/spring-cloud-function/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-function"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-cloud/spring-cloud-function/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://cloud.spring.io/spring-cloud-static/spring-cloud-function/2.0.0.M2/"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>This Week in Spring - September 18th, 2018</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/18/this-week-in-spring-september-18th-2018" />
@@ -1287,31 +1307,5 @@ server.port=8080
 &lt;p&gt;In order to see this in action, you’ll need to start the service, then the client, and then make your way over to the &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt;. Click on the &amp;ldquo;Hamburger&amp;rdquo;menu on the left hand side of the screen and click on STACKDRIVER ? TRACE. There you’ll be given the ability to inspect the requests that just flew through your services.&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://pbs.twimg.com/media/Dk6aAXJU0AAe5Md.jpg:large" alt="Looking at trace information in the Google Cloud Console" /&gt;&lt;/p&gt;
 &lt;p&gt;Stackdriver is the umbrella name for a host of services including monitoring, tracing, and - and this is &lt;em&gt;so wicked cool!&lt;/em&gt; - live debugging of running applications. You could easily spend a lot more time - you &lt;em&gt;should&lt;/em&gt;! - in this section of the console. Suffice it to say that Google is &lt;em&gt;gets&lt;/em&gt; observability and that’s reflected in their services.&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - September 4th, 2018</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/05/this-week-in-spring-september-4th-2018" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2018-09-05:3382</id>
-    <updated>2018-09-05T04:57:31Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans and welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! If you&amp;rsquo;re in the US, I hope you enjoyed your Labor Day weekend. I certainly did, gorging on the San Francisco sun and preparing for my O&amp;rsquo;Reilly online training for tomorrow, &lt;a href="https://www.safaribooksonline.com/live-training/courses/spring-boot-and-kotlin/0636920202899/"&gt;&lt;em&gt;Bootiful Kotlin&lt;/em&gt;&lt;/a&gt;. I&amp;rsquo;m also busily preparing for the epic &lt;a href="https://springonetour.io/2018/istanbul"&gt;SpringOne Tour event in Istanbul, Turkey&lt;/a&gt;, customer visits in Atlanta, GA, and of course the &lt;em&gt;epic&lt;/em&gt; tentpole SpringOne Platform event coming up later this month in Washington DC. If you&amp;rsquo;re around, I sure hope to see you!&lt;/p&gt;
-&lt;p&gt;Well, let&amp;rsquo;s get to it!&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;In this fifth installment of my series looking at Spring Cloud GCP for Google Cloud, I introduce &lt;a href="https://spring.io/blog/2018/09/03/bootiful-gcp-runtime-configuration-with-spring-cloud-gcp-runtime-config-5-8"&gt;Google Cloud&amp;rsquo;s support for runtime configuration&lt;/a&gt; and how to use it for Spring Cloud applications.&lt;/li&gt;
-  &lt;li&gt;Spring Data for Apache Geode John Blum has just announced that &lt;a href="https://spring.io/blog/2018/08/31/spring-boot-for-apache-geode-pivotal-gemfire-1-0-0-m2-released"&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire 1.0.0.M2&lt;/a&gt;!&lt;/li&gt;
-  &lt;li&gt;Spring Data for Apache Geode lead John Blum &lt;a href="https://spring.io/blog/2018/08/30/spring-session-for-apache-geode-pivotal-gemfire-2-0-5-release-and-2-1-0-m1-released"&gt;also just announced Spring Session for Apache Geode 2.0.5 and 2.1.0.M1&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Spring Security ninja Josh Cummings just announced &lt;a href="https://spring.io/blog/2018/08/29/spring-security-oauth2-boot-auto-config-2-0-4-2-1-0-m2-released"&gt;the auto-configuration for Spring Security OAuth2 Boot Auto-config, 2.0.4 &amp;amp; 2.1.0.M2&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Vick Kelkar has a nice post on &lt;a href="https://dzone.com/articles/redis-enterprise-kubernetes-release-on-pivotal-con"&gt;using Redis Enterprise&amp;rsquo;s Kubernetes release on Pivotal Container Service&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Prasanth Mohan has a nice post &lt;a href="https://dzone.com/articles/spring-boot-messaging-with-rabbitmq-pubsub-in-pcf"&gt;on using Spring Boot with RabbitMQ&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This is pretty interesting: Emil Forslund looks at using the Speedment Free version and the &lt;code&gt;spring-generator&lt;/code&gt; to &lt;a href="https://dzone.com/articles/auto-generate-a-rest-api-from-a-database-with-spri"&gt;generate a complete Spring application to serve a simple REST API&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://blog.usejournal.com/why-is-pivotals-dojo-so-good-c96cdb497ddf"&gt;Why is Pivotal’s DOJO so good? – Noteworthy - The Journal Blog&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://jaxenter.com/java-influencers-series-4-148837.html"&gt;It&amp;rsquo;s time to put a spotlight on ZGC and dim Nashorn&amp;rsquo;s star: Java influencers weigh in - JAXenter&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;I&amp;rsquo;m speaking with the amazing Trisha Gee, fellow Java Champion and legend, at Oracle&amp;rsquo;s CodeOne conference later this year. We&amp;rsquo;ll be talking about reactive Spring, Kotloin, MongoDB and JavaFX. I did a quick promotional &lt;a href="https://www.youtube.com/watch?v=KTuH551BgAc&amp;feature=youtu.be"&gt;video for Oracle which you can watch here&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;In this fourth installment of my series looking at Spring Cloud GCP and Google Cloud, I looked at integration &lt;a href="https://twitter.com/springcentral/status/1035625370995707904"&gt;with Google Cloud Pub/Sub and Spring Cloud&lt;/a&gt;.&lt;/li&gt;
-  &lt;li&gt;Check out the status &lt;a href="https://github.com/orgs/spring-projects/projects/1"&gt;of the Spring projects&lt;/a&gt; so you can see what&amp;rsquo;s coming and who&amp;rsquo;s doing what&lt;/li&gt;
-&lt;/ul&gt;</content>
   </entry>
 </feed>

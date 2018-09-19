@@ -1,21 +1,19 @@
+import { AuthService } from './../seguranca/auth.service';
 import { ProfessorModel } from './../componentes/model';
 import { ProfessorFiltro } from './../componentes/professor/professor-filtro.model';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProfessorService {
+export class ProfessorService{
 
-  token: string = "Bearer " + localStorage.getItem('token');
-
-
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private auth: AuthService){
   }
 
-
   pesquisarProfessores(filtro: ProfessorFiltro): Promise<any>{
+    this.atualizarToken();
 
     if(filtro.nome == null){
       filtro.nome = "";
@@ -28,10 +26,7 @@ export class ProfessorService {
     }if(filtro.telefone == null){
       filtro.telefone = "";
     }
-    return this.http.get("http://localhost:8080/professor", {
-      headers: { "Authorization": this.token}, 
-      params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "disciplina": filtro.disciplina, "email": filtro.email, "telefone": filtro.telefone},
-    })
+    return this.http.get("http://localhost:8080/professor", {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "disciplina": filtro.disciplina, "email": filtro.email, "telefone": filtro.telefone} })
           .toPromise()
           .then(response => response)
           .catch( response => {
@@ -41,8 +36,9 @@ export class ProfessorService {
   }
 
   pesquisarProfessorPorId(id: number): Promise<any>{
+    this.atualizarToken();
 
-    return this.http.get(`http://localhost:8080/professor/${id}`, { headers: { "Authorization": this.token} } )
+    return this.http.get(`http://localhost:8080/professor/${id}`)
           .toPromise()
           .then(response =>response)
           .catch( response => {
@@ -52,8 +48,9 @@ export class ProfessorService {
   }
 
   deletarProfessor(id: number): Promise<void>{
+    this.atualizarToken();
 
-    return this.http.delete(`http://localhost:8080/professor/${id}`,{ headers: { "Authorization":  this.token}})
+    return this.http.delete(`http://localhost:8080/professor/${id}`)
       .toPromise()
       .then(() => null)
       .catch( response => {
@@ -63,8 +60,9 @@ export class ProfessorService {
   }
 
   atualizarProfessor(id: number, professor: ProfessorModel): Promise<any>{
+    this.atualizarToken();
 
-    return this.http.put(`http://localhost:8080/professor/${id}`,professor,{ headers: { "Authorization":  this.token}} )
+    return this.http.put(`http://localhost:8080/professor/${id}`,professor)
       .toPromise()
       .then(()=> null)
       .catch( response => {
@@ -74,7 +72,8 @@ export class ProfessorService {
   }
 
   adicionarProfessor(professor: ProfessorModel): Promise<any>{
-    return this.http.post("http://localhost:8080/professor", professor, { headers: { "Authorization": this.token } } )
+    this.atualizarToken();
+    return this.http.post("http://localhost:8080/professor", professor)
       .toPromise()
       .then(() => null)
       .catch( response => {
@@ -82,4 +81,11 @@ export class ProfessorService {
           return Promise.reject("Você não tem autorização para operar esse conteúdo.");
       });
   }
+
+  atualizarToken(){
+    if (this.auth.isAcessTokenInvalid()){
+      this.auth.obterNovoAcessToken();
+    }
+  }
+  
 }

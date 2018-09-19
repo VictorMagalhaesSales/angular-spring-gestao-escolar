@@ -47,8 +47,8 @@ export class ListarAlunosComponent implements OnInit {
       filtro.sobrenome = "";
       filtro.email = "";
       filtro.telefone = "";
-      this.alunoService.pesquisarAlunos(filtro).
-        then( alunos => this.cars = alunos.content)
+      this.alunoService.pesquisarAlunos(filtro)
+        .then( alunos => this.cars = alunos.content)
         .catch(erro => {
           this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
         });

@@ -33,8 +33,4 @@ export class NavbarComponent {
   isProfessor(){
     return this.auth.temPermissao('ROLE_SALVAR_PROFESSOR');
   }
-
-  criarAcess(){
-    this.auth.obterNovoAcessToken();
-  }
 }
