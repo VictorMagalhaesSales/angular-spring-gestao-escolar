@@ -2,10 +2,11 @@
     <mdb-navbar-brand>
       <div class="row">
           <a color="deep-orange" style="padding: 10px; background-color: transparent; color: white; margin-left: 100px;" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" class="fa fa-bars fa-2x"></a>
+          <a (click)="criarAcess()">asd</a>
           <table style="margin-left: 750px;">
             <tr>
               <td>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && !mostra('ROLE_SALVAR_PROFESSOR')" [routerLink]="['aluno/perfil']"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</button>
+                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && mostra('ROLE_SALVAR_PROFESSOR')" [routerLink]="['aluno/perfil']"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</button>
                 <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_PROFESSOR')" [routerLink]="['professor/perfil']"><i class="fa fa-user-circle"></i> Perfil</button>
               </td>
               <td>

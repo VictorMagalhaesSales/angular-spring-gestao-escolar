@@ -53,7 +53,7 @@
  (x) Perfil professor automático
  (x) Perfil aluno automático
  (x) Notas e faltas automático
- ( ) Professor e master conseguem editar notas
+ (x) Professor e master conseguem editar notas
  ( ) Atualizar o acess token
  ( ) Proteção com CanActivate
  ( ) Logout

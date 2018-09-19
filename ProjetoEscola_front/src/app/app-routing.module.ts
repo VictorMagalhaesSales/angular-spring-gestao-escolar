@@ -23,6 +23,7 @@ const AppRoutes: Routes = [
   { path: 'aluno/perfil', component: PerfilAlunoComponent },
   { path: 'professor/perfil', component: PerfilProfessorComponent },
   { path: 'notasfaltas', component: NotasEFaltasComponent},
+  { path: 'notasfaltas/:matricula', component: NotasEFaltasComponent},
   { path: '**', component: PaginaNaoEncontradaComponent }
 
 ]

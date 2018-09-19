@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { AlunoFiltro } from './../aluno-filtro.model';
 import { AuthService } from './../../../seguranca/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -24,13 +25,14 @@ export class NotasEFaltasComponent implements OnInit {
   profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
   profEmail = [];
   profId: number;
-  alunoIdUrl: number = 2;
+  alunoIdUrl: number;
 
-  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService) { }
+  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.alunoIdUrl = this.route.snapshot.params['matricula'];
     this.carregarAlunoPorEmail();
-    this.title.setTitle("Notas e faltas"); 
+    this.title.setTitle("Notas e faltas");
   }
 
   
@@ -160,7 +162,7 @@ export class NotasEFaltasComponent implements OnInit {
   }
 
   carregarAlunoPorEmail(){
-    if(this.alunoIdUrl == 0){
+    if(this.alunoIdUrl == 0 || this.alunoIdUrl == null ){
       this.alunoService.pesquisarAlunos(this.profFIltro).then( (profs) => {
         this.profEmail = profs.content;
         for (const ae of this.profEmail) {
@@ -171,7 +173,6 @@ export class NotasEFaltasComponent implements OnInit {
         }
       }).catch( (erro) => console.log(erro));
     }else{
-      console.log(this.alunoIdUrl);
       this.pesquisarNotas(this.alunoIdUrl);  
       this.pesquisarFaltas(this.alunoIdUrl); 
     }

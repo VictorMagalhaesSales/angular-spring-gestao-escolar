@@ -485,3 +485,39 @@
 2018-09-18 16:42:39,824 [Worker-85: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
 2018-09-18 16:42:39,826 [Worker-85: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2018-09-18 16:42:39,826 [Worker-85: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\victor.sales\Desktop\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 01:56:18,916 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 01:56:18,923 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-09-19 01:56:18,936 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-09-19 01:56:18,940 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 01:56:18,940 [Worker-3: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 01:56:21,607 [Worker-0: Building workspace] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.algaworks.algamoney-api:algamoney-api:1.0.0-SNAPSHOT @ C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\pom.xml.
+2018-09-19 01:56:22,454 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 01:56:22,455 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-09-19 01:56:22,456 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-09-19 01:56:22,458 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 01:56:22,458 [Worker-0: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 01:56:24,997 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 01:56:24,999 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-09-19 01:56:25,002 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-09-19 01:56:25,009 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 01:56:25,009 [Worker-10: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 02:29:16,205 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 02:29:16,207 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-09-19 02:29:16,209 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-09-19 02:29:16,212 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 02:29:16,212 [Worker-4: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 02:35:27,227 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 02:35:27,228 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-09-19 02:35:27,229 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2018-09-19 02:35:27,231 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 02:35:27,231 [Worker-23: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 03:15:13,390 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 03:15:13,392 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-09-19 03:15:13,394 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-09-19 03:15:13,398 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 03:15:13,399 [Worker-39: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources
+2018-09-19 03:23:12,386 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 03:23:12,386 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2018-09-19 03:23:12,397 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 2 resources
+2018-09-19 03:23:12,397 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2018-09-19 03:23:12,397 [Worker-44: Building workspace] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\Victor\Desktop\Projetos\ProjetoEscola\ProjetoEscola_back\src\test\resources

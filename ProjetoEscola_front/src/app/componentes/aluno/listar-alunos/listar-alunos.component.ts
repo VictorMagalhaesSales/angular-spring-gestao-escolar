@@ -4,6 +4,7 @@ import { AlunoModel } from './../../model';
 import { AlunoFiltro } from './../aluno-filtro.model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listar-alunos',

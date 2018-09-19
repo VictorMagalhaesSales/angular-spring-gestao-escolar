@@ -1,7 +1,13 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { AuthService } from './../seguranca/auth.service';
 import { AlunoModel, NotasModel, FaltasModel } from './../componentes/model';
 import { AlunoFiltro } from './../componentes/aluno/aluno-filtro.model';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+const auth = new JwtHelperService();
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +16,7 @@ export class AlunoService {
 
   token: string = "Bearer " + localStorage.getItem('token');
 
-  constructor(private http: HttpClient ) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
 
   pesquisarAlunos(filtro: AlunoFiltro): Promise<any>{
@@ -119,4 +125,19 @@ export class AlunoService {
           return Promise.reject("Você não tem autorização para operar esse conteúdo.");
       });
   }
+
+  // ================================================================================================
+
+ /* pesquisaAlunos2(filtro: AlunoFiltro): Promise<any>{
+    if(auth.isTokenExpired(this.token)){
+      console.log("Token inváldo! Validando um novo token");
+      const chamadaNovoAccessToken = this.auth.obterNovoAcessToken()
+        .then( () => {
+          return this.pesquisarAlunos2(filtro);
+        });
+        return Observable.fromPromise(chamadaNovoAccessToken);
+    }else{
+      this.pesquisarAlunos2(filtro);
+    }
+  }*/
 }

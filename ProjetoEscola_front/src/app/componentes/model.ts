@@ -52,19 +52,19 @@ export class ProfessorModel {
         },
         {
             codigo: 2,
-            descricao: "ROLE_LISTAR_ALUNOS"
+            descricao: "ROLE_LISTAR_ALUNO"
         },
         {
             codigo: 3,
-            descricao: "ROLE_LISTAR_ALUNOS"
+            descricao: "ROLE_SALVAR_ALUNO"
         },
         {
             codigo: 4,
-            descricao: "ROLE_LISTAR_ALUNOS"
+            descricao: "ROLE_DELETAR_ALUNOS"
         },
         {
             codigo: 5,
-            descricao: "ROLE_LISTAR_ALUNOS"
+            descricao: "ROLE_EDITAR_ALUNOS"
         },
         {
             codigo: 6,
