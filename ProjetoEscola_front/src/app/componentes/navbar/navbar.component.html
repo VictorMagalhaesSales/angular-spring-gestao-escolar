@@ -5,7 +5,7 @@
           <table style="margin-left: 750px;">
             <tr>
               <td>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && mostra('ROLE_SALVAR_PROFESSOR')" [routerLink]="['aluno/perfil']"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</button>
+                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && !mostra('ROLE_EDITAR_PROFESSOR')" [routerLink]="['aluno/perfil']"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</button>
                 <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_PROFESSOR')" [routerLink]="['professor/perfil']"><i class="fa fa-user-circle"></i> Perfil</button>
               </td>
               <td>
@@ -39,7 +39,7 @@
                 <img src="../../../assets/imgs/alunoicon.png" width="45" class="mr-3"> Alunos
               </a>
               <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <a *ngIf="escondeADM('ROLE_LISTAR_NOTAS')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['notasfaltas']"> <i class="fa fa-tasks fa-1x mr-3 green-text"></i>Minhas notas e faltas</a>
+                <a *ngIf="escondeADM('ROLE_LISTAR_NOTAS') && !mostra('ROLE_EDITAR_PROFESSOR')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['notasfaltas']"> <i class="fa fa-tasks fa-1x mr-3 green-text"></i>Minhas notas e faltas</a>
                 <a *ngIf="mostra('ROLE_LISTAR_ALUNOS')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['aluno/listaraluno']"><i class="fa fa-search fa-1x mr-3 green-text" aria-hidden="true"></i>Exibir alunos</a>
                 <a *ngIf="mostra('ROLE_SALVAR_ALUNO')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['aluno/adicionaraluno']"><i class="fa fa-user-plus fa-1x mr-3 green-text" aria-hidden="true"></i> Adicionar aluno</a>
               </div>

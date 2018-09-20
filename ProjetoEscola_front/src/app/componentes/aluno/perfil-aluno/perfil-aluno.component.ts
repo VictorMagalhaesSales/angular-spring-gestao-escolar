@@ -29,6 +29,7 @@ export class PerfilAlunoComponent implements OnInit {
   constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService){ }
 
   ngOnInit() {
+    this.alunoService.atualizarToken();
     this.carregarAlunoPorEmail();
     this.title.setTitle("Meu perfil");
   }

@@ -17,6 +17,7 @@ export class AdicionarAlunoComponent implements OnInit {
   constructor(private alunoService: AlunoService, private rota: Router, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.alunoService.atualizarToken();
     this.title.setTitle("Adicionar aluno");
   }
 

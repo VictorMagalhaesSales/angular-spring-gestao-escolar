@@ -5,7 +5,143 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-19T13:40:00Z</updated>
+  <updated>2018-09-19T19:24:17Z</updated>
+  <entry>
+    <title>Spring Web Services 3.0.4 / 2.4.3 released!</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/19/spring-web-services-3-0-4-2-4-3-released" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Greg Turnquist</name>
+    </author>
+    <id>tag:spring.io,2018-09-19:3402</id>
+    <updated>2018-09-19T19:24:17Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;Greetings Spring community,&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The Spring Web Services team is releasing two version at the same time. &lt;strong&gt;3.0.4.RELEASE&lt;/strong&gt; as the main branch of development along with &lt;strong&gt;2.4.3.RELEASE&lt;/strong&gt; for maintenance.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;3.0.4.RELEASE comes with a handful of features listed further below. It also comes with new support for &lt;strong&gt;Java 11&lt;/strong&gt;, the next long term supported version of Java.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="java-11-and-beyond"&gt;&lt;a class="anchor" href="#java-11-and-beyond"&gt;&lt;/a&gt;Java 11 and beyond&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Starting in Java 9, several key Java EE packages had their visibility reduced. These included core XML and SOAP-based packages. In Java 11, these packages have been removed altogether. Since Java 11 is the first long term release since Java 8, it&amp;#8217;s the version Spring Web Services aligns with for corresponding long term support.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;What does this mean for you? To use Spring Web Services on Java 9+, you can no longer depend on the JDK providing key XML and SOAP-based libraries. Never fear, the solution is right here!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If you visit the project&amp;#8217;s build file, you&amp;#8217;ll discover a new &lt;a href="https://github.com/spring-projects/spring-ws/blob/master/pom.xml#L656-L711"&gt;Java 11 profile&lt;/a&gt;. This profile contains the extra dependencies you must add to your own build file in order to use Spring Web Services (or any XML/SOAP-based library for that matter).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Web Services does not ship these dependencies so you&amp;#8217;ll have to add them to your own build file. But once you do, you won&amp;#8217;t have to worry about again (except for when newer versions of those APIs are released).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Still using Spring Web Services 2.x maintenance branch? We&amp;#8217;ve got you covered. Without breaking backward compatibility, the 2.4.3.RELEASE &lt;a href="https://github.com/spring-projects/spring-ws/blob/2.x/pom.xml#L588-L644"&gt;also supports Java 11&lt;/a&gt;. It just uses a slightly older version of the SOAP API (1.3.8 instead of 1.4.0). Nothing is forced upon you, so you can continue using the same versions of everything else.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Whether or not Java 11 breaks any parts of your application outside of Spring Web Services, of course, is up to you.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For more details, read the following release notes for each version:&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="release-notes-spring-web-services-version-3-0-4-release"&gt;&lt;a class="anchor" href="#release-notes-spring-web-services-version-3-0-4-release"&gt;&lt;/a&gt;Release Notes - Spring Web Services - Version 3.0.4.RELEASE&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="bug"&gt;&lt;a class="anchor" href="#bug"&gt;&lt;/a&gt;Bug&lt;/h3&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1018"&gt;SWS-1018&lt;/a&gt; -         SaajSoapMessage created with default (empty) SoapEnvelope&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1036"&gt;SWS-1036&lt;/a&gt; -         SimpleXsdSchema not initialized property produces NullPointerException&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="improvement"&gt;&lt;a class="anchor" href="#improvement"&gt;&lt;/a&gt;Improvement&lt;/h3&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1030"&gt;SWS-1030&lt;/a&gt; -         Resolve version conflicts&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1033"&gt;SWS-1033&lt;/a&gt; -         Ehcache - OWASP Dependency Check issues&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1034"&gt;SWS-1034&lt;/a&gt; -         Switch to Java 11 for future JDK support&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1037"&gt;SWS-1037&lt;/a&gt; -         Make SimpleXsdSchema give a more productive error message&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1038"&gt;SWS-1038&lt;/a&gt; -         Polish documentation&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1039"&gt;SWS-1039&lt;/a&gt; -         Upgrade to latest version of Spring&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="release-notes-spring-web-services-version-2-4-3"&gt;&lt;a class="anchor" href="#release-notes-spring-web-services-version-2-4-3"&gt;&lt;/a&gt;Release Notes - Spring Web Services - Version 2.4.3&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="bug-2"&gt;&lt;a class="anchor" href="#bug-2"&gt;&lt;/a&gt;Bug&lt;/h3&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1018"&gt;SWS-1018&lt;/a&gt; -         SaajSoapMessage created with default (empty) SoapEnvelope&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1036"&gt;SWS-1036&lt;/a&gt; -         SimpleXsdSchema not initialized property produces NullPointerException&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="improvement-2"&gt;&lt;a class="anchor" href="#improvement-2"&gt;&lt;/a&gt;Improvement&lt;/h3&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1012"&gt;SWS-1012&lt;/a&gt; -         Upgrade to latest Spring Framework and Spring Security versions&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1033"&gt;SWS-1033&lt;/a&gt; -         Ehcache - OWASP Dependency Check issues&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href="https://jira.spring.io/browse/SWS-1034"&gt;SWS-1034&lt;/a&gt; -         Switch to Java 11 for future JDK support&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;LInks: &lt;a href="http://projects.spring.io/spring-ws/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-ws"&gt;GitHub&lt;/a&gt; | &lt;a href="https://jira.spring.io/browse/SWS"&gt;Issues&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The artifacts are staged on maven central and &lt;a href="http://repo.spring.io/" class="bare"&gt;http://repo.spring.io/&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="springone-platform"&gt;&lt;a class="anchor" href="#springone-platform"&gt;&lt;/a&gt;SpringOne Platform&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The hottest Spring conference is right around the corner. In less than a week thousands of Spring developers from around the globe will gather in Washington, D.C. It&amp;#8217;s still not too late to &lt;a href="https://springoneplatform.io/register"&gt;register&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>Announcing Spring Cloud Function - 2.0.0.M2</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/19/announcing-spring-cloud-function-2-0-0-m2" />
@@ -1165,147 +1301,5 @@ public class VisionApplication {&#xD;
 &lt;p&gt;Spring Framework 5.0.9 &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=16891"&gt;includes 36 fixes and selected improvements&lt;/a&gt; while Spring Framework 4.3.19 &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=16856"&gt;includes 23 fixes and selected improvements&lt;/a&gt;. We&amp;rsquo;re also approaching Spring Framework 5.1 with a third release candidate that includes &lt;a href="https://jira.spring.io/secure/ReleaseNote.jspa?projectId=10000&amp;version=16939"&gt;30 fixes and improvements&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;As usual, those are the base for the upcoming Spring Boot 2.1 M3, 2.0.5 and 1.5.16 releases early next week.&lt;/p&gt;
 &lt;p&gt;&lt;a href="https://spring.io/projects/spring-framework"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-framework"&gt;GitHub&lt;/a&gt; | &lt;a href="https://jira.spring.io/browse/SPR"&gt;Issues&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-framework/docs/5.0.9.RELEASE/spring-framework-reference"&gt;Documentation&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Bootiful GCP: Supporting Observability with Spring Cloud GCP Stackdriver Trace (6/8)</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/06/bootiful-gcp-supporting-observability-with-spring-cloud-gcp-stackdriver-trace-6-8" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2018-08-18:3368</id>
-    <updated>2018-09-06T00:00:00Z</updated>
-    <content type="html">&lt;blockquote&gt;
-  &lt;p&gt;Hi Spring fans! In this brief series we’re going to look at the Spring Cloud integration for Google Cloud Platform, called Spring Cloud GCP. &lt;a href="https://cloud.spring.io/spring-cloud-gcp/"&gt;Spring Cloud GCP&lt;/a&gt; represents a joint effort between Google and Pivotal that endeavors to provide a first class experience for Spring Cloud developers when using the Google Cloud Platform. Pivotal Cloud Foundry users will enjoy an even &lt;a href="https://docs.pivotal.io/partners/gcp-sb/index.html"&gt;easier integration with the GCP service broker&lt;/a&gt;. These installments were written with help from Google Cloud Developer Advocate, and my buddy, &lt;a href="http://twitter.com/saturnism"&gt;Ray Tsang&lt;/a&gt;. You can also catch a walkthrough of Spring Cloud GCP in our Google Next 2018 session, &lt;a href="https://www.youtube.com/watch?v=2Jo3vy7iQf8"&gt;Bootiful Google Cloud Platform&lt;/a&gt;. Thanks buddy!&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;If you&amp;rsquo;re just joining us, be sure to read the previous installments including:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/20/bootiful-gcp-getting-started-with-spring-cloud-for-google-cloud-platform-1-8"&gt;Bootiful GCP: Getting Started with Spring Cloud for Google Cloud Platform (1/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/23/bootiful-gcp-relational-data-access-with-spring-cloud-gcp-2-8"&gt;Bootiful GCP: Relational Data Access with Spring Cloud GCP (2/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/27/bootiful-gcp-globally-consistent-data-access-with-spanner-3-8"&gt;Bootiful GCP: Globally Consistent Data Access with Spanner (3/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/30/bootiful-gcp-integration-with-google-cloud-pub-sub-4-8"&gt;Bootiful GCP: Integration with Google Cloud Pub/Sub (4/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/09/03/bootiful-gcp-runtime-configuration-with-spring-cloud-gcp-runtime-config-5-8"&gt;Bootiful GCP: Runtime Configuration with Spring Cloud GCP Runtime Config (5/8)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;As we move more and more applications to the cloud, and introduce more and more microservices, the complexity of understanding what’s gone wrong - and &lt;em&gt;where??&lt;/em&gt; - grows. Distributed tracing addresses this problem. Distributed tracing, in theory, is a simple chore. For every request that enters or exits the system.. for every ingres or egress int he system, attach a UUID if one isnt already present and if it is present then propagate it. Unfortunately, this sort of logic is tedious and hard to get right as requests move from one node to another, synchronously and asynchrously, across thread and network boundaries. Spring Cloud Sleuth addresses this problem and provides an SPI into which backend distributed tracing systems, like OpenZipkin and Google Cloud Stack Driver, can plugin.&lt;/p&gt;
-&lt;p&gt;As with all GCP APIs, we must first enable this one.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint shell"&gt;gcloud services enable cloudtrace.googleapis.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;We’re going to setup a trivial REST API and a trivial REST client, and use the Spring Cloud GCP Stack Driver support to make short work of tracing those interactions.&lt;/p&gt;
-&lt;p&gt;Let’s first look at our trivial REST API. Start a new project (using the skeletal &lt;code&gt;pom.xml&lt;/code&gt; from above) and add &lt;code&gt;org.springframework.boot&lt;/code&gt; : &lt;code&gt;spring-boot-starter-web&lt;/code&gt; and &lt;code&gt;org.springframework.cloud&lt;/code&gt; : &lt;code&gt;spring-cloud-gcp-starter-trace&lt;/code&gt;. Our REST API (well, endpoint, anyway) will return a &amp;ldquo;greetings, &lt;em&gt;a name here&lt;/em&gt;!&amp;rdquo; whenever &lt;code&gt;http://localhost:8080/greeting/{id}}&lt;/code&gt; is invoked. Here’s the code for the service, first:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint java"&gt;package com.example.gcp.trace;&#xD;
-&#xD;
-import org.springframework.boot.SpringApplication;&#xD;
-import org.springframework.boot.autoconfigure.SpringBootApplication;&#xD;
-import org.springframework.web.bind.annotation.GetMapping;&#xD;
-import org.springframework.web.bind.annotation.PathVariable;&#xD;
-import org.springframework.web.bind.annotation.RestController;&#xD;
-&#xD;
-@RestController&#xD;
-@SpringBootApplication&#xD;
-public class TraceServiceApplication {&#xD;
-&#xD;
-        @GetMapping(&amp;quot;/greeting/{id}&amp;quot;)&#xD;
-        String greet(@PathVariable String id) {&#xD;
-                return &amp;quot;greetings, &amp;quot; + id + &amp;quot;!&amp;quot;;&#xD;
-        }&#xD;
-&#xD;
-        public static void main(String args[]) {&#xD;
-                SpringApplication.run(TraceServiceApplication.class, args);&#xD;
-        }&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;The configuration is arguably more interesting.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;src/main/resources/application.properties.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint properties"&gt;spring.cloud.gcp.trace.enabled=true&#xD;
-&#xD;
-&#xD;
-spring.sleuth.sampler.probability=1&#xD;
-spring.sleuth.web.skipPattern=(^cleanup.*|.+favicon.*)&#xD;
-&#xD;
-&#xD;
-server.port=8081&#xD;
-&#xD;
-&#xD;
-spring.application.name=trace-service
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-  &lt;li&gt;we are opting-in to the trace support for Spring Cloud GCP. You could disable it when running the code on localhost but enable it in production with this flag.&lt;/li&gt;
-  &lt;li&gt;these properties tell Spring Cloud Sleuth to trace everything (a &amp;ldquo;probability&amp;rdquo; of 1.0 means 100% of all observed requests will be sampled and traced).&lt;/li&gt;
-  &lt;li&gt;if you’re running this demo on the same machine then you’ll want to avoid port conflicts in the client&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;spring.application.name&lt;/code&gt; is our application’s logical name and it can be used in distinguishing it from other applications in trace trees, service registries, etc.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The client lobs a hundred HTTP requests when the application starts up. The &lt;code&gt;RestTemplate&lt;/code&gt; it uses has been post-processed by the Spring Cloud Sleuth auto-configuration to intercept and trace all HTTP calls.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint java"&gt;package com.example.gcp.trace;&#xD;
-&#xD;
-import lombok.extern.slf4j.Slf4j;&#xD;
-import org.springframework.boot.SpringApplication;&#xD;
-import org.springframework.boot.autoconfigure.SpringBootApplication;&#xD;
-import org.springframework.boot.context.event.ApplicationReadyEvent;&#xD;
-import org.springframework.cloud.sleuth.annotation.NewSpan;&#xD;
-import org.springframework.context.annotation.Bean;&#xD;
-import org.springframework.context.event.EventListener;&#xD;
-import org.springframework.stereotype.Component;&#xD;
-import org.springframework.web.client.RestTemplate;&#xD;
-&#xD;
-import java.util.stream.IntStream;&#xD;
-&#xD;
-@Slf4j&#xD;
-@SpringBootApplication&#xD;
-public class TraceClientApplication {&#xD;
-&#xD;
-        @Component&#xD;
-        public static class Client {&#xD;
-&#xD;
-                private final RestTemplate restTemplate;&#xD;
-&#xD;
-                public Client(RestTemplate restTemplate) {&#xD;
-                        this.restTemplate = restTemplate;&#xD;
-                }&#xD;
-&#xD;
-                @EventListener(ApplicationReadyEvent.class)&#xD;
-                @NewSpan(&amp;quot;client&amp;quot;) &#xD;
-                public void before() {&#xD;
-                        IntStream&#xD;
-                            .range(0, 100)&#xD;
-                            .mapToObj(i -&amp;gt;&#xD;
-                                restTemplate&#xD;
-                                    .getForEntity(&amp;quot;http://localhost:8081/greeting/{id}&amp;quot;, String.class, i)&#xD;
-                                    .getBody())&#xD;
-                            .forEach(response -&amp;gt; log.info(&amp;quot;result: &amp;quot; + response));&#xD;
-                }&#xD;
-        }&#xD;
-&#xD;
-        @Bean&#xD;
-        RestTemplate restTemplate() {&#xD;
-                return new RestTemplate();&#xD;
-        }&#xD;
-&#xD;
-        public static void main(String args[]) {&#xD;
-                SpringApplication.run(TraceClientApplication.class, args);&#xD;
-        }&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-  &lt;li&gt;the client is a straightforward use of &lt;code&gt;RestTemplate&lt;/code&gt; to connect to our service. If we wanted to send 100 requests with no shared parent span, we wouldn’t need &lt;code&gt;@NewSpan&lt;/code&gt;. If we’d had 100 requests arrive from the outside and hit an HTTP endpoint in the client and that endpoint then resulted in 100 requests going to the service, we’d have a shared overarching span. A single trace with multiple spans.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;And the configuration for this node is virtually identical to that of the service.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint properties"&gt;spring.cloud.gcp.trace.enabled=true&#xD;
-&#xD;
-spring.sleuth.sampler.probability=1&#xD;
-spring.sleuth.web.skipPattern=(^cleanup.*|.+favicon.*)&#xD;
-&#xD;
-spring.application.name=trace-client&#xD;
-&#xD;
-server.port=8080
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-  &lt;li&gt;enable Spring Cloud GCP tracing..&lt;/li&gt;
-  &lt;li&gt;ensure that all requests are traced&lt;/li&gt;
-  &lt;li&gt;give our client a logical name&lt;/li&gt;
-  &lt;li&gt;and start on a different port than the service&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In order to see this in action, you’ll need to start the service, then the client, and then make your way over to the &lt;a href="https://console.cloud.google.com/"&gt;Google Cloud Console&lt;/a&gt;. Click on the &amp;ldquo;Hamburger&amp;rdquo;menu on the left hand side of the screen and click on STACKDRIVER ? TRACE. There you’ll be given the ability to inspect the requests that just flew through your services.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://pbs.twimg.com/media/Dk6aAXJU0AAe5Md.jpg:large" alt="Looking at trace information in the Google Cloud Console" /&gt;&lt;/p&gt;
-&lt;p&gt;Stackdriver is the umbrella name for a host of services including monitoring, tracing, and - and this is &lt;em&gt;so wicked cool!&lt;/em&gt; - live debugging of running applications. You could easily spend a lot more time - you &lt;em&gt;should&lt;/em&gt;! - in this section of the console. Suffice it to say that Google is &lt;em&gt;gets&lt;/em&gt; observability and that’s reflected in their services.&lt;/p&gt;</content>
   </entry>
 </feed>

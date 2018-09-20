@@ -30,6 +30,7 @@ export class NotasEFaltasComponent implements OnInit {
   constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.alunoService.atualizarToken();
     this.alunoIdUrl = this.route.snapshot.params['matricula'];
     this.carregarAlunoPorEmail();
     this.title.setTitle("Notas e faltas");

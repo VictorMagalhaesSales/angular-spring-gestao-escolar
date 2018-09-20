@@ -19,13 +19,15 @@ import { MDBBootstrapModule, NavbarModule, WavesModule, ButtonsModule, InputsMod
 import {TableModule} from 'primeng/table';
 import {AccordionModule} from 'primeng/accordion';
 import {ToastModule} from 'primeng/toast';
+import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    PaginaNaoEncontradaComponent
+    PaginaNaoEncontradaComponent,
+    AcessoNegadoComponent
   ],
   imports: [
     BrowserModule,

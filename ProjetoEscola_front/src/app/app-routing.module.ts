@@ -1,3 +1,4 @@
+import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado.component';
 import { LoginComponent } from './seguranca/login/login.component';
 import { PaginaNaoEncontradaComponent } from './componentes/pagina-nao-encontrada/pagina-nao-encontrada.component';
 import { NotasEFaltasComponent } from './componentes/aluno/notas-e-faltas/notas-e-faltas.component';
@@ -24,6 +25,7 @@ const AppRoutes: Routes = [
   { path: 'professor/perfil', component: PerfilProfessorComponent },
   { path: 'notasfaltas', component: NotasEFaltasComponent},
   { path: 'notasfaltas/:matricula', component: NotasEFaltasComponent},
+  { path: 'acessonegado', component: AcessoNegadoComponent},
   { path: '**', component: PaginaNaoEncontradaComponent }
 
 ]

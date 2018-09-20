@@ -36,6 +36,7 @@ export class ListarAlunosComponent implements OnInit {
   constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
+    this.alunoService.atualizarToken();
     this.pesquisar("a");
     this.title.setTitle("Listar alunos");
   }

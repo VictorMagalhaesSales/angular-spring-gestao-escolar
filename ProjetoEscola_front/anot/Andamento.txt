@@ -52,7 +52,7 @@
  (x) Perfil aluno automático
  (x) Notas e faltas automático
  (x) Professor e master conseguem editar notas
- ( ) Atualizar o acess token
+ (x) Atualizar o acess token
  ( ) Proteção com CanActivate
  ( ) Logout
 
@@ -62,6 +62,7 @@
  ( ) Erros com mensagens padrão
  ( ) Imagem no BD
  ( ) Mascaras nos input's
+ ( ) Letras passando da tabela
 
 
 
@@ -95,6 +96,8 @@ Temos o crud de usuários, com paginação e filtro, bem como com os professores, t
    - Aluno: pode listar professores; pode listar suas notas e faltas; pode visualizar e editar seu perfil;
 • Erros:
 Estamos trantando o erro com mensagens na tela. Se você tentar entrar em uma página cujas funções você não tem acesso, aparecerá uma mensagem de erro.
+Se você procurar uma página que não existe, você será redirecionado para uma específica;
+Se você procurar uma página sem permissão, você será redirecionado para uma específica;
 • Autenticação:
 Funciona via token, que é recebebido pela função post, pegando-o e jogando-o em uma variável Payload que será utilizada na aplicação para obtenção de dados. O acess token também é armazenado no LocalStore, enquanto o refresh token é armazenado no cookie. Quando o acess token expira, eu faço uma requisição para minha api, passando o refresh token que está no cookie e pedindo um novo acess token toda vez que este expirar.
 

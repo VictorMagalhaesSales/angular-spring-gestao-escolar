@@ -1,7 +1,7 @@
 Manifest-Version: 1.0
 Implementation-Title: algamoney-api
 Implementation-Version: 1.0.0-SNAPSHOT
-Built-By: victor.sales
+Built-By: Victor
 Implementation-Vendor-Id: com.algaworks.algamoney-api
 Build-Jdk: 1.8.0_181
 Implementation-URL: http://projects.spring.io/spring-boot/algamoney-ap
