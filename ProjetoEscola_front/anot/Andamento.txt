@@ -63,7 +63,7 @@
 	(x) Tamanho
 	(x) Email
 	( ) Mascaras no input
-	( ) Mensagens
+	(x) Mensagens
 	( ) Corrigir todos
  ( ) Letras passando da tabela
  ( ) Erros com mensagens padrão

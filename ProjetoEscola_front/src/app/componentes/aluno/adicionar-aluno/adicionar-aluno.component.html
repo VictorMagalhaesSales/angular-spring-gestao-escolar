@@ -8,7 +8,7 @@
         <table class="col-12">
           <tr>
             <td colspan="2">
-              <div class="md-form" [class.erro]="nome.invalid && nome.dirty">
+              <div class="md-form" [class.erro]="nome.invalid && nome.touched">
                 <i class="fa fa-user-circle prefix"></i>
                 <input mdbInputDirective type="text" id="nome" name="nome" class="form-control" [(ngModel)]="aluno.nome"
                 #nome="ngModel" required maxLength="50" [mdbValidate]="false">
@@ -16,7 +16,7 @@
               </div>
             </td>
             <td colspan="2">
-              <div class="md-form" [class.erro]="sobrenome.invalid && sobrenome.dirty">
+              <div class="md-form" [class.erro]="sobrenome.invalid && sobrenome.touched">
                 <i class="fa fa-user-circle-o prefix"></i>
                 <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control" [(ngModel)]="aluno.sobrenome"
                 #sobrenome="ngModel" required maxLength="50" [mdbValidate]="false">
@@ -27,7 +27,7 @@
 
           <tr>
             <td colspan="4">
-              <div class="md-form" [class.erro]="email.invalid && email.dirty">
+              <div class="md-form" [class.erro]="email.invalid && email.touched">
                 <i class="fa fa-envelope prefix"></i> 
                 <input mdbInputDirective type="email" id="email" class="form-control" name="email" [(ngModel)]="aluno.email"
                 #email="ngModel" required maxLength="100" email [mdbValidate]="false">
@@ -38,7 +38,7 @@
 
           <tr>
             <td colspan="2">
-              <div class="md-form" [class.erro]="senha.invalid && senha.dirty">
+              <div class="md-form" [class.erro]="senha.invalid && senha.touched">
                 <i class="fa fa-lock prefix"></i>
                 <input mdbInputDirective type="password" id="senha" class="form-control" name="senha" [(ngModel)]="aluno.senha"
                 #senha="ngModel" required maxLength="255" [mdbValidate]="false">
@@ -46,7 +46,7 @@
               </div>
             </td>
             <td>
-              <div class="md-form" [class.erro]="telefone.invalid && telefone.dirty">
+              <div class="md-form" [class.erro]="telefone.invalid && telefone.touched">
                 <i class="fa fa-phone prefix"></i> 
                 <input mdbInputDirective type="text" id="telefone" class="form-control" name="telefone" [(ngModel)]="aluno.telefone"
                 #telefone="ngModel" required maxLength="50" [mdbValidate]="false">
@@ -54,7 +54,7 @@
               </div>
             </td>
             <td>
-              <div class="md-form" [class.erro]="nascimento.invalid && nascimento.dirty">
+              <div class="md-form" [class.erro]="nascimento.invalid && nascimento.touched">
                 <i class="fa fa-calendar prefix"></i> 
                 <input mdbInputDirective type="date" id="nascimento" class="form-control" name="nascimento" [(ngModel)]="aluno.nascimento"
                 #nascimento ="ngModel" required [mdbValidate]="false">
