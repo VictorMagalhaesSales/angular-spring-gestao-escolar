@@ -16,7 +16,7 @@
           <label for="fpassword">Sua senha</label>
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <button mdbBtn type="button" color="success" class="waves-light" (click)="login(usuario.value, senha.value)" mdbWavesEffect><i class="fa fa-sign-in mr-2 fa-1x animated flip" aria-hidden="true"></i>Login</button>
+          <button mdbBtn type="button" color="success" class="waves-light" (click)="login(usuario.value, senha.value); senha.value = ''" mdbWavesEffect><i class="fa fa-sign-in mr-2 fa-1x animated flip" aria-hidden="true"></i>Login</button>
         </div>
       </form> 
     </mdb-card-body>

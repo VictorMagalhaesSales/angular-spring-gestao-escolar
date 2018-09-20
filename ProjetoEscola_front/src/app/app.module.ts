@@ -20,6 +20,7 @@ import {TableModule} from 'primeng/table';
 import {AccordionModule} from 'primeng/accordion';
 import {ToastModule} from 'primeng/toast';
 import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado.component';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 @NgModule({
@@ -27,7 +28,9 @@ import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado
     AppComponent,
     NavbarComponent,
     PaginaNaoEncontradaComponent,
-    AcessoNegadoComponent
+    AcessoNegadoComponent,
+    FooterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

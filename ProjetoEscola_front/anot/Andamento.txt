@@ -62,12 +62,13 @@
 	(x) Obrigatório
 	(x) Tamanho
 	(x) Email
+	( ) Mascaras no input
 	( ) Mensagens
- ( ) Mascaras nos input's
- ( ) Erros com mensagens padrão
+	( ) Corrigir todos
  ( ) Letras passando da tabela
- ( ) Imagem no BD
+ ( ) Erros com mensagens padrão
 
+ ( ) Imagem no BD
  ( ) Acess token não vai de primeira
 
 
@@ -87,7 +88,8 @@
 
 
 ---------------------------------------------------------- RESUMO DO PROJETO ----------------------------------------------------------
-0===--- BackEnd---===0
+
+(0)===--- BackEnd---===(0)
 • Segurança e autenticação: 
 Para segurança e autenticação, utilizei o protoloco Oauth2, que possui Authorization Server que me envia o token de acessso, no caso o acess token que expira com 20 segundos, por questões de segurança, e o refresh token que atualiza sempre esse meu acess token. O Refresh token é passado via cookie, para melhorar a segurança. A partir dai ele faz a autenticação pelo BD;
 • Tratamento de erros:
@@ -95,7 +97,7 @@ Além do bean validator que controla o not null, size, manda mensagem bonitinha e
 • CRUDS:
 Temos o crud de usuários, com paginação e filtro, bem como com os professores, temos o crud de notas e faltas também;
 
-0===--- FrontEnd---===0
+(0)===--- FrontEnd---===(0)
 • Permissões:
  O projeto possui um sistema de autenticação, onde você pode logar como adm, professor ou aluno, ambos com funcionalidades diferentes.
    - ADM: pode listar alunos, editá-los e adicioná-los; pode listar professores, editá-los e adicioná-los; pode listar notas e faltas e editá-las.

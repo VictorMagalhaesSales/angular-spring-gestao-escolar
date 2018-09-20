@@ -3,41 +3,77 @@
     <h1>Matricular alunos</h1><br>
     <span>Para matricular um aluno, preencha todos os campos abaixo e confirme.</span><br>
     <div class="col-7" style="float: left;">
+
       <form #f="ngForm">
-          <div class="md-form">
-            <i class="fa fa-user-circle prefix"></i>
-            <input mdbInputDirective type="text" id="nome" name="nome" class="form-control"  [(ngModel)]="aluno.nome" required maxLength="50">
-            <label for="nome">Nome</label>
-          </div>
+        <table class="col-12">
+          <tr>
+            <td colspan="2">
+              <div class="md-form" [class.erro]="nome.invalid && nome.dirty">
+                <i class="fa fa-user-circle prefix"></i>
+                <input mdbInputDirective type="text" id="nome" name="nome" class="form-control" [(ngModel)]="aluno.nome"
+                #nome="ngModel" required maxLength="50" [mdbValidate]="false">
+                <label for="nome">Nome</label>  
+              </div>
+            </td>
+            <td colspan="2">
+              <div class="md-form hsa-danger" [class.erro]="sobrenome.invalid && sobrenome.dirty">
+                <i class="fa fa-user-circle-o prefix"></i>
+                <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control" [(ngModel)]="aluno.sobrenome"
+                #sobrenome="ngModel" required maxLength="50" [mdbValidate]="false">
+                <label for="sobrenome" class="form-control-label">Sobrenome</label>
+              </div>
+            </td>
+          </tr>
 
-          <div class="md-form">
-            <i class="fa fa-user-circle-o prefix"></i>
-            <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control"  [(ngModel)]="aluno.sobrenome" required maxLength="50">
-            <label for="sobrenome">Sobrenome</label>
-          </div>
+          <tr>
+            <td colspan="4">
+              <div class="md-form" [class.erro]="email.invalid && email.dirty">
+                <i class="fa fa-envelope prefix"></i> 
+                <input mdbInputDirective type="email" id="email" class="form-control" name="email" [(ngModel)]="aluno.email"
+                #email="ngModel" required maxLength="100" email [mdbValidate]="false">
+                <label for="email">Email</label>
+              </div>
+            </td>
+          </tr>
 
-          <div class="md-form">
-            <i class="fa fa-envelope prefix"></i> 
-            <input mdbInputDirective type="email" id="email" class="form-control" name="email"  [(ngModel)]="aluno.email" required maxLength="100" email>
-            <label for="email">Email</label>
-          </div>
+          <tr>
+            <td colspan="2">
+              <div class="md-form" [class.erro]="senha.invalid && senha.dirty">
+                <i class="fa fa-lock prefix"></i>
+                <input mdbInputDirective type="password" id="senha" class="form-control" name="senha" [(ngModel)]="aluno.senha"
+                #senha="ngModel" required maxLength="255" [mdbValidate]="false">
+                <label for="senha">Senha</label>
+              </div>
+            </td>
+            <td>
+              <div class="md-form" [class.erro]="telefone.invalid && telefone.dirty">
+                <i class="fa fa-phone prefix"></i> 
+                <input mdbInputDirective type="text" id="telefone" class="form-control" name="telefone" [(ngModel)]="aluno.telefone"
+                #telefone="ngModel" required maxLength="50" [mdbValidate]="false">
+                <label for="telefone">Telefone</label>
+              </div>
+            </td>
+            <td>
+              <div class="md-form" [class.erro]="nascimento.invalid && nascimento.dirty">
+                <i class="fa fa-calendar prefix"></i> 
+                <input mdbInputDirective type="date" id="nascimento" class="form-control" name="nascimento" [(ngModel)]="aluno.nascimento"
+                #nascimento ="ngModel" required [mdbValidate]="false">
+              </div>
+            </td>
+          </tr>
 
-          <div class="md-form">
-            <i class="fa fa-lock prefix"></i>
-            <input mdbInputDirective type="password" id="senha" class="form-control" name="senha"  [(ngModel)]="aluno.senha" required maxLength="255">
-            <label for="senha">Senha</label>
-          </div>
+        </table>
+         
 
-          <div class="md-form">
-            <i class="fa fa-phone prefix"></i> 
-            <input mdbInputDirective type="text" id="telefone" class="form-control" name="telefone" [mdbValidate]="false"  [(ngModel)]="aluno.telefone" required maxLength="50">
-            <label for="telefone">Telefone</label>
-          </div>
+          
 
-          <div class="md-form">
-            <i class="fa fa-calendar prefix"></i> 
-            <input mdbInputDirective type="date" id="nascimento" class="form-control" name="nascimento"  [(ngModel)]="aluno.nascimento" required>
-          </div>
+         
+
+          
+
+          
+
+          
 
 
           <br><br>
