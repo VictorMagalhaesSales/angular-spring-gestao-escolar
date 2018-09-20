@@ -16,11 +16,11 @@
               </div>
             </td>
             <td colspan="2">
-              <div class="md-form hsa-danger" [class.erro]="sobrenome.invalid && sobrenome.dirty">
+              <div class="md-form" [class.erro]="sobrenome.invalid && sobrenome.dirty">
                 <i class="fa fa-user-circle-o prefix"></i>
                 <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control" [(ngModel)]="aluno.sobrenome"
                 #sobrenome="ngModel" required maxLength="50" [mdbValidate]="false">
-                <label for="sobrenome" class="form-control-label">Sobrenome</label>
+                <label for="sobrenome">Sobrenome</label>
               </div>
             </td>
           </tr>
