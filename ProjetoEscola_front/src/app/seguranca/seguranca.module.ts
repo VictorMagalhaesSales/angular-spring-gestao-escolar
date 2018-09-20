@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor ';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -31,7 +32,8 @@ import { CommonModule } from '@angular/common';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-     }
+     },
+     AuthGuard
     ],
   declarations: [LoginComponent]
 })

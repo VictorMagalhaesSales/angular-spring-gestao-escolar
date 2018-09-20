@@ -1,3 +1,4 @@
+import { AuthGuard } from './seguranca/auth.guard';
 import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado.component';
 import { LoginComponent } from './seguranca/login/login.component';
 import { PaginaNaoEncontradaComponent } from './componentes/pagina-nao-encontrada/pagina-nao-encontrada.component';
@@ -15,18 +16,18 @@ import { PerfilAlunoComponent } from './componentes/aluno/perfil-aluno/perfil-al
 import { PerfilProfessorComponent } from './componentes/professor/perfil-professor/perfil-professor.component';
 
 const AppRoutes: Routes = [
-  { path: '', component: InicioComponent},
-  { path: 'login', component: LoginComponent },
-  { path: 'aluno/listaraluno', component: ListarAlunosComponent },
-  { path: 'aluno/adicionaraluno', component: AdicionarAlunoComponent },
-  { path: 'professor/listarprofessor', component: ListarProfessorComponent },
-  { path: 'professor/adicionarprofessor', component: AdicionarProfessorComponent },
-  { path: 'aluno/perfil', component: PerfilAlunoComponent },
-  { path: 'professor/perfil', component: PerfilProfessorComponent },
-  { path: 'notasfaltas', component: NotasEFaltasComponent},
-  { path: 'notasfaltas/:matricula', component: NotasEFaltasComponent},
-  { path: 'acessonegado', component: AcessoNegadoComponent},
-  { path: '**', component: PaginaNaoEncontradaComponent }
+  { path: '', component: InicioComponent, canActivate: [AuthGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [AuthGuard] },
+  { path: 'aluno/listaraluno', component: ListarAlunosComponent , canActivate: [AuthGuard] },
+  { path: 'aluno/adicionaraluno', component: AdicionarAlunoComponent , canActivate: [AuthGuard] },
+  { path: 'professor/listarprofessor', component: ListarProfessorComponent , canActivate: [AuthGuard] },
+  { path: 'professor/adicionarprofessor', component: AdicionarProfessorComponent , canActivate: [AuthGuard] },
+  { path: 'aluno/perfil', component: PerfilAlunoComponent, canActivate: [AuthGuard]  },
+  { path: 'professor/perfil', component: PerfilProfessorComponent, canActivate: [AuthGuard]  },
+  { path: 'notasfaltas', component: NotasEFaltasComponent, canActivate: [AuthGuard] },
+  { path: 'notasfaltas/:matricula', component: NotasEFaltasComponent, canActivate: [AuthGuard] },
+  { path: 'acessonegado', component: AcessoNegadoComponent, canActivate: [AuthGuard] },
+  { path: '**', component: PaginaNaoEncontradaComponent , canActivate: [AuthGuard] }
 
 ]
 
