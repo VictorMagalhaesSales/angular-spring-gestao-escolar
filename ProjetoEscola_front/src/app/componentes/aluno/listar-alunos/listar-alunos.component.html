@@ -17,14 +17,14 @@
                         <th *ngFor="let col of columns" class="titulo" style="color: white;">
                             {{col.header}}
                         </th>
-                        <th  style="background-color: #007E33; color: white;">Ações</th>
+                        <th *ngIf="mostra('ROLE_DELETAR_ALUNO')" style="background-color: #007E33; color: white;" class="acoes">Ações</th>
                     </tr>
                 </ng-template>
                   
              
                 <ng-template pTemplate="body" let-car let-columns="columns">
                     <tr>
-                        <td *ngFor="let col of columns">
+                        <td *ngFor="let col of columns" class="corpo">
                             <span *ngIf="col.field == 'nascimento'" >
                                 {{car[col.field] | date:'dd/MM/yyyy'}} 
                             </span>
@@ -32,7 +32,7 @@
                                 {{car[col.field]}}
                             </span>
                         </td>
-                        <td>
+                        <td *ngIf="mostra('ROLE_DELETAR_ALUNO')" class="corpo corpoacoes">
                             <button mdbBtn (click)="editarAluno1(car)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
                             <button mdbBtn (click)="acionarExcluir(car)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
                             <button mdbBtn [routerLink]="['../../notasfaltas', car.matricula]" type="button" color="default" mdbTooltip="Notas e faltas" mdbWavesEffect style="padding: 6%;"><i class="fa fa-calendar fa-2x"></i></button>
@@ -98,7 +98,7 @@
                  <td>
                     <div class="md-form">
                         <i class="fa fa-calendar prefix grey-text"></i>
-                        <input type="text" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.nascimento" mdbTooltip="Nascimento">
+                        <input type="date" id="tef" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.nascimento" mdbTooltip="Nascimento">
                     </div>
                  </td>
                  <td>

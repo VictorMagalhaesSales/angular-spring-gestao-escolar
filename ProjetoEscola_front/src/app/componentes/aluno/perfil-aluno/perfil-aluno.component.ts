@@ -103,10 +103,7 @@ export class PerfilAlunoComponent implements OnInit {
   carregarAlunoPorEmail(){
      this.alunoService.pesquisarAlunos(this.profFIltro).then( (profs) => {
        this.profEmail = profs.content;
-       console.log(this.profEmail);
        for (const ae of this.profEmail) {
-         console.log(this.auth.jwtPayload.user_name);
-         console.log(ae.email);
          if(ae.email == this.auth.jwtPayload.user_name){
           this.chamarAluno(ae.matricula);
           this.pesquisarNotas(ae.matricula);

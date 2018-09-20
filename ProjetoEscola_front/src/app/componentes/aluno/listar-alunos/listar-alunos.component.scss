@@ -1,12 +1,33 @@
 .lista {
-    margin-top: -5%;
-    background-color: rgba(255,255,255,.85);
+    margin-top: -7%;
+    background-color: rgba(255,255,255,1);
     padding: 10%;
     padding-left: 5%;
     padding-right: 5%;
     height: 110vh;
 }
 .titulo{
-    background-color: #007E33 !important;
-    color: white;
+    color: rgb(80, 80, 80) !important;
+    border: transparent !important;
+    border-bottom: 1px solid rgb(211, 211, 211) !important;
+    padding: 1% !important;
 }
+
+.corpo{
+    border: transparent !important;
+    border-bottom: 1px solid rgb(223, 223, 223) !important;
+    font-family: 'Arial' !important;
+}
+
+.acoes {
+    color: rgb(80, 80, 80) !important;
+    background-color: white !important;
+    border: transparent !important;
+    border-bottom: 1px solid rgb(211, 211, 211) !important;
+    border-left: 1px solid rgb(233, 233, 233) !important;
+}
+
+.corpoacoes {
+    border-left: 1px solid rgb(233, 233, 233) !important;
+}
+

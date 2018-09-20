@@ -62,8 +62,26 @@ export class AuthService {
       return this.jwtPayload.authorities.includes(permissao);
     }
 
+    temQualquerPermissao(roles) {
+      for (const role of roles) {
+        if (this.temPermissao(role)) {
+          return true;
+        }
+      }
+    }
+    
     estaLogado(){
       return this.jwtPayload != null;
+    }
+
+    limparAcessToken(){
+      return this.http.delete("http://localhost:8080/token/revoke", { withCredentials: true })
+      .toPromise()
+      .then(() => {
+        localStorage.removeItem('token');
+        this.jwtPayload = null;
+      });
+     
     }
     
     private armazenarToken(token: any){

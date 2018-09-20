@@ -1,5 +1,6 @@
 import { AuthService } from './../../seguranca/auth.service';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   
-  constructor(private auth: AuthService) {
+  constructor(private auth: AuthService, private rota: Router) {
    }
 
    estaLogado(){
@@ -32,5 +33,11 @@ export class NavbarComponent {
 
   isProfessor(){
     return this.auth.temPermissao('ROLE_SALVAR_PROFESSOR');
+  }
+
+  logout(){
+    this.auth.limparAcessToken()
+      .then(() => this.rota.navigate(['login']))
+      .catch(() => null);
   }
 }

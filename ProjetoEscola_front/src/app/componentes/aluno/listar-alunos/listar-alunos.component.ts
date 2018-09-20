@@ -1,3 +1,4 @@
+import { AuthService } from './../../../seguranca/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { Title } from '@angular/platform-browser';
 import { AlunoModel } from './../../model';
@@ -33,7 +34,7 @@ export class ListarAlunosComponent implements OnInit {
     { field: 'telefone', header: 'Telefone' }
 ];
 
-  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService) { }
+  constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 
   ngOnInit() {
     this.alunoService.atualizarToken();
@@ -96,6 +97,12 @@ export class ListarAlunosComponent implements OnInit {
 
   fecharAviso() {
     this.messageService.clear('c');
+  }
+  
+  mostra(permissao: string){
+    if(this.auth.jwtPayload != null){
+      return this.auth.temPermissao(permissao);
+    }
   }
 
 }

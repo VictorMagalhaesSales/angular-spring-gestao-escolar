@@ -60,7 +60,7 @@ export class ProfessorModel {
         },
         {
             codigo: 4,
-            descricao: "ROLE_DELETAR_ALUNOS"
+            descricao: "ROLE_DELETAR_ALUNO"
         },
         {
             codigo: 5,

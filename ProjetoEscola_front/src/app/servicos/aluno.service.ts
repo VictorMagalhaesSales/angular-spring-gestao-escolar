@@ -20,7 +20,6 @@ export class AlunoService{
   pesquisarAlunos(filtro: AlunoFiltro): Promise<any>{
     if (this.auth.isAcessTokenInvalid()){
         this.auth.obterNovoAcessToken().then( () => { 
-          console.log("aqui");
         if(filtro.nome == null){
           filtro.nome = "";
         }if(filtro.sobrenome == null){
@@ -40,7 +39,6 @@ export class AlunoService{
             });
       });      
     }else{
-      console.log("aqui2");
       if(filtro.nome == null){
         filtro.nome = "";
       }if(filtro.sobrenome == null){
@@ -78,11 +76,7 @@ export class AlunoService{
     
     return this.http.delete(`http://localhost:8080/aluno/${matricula}`)
       .toPromise()
-      .then(() => null)
-      .catch( response => {
-        console.log(response);
-          return Promise.reject("Você não tem autorização para operar esse conteúdo.");      
-      });
+      .then(() => null);
   }
 
   atualizarAluno(matricula: number, aluno: AlunoModel): Promise<any>{

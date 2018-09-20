@@ -10,7 +10,7 @@
               </td>
               <td>
                 <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="!estaLogado()" [routerLink]="['login']"><i class="fa fa-sign-in fa-1x" aria-hidden="true"></i> Login</button>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="estaLogado()" [routerLink]="['login']"><i class="fa fa-sign-out fa-1x"></i> Sair</button>      
+                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="estaLogado()" (click)="logout()"><i class="fa fa-sign-out fa-1x"></i> Sair</button>      
               </td>
             </tr>
         </table>

@@ -3,7 +3,7 @@ CREATE TABLE aluno(
 	nome VARCHAR(50) NOT NULL,
 	sobrenome VARCHAR(50) NOT NULL,
 	nascimento DATE NOT NULL,
-	email VARCHAR(100) NOT NULL UNIQUE,
+	email VARCHAR(100) UNIQUE,
 	senha VARCHAR(255) NOT NULL,
 	telefone VARCHAR(50),
 	imagem VARCHAR(255)
@@ -15,7 +15,7 @@ CREATE TABLE professor(
 	sobrenome VARCHAR(50) NOT NULL,
 	disciplina VARCHAR(50) NOT NULL,
 	nascimento DATE NOT NULL,
-	email VARCHAR(100) NOT NULL UNIQUE,
+	email VARCHAR(100) UNIQUE,
 	senha VARCHAR(255) NOT NULL,
 	telefone VARCHAR(50),
 	imagem VARCHAR(255)
