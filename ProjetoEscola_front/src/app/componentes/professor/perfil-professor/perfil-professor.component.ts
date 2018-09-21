@@ -14,6 +14,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilProfessorComponent implements OnInit {
 
+  
+  mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
   professor = new ProfessorModel();
   professorAtualizar = new ProfessorModel();
   novaSenha: string;
@@ -67,15 +70,19 @@ export class PerfilProfessorComponent implements OnInit {
 
   alterarSenha(){
     if(this.novaSenha == this.novaSenha2){
-      this.professorAtualizar.senha = this.novaSenha;
       this.professor.senha = this.novaSenha;
-      this.professorService.atualizarProfessor(this.professor.id, this.professorAtualizar)
-        .then(() => alert('deu certo'))
+      this.professorService.atualizarProfessor2(this.professor.id, this.professor)
+        .then((res) => {
+          let r: ProfessorModel = res;
+          this.professorAtualizar = r;
+          this.professor = r;
+          this.messageService.add({severity:'success', summary: 'Atualização de senha', detail:'Senha atualizada com sucesso'});
+        })
         .catch(erro => {
-          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+          this.messageService.add({severity:'error', summary: 'Atualização de senha', detail:'Ocorreu um erro ao alterar a senha'});
         });
     }else{
-      alert('As senhas não coincidem');
+      this.messageService.add({severity:'error', summary: 'Atualização de senha', detail:'As senhas digitadas não coincidem'});
     }
   }
 

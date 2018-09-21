@@ -22,6 +22,7 @@ import {ToastModule} from 'primeng/toast';
 import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 
+import { TextMaskModule } from 'angular2-text-mask';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
     AppRoutingModule,
     HttpClientModule,
     JwtModule,
+    TextMaskModule,
     // OUTROS
     AlunoModule,
     ProfessorModule,

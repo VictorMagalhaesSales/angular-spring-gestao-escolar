@@ -4,6 +4,7 @@ import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { Message } from 'primeng/components/common/message';
 
 @Component({
   selector: 'app-adicionar-aluno',
@@ -12,6 +13,10 @@ import { Title } from '@angular/platform-browser';
 })
 export class AdicionarAlunoComponent implements OnInit {
 
+
+  mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  msgs: Message[] = [];
+  
   aluno = new AlunoModel();
 
   constructor(private alunoService: AlunoService, private rota: Router, private title: Title, private messageService: MessageService) { }

@@ -3,51 +3,78 @@
       <h1>Adicionar professores</h1><br>
       <span>Para adicionar um professor, preencha todos os campos abaixo e confirme.</span><br>
       <div class="col-7" style="float: left;">
-        <form>
-            <div class="md-form">
-              <i class="fa fa-user-circle prefix"></i>
-              <input mdbInputDirective type="text" id="nome" name="nome" class="form-control"  [(ngModel)]="professor.nome">
-              <label for="nome">Nome</label>
-            </div>
-  
-            <div class="md-form">
-              <i class="fa fa-user-circle-o prefix"></i>
-              <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control"  [(ngModel)]="professor.sobrenome">
-              <label for="sobrenome">Sobrenome</label>
-            </div>
-  
-            <div>
-              <i class="fa fa-mortar-board fa-2x mr-2"></i>
-              <p-dropdown name="disciplina" [options]="disciplina" [(ngModel)]="disci" placeholder="Selecione a disciplina" optionLabel="nome" [showClear]="true" [filter]="true"></p-dropdown>
-            </div>
-  
-            <div class="md-form">
-              <i class="fa fa-envelope prefix"></i> 
-              <input mdbInputDirective type="email" id="email" class="form-control" name="email"  [(ngModel)]="professor.email">
-              <label for="email">Email</label>
-            </div>
-  
-            <div class="md-form">
-              <i class="fa fa-lock prefix"></i>
-              <input mdbInputDirective type="password" id="senha" class="form-control" name="senha"  [(ngModel)]="professor.senha">
-              <label for="senha">Senha</label>
-            </div>
-  
-            <div class="md-form">
-              <i class="fa fa-phone prefix"></i> 
-              <input mdbInputDirective type="text" id="telefone" class="form-control" name="telefone"  [(ngModel)]="professor.telefone">
-              <label for="telefone">Telefone</label>
-            </div>
-  
-            <div class="md-form">
-              <i class="fa fa-calendar prefix"></i> 
-              <input mdbInputDirective type="text" id="nascimento" class="form-control" name="nascimento"  [(ngModel)]="professor.nascimento">
-              <label for="telefone">Data de nascimento</label>
-            </div>
+          <form #f="ngForm">
+              <table class="col-12">
+                  <tr>
+                  <td colspan="3">
+                      <div class="md-form" [class.erro]="nome.invalid && nome.touched">
+                      <i class="fa fa-user-circle prefix"></i>
+                      <input mdbInputDirective type="text" id="nome" name="nome" class="form-control" [(ngModel)]="professor.nome"
+                      #nome="ngModel" required maxLength="50" [mdbValidate]="false">
+                      <label for="nome">Nome</label>
+                      <p-message  class="desaparece" [class.aparece]="nome.invalid && nome.touched"  severity="error" text="O campo ´nome´ não pode estar vazio" summary="Inváldo" closable="false"></p-message>
+                      </div>
+                  </td>
+                  <td colspan="3">
+                      <div class="md-form" [class.erro]="sobrenome.invalid && sobrenome.touched">
+                      <i class="fa fa-user-circle-o prefix"></i>
+                      <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control" [(ngModel)]="professor.sobrenome"
+                      #sobrenome="ngModel" required maxLength="50" [mdbValidate]="false">
+                      <label for="sobrenome">Sobrenome</label>
+                      <p-message class="desaparece" [class.aparece]="sobrenome.invalid && sobrenome.touched"  severity="error" text="O campo sobrenome não pode estar vazio" summary="Inváldo" closable="false"></p-message>
+                      </div>
+                  </td>
+                  </tr>
           
-            <br><br>
-            <button mdbBtn type="button" color="default" class="waves-light" block="true" mdbWavesEffect (click)="adicionarProfessor()">Cadastrar</button>
-        </form>
+                  <tr>
+                  <td colspan="5">
+                      <div class="md-form" [class.erro]="email.invalid && email.touched">
+                      <i class="fa fa-envelope prefix"></i> 
+                      <input mdbInputDirective type="email" id="email" class="form-control" name="email" [(ngModel)]="professor.email"
+                      #email="ngModel" required maxLength="100" email [mdbValidate]="false">
+                      <label for="email">Email</label>
+                      <p-message  class="desaparece" [class.aparece]="email.hasError('required') && email.touched"  severity="error" text="O campo email não pode estar vazio" summary="Inváldo" closable="false"></p-message>
+                      <p-message  class="desaparece" [class.aparece]="email.invalid && email.touched && !email.hasError('required')"  severity="error" text="O campo email não é válido" summary="Inváldo" closable="false"></p-message>
+                      </div>
+                  </td>
+                  <td>
+                    <div>
+                      <i class="fa fa-mortar-board fa-2x mr-2"></i>
+                      <p-dropdown name="disciplina" [options]="disciplina" [(ngModel)]="disci" placeholder="Selecione a disciplina" optionLabel="nome" [showClear]="true" [filter]="true"></p-dropdown>
+                    </div>
+                  </td>
+                  </tr>
+          
+                  <tr>
+                  <td colspan="2">
+                      <div class="md-form" [class.erro]="senha.invalid && senha.touched">
+                      <i class="fa fa-lock prefix"></i>
+                      <input mdbInputDirective type="password" id="senha" class="form-control" name="senha" [(ngModel)]="professor.senha"
+                      #senha="ngModel" required maxLength="255" [mdbValidate]="false">
+                      <label for="senha">Senha</label>
+                      <p-message  class="desaparece" [class.aparece]="senha.invalid && senha.touched"  severity="error" text="O campo senha não pode estar vazio" summary="Inváldo" closable="false"></p-message>
+                      </div>
+                  </td>
+                  <td colspan="2">
+                      <div class="md-form" [class.erro]="telefone.invalid && telefone.touched">
+                      <i class="fa fa-phone prefix"></i> 
+                      <input mdbInputDirective type="text" id="phone-mas" class="form-control" name="telefone" [(ngModel)]="professor.telefone"
+                      #telefone="ngModel" maxLength="50" [mdbValidate]="false" id="phone-mas" [textMask]="{mask: mask}">
+                      <label for="telefone">Telefone</label>
+                      </div>
+                  </td>
+                  <td colspan="2">
+                      <div class="md-form" [class.erro]="nascimento.invalid && nascimento.touched">
+                      <i class="fa fa-calendar prefix"></i> 
+                      <input mdbInputDirective type="date" id="nascimento" class="form-control" name="nascimento" [(ngModel)]="professor.nascimento"
+                      #nascimento ="ngModel" required [mdbValidate]="false">
+                      <p-message  class="desaparece" [class.aparece]="nascimento.invalid && nascimento.touched"  severity="error" text="O campo ´nascimento´ não pode estar vazio" summary="Inváldo" closable="false"></p-message>
+                      </div>
+                  </td>
+                  </tr>
+              </table>
+              <button mdbBtn type="button" color="default" class="waves-light" block="true" mdbWavesEffect (click)="adicionarProfessor()" [disabled]="f.invalid">Cadastrar</button>
+          </form>
       </div>
     </div>
     <div class="col-4 offset-1 animated fadeInRightBig" style="float: right;">

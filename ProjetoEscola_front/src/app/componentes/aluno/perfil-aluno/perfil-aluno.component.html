@@ -20,7 +20,7 @@
             <div class="row">
                 <table class="table  table-hover">
                     <tr>
-                        <th><i class="fa fa-barcode" aria-hidden="true"></i> Matrícula</th> <td> {{ aluno.matricula }}</td><th><i class="fa fa-calendar prefix"></i> Nascimento </th> <td> {{ aluno.nascimento }}</td>
+                        <th><i class="fa fa-barcode" aria-hidden="true"></i> Matrícula</th> <td> {{ aluno.matricula }}</td><th><i class="fa fa-calendar prefix"></i> Nascimento </th> <td> {{ aluno.nascimento | date:'dd/MM/yyyy' }}</td>
                         <td rowspan="3">
                                 <i class="fa fa-arrow-down prefix" aria-hidden="true"></i> <b>Aprovado em:</b>
                                 <div *ngFor="let nota of arrayNotas">
@@ -67,13 +67,13 @@
                        <td>
                           <div class="md-form">
                               <i class="fa fa-user prefix grey-text"></i>
-                              <input type="text" id="nome" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.nome" mdbTooltip="Nome">
+                              <input type="text" id="nome" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.nome" mdbTooltip="Nome" [mdbValidate]="false" required>
                           </div> 
                        </td>
                        <td>
                           <div class="md-form">
                               <i class="fa fa-user prefix grey-text"></i>
-                              <input type="text" id="sn" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.sobrenome" mdbTooltip="Sobrenome">
+                              <input type="text" id="sn" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.sobrenome" mdbTooltip="Sobrenome" [mdbValidate]="false" required>
                           </div>
                        </td>
                    </tr>
@@ -81,7 +81,7 @@
                        <td colspan=2>
                           <div class="md-form">
                               <i class="fa fa-envelope prefix grey-text"></i>
-                              <input type="email" id="email" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.email" mdbTooltip="Email">
+                              <input type="email" id="email" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.email" mdbTooltip="Email" [mdbValidate]="false" required>
                           </div>
                       </td>
                    </tr>
@@ -89,13 +89,13 @@
                        <td>
                           <div class="md-form">
                               <i class="fa fa-calendar prefix grey-text"></i>
-                              <input type="text" id="nascimento" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.nascimento" mdbTooltip="Nascimento">
-                          </div>
+                              <input mdbInputDirective type="date" id="nascimento" class="form-control" name="nascimento" [(ngModel)]="alunoAtualizar.nascimento" required [mdbValidate]="false"> 
+                            </div>
                        </td>
                        <td>
                           <div class="md-form">
                               <i class="fa fa-phone prefix grey-text"></i>
-                              <input type="text" id="telefone" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.telefone" mdbTooltip="Telefone">
+                              <input type="text" id="telefone" class="form-control" mdbInputDirective [(ngModel)]="alunoAtualizar.telefone" mdbTooltip="Telefone" [textMask]="{mask: mask}" [mdbValidate]="false">
                           </div>
                        </td>
                    </tr>
@@ -123,7 +123,7 @@
                             <td>
                                 <div class="md-form">
                                     <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
-                                    <input type="password" id="novasenha" class="form-control" mdbInputDirective [(ngModel)]="novaSenha" mdbTooltip="Nova senha" placeholder="Nova senha">
+                                    <input type="password" id="novasenha" class="form-control" mdbInputDirective [(ngModel)]="novaSenha" mdbTooltip="Nova senha" placeholder="Nova senha" [mdbValidate]="false">
                                 </div>
                             </td>
                         </Tr>
@@ -131,7 +131,7 @@
                             <td colspan=2>
                                 <div class="md-form">
                                     <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
-                                    <input type="password" id="novasenha2" class="form-control" mdbInputDirective [(ngModel)]="novaSenha2" mdbTooltip="Repita a nova senha" placeholder="Repita aova senha">
+                                    <input type="password" id="novasenha2" class="form-control" mdbInputDirective [(ngModel)]="novaSenha2" mdbTooltip="Repita a nova senha" placeholder="Repita aova senha" [mdbValidate]="false">
                                 </div>
                             </td>
                         </tr>

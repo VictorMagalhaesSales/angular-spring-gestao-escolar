@@ -91,6 +91,18 @@ export class AlunoService{
       });
   }
 
+  atualizarAluno2(matricula: number, aluno: AlunoModel): Promise<any>{
+    this.atualizarToken();
+    
+    return this.http.put(`http://localhost:8080/aluno/senha/${matricula}`,aluno)
+      .toPromise()
+      .then(()=> null)
+      .catch( response => {
+         console.log(response);
+          return Promise.reject("Você não tem autorização para operar esse conteúdo.");
+      });
+  }
+
   adicionarAluno(aluno: AlunoModel): Promise<any>{
     this.atualizarToken();
     

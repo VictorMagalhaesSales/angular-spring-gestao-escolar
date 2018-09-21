@@ -71,6 +71,18 @@ export class ProfessorService{
       });
   }
 
+  atualizarProfessor2(id: number, professor: ProfessorModel): Promise<any>{
+    this.atualizarToken();
+
+    return this.http.put(`http://localhost:8080/professor/senha/${id}`,professor)
+      .toPromise()
+      .then((res) => res)
+      .catch( response => {
+        console.log(response);
+          return Promise.reject("Você não tem autorização para operar esse conteúdo."); 
+      });
+  }
+
   adicionarProfessor(professor: ProfessorModel): Promise<any>{
     this.atualizarToken();
     return this.http.post("http://localhost:8080/professor", professor)

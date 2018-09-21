@@ -1,3 +1,4 @@
+import { TextMaskModule } from 'angular2-text-mask';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import { GrowlModule } from 'primeng/growl';
@@ -11,8 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { ListarProfessorComponent } from './listar-professor/listar-professor.component';
 import { AdicionarProfessorComponent } from './adicionar-professor/adicionar-professor.component';
 import { PerfilProfessorComponent } from './perfil-professor/perfil-professor.component';
-import {DropdownModule} from 'primeng/dropdown';
+
+import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
+import { MessageModule} from 'primeng/message';
+import { MessagesModule } from 'primeng/messages';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,7 @@ import { ToastModule } from 'primeng/toast';
     CommonModule,
     FormsModule,
     AppRoutingModule,
-
+    TextMaskModule,
     // MDB
     WavesModule,
     ButtonsModule,
@@ -38,7 +42,9 @@ import { ToastModule } from 'primeng/toast';
     TableModule,
     InputsModule,
     DropdownModule,
-    ToastModule
+    ToastModule,
+    MessagesModule,
+    MessageModule
   ],
   exports: [AdicionarProfessorComponent]
 })

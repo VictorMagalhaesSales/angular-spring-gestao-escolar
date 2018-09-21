@@ -13,10 +13,15 @@
 input {
     background-color: rgba(255,255,255,.2) !important;
 }
-.ae {
-    background-color: rgba(255,255,255,.2) !important;
-}
 
 .erro {
     color: #ff4444;
+}
+.desaparece {
+    display: none;
+}
+
+.aparece {
+    display: block;
+    width: 100%;
 }

@@ -5,7 +5,6 @@ import { AlunoModel } from './../../model';
 import { AlunoFiltro } from './../aluno-filtro.model';
 import { AlunoService } from './../../../servicos/aluno.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-listar-alunos',
@@ -13,6 +12,10 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./listar-alunos.component.scss']
 })
 export class ListarAlunosComponent implements OnInit {
+
+
+
+  mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   nome: string;
   sobrenome: string;

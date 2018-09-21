@@ -14,6 +14,8 @@ import { AuthService } from '../../../seguranca/auth.service';
 })
 export class PerfilAlunoComponent implements OnInit {
 
+  mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+  
   aluno = new AlunoModel();
   alunoAtualizar = new OutroModel();
   novaSenha: string;
@@ -63,18 +65,17 @@ export class PerfilAlunoComponent implements OnInit {
     this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar)
     .then( () => this.chamarAluno(this.aluno.matricula))
     .catch(erro => {
-      this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      this.messageService.add({severity:'error', summary: 'Erro de edição', detail:'Ocorreu um erro ao editar o aluno'});
     });
   }
 
   alterarSenha(){
     if(this.novaSenha == this.novaSenha2){
-      this.alunoAtualizar.senha = this.novaSenha;
       this.aluno.senha = this.novaSenha;
-      this.alunoService.atualizarAluno(this.aluno.matricula, this.alunoAtualizar)
-      .then(() => alert('deu certo'))
+      this.alunoService.atualizarAluno2(this.aluno.matricula, this.aluno)
+      .then(() => this.messageService.add({severity:'success', summary: 'Atualização de senha', detail:'Senha atualizada com sucesso'}  ) )
       .catch(erro => {
-        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+        this.messageService.add({severity:'error', summary: 'Atualização de senha', detail:'Ocorreu um erro ao alterar a senha'});
       });
     }else{
       alert('As senhas não coincidem');
@@ -125,24 +126,28 @@ export class OutroModel {
   image: string;
   permissoes = [
     {
-        codigo: 2,
-        descricao: "ROLE_LISTAR_ALUNO"
-    },
-    {
-        codigo: 5,
-        descricao: "ROLE_EDITAR_ALUNO"
-    },
-    {
-        codigo: 6,
-        descricao: "ROLE_LISTAR_FALTAS"
-    },
-    {
-        codigo: 9,
-        descricao: "ROLE_LISTAR_NOTAS"
-    },
-    {
-        codigo: 13,
-        descricao: "ROLE_LISTAR_PROFESSORES"
-    }
+      codigo: 1,
+      descricao: "ROLE_LISTAR_ALUNOS"
+  },
+  {
+      codigo: 5,
+      descricao: "ROLE_EDITAR_ALUNO"
+  },
+  {
+      codigo: 2,
+      descricao: "ROLE_LISTAR_ALUNO"
+  },
+  {
+      codigo: 6,
+      descricao: "ROLE_LISTAR_FALTAS"
+  },
+  {
+      codigo: 9,
+      descricao: "ROLE_LISTAR_NOTAS"
+  },
+  {
+      codigo: 13,
+      descricao: "ROLE_LISTAR_PROFESSORES"
+  }
   ]   
 }

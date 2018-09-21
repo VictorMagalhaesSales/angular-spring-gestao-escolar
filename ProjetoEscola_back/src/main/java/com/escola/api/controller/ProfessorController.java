@@ -81,6 +81,21 @@ public class ProfessorController {
 				throw new DataIntegrityViolationException("Email já cadastrado");
 			}
 		}
+		Professor professorOpt = this.professorRepository.findOne(id);		
+		BeanUtils.copyProperties(professorReq, professorOpt, "id");
+		Professor professorDepois =  professorRepository.save(professorOpt);
+		
+		return ResponseEntity.ok(professorDepois);
+	}
+	
+	@PutMapping("/senha/{id}")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_PROFESSOR')")
+	public ResponseEntity<Professor> atualizarProfessor2(@PathVariable Long id, @Valid @RequestBody Professor professorReq){
+		for (Aluno aluno: this.alunoRepository.findAll()) {
+			if(aluno.getEmail().equalsIgnoreCase(professorReq.getEmail())) {
+				throw new DataIntegrityViolationException("Email já cadastrado");
+			}
+		}
 		professorReq.setSenha(encoder.encode(professorReq.getSenha()));
 		Professor professorOpt = this.professorRepository.findOne(id);		
 		BeanUtils.copyProperties(professorReq, professorOpt, "id");

@@ -62,10 +62,10 @@
 	(x) Obrigatório
 	(x) Tamanho
 	(x) Email
-	( ) Mascaras no input
+	(x) Mascaras no input
 	(x) Mensagens
-	( ) Corrigir todos
- ( ) Letras passando da tabela
+	(x) Corrigir todos
+ (x) Letras passando da tabela
  ( ) Erros com mensagens padrão
 
  ( ) Imagem no BD

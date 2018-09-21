@@ -5,7 +5,29 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-20T07:28:09Z</updated>
+  <updated>2018-09-21T09:00:00Z</updated>
+  <entry>
+    <title>Spring Framework 5.1 goes GA</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/21/spring-framework-5-1-goes-ga" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Juergen Hoeller</name>
+    </author>
+    <id>tag:spring.io,2018-09-21:3406</id>
+    <updated>2018-09-21T09:00:00Z</updated>
+    <content type="html">&lt;p&gt;Dear Spring community,&lt;/p&gt;
+&lt;p&gt;It is my pleasure to announce that Spring Framework 5.1 is generally available from &lt;a href="https://repo.spring.io"&gt;repo.spring.io&lt;/a&gt; as well as Maven Central now! Check out our recently updated docs&amp;hellip;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-framework/wiki/What%27s-New-in-Spring-Framework-5.x"&gt;What&amp;rsquo;s New&lt;/a&gt; in Spring Framework 5.1&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-5.x"&gt;Upgrading&lt;/a&gt; to Spring Framework 5.1&lt;/li&gt;
+  &lt;li&gt;Our revised &lt;a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/"&gt;reference documentation&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Spring Framework 5.1 requires JDK 8 or higher and specifically supports &lt;a href="http://openjdk.java.net/projects/jdk/11/"&gt;JDK 11&lt;/a&gt; as the next long-term support release. It comes with initial refinements for &lt;a href="https://www.graalvm.org/"&gt;GraalVM&lt;/a&gt; compatibility and deeply integrates with the recently released &lt;a href="https://projectreactor.io/docs"&gt;Reactor Californium&lt;/a&gt; and &lt;a href="http://hibernate.org/orm/releases/5.3/"&gt;Hibernate ORM 5.3&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The core container introduces functional bean definition refinements for Java as well as Kotlin, including a functional bean retrieval style. Spring&amp;rsquo;s internal use of reflection is optimized for improved startup time and less heap memory consumption now.&lt;/p&gt;
+&lt;p&gt;The web application stack provides a human-friendly debug log experience from the endpoints down to the core container. It features a DSL-style builder for functional web endpoints and extends the WebFlux HTTP/2 support offering to the Netty runtime.&lt;/p&gt;
+&lt;p&gt;As of next week&amp;rsquo;s Spring Boot 2.1 M4 release, you&amp;rsquo;ll be able to consume Spring Framework 5.1 GA through &lt;a href="https://start.spring.io"&gt;start.spring.io&lt;/a&gt;! The upcoming Spring Boot 2.1 RC1 in mid October is expected to ship against Spring Framework 5.1.1 then, so keep the feedback coming&amp;hellip;&lt;/p&gt;
+&lt;p&gt;Cheers,&lt;br/&gt;Juergen&lt;/p&gt;</content>
+  </entry>
   <entry>
     <title>Spring Tool Suite 3.9.6 released</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/20/spring-tool-suite-3-9-6-released" />
@@ -1198,118 +1220,5 @@ decoder.setClaimSetConverter(
 &lt;p&gt;We are aiming for a GA release in early October and expect bugfixes along with dependency upgrades. We&amp;rsquo;re working towards the next Spring Vault 2.2 release to ship with annotation-based configuration for the versioned Vault key-value backend.&lt;/p&gt;
 &lt;p&gt;For a complete list of changes see the &lt;a href="http://docs.spring.io/spring-vault/docs/2.1.0.RC1/changelog.txt"&gt;changelog&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;a href="http://projects.spring.io/spring-vault/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-vault/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-vault/docs/2.1.0.RC1/reference/html/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/mp911de/spring-cloud-vault-config-samples/"&gt;Examples&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-vault"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Bootiful GCP: Use Spring Cloud GCP to Connect to Other GCP Services (7/8)</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/10/bootiful-gcp-use-spring-cloud-gcp-to-connect-to-other-gcp-services-7-8" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2018-08-18:3369</id>
-    <updated>2018-09-10T00:00:00Z</updated>
-    <content type="html">&lt;blockquote&gt;
-  &lt;p&gt;Hi Spring fans! In this brief 8 part series we’re going to look at the Spring Cloud integration for Google Cloud Platform, called Spring Cloud GCP. &lt;a href="https://cloud.spring.io/spring-cloud-gcp/"&gt;Spring Cloud GCP&lt;/a&gt; represents a joint effort between Google and Pivotal that endeavors to provide a first class experience for Spring Cloud developers when using the Google Cloud Platform. Pivotal Cloud Foundry users will enjoy an even &lt;a href="https://docs.pivotal.io/partners/gcp-sb/index.html"&gt;easier integration with the GCP service broker&lt;/a&gt;. I wrote these installments with input from Google Cloud Developer Advocate, and my buddy, &lt;a href="http://twitter.com/saturnism"&gt;Ray Tsang&lt;/a&gt;. You can also catch a walkthrough of Spring Cloud GCP in our Google Next 2018 session, &lt;a href="https://www.youtube.com/watch?v=2Jo3vy7iQf8"&gt;Bootiful Google Cloud Platform&lt;/a&gt;. Thanks buddy! As always, &lt;a href="http://twitter.com/starbuxman"&gt;I&amp;rsquo;d love to hear from you if you have feedback&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;If you&amp;rsquo;re just joining us, be sure to read the previous installments including:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/20/bootiful-gcp-getting-started-with-spring-cloud-for-google-cloud-platform-1-8"&gt;Bootiful GCP: Getting Started with Spring Cloud for Google Cloud Platform (1/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/23/bootiful-gcp-relational-data-access-with-spring-cloud-gcp-2-8"&gt;Bootiful GCP: Relational Data Access with Spring Cloud GCP (2/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/27/bootiful-gcp-globally-consistent-data-access-with-spanner-3-8"&gt;Bootiful GCP: Globally Consistent Data Access with Spanner (3/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/08/30/bootiful-gcp-integration-with-google-cloud-pub-sub-4-8"&gt;Bootiful GCP: Integration with Google Cloud Pub/Sub (4/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/09/03/bootiful-gcp-runtime-configuration-with-spring-cloud-gcp-runtime-config-5-8"&gt;Bootiful GCP: Runtime Configuration with Spring Cloud GCP Runtime Config (5/8)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2018/09/06/bootiful-gcp-supporting-observability-with-spring-cloud-gcp-stackdriver-trace-6-8"&gt;Bootiful GCP: Supporting Observability with Spring Cloud GCP Stackdriver Trace (6/8)&lt;br/&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;The Spring Cloud GCP project strives to provide integrations with Spring and some of the GCP services that map well to Spring. But GCP is &lt;em&gt;vast&lt;/em&gt;! There are a good deal many other services out there that you can consume via &lt;a href="https://github.com/GoogleCloudPlatform/google-cloud-java/"&gt;their direct Java SDK&lt;/a&gt; or even through their REST APIs, directly. Spring Cloud GCP can make working with those APIs a bit easier, too! In this section, we’re going to integrate with the Google Cloud Vision API which supports analyzing images and doing feature detection.&lt;/p&gt;
-&lt;p&gt;As always, you will need to enable the API:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint shell"&gt;gcloud services enable vision.googleapis.com
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;When you use the auto-configurations in Spring Cloud GCP they conveniently obtain the required OAuth scopes to work with a given API on your behalf, and you never need to worry about it. We’ll need to do this work ourselves for other services. This is easy enough, thankfully. Use the &lt;code&gt;spring.cloud.gcp.credentials.scopes&lt;/code&gt; property to obtain a general, platform-wide, catch-all scope that can be used to request permission for all basic Google Cloud Platform APIs.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;src/main/resources/applications.properties.&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint java"&gt;spring.cloud.gcp.credentials.scopes=https://www.googleapis.com/auth/cloud-platform&#xD;
-spring.cloud.gcp.credentials.encoded-key=FIXME
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;And.. that’s it! Now you can use the API as you like. Let’s standup a simple REST API to which you can post an image as a multipart file upload and have the Google Cloud Vision API do feature detection.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint java"&gt;package com.example.gcp.vision;&#xD;
-&#xD;
-import com.google.api.gax.core.CredentialsProvider;&#xD;
-import com.google.cloud.vision.v1.*;&#xD;
-import com.google.protobuf.ByteString;&#xD;
-import lombok.extern.slf4j.Slf4j;&#xD;
-import org.springframework.boot.SpringApplication;&#xD;
-import org.springframework.boot.autoconfigure.SpringBootApplication;&#xD;
-import org.springframework.context.annotation.Bean;&#xD;
-import org.springframework.web.bind.annotation.PostMapping;&#xD;
-import org.springframework.web.bind.annotation.RequestParam;&#xD;
-import org.springframework.web.bind.annotation.RestController;&#xD;
-import org.springframework.web.multipart.MultipartFile;&#xD;
-&#xD;
-import java.io.IOException;&#xD;
-import java.util.Collections;&#xD;
-&#xD;
-// curl -F &amp;quot;image=@$HOME/Pictures/soup.jpg&amp;quot; http://localhost:8080/analyze&#xD;
-@SpringBootApplication&#xD;
-public class VisionApplication {&#xD;
-&#xD;
-        &#xD;
-        @Bean&#xD;
-        ImageAnnotatorClient imageAnnotatorClient(&#xD;
-            CredentialsProvider credentialsProvider) throws IOException {&#xD;
-                ImageAnnotatorSettings settings = ImageAnnotatorSettings&#xD;
-                    .newBuilder()&#xD;
-                    .setCredentialsProvider(credentialsProvider)&#xD;
-                    .build();&#xD;
-                return ImageAnnotatorClient.create(settings);&#xD;
-        }&#xD;
-&#xD;
-        @Slf4j&#xD;
-        @RestController&#xD;
-        public static class ImageAnalyzerRestController {&#xD;
-&#xD;
-                private final ImageAnnotatorClient client;&#xD;
-&#xD;
-                &#xD;
-                private final Feature labelDetection = Feature.newBuilder().setType(Feature.Type.LABEL_DETECTION).build();&#xD;
-                private final Feature textDetection = Feature.newBuilder().setType(Feature.Type.DOCUMENT_TEXT_DETECTION).build();&#xD;
-&#xD;
-                ImageAnalyzerRestController(ImageAnnotatorClient client) {&#xD;
-                        this.client = client;&#xD;
-                }&#xD;
-&#xD;
-                @PostMapping(&amp;quot;/analyze&amp;quot;)&#xD;
-                String analyze(@RequestParam MultipartFile image) throws IOException {&#xD;
-                        &#xD;
-                        byte[] data = image.getBytes();&#xD;
-                        ByteString imgBytes = ByteString.copyFrom(data);&#xD;
-                        Image img = Image.newBuilder().setContent(imgBytes).build();&#xD;
-&#xD;
-                        AnnotateImageRequest request = AnnotateImageRequest&#xD;
-                            .newBuilder()&#xD;
-                            .addFeatures(this.labelDetection)&#xD;
-                            .addFeatures(this.textDetection)&#xD;
-                            .setImage(img)&#xD;
-                            .build();&#xD;
-                        BatchAnnotateImagesResponse responses = this.client&#xD;
-                            .batchAnnotateImages(Collections.singletonList(request));&#xD;
-                        AnnotateImageResponse reply = responses.getResponses(0);&#xD;
-                        return reply.toString();&#xD;
-                }&#xD;
-        }&#xD;
-&#xD;
-        public static void main(String args[]) {&#xD;
-                SpringApplication.run(VisionApplication.class, args);&#xD;
-        }&#xD;
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-  &lt;li&gt;we’re configuring the Google Cloud Vision client manually. This is more work than you might do if you had a Spring Boot starter, but it’s definitely not bad!&lt;/li&gt;
-  &lt;li&gt;what kind of analysis do we want the client to do?&lt;/li&gt;
-  &lt;li&gt;Spring MVC can turn multipart file uploads into a &lt;code&gt;MultipartFile&lt;/code&gt; from which we can easily extract bytes to feed into this API.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;You can POST an image to this endpoint using &lt;code&gt;curl&lt;/code&gt; or any other general purpose HTTP client. Here’s how it would work with:&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;curl&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint shell"&gt;curl  -F &amp;quot;image=@/home/jlong/Desktop/soup.jpg&amp;quot; http://localhost:8080/analyze
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;There are a &lt;em&gt;zillion&lt;/em&gt; other APIs with whom you might work! Here we are only just beginning to scratch the surface of what’s possible. Check &lt;a href="https://cloud.google.com/products/"&gt;out this service catalog&lt;/a&gt;! There are things like Google Cloud DataStore, Google Storage, Firebase, BigQuery, Apigee, video streaming services, IoT services, machine learning, Google Tensorflow, Google Dataflow, Google Cloud AutoML, Cloud Natural Language, Cloud Speech-to-Text, Cloud Text-to-Speech, Genomics APIs, Video Intelligence, and &lt;em&gt;so&lt;/em&gt; much more.&lt;/p&gt;</content>
   </entry>
 </feed>

@@ -7,31 +7,35 @@
       <form #f="ngForm">
         <table class="col-12">
           <tr>
-            <td colspan="2">
+            <td colspan="3">
               <div class="md-form" [class.erro]="nome.invalid && nome.touched">
                 <i class="fa fa-user-circle prefix"></i>
                 <input mdbInputDirective type="text" id="nome" name="nome" class="form-control" [(ngModel)]="aluno.nome"
                 #nome="ngModel" required maxLength="50" [mdbValidate]="false">
-                <label for="nome">Nome</label>  
+                <label for="nome">Nome</label>
+                <p-message  class="desaparece" [class.aparece]="nome.invalid && nome.touched"  severity="error" text="O campo ´nome´ não pode estar vazio" summary="Inváldo" closable="false"></p-message>
               </div>
             </td>
-            <td colspan="2">
+            <td colspan="3">
               <div class="md-form" [class.erro]="sobrenome.invalid && sobrenome.touched">
                 <i class="fa fa-user-circle-o prefix"></i>
                 <input mdbInputDirective type="text" id="sobrenome" name="sobrenome" class="form-control" [(ngModel)]="aluno.sobrenome"
                 #sobrenome="ngModel" required maxLength="50" [mdbValidate]="false">
                 <label for="sobrenome">Sobrenome</label>
+                <p-message class="desaparece" [class.aparece]="sobrenome.invalid && sobrenome.touched"  severity="error" text="O campo sobrenome não pode estar vazio" summary="Inváldo" closable="false"></p-message>
               </div>
             </td>
           </tr>
 
           <tr>
-            <td colspan="4">
+            <td colspan="6">
               <div class="md-form" [class.erro]="email.invalid && email.touched">
                 <i class="fa fa-envelope prefix"></i> 
                 <input mdbInputDirective type="email" id="email" class="form-control" name="email" [(ngModel)]="aluno.email"
                 #email="ngModel" required maxLength="100" email [mdbValidate]="false">
                 <label for="email">Email</label>
+                <p-message  class="desaparece" [class.aparece]="email.hasError('required') && email.touched"  severity="error" text="O campo email não pode estar vazio" summary="Inváldo" closable="false"></p-message>
+                <p-message  class="desaparece" [class.aparece]="email.invalid && email.touched && !email.hasError('required')"  severity="error" text="O campo email não é válido" summary="Inváldo" closable="false"></p-message>
               </div>
             </td>
           </tr>
@@ -43,42 +47,28 @@
                 <input mdbInputDirective type="password" id="senha" class="form-control" name="senha" [(ngModel)]="aluno.senha"
                 #senha="ngModel" required maxLength="255" [mdbValidate]="false">
                 <label for="senha">Senha</label>
+                <p-message  class="desaparece" [class.aparece]="senha.invalid && senha.touched"  severity="error" text="O campo senha não pode estar vazio" summary="Inváldo" closable="false"></p-message>
               </div>
             </td>
-            <td>
-              <div class="md-form" [class.erro]="telefone.invalid && telefone.touched">
+            <td colspan="2">
+              <div class="md-form">
                 <i class="fa fa-phone prefix"></i> 
                 <input mdbInputDirective type="text" id="telefone" class="form-control" name="telefone" [(ngModel)]="aluno.telefone"
-                #telefone="ngModel" required maxLength="50" [mdbValidate]="false">
+                #telefone="ngModel" maxLength="50" [mdbValidate]="false" [textMask]="{mask: mask}" >
                 <label for="telefone">Telefone</label>
-              </div>
+                </div>
             </td>
-            <td>
+            <td colspan="2">
               <div class="md-form" [class.erro]="nascimento.invalid && nascimento.touched">
                 <i class="fa fa-calendar prefix"></i> 
                 <input mdbInputDirective type="date" id="nascimento" class="form-control" name="nascimento" [(ngModel)]="aluno.nascimento"
                 #nascimento ="ngModel" required [mdbValidate]="false">
+                <p-message  class="desaparece" [class.aparece]="nascimento.invalid && nascimento.touched"  severity="error" text="O campo ´nascimento´ não pode estar vazio" summary="Inváldo" closable="false"></p-message>
               </div>
             </td>
           </tr>
-
         </table>
-         
-
-          
-
-         
-
-          
-
-          
-
-          
-
-
-          <br><br>
-          {{ f.invalid }}
-          <button mdbBtn type="button" color="default" class="waves-light" block="true" mdbWavesEffect (click)="adicionarAluno()" [disabled]="f.invalid">Cadastrar</button>
+        <button mdbBtn type="button" color="default" class="waves-light" block="true" mdbWavesEffect (click)="adicionarAluno()" [disabled]="f.invalid">Cadastrar</button>
       </form>
     </div>
   </div>

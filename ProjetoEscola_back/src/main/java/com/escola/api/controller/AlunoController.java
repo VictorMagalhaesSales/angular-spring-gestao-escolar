@@ -150,6 +150,21 @@ public class AlunoController {
 				throw new DataIntegrityViolationException("Email já cadastrado");
 			}
 		}
+		Aluno alunoOpt = this.alunoRepository.findOne(matricula);		
+		BeanUtils.copyProperties(alunoReq, alunoOpt, "matricula");
+		Aluno alunoDepois =  alunoRepository.save(alunoOpt);
+		
+		return ResponseEntity.ok(alunoDepois);
+	}
+	
+	@PutMapping("/senha/{matricula}")
+	@PreAuthorize("hasAuthority('ROLE_EDITAR_ALUNO')")
+	public ResponseEntity<Aluno> atualizarAluno2(@PathVariable Long matricula, @Valid @RequestBody Aluno alunoReq){
+		for (Professor professor: this.professorRepository.findAll()) {
+			if(professor.getEmail().equalsIgnoreCase(alunoReq.getEmail())) {
+				throw new DataIntegrityViolationException("Email já cadastrado");
+			}
+		}
 		alunoReq.setSenha(encoder.encode(alunoReq.getSenha()));
 		Aluno alunoOpt = this.alunoRepository.findOne(matricula);		
 		BeanUtils.copyProperties(alunoReq, alunoOpt, "matricula");

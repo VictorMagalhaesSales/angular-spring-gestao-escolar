@@ -4,7 +4,6 @@ import { ProfessorService } from './../../../servicos/professor.service';
 import { ProfessorModel } from './../../model';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
   selector: 'app-adicionar-professor',
@@ -15,6 +14,8 @@ export class AdicionarProfessorComponent implements OnInit {
 
   professor = new ProfessorModel();
   disciplina: Disciplina[];
+
+  mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
   disci: Disciplina;
 

@@ -14,6 +14,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarProfessorComponent implements OnInit {
 
+  
+  mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
+
   nome: string;
   sobrenome: string;
   nascimento: string;
@@ -97,9 +100,10 @@ export class ListarProfessorComponent implements OnInit {
   }
 
   editarProfessor1(professor: ProfessorModel){
-    this.professorService.pesquisarProfessorPorId(professor.id).then( al => this.professorAtualizar = al);
+    this.professorService.pesquisarProfessorPorId(professor.id).then( al => {this.professorAtualizar = al; this.disci = al.disciplina; console.log(this.disci);});
   }
   editarProfessor2(){
+    this.professorAtualizar.disciplina = this.disci.nome;
     this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar)
       .then(()=> this.pesquisar(""))
       .catch(erro => {

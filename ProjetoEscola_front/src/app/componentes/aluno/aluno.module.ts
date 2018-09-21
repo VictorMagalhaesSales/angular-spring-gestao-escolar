@@ -1,3 +1,4 @@
+import { TextMaskModule } from 'angular2-text-mask';
 import { ToastModule } from 'primeng/toast';
 import { AppRoutingModule } from './../../app-routing.module';
 import { NgModule } from '@angular/core';
@@ -6,10 +7,10 @@ import { FormsModule } from '@angular/forms';
 
 import {TableModule} from 'primeng/table';
 import { WavesModule, ButtonsModule, TooltipModule, ModalModule, InputsModule } from 'angular-bootstrap-md';
-import {ButtonModule} from 'primeng/button';
-import {GrowlModule} from 'primeng/growl';
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { ButtonModule} from 'primeng/button';
+import { GrowlModule} from 'primeng/growl';
+import { MessagesModule} from 'primeng/messages';
+import { MessageModule} from 'primeng/message';
 
 import { AlunoService } from './../../servicos/aluno.service';
 import { ListarAlunosComponent } from './listar-alunos/listar-alunos.component';
@@ -31,6 +32,7 @@ import { NotasEFaltasComponent } from './notas-e-faltas/notas-e-faltas.component
     CommonModule,
     FormsModule,
     AppRoutingModule,
+    TextMaskModule,
 
     // MDB
     WavesModule,
