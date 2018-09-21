@@ -14,11 +14,15 @@ import { Message } from 'primeng/components/common/message';
 export class AdicionarAlunoComponent implements OnInit {
 
 
+  uploadedFiles: any[] = [];
+
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   msgs: Message[] = [];
   
   aluno = new AlunoModel();
 
+
+  
   constructor(private alunoService: AlunoService, private rota: Router, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
@@ -26,7 +30,14 @@ export class AdicionarAlunoComponent implements OnInit {
     this.title.setTitle("Adicionar aluno");
   }
 
-c
+
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+}
+
   adicionarAluno(){
     this.alunoService.adicionarAluno(this.aluno)
       .then(() => this.rota.navigate(['../../aluno/listaraluno']))

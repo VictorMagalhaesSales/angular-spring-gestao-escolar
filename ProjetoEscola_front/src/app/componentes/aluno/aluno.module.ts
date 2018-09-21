@@ -11,6 +11,7 @@ import { ButtonModule} from 'primeng/button';
 import { GrowlModule} from 'primeng/growl';
 import { MessagesModule} from 'primeng/messages';
 import { MessageModule} from 'primeng/message';
+import { FileUploadModule } from 'primeng/fileupload';
 
 import { AlunoService } from './../../servicos/aluno.service';
 import { ListarAlunosComponent } from './listar-alunos/listar-alunos.component';
@@ -48,7 +49,8 @@ import { NotasEFaltasComponent } from './notas-e-faltas/notas-e-faltas.component
     InputsModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    FileUploadModule
   ],
   exports: [
     ListarAlunosComponent

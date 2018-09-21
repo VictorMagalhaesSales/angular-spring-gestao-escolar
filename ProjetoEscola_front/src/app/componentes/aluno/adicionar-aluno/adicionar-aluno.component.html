@@ -67,6 +67,18 @@
               </div>
             </td>
           </tr>
+          <tr>
+            <td>
+                <p-fileUpload name="demo[]" url="../../../../assets/imgs/"
+                        multiple="multiple" accept="image/*" maxFileSize="1000000">
+                    <ng-template pTemplate="content">
+                        <ul *ngIf="uploadedFiles.length">
+                            <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                        </ul>
+                    </ng-template>
+                </p-fileUpload>
+            </td>
+          </tr>
         </table>
         <button mdbBtn type="button" color="default" class="waves-light" block="true" mdbWavesEffect (click)="adicionarAluno()" [disabled]="f.invalid">Cadastrar</button>
       </form>
