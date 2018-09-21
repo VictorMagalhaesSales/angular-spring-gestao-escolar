@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService } from './../seguranca/auth.service';
 import { AlunoModel, NotasModel, FaltasModel } from './../componentes/model';
@@ -14,8 +15,11 @@ const auth = new JwtHelperService();
 })
 export class AlunoService{
 
+  url: string = environment.api;
+
   constructor(private http: HttpClient, private auth: AuthService, private rota: Router) {
   }
+
 
   pesquisarAlunos(filtro: AlunoFiltro): Promise<any>{
     if (this.auth.isAcessTokenInvalid()){
@@ -30,7 +34,7 @@ export class AlunoService{
           filtro.telefone = "";
         }
 
-        return this.http.get("http://localhost:8080/aluno", {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "email": filtro.email, "telefone": filtro.telefone} })
+        return this.http.get(`${this.url}/aluno`,{params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "email": filtro.email, "telefone": filtro.telefone} })
             .toPromise()
             .then(response => response )
             .catch( response => {
@@ -49,7 +53,7 @@ export class AlunoService{
         filtro.telefone = "";
       }
 
-      return this.http.get("http://localhost:8080/aluno", {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "email": filtro.email, "telefone": filtro.telefone} })
+      return this.http.get(`${this.url}/aluno`, {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "email": filtro.email, "telefone": filtro.telefone} })
           .toPromise()
           .then(response => response )
           .catch( response => {
@@ -62,7 +66,7 @@ export class AlunoService{
   pesquisarAlunoPorId(matricula: number): Promise<any>{
     this.atualizarToken();
     
-    return this.http.get(`http://localhost:8080/aluno/${matricula}`)
+    return this.http.get(`${this.url}/aluno/${matricula}`)
       .toPromise()
       .then(response => response)
       .catch( response => {
@@ -74,7 +78,7 @@ export class AlunoService{
   deletarAluno(matricula: number): Promise<void>{
     this.atualizarToken();
     
-    return this.http.delete(`http://localhost:8080/aluno/${matricula}`)
+    return this.http.delete(`${this.url}/aluno/${matricula}`)
       .toPromise()
       .then(() => null);
   }
@@ -82,7 +86,7 @@ export class AlunoService{
   atualizarAluno(matricula: number, aluno: AlunoModel): Promise<any>{
     this.atualizarToken();
     
-    return this.http.put(`http://localhost:8080/aluno/${matricula}`,aluno)
+    return this.http.put(`${this.url}/aluno/${matricula}`,aluno)
       .toPromise()
       .then(()=> null)
       .catch( response => {
@@ -94,7 +98,7 @@ export class AlunoService{
   atualizarAluno2(matricula: number, aluno: AlunoModel): Promise<any>{
     this.atualizarToken();
     
-    return this.http.put(`http://localhost:8080/aluno/senha/${matricula}`,aluno)
+    return this.http.put(`${this.url}/aluno/senha/${matricula}`,aluno)
       .toPromise()
       .then(()=> null)
       .catch( response => {
@@ -106,7 +110,7 @@ export class AlunoService{
   adicionarAluno(aluno: AlunoModel): Promise<any>{
     this.atualizarToken();
     
-    return this.http.post("http://localhost:8080/aluno", aluno)
+    return this.http.post(`${this.url}/aluno`, aluno)
       .toPromise()
       .then(al => al)
       .catch( response => {
@@ -118,7 +122,7 @@ export class AlunoService{
   pesquisarNotas(): Promise<any>{
     this.atualizarToken();
     
-    return this.http.get("http://localhost:8080/notas")
+    return this.http.get(`${this.url}/notas`)
       .toPromise()
       .then((al) => al)
       .catch( response => {
@@ -130,7 +134,7 @@ export class AlunoService{
   atualizarNotas(matricula: number, materia: string, nota: NotasModel): Promise<any>{
     this.atualizarToken();
     
-    return this.http.put(`http://localhost:8080/notas/${matricula}/${materia}`,nota)
+    return this.http.put(`${this.url}/notas/${matricula}/${materia}`,nota)
       .toPromise()
       .then(al => al)
       .catch( response => {
@@ -142,7 +146,7 @@ export class AlunoService{
   pesquisarFaltas(): Promise<any>{
     this.atualizarToken();
 
-    return this.http.get("http://localhost:8080/faltas")
+    return this.http.get(`${this.url}/faltas`)
       .toPromise()
       .then((al) => al)
       .catch( response => {
@@ -155,7 +159,7 @@ export class AlunoService{
   atualizarFaltas(matricula: number, materia: string, faltas: FaltasModel): Promise<any>{
     this.atualizarToken();
     
-    return this.http.put(`http://localhost:8080/faltas/${matricula}/${materia}`,faltas)
+    return this.http.put(`${this.url}/faltas/${matricula}/${materia}`,faltas)
       .toPromise()
       .then(al => al)
       .catch( response => {

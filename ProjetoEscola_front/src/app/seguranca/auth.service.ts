@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment.prod';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { HttpClient } from '@angular/common/http';
@@ -11,7 +12,8 @@ const auth = new JwtHelperService();
 })
 export class AuthService {
 
-  url = 'http://localhost:8080/oauth/token';
+  urlApi: string = environment.api;
+  url = `${this.urlApi}/oauth/token`;
   jwtPayload: any;
   obj: any;
 
@@ -75,7 +77,7 @@ export class AuthService {
     }
 
     limparAcessToken(){
-      return this.http.delete("http://localhost:8080/token/revoke", { withCredentials: true })
+      return this.http.delete(`${this.urlApi}/token/revoke`, { withCredentials: true })
       .toPromise()
       .then(() => {
         localStorage.removeItem('token');

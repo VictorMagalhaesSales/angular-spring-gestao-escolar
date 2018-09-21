@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AuthService } from './../seguranca/auth.service';
 import { ProfessorModel } from './../componentes/model';
 import { ProfessorFiltro } from './../componentes/professor/professor-filtro.model';
@@ -8,6 +9,8 @@ import { Injectable, OnInit } from '@angular/core';
   providedIn: 'root'
 })
 export class ProfessorService{
+
+  url: string = environment.api;
 
   constructor(private http: HttpClient, private auth: AuthService){
   }
@@ -26,7 +29,7 @@ export class ProfessorService{
     }if(filtro.telefone == null){
       filtro.telefone = "";
     }
-    return this.http.get("http://localhost:8080/professor", {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "disciplina": filtro.disciplina, "email": filtro.email, "telefone": filtro.telefone} })
+    return this.http.get(`${this.url}/professor`, {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "disciplina": filtro.disciplina, "email": filtro.email, "telefone": filtro.telefone} })
           .toPromise()
           .then(response => response)
           .catch( response => {
@@ -38,7 +41,7 @@ export class ProfessorService{
   pesquisarProfessorPorId(id: number): Promise<any>{
     this.atualizarToken();
 
-    return this.http.get(`http://localhost:8080/professor/${id}`)
+    return this.http.get(`${this.url}/professor/${id}`)
           .toPromise()
           .then(response =>response)
           .catch( response => {
@@ -50,7 +53,7 @@ export class ProfessorService{
   deletarProfessor(id: number): Promise<void>{
     this.atualizarToken();
 
-    return this.http.delete(`http://localhost:8080/professor/${id}`)
+    return this.http.delete(`${this.url}/professor/${id}`)
       .toPromise()
       .then(() => null)
       .catch( response => {
@@ -62,7 +65,7 @@ export class ProfessorService{
   atualizarProfessor(id: number, professor: ProfessorModel): Promise<any>{
     this.atualizarToken();
 
-    return this.http.put(`http://localhost:8080/professor/${id}`,professor)
+    return this.http.put(`${this.url}/professor/${id}`,professor)
       .toPromise()
       .then(()=> null)
       .catch( response => {
@@ -74,7 +77,7 @@ export class ProfessorService{
   atualizarProfessor2(id: number, professor: ProfessorModel): Promise<any>{
     this.atualizarToken();
 
-    return this.http.put(`http://localhost:8080/professor/senha/${id}`,professor)
+    return this.http.put(`${this.url}/professor/senha/${id}`,professor)
       .toPromise()
       .then((res) => res)
       .catch( response => {
@@ -85,7 +88,7 @@ export class ProfessorService{
 
   adicionarProfessor(professor: ProfessorModel): Promise<any>{
     this.atualizarToken();
-    return this.http.post("http://localhost:8080/professor", professor)
+    return this.http.post(`${this.url}/professor`, professor)
       .toPromise()
       .then(() => null)
       .catch( response => {

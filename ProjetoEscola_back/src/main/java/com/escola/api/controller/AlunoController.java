@@ -1,6 +1,9 @@
 package com.escola.api.controller;
 
 import java.awt.List;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -21,7 +24,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.escola.api.model.Aluno;
 import com.escola.api.model.Faltas;
@@ -52,6 +57,14 @@ public class AlunoController {
 	private FaltasRepository faltasRepository;
 	
 	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+	
+	@PostMapping("/anexo")
+	public String uploadImagem(@RequestParam MultipartFile anexo) throws IOException {
+		OutputStream out = new FileOutputStream("C:\\Users\\victor.sales\\Desktop\\ProjetoEscola\\ProjetoEscola_front\\src\\assets\\imgs\\perfil\\" + anexo.getOriginalFilename());
+		out.write(anexo.getBytes());
+		out.close();
+		return anexo.getOriginalFilename();
+	}
 	
 	@GetMapping
 	@PreAuthorize("hasAuthority('ROLE_LISTAR_ALUNOS')")

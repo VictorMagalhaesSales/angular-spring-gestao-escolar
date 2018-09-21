@@ -15,7 +15,7 @@ import { AuthService } from '../../../seguranca/auth.service';
 export class PerfilAlunoComponent implements OnInit {
 
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-  
+
   
   uploadedFiles: any[] = [];
   aluno = new AlunoModel();
@@ -23,6 +23,7 @@ export class PerfilAlunoComponent implements OnInit {
   novaSenha: string;
   novaSenha2: string;
 
+  imagemPerf: string = "../../../../assets/imgs/perfil/" + localStorage.getItem('img');
   
   profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
   profEmail = [];
@@ -31,6 +32,14 @@ export class PerfilAlunoComponent implements OnInit {
   arrayNotas: Array<NotasModel> = new Array<NotasModel>();
 
   constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService){ }
+
+  
+
+  pegarNome(nome){
+    localStorage.setItem('img', nome.xhr.response);
+    alert(localStorage.getItem('img'));
+    
+  }
 
   ngOnInit() {
     this.alunoService.atualizarToken();
@@ -122,6 +131,10 @@ export class PerfilAlunoComponent implements OnInit {
        }
      }).catch( (erro) => console.log(erro));
    }
+
+   antesUploadAnexo(event) {
+    event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+  }
 
 }
 

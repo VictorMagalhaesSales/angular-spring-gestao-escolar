@@ -1,10 +1,5 @@
-
-INSERT INTO aluno VALUES
-(0,"Victor","Magalhães","2001-01-29","admin@algamoney.com","$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.","85 988400644","c://imagems/ae.png");
-
 INSERT INTO professor VALUES
-(0, "Administrador", "MASTER", "MASTER", "2018-12-09", "adm@adm.com", "$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.", "MASTER", "MASTER" ),
-(0, "Kelmy", "Carmurça", "Português", "2001-01-01", "kelmy@gmail.com", "$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.", "988400644", "c://imagems/ae.png");
+(0, "Administrador", "MASTER", "MASTER", "2018-12-09", "adm@adm.com", "$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.", "MASTER", "MASTER" );
 
 INSERT INTO materia VALUES("Java");
 INSERT INTO materia VALUES("PHP");
@@ -39,9 +34,6 @@ INSERT INTO permissao (codigo, descricao) values (17, 'ROLE_EDITAR_PROFESSOR');
 
 INSERT INTO permissao (codigo, descricao) values (18, 'ROLE_EDITAR_FALTA');
 
--- aluno
-INSERT INTO aluno_permissao(codigo_aluno,codigo_permissao) VALUES 
-(1,2),(1,5),(1,6),(1,9),(1,13);
 
 -- professor
 INSERT INTO professor_permissao(codigo_professor,codigo_permissao) VALUES

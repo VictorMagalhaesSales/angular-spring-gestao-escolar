@@ -66,10 +66,70 @@
 	(x) Mensagens
 	(x) Corrigir todos
  (x) Letras passando da tabela
- ( ) Erros com mensagens padrão
+ (x) Erros com mensagens padrão
 
- ( ) Imagem no BD
- ( ) Acess token não vai de primeira
+ (x) Imagem no BD
+ (x) Acess token não vai de primeira
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Nome das variáveis;
+* Nome dos métodos
+* Criar serviços no back-and e serparar regras de negócios do controller;
+* Nomes das variáveis de url; 							!!CORRIGIDO!!
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -91,7 +151,7 @@
 
 (0)===--- BackEnd---===(0)
 • Segurança e autenticação: 
-Para segurança e autenticação, utilizei o protoloco Oauth2, que possui Authorization Server que me envia o token de acessso, no caso o acess token que expira com 20 segundos, por questões de segurança, e o refresh token que atualiza sempre esse meu acess token. O Refresh token é passado via cookie, para melhorar a segurança. A partir dai ele faz a autenticação pelo BD;
+Para segurança e autenticação, utilizei o protoloco Oauth2, que possui Authorization Server que me envia o token de acessso, no caso o acess token que expira com 5min segundos, por questões de segurança, e o refresh token que atualiza sempre esse meu acess token. O Refresh token é passado via cookie, para melhorar a segurança. A partir dai ele faz a autenticação pelo BD;
 • Tratamento de erros:
 Além do bean validator que controla o not null, size, manda mensagem bonitinha e etc, eu utilizei o exceptionhandler pra pegar minhas exceções e deixar elas padronizadas;
 • CRUDS:
