@@ -80,9 +80,12 @@ export class AuthService {
       return this.http.delete(`${this.urlApi}/token/revoke`, { withCredentials: true })
       .toPromise()
       .then(() => {
-        localStorage.removeItem('token');
-        this.jwtPayload = null;
-      });
+        if(localStorage.getItem('token') != null){
+          localStorage.removeItem('token');
+          this.jwtPayload = null;
+        }
+      })
+      .catch((res) => console.log(res));
      
     }
     

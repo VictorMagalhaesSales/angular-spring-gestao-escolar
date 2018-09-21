@@ -11,7 +11,7 @@
         </table>     
 
         <div class="col-12">
-            <p-table [value]="cars" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
+            <p-table [value]="listaDeAlunos" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns" class="titulo" style="color: white;">

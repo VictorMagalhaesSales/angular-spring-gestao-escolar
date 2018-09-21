@@ -85,9 +85,9 @@
 
 
 * Nome das variáveis;
-* Nome dos métodos
+* Nome dos métodos;
 * Criar serviços no back-and e serparar regras de negócios do controller;
-* Nomes das variáveis de url; 							!!CORRIGIDO!!
+* Nomes das variáveis de url.							!!CORRIGIDO!!
 
 
 
