@@ -16,6 +16,8 @@ export class PerfilAlunoComponent implements OnInit {
 
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   
+  
+  uploadedFiles: any[] = [];
   aluno = new AlunoModel();
   alunoAtualizar = new OutroModel();
   novaSenha: string;
@@ -34,6 +36,14 @@ export class PerfilAlunoComponent implements OnInit {
     this.alunoService.atualizarToken();
     this.carregarAlunoPorEmail();
     this.title.setTitle("Meu perfil");
+  }
+
+  
+  onUpload(event) {
+    for(let file of event.files) {
+        this.uploadedFiles.push(file);
+    }
+    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
   }
 
   chamarAluno(matricula: number){

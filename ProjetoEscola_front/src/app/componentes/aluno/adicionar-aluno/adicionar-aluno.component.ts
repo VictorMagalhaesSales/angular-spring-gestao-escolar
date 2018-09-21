@@ -14,8 +14,6 @@ import { Message } from 'primeng/components/common/message';
 export class AdicionarAlunoComponent implements OnInit {
 
 
-  uploadedFiles: any[] = [];
-
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   msgs: Message[] = [];
   
@@ -31,12 +29,6 @@ export class AdicionarAlunoComponent implements OnInit {
   }
 
 
-  onUpload(event) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
 
   adicionarAluno(){
     this.alunoService.adicionarAluno(this.aluno)
