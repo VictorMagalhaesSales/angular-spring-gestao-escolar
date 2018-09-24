@@ -5,7 +5,270 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-24T13:48:23Z</updated>
+  <updated>2018-09-24T17:48:55Z</updated>
+  <entry>
+    <title>Spring Integration, AMQP and Kafka Release Candidates Available</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/24/spring-integration-amqp-and-kafka-release-candidates-available" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Artem Bilan</name>
+    </author>
+    <id>tag:spring.io,2018-09-24:3412</id>
+    <updated>2018-09-24T17:48:55Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;On behalf of Spring Integration team I&amp;#8217;m pleased to announce Release Candidates for the Spring Messaging projects. Each is based on the recently released &lt;a href="https://spring.io/blog/2018/09/21/spring-framework-5-1-goes-ga"&gt;Spring Framework 5.1 GA&lt;/a&gt;,  has upgraded dependencies and will be part of the upcoming &lt;a href="https://github.com/spring-projects/spring-boot/milestone/122"&gt;Spring Boot 2.1 M4&lt;/a&gt; - just in time for &lt;a href="https://springoneplatform.io/"&gt;Spring One Platform&lt;/a&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The artifacts for these projects are available in the &lt;a href="http://repo.spring.io/milestone/"&gt;Spring Milestone&lt;/a&gt; repository.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Please, refer to the &lt;code&gt;What&amp;#8217;s New&lt;/code&gt; chapter in each Reference Manual for more information about new features and notable changers for each project mentioned below.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="spring-amqp"&gt;&lt;a class="anchor" href="#spring-amqp"&gt;&lt;/a&gt;Spring AMQP&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-amqp/releases/tag/v2.1.0.RC1"&gt;2.1.0.RC1&lt;/a&gt; release notes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="http://projects.spring.io/spring-amqp/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-amqp"&gt;GitHub&lt;/a&gt; | &lt;a href="https://jira.spring.io/browse/AMQP"&gt;JIRA&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-amqp/docs/2.1.0.RC1/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-amqp"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-amqp"&gt;Gitter&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="spring-for-apache-kafka"&gt;&lt;a class="anchor" href="#spring-for-apache-kafka"&gt;&lt;/a&gt;Spring for Apache Kafka&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-kafka/releases/tag/v2.2.0.RC1"&gt;2.2.0.RC1&lt;/a&gt; Release notes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="http://projects.spring.io/spring-kafka/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-kafka"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-kafka/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-kafka/docs/2.2.0.RC1/reference/html/"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-kafka"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-kafka"&gt;Gitter&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="spring-integration"&gt;&lt;a class="anchor" href="#spring-integration"&gt;&lt;/a&gt;Spring Integration&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-integration/releases/tag/v5.1.0.RC1"&gt;5.1.0.RC1&lt;/a&gt; release notes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There are several features I would like to mention here since they are not documented yet (we are going to do that during GA release):&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Java DSL &lt;code&gt;fluxTransform()&lt;/code&gt; operator&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To hand off the message processing to Reactive Streams, the Java DSL for Spring Integration introduced an intermediate &lt;code&gt;fluxTransform()&lt;/code&gt;, e.g.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-javal" data-lang="javal"&gt;IntegrationFlow integrationFlow = f -&amp;gt; f
+    .split()
+    .&amp;lt;String, String&amp;gt;fluxTransform(flux -&amp;gt; flux
+                                .map(Message::getPayload
+                                .map(String::toUpperCase))
+    .aggregate();&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;This operator accepts an argument in form of &lt;code&gt;Function&amp;lt;? super Flux&amp;lt;Message&amp;lt;I&amp;gt;&amp;gt;, ? extends Publisher&amp;lt;O&amp;gt;&amp;gt;&lt;/code&gt;. The Framework injects &lt;code&gt;FluxMessageChannel&lt;/code&gt; s before and after calling this function. The it builds a &lt;code&gt;Flux&lt;/code&gt; to store a request message to the subscriber context, calls &lt;code&gt;Flux.transform()&lt;/code&gt; with the provided function and copies headers from the request message if the result from the function is not a &lt;code&gt;Message&amp;lt;?&amp;gt;&lt;/code&gt; already.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Reactive Polling&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Another new feature is a &lt;strong&gt;Reactive polling&lt;/strong&gt; for the &lt;code&gt;SourcePollingChannelAdapter&lt;/code&gt;. If the output channel is an instance of &lt;code&gt;FluxMessageChannel&lt;/code&gt;, the Framework transform all the polling options to the &lt;code&gt;Flux.generate()&lt;/code&gt; based on the result of the &lt;code&gt;trigger.nextExecutionTime(triggerContext)&lt;/code&gt; and a combination with the &lt;code&gt;Mono.delay(duration)&lt;/code&gt; to achieve a polling feature reactive manner.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Other Java DSL changes&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Also we added several other convenient operators to Java DSL, like &lt;code&gt;nullChannel()&lt;/code&gt; and &lt;code&gt;logAndReply()&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;And finally the Java DSL has been improved for an improved Kotlin experience without breaking changes for regular Java configuration.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="http://projects.spring.io/spring-integration/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-integration"&gt;GitHub&lt;/a&gt; | &lt;a href="https://jira.spring.io/browse/INT"&gt;JIRA&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-integration/docs/5.1.0.RC1/reference/html"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-integration"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-integration"&gt;Gitter&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="spring-integration-extension-for-spring-for-apache-kafka"&gt;&lt;a class="anchor" href="#spring-integration-extension-for-spring-for-apache-kafka"&gt;&lt;/a&gt;Spring Integration extension for Spring for Apache Kafka&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-projects/spring-integration-kafka/releases/tag/v3.1.0.RC1"&gt;3.1.0.RC1&lt;/a&gt;  Release notes.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Based on the above mentioned  Spring for Apache Kafka &lt;code&gt;2.2.0.RC1&lt;/code&gt; and Spring Integration &lt;code&gt;5.1.0.RC1&lt;/code&gt;, provides some compatibility fixes (especially with Kotlin) and some minor features, like an &lt;code&gt;onPartitionsAssignedSeekCallback&lt;/code&gt; for the &lt;code&gt;KafkaInboundGateway&lt;/code&gt; and &lt;code&gt;KafkaMessageDrivenChannelAdapter&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;See Spring for Apache Kafka &lt;a href="http://docs.spring.io/spring-kafka/docs/2.2.0.RC1/reference/html"&gt;Reference Manual&lt;/a&gt; for more information about this extension.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="feedback-welcome"&gt;&lt;a class="anchor" href="#feedback-welcome"&gt;&lt;/a&gt;Feedback Welcome!&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Please, try all these new bits and come back to us with any feedback via any available channel. We will appreciate the help before we are going to GAs in mid October just in time for Spring Boot &lt;code&gt;2.1 GA&lt;/code&gt;!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Thank you everyone who contributed to all these project any possible way!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="springone-platform-2018"&gt;&lt;a class="anchor" href="#springone-platform-2018"&gt;&lt;/a&gt;SpringOne Platform 2018&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Right now we are heading to start an epic event in Spring and Pivotal world - &lt;a href="https://springoneplatform.io/"&gt;Spring One Platform&lt;/a&gt;! Gary Russell is going to talk about &lt;a href="https://springoneplatform.io/2018/sessions/walking-up-the-spring-for-apache-kafka-stack"&gt; Spring for Apache Kafka&lt;/a&gt; together with Viktor Gamov from Confluent and I will talk about &lt;a href="https://springoneplatform.io/2018/sessions/global-event-streams-made-simple-with-spring-cloud-stream-cloud-pub-sub"&gt;Spring Cloud Stream Binder for Google Cloud Pub/Sub&lt;/a&gt; together with Kir Titievsky from Google Cloud Platform. Please, join us if you are here or watch video later!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Session BOM Bean-RC1 Released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/24/spring-session-bom-bean-rc1-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Rob Winch</name>
+    </author>
+    <id>tag:spring.io,2018-09-24:3413</id>
+    <updated>2018-09-24T17:33:42Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;em&gt;This post was authored by &lt;a href="https://github.com/vpavic"&gt;Vedran Pavi?&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;On behalf of the community, I&amp;#8217;m pleased to announce the release of Spring Session BOM &lt;code&gt;Bean-RC1&lt;/code&gt;. This release is based on Spring Session &lt;code&gt;2.1.0.RC1&lt;/code&gt; which resolves a total of &lt;a href="https://github.com/spring-projects/spring-session/milestone/42?closed=1"&gt;13 issues&lt;/a&gt;. Please read on for the highlights of the release.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="support-for-java-11"&gt;&lt;a class="anchor" href="#support-for-java-11"&gt;&lt;/a&gt;Support for Java 11&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Session now supports Java 11, while the required version of course stays at Java 8. Our CI pipeline has been enhanced so that the project is now continuously verified against Java 8, 10 and 11.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="dependency-upgrades"&gt;&lt;a class="anchor" href="#dependency-upgrades"&gt;&lt;/a&gt;Dependency Upgrades&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Session &lt;code&gt;2.1.0.RC1&lt;/code&gt; builds on the following latest and greatest releases of key dependencies:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Framework &lt;code&gt;5.1.0.RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Data &lt;code&gt;Lovelace-RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Spring Security &lt;code&gt;5.1.0.RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Project Reactor &lt;code&gt;Californium-RELEASE&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Hazelcast &lt;code&gt;3.10.5&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="other"&gt;&lt;a class="anchor" href="#other"&gt;&lt;/a&gt;Other&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The release also provide a few bug fixes and performance improvements, most notably:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Improved &lt;code&gt;JdbcOperationsSessionRepository&lt;/code&gt; performance by deserializing attributes lazily: &lt;a href="https://github.com/spring-projects/spring-session/pull/1133"&gt;#1133&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Improved &lt;code&gt;HazelcastSessionRepository#save&lt;/code&gt; performance by leveraging Hazelcast&amp;#8217;s &lt;code&gt;Offloadable&lt;/code&gt;: &lt;a href="https://github.com/spring-projects/spring-session/issues/1204"&gt;#1204&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Fixed &lt;code&gt;RedisOperationsSessionRepository&lt;/code&gt; incorrect &lt;code&gt;HttpSessionEvent&lt;/code&gt; handling when using multiple databases within the same Redis instance: &lt;a href="https://github.com/spring-projects/spring-session/issues/1128"&gt;#1128&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="feedback-please"&gt;&lt;a class="anchor" href="#feedback-please"&gt;&lt;/a&gt;Feedback Please&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With the release of its first release candidate, the Spring Session &lt;code&gt;Bean&lt;/code&gt; is now considered mostly feature-complete, and we turn to you, our community, to provide us with feedback before releasing a stable &lt;code&gt;Bean-RELEASE&lt;/code&gt;. This is expected in mid-October, shortly before Spring Boot &lt;code&gt;2.1.0.RC1&lt;/code&gt; is released.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;You can give Spring Session &lt;code&gt;Bean-RC1&lt;/code&gt; a spin by configuring your dependency management as follows:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With Maven:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;dependencyManagement&amp;gt;
+	&amp;lt;dependencies&amp;gt;
+		&amp;lt;dependency&amp;gt;
+			&amp;lt;groupId&amp;gt;org.springframework.session&amp;lt;/groupId&amp;gt;
+			&amp;lt;artifactId&amp;gt;spring-session-bom&amp;lt;/artifactId&amp;gt;
+			&amp;lt;version&amp;gt;Bean-RC1&amp;lt;/version&amp;gt;
+			&amp;lt;type&amp;gt;pom&amp;lt;/type&amp;gt;
+			&amp;lt;scope&amp;gt;import&amp;lt;/scope&amp;gt;
+		&amp;lt;/dependency&amp;gt;
+	&amp;lt;/dependencies&amp;gt;
+&amp;lt;/dependencyManagement&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With Gradle:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-gradle" data-lang="gradle"&gt;plugins {
+	id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom 'org.springframework.session:spring-session-bom:Bean-RC1'
+	}
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Boot early adopters will be happy to learn that the upcoming &lt;code&gt;2.1.0.M4&lt;/code&gt; will pick up Spring Session &lt;code&gt;Bean-RC1&lt;/code&gt;, while Spring Boot &lt;code&gt;2.0.x&lt;/code&gt; users can simply update &lt;code&gt;spring-session-bom.version&lt;/code&gt; property as follows:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With Maven:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;properties&amp;gt;
+	&amp;lt;sspring-session-bom.version&amp;gt;Bean-RC1&amp;lt;/spring-session-bom.version&amp;gt;
+&amp;lt;/properties&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With Gradle:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-gradle" data-lang="gradle"&gt;ext['spring-session-bom.version'] = 'Bean-RC1'&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://projects.spring.io/spring-session/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://docs.spring.io/spring-session/docs/2.1.0.RC1/reference/html5/"&gt;Documentation&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-session/issues"&gt;Issues&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-session"&gt;Gitter&lt;/a&gt; | &lt;a href="https://stackoverflow.com/questions/tagged/spring-session"&gt;Stack Overflow&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>Spring Data JDBC, References, and Aggregates</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/24/spring-data-jdbc-references-and-aggregates" />
@@ -1314,276 +1577,6 @@ open fun kotlinSupplier(): () -&amp;gt; String {&#xD;
 &lt;div class="paragraph"&gt;
 &lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; |
 &lt;a href="http://docs.spring.io/spring-security/site/docs/4.2.x/reference/htmlsingle/"&gt;4.x Reference&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-security/site/docs/5.0.x/reference/htmlsingle/"&gt;5.x Reference&lt;/a&gt;
-| &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - September 11th, 2018</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/11/this-week-in-spring-september-11th-2018" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2018-09-11:3389</id>
-    <updated>2018-09-11T12:15:41Z</updated>
-    <content type="html">&lt;p&gt;Hi Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! This week I&amp;rsquo;m in Istanbul, Turkey, talking to customers and participating in the epic SpringOne Platform Istanbul event and otherwise generally preparing for &lt;a href="_URL_"&gt;the flagship SpringOne Platform 2018 event in just a few short weeks&lt;/a&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Spring Security lead Josh Cummings just &lt;a href="https://spring.io/blog/2018/09/10/spring-security-5-1-0-rc2-released"&gt;announced Spring Security 5.1.0.RC2&lt;/a&gt;. The new release supports a ton of new stuff including a simplified DSL for OAuth 2, &lt;code&gt;WebClient&lt;/code&gt; extensions, servlet enhancements, improved resource server support, improved &lt;code&gt;RestTemplate&lt;/code&gt; support, support for X.509 and use of environment variables for configuring LDAP.&lt;/li&gt;
-  &lt;li&gt;Mark Paluch has just announced the &lt;em&gt;packed&lt;/em&gt; &lt;a href="https://spring.io/blog/2018/09/10/spring-data-ingalls-sr15-and-kay-sr10-released"&gt;Spring Data Ingalls SR15 and Spring Data Kay SR10&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Mark Paluch has just announced Spring Vault 2.0.2, which &lt;a href="https://spring.io/blog/2018/09/10/spring-vault-2-0-2-released"&gt;delivers dependency updates and some minor bug fixes&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Mark Paluch just announced &lt;a href="https://spring.io/blog/2018/09/10/spring-vault-2-1-goes-rc"&gt;the Spring Vault 2.1 release candidate&lt;/a&gt;. Spring Vault 2.1 requires JDK 8 or higher and specifically supports JDK 11 as the next long-term support release. This release ships with 15 tickets fixed along with some refinements for Java 9 to 11. The most notable changes are support for Azure authentication with managed service instances on VMs, GCP IAM authentication support on behalf of service accounts, and the release is compatible with Vault versions from 0.5.2 up to 0.11.1.&lt;/li&gt;
-  &lt;li&gt;Continuing my eight part series that looks at using Spring Cloud with Google Cloud, &lt;a href="https://spring.io/blog/2018/09/10/bootiful-gcp-use-spring-cloud-gcp-to-connect-to-other-gcp-services-7-8"&gt;this 7th installment looks at using Spring Cloud GCP to connect to other GCP Services&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Stéphane Nicoll just &lt;a href="https://spring.io/blog/2018/09/07/spring-framework-5-1-rc3-5-0-9-and-4-3-19-available-now"&gt;announced Spring Framework 5.1 RC3, 5.0.9 and 4.3.19&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Continuing my eight part series that looks at using Spring Cloud with Google Cloud, &lt;a href="https://spring.io/blog/2018/09/06/bootiful-gcp-supporting-observability-with-spring-cloud-gcp-stackdriver-trace-6-8"&gt;this 6th installment looks at supporting observability with Spring Cloud GCP Stackdriver Trace&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Laís Neves looks at her experience at &lt;a href="https://medium.com/@lasneves/minha-experi%C3%AAncia-no-womakerscode-summit-sergipe-47740abc006f"&gt;the WoMakersCode conference&lt;/a&gt;, where she spoke about making Java fun again with Spring Boot, in this Portuguese-language post.&lt;/li&gt;
-  &lt;li&gt;Sajal Chakraborty has a nice post on using &lt;a href="https://howtodoinjava.com/spring5/core/spring-remoting-rmi-hessian/"&gt;Spring&amp;rsquo;s RMI and Hessian service exporters support in a modern Spring Boot context&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;This new Packt book, &lt;a href="https://www.packtpub.com/application-development/mastering-architecting-solutions-spring-5"&gt;Software Architecture with Spring 5.0&lt;/a&gt;, looks interesting. I&amp;rsquo;m adding it to my &amp;ldquo;To Read&amp;rdquo; list..&lt;/li&gt;
-  &lt;li&gt;This &lt;a href="https://medium.com/@igorkosandyak/spring-boot-with-hazelcast-b04d13927745"&gt;post on using Spring Boot and Hazelcast&lt;/a&gt; is helpful. This is pretty a propos given that I&amp;rsquo;m in Istanbul, Turkey, where Hazelcast debuted!&lt;/li&gt;
-  &lt;li&gt;I&amp;rsquo;m honored to be included in this list of &lt;a href="https://www.whizlabs.com/blog/top-java-influencers/"&gt;top 20 Java influencers in this list&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check out Jakub Pilimon&amp;rsquo;s epic guide &lt;a href="https://github.com/ddd-by-examples/all-things-cqrs"&gt;to a couple of possible ways of doing CQRS with the Spring stack&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check out this nice post looking at the Graal VM: &lt;a href="https://medium.com/@jponge/the-graalvm-frenzy-f54257f5932c"&gt;&amp;ldquo;The Graal Frenzy&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Alican Akkus did a nice post on &lt;a href="https://medium.com/@caysever/consumer-driven-contract-with-spring-boot-65ab504b529e"&gt;&amp;ldquo;Consumer Driven Contract with Spring Boot&amp;rdquo;&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;JUnit 5.3 is released! It includes &lt;a href="https://junit.org/junit5/docs/5.3.0/release-notes/"&gt;parallel test execution, output capturing, a new &lt;code&gt;TestInstanceFactory&lt;/code&gt; Extension API, and so much more&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Nice post on the 5 Unexpected Journeys for an Ops Teams at &lt;a href="https://www.linkedin.com/pulse/5-unexpected-journeys-ops-teams-springone-platform-john-allwright/"&gt;the epic SpringOne Platform 2018 event coming in just a few short weeks!&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 5.1.0.RC2 Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/10/spring-security-5-1-0-rc2-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Josh Cummings</name>
-    </author>
-    <id>tag:spring.io,2018-09-07:3384</id>
-    <updated>2018-09-10T15:18:00Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community I am pleased to announce the release of Spring Security 5.1.0.RC2. This release comes with &lt;a href="https://github.com/spring-projects/spring-security/milestone/121?closed=1"&gt;50+ tickets&lt;/a&gt; closed.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;As always we look forward to hearing your &lt;a href="https://github.com/spring-projects/spring-security/issues"&gt;feedback&lt;/a&gt;! You can find the highlights below:&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="table-of-contents" class="sect0"&gt;&lt;a class="anchor" href="#table-of-contents"&gt;&lt;/a&gt;Table of Contents&lt;/h1&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#simplified-dsl-for-oauth2"&gt;Simplified DSL for OAuth2&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#webclient-extensions"&gt;WebClient Extensions&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#servlet-enhancements"&gt;Servlet Enhancements&lt;/a&gt;&lt;/p&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#oauth2"&gt;OAuth2&lt;/a&gt;&lt;/p&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#token-request-configuration"&gt;Token Request Configuration&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#more-provider-configuration-metadata-available"&gt;More Provider Configuration Metadata Available&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#resource-server-claims-mapping"&gt;Resource Server Claims Mapping&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#restoperations-support"&gt;RestOperations Support&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#other-improvements"&gt;Other Improvements&lt;/a&gt;&lt;/p&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#x-509-principal-extractor"&gt;X.509 Principal Extractor&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#ldap-custom-environment-variables"&gt;LDAP Custom Environment Variables&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#webflux-enhancements"&gt;WebFlux Enhancements&lt;/a&gt;&lt;/p&gt;
-&lt;div class="ulist"&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#oauth2-resource-server"&gt;OAuth2 Resource Server&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#oauth2-client"&gt;OAuth2 Client&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#redirect-to-https"&gt;Redirect to Https&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;a href="#dependency-updates"&gt;Dependency Updates&lt;/a&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;h1 id="simplified-dsl-for-oauth2" class="sect0"&gt;&lt;a class="anchor" href="#simplified-dsl-for-oauth2"&gt;&lt;/a&gt;Simplified DSL for OAuth2&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In the beginning, the Spring Security DSL had two oauths:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;http
-    .oauth2Login()...&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;and&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;http
-    .oauth2()
-        .client()...&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;which made some sense, since one was an authentication mechanism, like &lt;code&gt;formLogin&lt;/code&gt; and &lt;code&gt;openidLogin&lt;/code&gt; and the others--&lt;code&gt;client&lt;/code&gt;, &lt;code&gt;resourceServer&lt;/code&gt;, and &lt;code&gt;authorizationServer&lt;/code&gt;--were a bit more like OAuth 2.0 personalities.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In the end, though, that separation felt like needless extra typing, so we resolved to flatten out the hierarchy, which means that, as of this release, we now have:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;http
-    .oauth2Login()...
-    .oauth2Client()...
-    .oauth2ResourceServer()&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;There are no functionality or feature changes tied to this refactoring of the DSL, just less typing  for you.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="webclient-extensions" class="sect0"&gt;&lt;a class="anchor" href="#webclient-extensions"&gt;&lt;/a&gt;WebClient Extensions&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The team has been hard at work with WebClient, and we are excited to announce some new OAuth 2.0 WebClient extensions for both Servlet and WebFlux applications. These extensions make it easy to transmit OAuth 2.0 authorities seamlessly from machine to machine.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Read up on all the details in the &lt;a href="https://github.com/spring-projects/spring-security/issues/4921"&gt;OAuth 2.0 Web Client master ticket&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;h1 id="servlet-enhancements" class="sect0"&gt;&lt;a class="anchor" href="#servlet-enhancements"&gt;&lt;/a&gt;Servlet Enhancements&lt;/h1&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="oauth2"&gt;&lt;a class="anchor" href="#oauth2"&gt;&lt;/a&gt;OAuth2&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="token-request-configuration"&gt;&lt;a class="anchor" href="#token-request-configuration"&gt;&lt;/a&gt;Token Request Configuration&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The first part of the OAuth 2.0 journey was spec compliance. This next release introduces much more support for configuring Spring Security to work with providers that extend or deviate from the spec.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;For example, it&amp;#8217;s now possible to &lt;a href="https://github.com/spring-projects/spring-security/issues/5466"&gt;customize the token request made from a client to the authorization server&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="resource-server-claims-mapping"&gt;&lt;a class="anchor" href="#resource-server-claims-mapping"&gt;&lt;/a&gt;Resource Server Claims Mapping&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Along those same lines, Resource Server is shipping with support for &lt;a href="https://github.com/spring-projects/spring-security/issues/5223"&gt;customizing the claim set&lt;/a&gt; that is parsed from incoming JWTs. This is handy when the application needs to add or remove a claim or needs to parse a claim in a custom way:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;NimbusJwtDecoderJwkSupport decoder = // ...
-decoder.setClaimSetConverter(
-    MappedJwtClaimSetConverter
-        .withDefaults("custom-date", this::convertToInstant));&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="more-provider-configuration-metadata-available"&gt;&lt;a class="anchor" href="#more-provider-configuration-metadata-available"&gt;&lt;/a&gt;More Provider Configuration Metadata Available&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;And the journey towards spec compliance also continues. In this release, support for collecting and providing &lt;a href="https://github.com/spring-projects/spring-security/pull/5729"&gt;any metadata returned from the OIDC Provider Configuration endpoint&lt;/a&gt; was added.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Now, &lt;code&gt;ClientRegistration&lt;/code&gt; ships with &lt;code&gt;getConfigurationMetadata&lt;/code&gt; which sits alongside methods targeted at specific properties and returns the entire map of provider attributes.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="restoperations-support"&gt;&lt;a class="anchor" href="#restoperations-support"&gt;&lt;/a&gt;RestOperations Support&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This release also ships with support for &lt;a href="https://github.com/spring-projects/spring-security/issues/5602"&gt;complete customization of the HTTP request&lt;/a&gt; &lt;a href="https://github.com/spring-projects/spring-security/issues/5600"&gt;to various&lt;/a&gt; &lt;a href="https://github.com/spring-projects/spring-security/issues/5547"&gt;endpoints&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This is handy for configuring timeouts, discovery, caching and otherwise taking full advantage of RestTemplate&amp;#8217;s sophistication when communicating with an authorization server.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="other-improvements"&gt;&lt;a class="anchor" href="#other-improvements"&gt;&lt;/a&gt;Other Improvements&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="x-509-principal-extractor"&gt;&lt;a class="anchor" href="#x-509-principal-extractor"&gt;&lt;/a&gt;X.509 Principal Extractor&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Support has also been added for &lt;a href="https://github.com/spring-projects/spring-security/issues/5771"&gt;deriving the X.509 principal via a strategy&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect2"&gt;
-&lt;h3 id="ldap-custom-environment-variables"&gt;&lt;a class="anchor" href="#ldap-custom-environment-variables"&gt;&lt;/a&gt;LDAP Custom Environment Variables&lt;/h3&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;And support was added for configuring &lt;a href="https://github.com/spring-projects/spring-security/pull/5674"&gt;custom environment variables that inform the creation of an &lt;code&gt;LdapContext&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id="webflux-enhancements" class="sect0"&gt;&lt;a class="anchor" href="#webflux-enhancements"&gt;&lt;/a&gt;WebFlux Enhancements&lt;/h1&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="oauth2-resource-server"&gt;&lt;a class="anchor" href="#oauth2-resource-server"&gt;&lt;/a&gt;OAuth2 Resource Server&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Several features initially released for the Servlet-based Resource Server were added in RC2 on the WebFlux side. &lt;a href="https://github.com/spring-projects/spring-security/issues/5650"&gt;The reactive&lt;/a&gt; &lt;a href="https://github.com/spring-projects/spring-security/issues/5649"&gt;capabilities&lt;/a&gt; &lt;a href="https://github.com/spring-projects/spring-security/issues/5720"&gt;are similar&lt;/a&gt;, with a small but important exception.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;In Spring Security WebFlux, it is more typical to have an authentication manager per request type. In this release, then, WebFlux ships with &lt;a href="https://github.com/spring-projects/spring-security/issues/5750"&gt;authentication manager configuration for Resource Server&lt;/a&gt;:&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="listingblock"&gt;
-&lt;div class="content"&gt;
-&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;http
-    .oauth2ResourceServer()
-        .authenticationManager(customAuthenticationManager())&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;This is helpful in situations where the application needs to do some custom conversion of the &lt;code&gt;Jwt&lt;/code&gt; to a set of granted authorities.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="oauth2-client"&gt;&lt;a class="anchor" href="#oauth2-client"&gt;&lt;/a&gt;OAuth2 Client&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;The &lt;a href="https://github.com/spring-projects/spring-security/issues/5733"&gt;&lt;code&gt;@RegisteredOAuth2AuthorizedClient&lt;/code&gt; annotation now supports the client_credentials grant&lt;/a&gt; in WebFlux.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="sect1"&gt;
-&lt;h2 id="redirect-to-https"&gt;&lt;a class="anchor" href="#redirect-to-https"&gt;&lt;/a&gt;Redirect to Https&lt;/h2&gt;
-&lt;div class="sectionbody"&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;Last but not least, &lt;a href="https://github.com/spring-projects/spring-security/issues/5749"&gt;https redirection support&lt;/a&gt; has been added to WebFlux and is accessible through &lt;code&gt;http.redirectToHttps()&lt;/code&gt; or directly via the &lt;code&gt;HttpsRedirectWebFilter&lt;/code&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;h1 id="dependency-updates" class="sect0"&gt;&lt;a class="anchor" href="#dependency-updates"&gt;&lt;/a&gt;Dependency Updates&lt;/h1&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;And we&amp;#8217;ve updated our dependencies to be on the latest and greatest to ensure our transitive dependencies are up to date.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; |
-&lt;a href="http://docs.spring.io/spring-security/site/docs/5.1.0.RC1/reference/htmlsingle/"&gt;Reference&lt;/a&gt;
 | &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;</content>
   </entry>

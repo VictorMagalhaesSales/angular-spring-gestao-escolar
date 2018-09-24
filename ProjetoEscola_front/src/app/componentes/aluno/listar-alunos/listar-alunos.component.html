@@ -20,19 +20,18 @@
                         <th *ngIf="mostra('ROLE_DELETAR_ALUNO')" style="background-color: #007E33; color: white;" class="acoes">Ações</th>
                     </tr>
                 </ng-template>
-                  
-             
                 <ng-template pTemplate="body" let-alunos let-columns="columns">
                     <tr>
-                        <td *ngFor="let col of columns" class="corpo">
+                        <td *ngFor="let col of columns" class="corpo" [class.largura]="col.field == 'imagem' ? true: false">
+                            <img *ngIf="col.field == 'imagem'" src="../../../../assets/imgs/perfil/{{alunos[col.field]}}" width="35" class="rounded-circle img-responsive">
                             <span *ngIf="col.field == 'nascimento'" >
                                 {{alunos[col.field] | date:'dd/MM/yyyy'}} 
                             </span>
-                            <span *ngIf="col.field != 'nascimento'" >
+                            <span *ngIf="col.field != 'nascimento' && col.field != 'imagem'" >
                                 {{alunos[col.field]}}
                             </span>
                         </td>
-                        <td *ngIf="mostra('ROLE_DELETAR_ALUNO')" class="corpo corpoacoes">
+                        <td *ngIf="mostra('ROLE_DELETAR_ALUNO'  )" class="corpo corpoacoes">
                             <button mdbBtn (click)="editarAluno(alunos)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
                             <button mdbBtn (click)="acionarExcluir(alunos)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
                             <button mdbBtn [routerLink]="['../../notasfaltas', alunos.matricula]" type="button" color="default" mdbTooltip="Notas e faltas" mdbWavesEffect style="padding: 6%;"><i class="fa fa-calendar fa-2x"></i></button>

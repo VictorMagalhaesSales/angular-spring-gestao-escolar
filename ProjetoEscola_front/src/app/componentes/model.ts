@@ -6,7 +6,7 @@ export class AlunoModel {
     nascimento: string;
     email: string;
     telefone: string;
-    image: string;
+    imagem: string = "padrao.png";
     permissoes = [
         {
             codigo: 1,

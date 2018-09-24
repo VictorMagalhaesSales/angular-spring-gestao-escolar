@@ -15,14 +15,12 @@ import { AuthService } from '../../../seguranca/auth.service';
 export class PerfilAlunoComponent implements OnInit {
 
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
-  uploadedFiles: any[] = [];
   aluno = new AlunoModel();
   alunoAtualizar = new AlunoModel();
   novaSenha: string;
   novaSenha2: string;
 
-  imagemPerf: string = "../../../../assets/imgs/perfil/" + localStorage.getItem('img');
+  imagemPerfil: string;
   
   profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
   profEmail = [];
@@ -32,21 +30,24 @@ export class PerfilAlunoComponent implements OnInit {
 
   constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService){ }
 
-  pegarNomeDaFoto(nome){
-    localStorage.setItem('img', nome.xhr.response);
-  }
-
   ngOnInit() {
     this.alunoService.atualizarToken();
     this.carregarAlunoPorEmail();
     this.title.setTitle("Meu perfil");
+    let nomeFoto = (localStorage.getItem('imagemDePerfil') == null) ? "padrao.png":  localStorage.getItem('imagemDePerfil');
+    this.imagemPerfil = "../../../../assets/imgs/perfil/" + nomeFoto;
+    console.log(this.imagemPerfil);
   }
 
-  onUpload(event) {
-    for(let file of event.files) {
-        this.uploadedFiles.push(file);
-    }
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  pegarNomeDaFoto(nome){
+    this.aluno.imagem = String(nome.xhr.response);
+    this.alunoService.atualizarAluno(this.aluno.matricula, this.aluno)
+        .then(() => {
+          localStorage.setItem('imagemDePerfil', this.aluno.imagem);
+          console.log("Deu certo: " + localStorage.getItem('imagemDePerfil'));
+          this.imagemPerfil = "../../../../assets/imgs/perfil/" + this.aluno.imagem;
+        })
+        .catch((res) => alert(res));
   }
 
   chamarAluno(matricula: number){
@@ -116,10 +117,10 @@ export class PerfilAlunoComponent implements OnInit {
   carregarAlunoPorEmail(){
      this.alunoService.pesquisarAlunos(this.profFIltro).then( (profs) => {
        this.profEmail = profs.content;
-       for (const ae of this.profEmail) {
-         if(ae.email == this.auth.jwtPayload.user_name){
-          this.chamarAluno(ae.matricula);
-          this.pesquisarNotas(ae.matricula);
+       for (const aluno of this.profEmail) {
+         if(aluno.email == this.auth.jwtPayload.user_name){
+          this.chamarAluno(aluno.matricula);
+          this.pesquisarNotas(aluno.matricula);
          }
        }
      }).catch( (erro) => console.log(erro));

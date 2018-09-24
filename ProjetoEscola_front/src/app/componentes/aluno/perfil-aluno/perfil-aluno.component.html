@@ -4,7 +4,7 @@
             <hr>
             <div class="row col-10 offset-1">
                 <div class="imagem col-2 animated bounceIn ">
-                    <img src="{{ imagemPerf }}" width="200" class="rounded-circle img-responsive">
+                    <img src="{{imagemPerfil}}" width="200" class="rounded-circle img-responsive">
                 </div>
                 <div class="infprincipais col-9 animated zoomIn">
                     <br><br>
@@ -37,9 +37,6 @@
                                 </div>
                             </div>
                         </td>
-                        <td rowspan="3">
-                                <p-fileUpload name="anexo" url="http://localhost:8080/aluno/anexo" (onBeforeSend)="antesDoUploadDaImagem($event)" (onUpload)="pegarNomeDaFoto($event)"></p-fileUpload>
-                        </td>
                     </tr>
                     <tr>
                         <th><i class="fa fa-user-circle prefix"></i> Nome</th><td>{{ aluno.nome }}</td>  <th><i class="fa fa-calendar prefix"></i> Email </th> <td> {{ aluno.email }} </td>
@@ -49,9 +46,12 @@
                     </tr>
                 </table>
             </div>
-            <div class="row col-s8 offset-2">
-                <button mdbBtn type="button" color="indigo" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" (click)="passarAluno()"><i class="fa fa-vcard" aria-hidden="true"></i> Editar perfil</button>
-                <button mdbBtn type="button" color="dark-green" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame1.show()"><i class="fa fa-lock" aria-hidden="true"></i> Alterar senha</button>
+            <div class="row">
+                <div class="col-10 offset-2">
+                    <button mdbBtn type="button" color="indigo" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" (click)="passarAluno()"><i class="fa fa-vcard" aria-hidden="true"></i> Editar perfil</button>
+                    <button mdbBtn type="button" color="dark-green" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame1.show()"><i class="fa fa-lock" aria-hidden="true"></i> Alterar senha</button>
+                    <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="alterarFotoModal.show()" mdbWavesEffect><i class="fa fa-image" aria-hidden="true"></i> Alterar foto de perfil</button>
+                </div>
             </div>
         </div>
     </div>
@@ -111,44 +111,61 @@
           </div>
         </div>
       </div>
-</div>      
+</div>
       
 <div mdbModal #frame1="mdbModal" class="modal fade left" id="frameModalBottom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-        <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
-          <div class="modal-content">
-            <div class="modal-header text-center">
-                  <img src="../../../../assets/imgs/senha.png" alt="avatar" class="rounded-circle img-responsive">
-            </div>
-            <div class="modal-body">
-                    <table>
-                        <Tr>
-                            <td>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
-                                    <input type="password" id="novasenha" class="form-control" mdbInputDirective [(ngModel)]="novaSenha" mdbTooltip="Nova senha" placeholder="Nova senha" [mdbValidate]="false">
-                                </div>
-                            </td>
-                        </Tr>
-                        <tr>
-                            <td colspan=2>
-                                <div class="md-form">
-                                    <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
-                                    <input type="password" id="novasenha2" class="form-control" mdbInputDirective [(ngModel)]="novaSenha2" mdbTooltip="Repita a nova senha" placeholder="Repita aova senha" [mdbValidate]="false">
-                                </div>
-                            </td>
-                        </tr>
-                    </table> 
-    
-              <div class="modal-footer d-flex justify-content-center">
-                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="alterarSenha()" (click)="frame1.hide()">Atualizar
-                  <i class="fa fa-paper-plane-o ml-1"></i>
-                  </button>
-              </div>
-          </div>
+    <div class="modal-dialog cascading-modal modal-avatar modal-sm" role="document">
+        <div class="modal-content">
+        <div class="modal-header text-center">
+                <img src="../../../../assets/imgs/senha.png" alt="avatar" class="rounded-circle img-responsive">
         </div>
+        <div class="modal-body">
+                <table>
+                    <Tr>
+                        <td>
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
+                                <input type="password" id="novasenha" class="form-control" mdbInputDirective [(ngModel)]="novaSenha" mdbTooltip="Nova senha" placeholder="Nova senha" [mdbValidate]="false">
+                            </div>
+                        </td>
+                    </Tr>
+                    <tr>
+                        <td colspan=2>
+                            <div class="md-form">
+                                <i class="fa fa-lock prefix grey-text" aria-hidden="true"></i>
+                                <input type="password" id="novasenha2" class="form-control" mdbInputDirective [(ngModel)]="novaSenha2" mdbTooltip="Repita a nova senha" placeholder="Repita aova senha" [mdbValidate]="false">
+                            </div>
+                        </td>
+                    </tr>
+                </table> 
+
+            <div class="modal-footer d-flex justify-content-center">
+                <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="alterarSenha()" (click)="frame1.hide()">Atualizar
+                <i class="fa fa-paper-plane-o ml-1"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div mdbModal #alterarFotoModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myAlterarFotoModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-bottom" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="alterarFotoModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"><img src="../../../../assets/imgs/trocarimagem.png" width="50"> Atualizar foto de perfil</h4>
+      </div>
+      <div class="modal-body">
+        <p-fileUpload name="anexo" url="http://localhost:8080/aluno/anexo" accept="image/*"
+        (onBeforeSend)="antesDoUploadDaImagem($event)" (onUpload)="pegarNomeDaFoto($event)"></p-fileUpload>
       </div>
     </div>
-
+  </div>
+</div>
     
 <!-- MENSAGENS DE ERRO -->
 <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="bottom-right"></p-toast>

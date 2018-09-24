@@ -23,6 +23,7 @@ export class ListarAlunosComponent implements OnInit {
   alunoAtualizar = new AlunoModel();
   listaDeAlunos = [];
   coluna: any[] = [
+    { field: 'imagem', header: '' },
     { field: 'matricula', header: 'Matricula' },
     { field: 'nome', header: 'Nome' },
     { field: 'sobrenome', header: 'Sobrenome' },

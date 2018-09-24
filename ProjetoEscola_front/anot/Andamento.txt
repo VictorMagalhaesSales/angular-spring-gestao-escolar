@@ -89,8 +89,7 @@
 * Nome dos métodos;								!!CORRIGIDO!!
 * Nomes das variáveis de url.							!!CORRIGIDO!!
 * Organizar os módulos em geral	no front					!!CORRIGIDO!!
-* Criar serviços no back-and e serparar regras de negócios do controller;
-* Organizar os módulos em geral	no back					
+* Criar serviços no back-and e serparar regras de negócios do controller;				
 
 
 
