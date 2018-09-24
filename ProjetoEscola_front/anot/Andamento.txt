@@ -6,6 +6,7 @@
 • Template
 (x) Adaptando template
 (x) Início
+( ) Favicon
 
 •===--- Alunos ---===•
  (x) Listar alunos
@@ -66,12 +67,10 @@
 	(x) Mensagens
 	(x) Corrigir todos
  (x) Letras passando da tabela
- (x) Erros com mensagens padrão
+ ( ) Erros com mensagens padrão
 
- (x) Imagem no BD
- (x) Acess token não vai de primeira
-
-
+ ( ) Imagem no BD
+ ( ) Acess token não vai de primeira
 
 
 
@@ -84,10 +83,14 @@
 
 
 
-* Nome das variáveis;
-* Nome dos métodos;
-* Criar serviços no back-and e serparar regras de negócios do controller;
+
+
+* Nome das variáveis;								!!CORRIGIDO!!
+* Nome dos métodos;								!!CORRIGIDO!!
 * Nomes das variáveis de url.							!!CORRIGIDO!!
+* Organizar os módulos em geral	no front					!!CORRIGIDO!!
+* Criar serviços no back-and e serparar regras de negócios do controller;
+* Organizar os módulos em geral	no back					
 
 
 
@@ -171,6 +174,25 @@ Se você não estiver logado e tentar acessar alguma página, você é redirecionado 
 • Autenticação:
 Funciona via token, que é recebebido pela função post, pegando-o e jogando-o em uma variável Payload que será utilizada na aplicação para obtenção de dados, através de um interceptor que sempre adiciona um header na requisição. O acess token também é armazenado no LocalStore, enquanto o refresh token é armazenado no cookie. Quando o acess token expira, eu faço uma requisição para minha api, passando o refresh token que está no cookie e pedindo um novo acess token toda vez que este expirar.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+AlunoAprendiz
 
 
 

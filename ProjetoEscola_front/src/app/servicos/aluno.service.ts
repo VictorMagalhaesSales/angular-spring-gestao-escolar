@@ -95,7 +95,7 @@ export class AlunoService{
       });
   }
 
-  atualizarAluno2(matricula: number, aluno: AlunoModel): Promise<any>{
+  atualizarSenhaAluno(matricula: number, aluno: AlunoModel): Promise<any>{
     this.atualizarToken();
     
     return this.http.put(`${this.url}/aluno/senha/${matricula}`,aluno)

@@ -16,10 +16,9 @@ export class PerfilAlunoComponent implements OnInit {
 
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
 
-  
   uploadedFiles: any[] = [];
   aluno = new AlunoModel();
-  alunoAtualizar = new OutroModel();
+  alunoAtualizar = new AlunoModel();
   novaSenha: string;
   novaSenha2: string;
 
@@ -33,12 +32,8 @@ export class PerfilAlunoComponent implements OnInit {
 
   constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService){ }
 
-  
-
-  pegarNome(nome){
+  pegarNomeDaFoto(nome){
     localStorage.setItem('img', nome.xhr.response);
-    alert(localStorage.getItem('img'));
-    
   }
 
   ngOnInit() {
@@ -47,7 +42,6 @@ export class PerfilAlunoComponent implements OnInit {
     this.title.setTitle("Meu perfil");
   }
 
-  
   onUpload(event) {
     for(let file of event.files) {
         this.uploadedFiles.push(file);
@@ -67,10 +61,10 @@ export class PerfilAlunoComponent implements OnInit {
     let senha = this.aluno.senha;
     let nascimento = this.aluno.nascimento;
     let telefone = this.aluno.telefone;
-    this.passar2(matricula,nome,sobrenome,email,senha,nascimento,telefone);
+    this.passarAlunoContinuacao(matricula,nome,sobrenome,email,senha,nascimento,telefone);
   }
 
-  passar2( matricula: number,  nome: string, sobrenome: string, email: string, senha: string, nascimento: string, telefone: string){
+  passarAlunoContinuacao( matricula: number,  nome: string, sobrenome: string, email: string, senha: string, nascimento: string, telefone: string){
     this.alunoAtualizar.matricula = matricula;
     this.alunoAtualizar.nome = nome;
     this.alunoAtualizar.sobrenome = sobrenome;
@@ -80,7 +74,7 @@ export class PerfilAlunoComponent implements OnInit {
     this.alunoAtualizar.telefone = telefone;
   }
   
-  editarAluno2(){
+  editarAlunoNoModal(){
     this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar)
     .then( () => this.chamarAluno(this.aluno.matricula))
     .catch(erro => {
@@ -91,7 +85,7 @@ export class PerfilAlunoComponent implements OnInit {
   alterarSenha(){
     if(this.novaSenha == this.novaSenha2){
       this.aluno.senha = this.novaSenha;
-      this.alunoService.atualizarAluno2(this.aluno.matricula, this.aluno)
+      this.alunoService.atualizarSenhaAluno(this.aluno.matricula, this.aluno)
       .then(() => this.messageService.add({severity:'success', summary: 'Atualização de senha', detail:'Senha atualizada com sucesso'}  ) )
       .catch(erro => {
         this.messageService.add({severity:'error', summary: 'Atualização de senha', detail:'Ocorreu um erro ao alterar a senha'});
@@ -114,7 +108,6 @@ export class PerfilAlunoComponent implements OnInit {
       this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
     });
   }
-
   
   fecharAviso() {
     this.messageService.clear('c');
@@ -132,45 +125,8 @@ export class PerfilAlunoComponent implements OnInit {
      }).catch( (erro) => console.log(erro));
    }
 
-   antesUploadAnexo(event) {
+   antesDoUploadDaImagem(event) {
     event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
   }
 
-}
-
-export class OutroModel {
-  matricula: number;
-  nome: string;
-  sobrenome: string;
-  senha: string;
-  nascimento: string;
-  email: string;
-  telefone: string;
-  image: string;
-  permissoes = [
-    {
-      codigo: 1,
-      descricao: "ROLE_LISTAR_ALUNOS"
-  },
-  {
-      codigo: 5,
-      descricao: "ROLE_EDITAR_ALUNO"
-  },
-  {
-      codigo: 2,
-      descricao: "ROLE_LISTAR_ALUNO"
-  },
-  {
-      codigo: 6,
-      descricao: "ROLE_LISTAR_FALTAS"
-  },
-  {
-      codigo: 9,
-      descricao: "ROLE_LISTAR_NOTAS"
-  },
-  {
-      codigo: 13,
-      descricao: "ROLE_LISTAR_PROFESSORES"
-  }
-  ]   
 }

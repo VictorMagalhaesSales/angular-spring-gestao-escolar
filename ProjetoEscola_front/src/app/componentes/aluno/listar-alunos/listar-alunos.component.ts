@@ -13,21 +13,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarAlunosComponent implements OnInit {
 
-
-
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
   nome: string;
   sobrenome: string;
   nascimento: string;
   email: string;
   telefone: string;
   paraExcluir: any;
-
   alunoAtualizar = new AlunoModel();
-
   listaDeAlunos = [];
-
   coluna: any[] = [
     { field: 'matricula', header: 'Matricula' },
     { field: 'nome', header: 'Nome' },
@@ -35,7 +29,7 @@ export class ListarAlunosComponent implements OnInit {
     { field: 'nascimento', header: 'Nascimento' },
     { field: 'email', header: 'Email' },
     { field: 'telefone', header: 'Telefone' }
-];
+  ];
 
   constructor(private alunoService: AlunoService, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 
@@ -79,14 +73,14 @@ export class ListarAlunosComponent implements OnInit {
     }
   }
 
-  editarAluno1(aluno: AlunoModel){
+  editarAluno(aluno: AlunoModel){
     this.alunoService.pesquisarAlunoPorId(aluno.matricula)
       .then( al => this.alunoAtualizar = al)
       .catch(erro => {
         this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
       });
   }
-  editarAluno2(){
+  editarAlunoFinalizado(){
     this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar)
       .then(()=> this.pesquisar(""))
       .catch(erro => {
@@ -107,5 +101,4 @@ export class ListarAlunosComponent implements OnInit {
       return this.auth.temPermissao(permissao);
     }
   }
-
 }

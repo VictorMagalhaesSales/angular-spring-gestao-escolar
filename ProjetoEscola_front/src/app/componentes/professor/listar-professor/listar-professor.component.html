@@ -12,7 +12,7 @@
             </table>     
     
             <div class="col-12">
-                <p-table [value]="cars" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
+                <p-table [value]="listaDeProfessores" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th *ngFor="let col of columns" class="titulo" style="color: white;">
@@ -21,19 +21,19 @@
                             <th *ngIf="mostra('ROLE_EDITAR_PROFESSOR') && mostra('ROLE_SALVAR_PROFESSOR')" style="background-color: #007E33; color: white;" class="acoes">Ações</th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-car let-columns="columns">
+                    <ng-template pTemplate="body" let-professores let-columns="columns">
                         <tr>
                             <td *ngFor="let col of columns" class="corpo">
                                 <span *ngIf="col.field == 'nascimento'" >
-                                    {{car[col.field] | date:'dd/MM/yyyy'}} 
+                                    {{professores[col.field] | date:'dd/MM/yyyy'}} 
                                 </span>
                                 <span *ngIf="col.field != 'nascimento'" >
-                                    {{car[col.field]}}
+                                    {{professores[col.field]}}
                                 </span>
                             </td>
                             <td  *ngIf="mostra('ROLE_EDITAR_PROFESSOR') && mostra('ROLE_SALVAR_PROFESSOR')" class="corpo corpoacoes">
-                                <button *ngIf="car.nome != 'Administrador'"  mdbBtn (click)="editarProfessor1(car)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
-                                <button *ngIf="car.nome != 'Administrador'" mdbBtn (click)="acionarExcluir(car)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
+                                <button *ngIf="professores.nome != 'Administrador'"  mdbBtn (click)="editarProfessor1(professores)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
+                                <button *ngIf="professores.nome != 'Administrador'" mdbBtn (click)="acionarExcluir(professores)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -107,7 +107,7 @@
                      <tr>
                         <td colspan="2">
                             <i class="fa fa-mortar-board fa-2x mr-2"></i>
-                            <p-dropdown name="disciplinaM" [options]="disciplinaM" [(ngModel)]="disci" placeholder="Selecione a disciplina" optionLabel="nome" [showClear]="true" [filter]="true"></p-dropdown>
+                            <p-dropdown name="disciplinaNoEditar" [options]="disciplinaNoEditar" [(ngModel)]="disciplinaSelecionada" placeholder="Selecione a disciplina" optionLabel="nome" [showClear]="true" [filter]="true"></p-dropdown>
                         </td>
                      </tr>
              </table> 

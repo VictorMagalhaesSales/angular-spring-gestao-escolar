@@ -16,7 +16,6 @@ export class ListarProfessorComponent implements OnInit {
 
   
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
   nome: string;
   sobrenome: string;
   nascimento: string;
@@ -24,15 +23,12 @@ export class ListarProfessorComponent implements OnInit {
   email: string;
   telefone: string;
   paraExcluir: any;
-
   professor = new ProfessorModel();
-  disciplinaM: Disciplina[];
-
-  disci: Disciplina;
-
+  disciplinaNoEditar: Disciplina[];
+  disciplinaSelecionada: Disciplina;
   professorAtualizar = new ProfessorModel();
 
-  cars = [];
+  listaDeProfessores = [];
 
   coluna: any[] = [
     { field: 'id', header: 'id' },
@@ -45,7 +41,7 @@ export class ListarProfessorComponent implements OnInit {
 ];
 
   constructor(private professorService: ProfessorService, private title: Title, private messageService: MessageService, private auth: AuthService) {
-    this.disciplinaM = [
+    this.disciplinaNoEditar = [
       {nome: 'Java'},
       {nome: 'PHP'},
       {nome: 'JavaScript'},
@@ -73,13 +69,13 @@ export class ListarProfessorComponent implements OnInit {
       filtro.telefone = "";
       filtro.disciplina = "";
       this.professorService.pesquisarProfessores(filtro)
-        .then( professores => this.cars = professores )
+        .then( professores => this.listaDeProfessores = professores )
         .catch(erro => {
           this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
         });
     }else{
       this.professorService.pesquisarProfessores(filtro)
-        .then( professores => this.cars = professores )
+        .then( professores => this.listaDeProfessores = professores )
         .catch(erro => {
           this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
         });
@@ -100,10 +96,10 @@ export class ListarProfessorComponent implements OnInit {
   }
 
   editarProfessor1(professor: ProfessorModel){
-    this.professorService.pesquisarProfessorPorId(professor.id).then( al => {this.professorAtualizar = al; this.disci = al.disciplina; console.log(this.disci);});
+    this.professorService.pesquisarProfessorPorId(professor.id).then( al => {this.professorAtualizar = al; this.disciplinaSelecionada = al.disciplina; console.log(this.disciplinaSelecionada);});
   }
   editarProfessor2(){
-    this.professorAtualizar.disciplina = this.disci.nome;
+    this.professorAtualizar.disciplina = this.disciplinaSelecionada.nome;
     this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar)
       .then(()=> this.pesquisar(""))
       .catch(erro => {

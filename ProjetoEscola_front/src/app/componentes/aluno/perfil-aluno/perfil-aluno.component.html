@@ -8,7 +8,7 @@
                 </div>
                 <div class="infprincipais col-9 animated zoomIn">
                     <br><br>
-                    <h1>Seja bem-vindo ao perfil de <b>{{ aluno.nome }} {{ aluno.sobrenome }}</b>!</h1>
+                    <h1>Seja bem-vindo ao perfil de <b>{{ aluno.nome }}</b>!</h1>
                     <p>Aqui você tem a possibilidade de visualizar as suas informações, editá-las e salvá-las.</p>
                 </div>
             </div>
@@ -38,7 +38,7 @@
                             </div>
                         </td>
                         <td rowspan="3">
-                                <p-fileUpload name="anexo" url="http://localhost:8080/aluno/anexo" (onBeforeSend)="antesUploadAnexo($event)" (onUpload)="pegarNome($event)"></p-fileUpload>
+                                <p-fileUpload name="anexo" url="http://localhost:8080/aluno/anexo" (onBeforeSend)="antesDoUploadDaImagem($event)" (onUpload)="pegarNomeDaFoto($event)"></p-fileUpload>
                         </td>
                     </tr>
                     <tr>
@@ -104,7 +104,7 @@
                </table> 
               
               <div class="modal-footer d-flex justify-content-center">
-                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAluno2()" (click)="frame3.hide()">Atualizar
+                  <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAlunoNoModal()" (click)="frame3.hide()">Atualizar
                   <i class="fa fa-paper-plane-o ml-1"></i>
                   </button>
               </div>

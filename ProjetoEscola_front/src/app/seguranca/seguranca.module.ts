@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { AuthInterceptor } from './auth.interceptor ';
 import { ToastModule } from 'primeng/toast';
@@ -33,7 +34,8 @@ import { CommonModule } from '@angular/common';
       useClass: AuthInterceptor,
       multi: true,
      },
-     AuthGuard
+     AuthGuard,
+     AuthService
     ],
   declarations: [LoginComponent]
 })

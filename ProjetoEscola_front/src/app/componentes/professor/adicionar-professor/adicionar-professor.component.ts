@@ -14,10 +14,8 @@ export class AdicionarProfessorComponent implements OnInit {
 
   professor = new ProfessorModel();
   disciplina: Disciplina[];
-
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
-  disci: Disciplina;
+  disciplinaSelecionada: Disciplina;
 
 
   constructor(private professorService: ProfessorService, private rota: Router, private title: Title, private messageService: MessageService) {
@@ -39,7 +37,7 @@ export class AdicionarProfessorComponent implements OnInit {
   }
 
   adicionarProfessor(){
-    this.professor.disciplina = this.disci.nome;
+    this.professor.disciplina = this.disciplinaSelecionada.nome;
     this.professorService.adicionarProfessor(this.professor)
       .then(() => this.rota.navigate(['../../professor/listarprofessor']))
       .catch(erro => {

@@ -11,4 +11,9 @@
 <fullyQualifiedTypeName name="com.escola.api.model.Faltas"/>
 <fullyQualifiedTypeName name="com.escola.api.repository.FaltasRepository"/>
 <fullyQualifiedTypeName name="com.escola.api.model.NotasId"/>
+<fullyQualifiedTypeName name="java.io.IOException"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
+<fullyQualifiedTypeName name="java.io.OutputStream"/>
+<fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 </qualifiedTypeNameHistroy>

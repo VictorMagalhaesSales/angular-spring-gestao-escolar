@@ -16,19 +16,14 @@ export class AdicionarAlunoComponent implements OnInit {
 
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
   msgs: Message[] = [];
-  
   aluno = new AlunoModel();
 
-
-  
   constructor(private alunoService: AlunoService, private rota: Router, private title: Title, private messageService: MessageService) { }
 
   ngOnInit() {
     this.alunoService.atualizarToken();
     this.title.setTitle("Adicionar aluno");
   }
-
-
 
   adicionarAluno(){
     this.alunoService.adicionarAluno(this.aluno)

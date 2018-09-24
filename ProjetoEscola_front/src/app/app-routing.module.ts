@@ -1,8 +1,8 @@
+import { AcessoNegadoComponent } from './componentes/shared/acesso-negado/acesso-negado.component';
 import { AuthGuard } from './seguranca/auth.guard';
-import { AcessoNegadoComponent } from './componentes/acesso-negado/acesso-negado.component';
 import { LoginComponent } from './seguranca/login/login.component';
-import { PaginaNaoEncontradaComponent } from './componentes/pagina-nao-encontrada/pagina-nao-encontrada.component';
-import { NotasEFaltasComponent } from './componentes/aluno/notas-e-faltas/notas-e-faltas.component';
+import { PaginaNaoEncontradaComponent } from './componentes/shared/pagina-nao-encontrada/pagina-nao-encontrada.component';
+import { NotasEFaltasComponent } from './componentes/shared/notas-e-faltas/notas-e-faltas.component';
 import { AdicionarProfessorComponent } from './componentes/professor/adicionar-professor/adicionar-professor.component';
 import { ListarProfessorComponent } from './componentes/professor/listar-professor/listar-professor.component';
 import { AdicionarAlunoComponent } from './componentes/aluno/adicionar-aluno/adicionar-aluno.component';
@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListarAlunosComponent } from './componentes/aluno/listar-alunos/listar-alunos.component';
-import { InicioComponent } from './componentes/inicio/inicio.component';
+import { InicioComponent } from './componentes/shared/inicio/inicio.component';
 import { PerfilAlunoComponent } from './componentes/aluno/perfil-aluno/perfil-aluno.component';
 import { PerfilProfessorComponent } from './componentes/professor/perfil-professor/perfil-professor.component';
 

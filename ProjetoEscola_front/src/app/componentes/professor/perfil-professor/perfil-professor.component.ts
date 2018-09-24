@@ -14,14 +14,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilProfessorComponent implements OnInit {
 
-  
   mask: any[] = ['(', /[1-9]/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/];
-
   professor = new ProfessorModel();
   professorAtualizar = new ProfessorModel();
   novaSenha: string;
-  novaSenha2: string;
-
+  novaSenhaModal: string;
   profFIltro: ProfessorFiltro = new ProfessorFiltro(null,null,null,null,null);
   profEmail = [];
   profId: number;
@@ -69,7 +66,7 @@ export class PerfilProfessorComponent implements OnInit {
   }
 
   alterarSenha(){
-    if(this.novaSenha == this.novaSenha2){
+    if(this.novaSenha == this.novaSenhaModal){
       this.professor.senha = this.novaSenha;
       this.professorService.atualizarProfessor2(this.professor.id, this.professor)
         .then((res) => {
