@@ -11,7 +11,7 @@
         </table>     
 
         <div class="col-12">
-            <p-table [value]="listaDeAlunos" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
+            <p-table [value]="listaDeAlunos" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" autoLayout="true" >
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns" class="titulo" style="color: white;">
@@ -22,7 +22,7 @@
                 </ng-template>
                 <ng-template pTemplate="body" let-alunos let-columns="columns">
                     <tr>
-                        <td *ngFor="let col of columns" class="corpo" [class.largura]="col.field == 'imagem' ? true: false">
+                        <td *ngFor="let col of columns" class="corpo">
                             <img *ngIf="col.field == 'imagem'" src="../../../../assets/imgs/perfil/{{alunos[col.field]}}" width="35" class="rounded-circle img-responsive">
                             <span *ngIf="col.field == 'nascimento'" >
                                 {{alunos[col.field] | date:'dd/MM/yyyy'}} 
@@ -32,8 +32,8 @@
                             </span>
                         </td>
                         <td *ngIf="mostra('ROLE_DELETAR_ALUNO'  )" class="corpo corpoacoes">
-                            <button mdbBtn (click)="editarAluno(alunos)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="frame3.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
-                            <button mdbBtn (click)="acionarExcluir(alunos)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
+                            <button mdbBtn (click)="editarAluno(alunos)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="editarAlunoLista.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-edit fa-2x"></i></button>
+                            <button mdbBtn (click)="acionarExcluir(alunos)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="excluirAlunoLista.show()" mdbWavesEffect style="padding: 7%;"><i class="fa fa-trash fa-2x"></i></button>
                             <button mdbBtn [routerLink]="['../../notasfaltas', alunos.matricula]" type="button" color="default" mdbTooltip="Notas e faltas" mdbWavesEffect style="padding: 6%;"><i class="fa fa-calendar fa-2x"></i></button>
                         </td>
                     </tr>
@@ -45,7 +45,7 @@
     </div>
 </div>
 
-<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #excluirAlunoLista="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm modal-notify modal-danger" role="document">
     <div class="modal-content text-center">
       <div class="modal-header d-flex justify-content-center">
@@ -55,14 +55,14 @@
         <i class="fa fa-times fa-4x animated rotateIn"></i>
       </div>
       <div class="modal-footer flex-center">
-        <a mdbBtn color="danger"class="waves-effect" mdbWavesEffect (click)="excluirAluno()" (click)="frame.hide()">Sim</a>
-        <a type="button" mdbBtn color="danger" outline="true"  class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="frame.hide()">Não</a>
+        <a mdbBtn color="danger"class="waves-effect" mdbWavesEffect (click)="excluirAluno()" (click)="excluirAlunoLista.hide()">Sim</a>
+        <a type="button" mdbBtn color="danger" outline="true"  class="waves-effect" mdbWavesEffect data-dismiss="modal" (click)="excluirAlunoLista.hide()">Não</a>
       </div>
     </div>
   </div>
 </div>
 
-<div mdbModal #frame3="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div mdbModal #editarAlunoLista="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog cascading-modal modal-avatar" role="document">
     <div class="modal-content">
       <div class="modal-header text-center">
@@ -108,7 +108,7 @@
              </tr>
         </table> 
         <div class="modal-footer d-flex justify-content-center">
-            <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAlunoFinalizado()" (click)="frame3.hide()" >Atualizar
+            <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAlunoFinalizado()" (click)="editarAlunoLista.hide()" >Atualizar
             <i class="fa fa-paper-plane-o ml-1"></i>
             </button>
         </div>
