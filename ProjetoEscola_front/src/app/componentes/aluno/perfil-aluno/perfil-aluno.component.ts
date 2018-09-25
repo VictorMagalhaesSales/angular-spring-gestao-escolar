@@ -34,20 +34,17 @@ export class PerfilAlunoComponent implements OnInit {
     this.alunoService.atualizarToken();
     this.carregarAlunoPorEmail();
     this.title.setTitle("Meu perfil");
-    let nomeFoto = (localStorage.getItem('imagemDePerfil') == null) ? "padrao.png":  localStorage.getItem('imagemDePerfil');
-    this.imagemPerfil = "../../../../assets/imgs/perfil/" + nomeFoto;
-    console.log(this.imagemPerfil);
+    this.imagemPerfil = "../../../../assets/imgs/perfil/" + localStorage.getItem('imagemPerfil');
   }
 
   pegarNomeDaFoto(nome){
     this.aluno.imagem = String(nome.xhr.response);
     this.alunoService.atualizarAluno(this.aluno.matricula, this.aluno)
         .then(() => {
-          localStorage.setItem('imagemDePerfil', this.aluno.imagem);
-          console.log("Deu certo: " + localStorage.getItem('imagemDePerfil'));
+          localStorage.setItem('imagemPerfil',  this.aluno.imagem);
           this.imagemPerfil = "../../../../assets/imgs/perfil/" + this.aluno.imagem;
         })
-        .catch((res) => alert(res));
+        .catch((res) => this.messageService.add({severity:'error', summary: 'Erro de edição', detail:res}));
   }
 
   chamarAluno(matricula: number){

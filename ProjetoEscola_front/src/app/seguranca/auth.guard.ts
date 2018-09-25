@@ -21,6 +21,7 @@ export class AuthGuard implements CanActivate {
         return this.auth.obterNovoAcessToken()
           .then(() => {
             if (this.auth.isAcessTokenInvalid()) {
+              localStorage.removeItem('imagemPerfil');
               this.rota.navigate(['/login']);
               return false;
             }

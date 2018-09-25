@@ -1,5 +1,5 @@
 INSERT INTO professor VALUES
-(0, "Administrador", "MASTER", "MASTER", "2018-12-09", "adm@adm.com", "$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.", "MASTER", "adm.png" );
+(0, "Administrador", "MASTER", "MASTER", "2018-12-09", "adm@adm.com", "$2a$10$X607ZPhQ4EgGNaYKt3n4SONjIv9zc.VMWdEuhCuba7oLAL5IvcL5.", "MASTER", "MASTER" );
 
 INSERT INTO materia VALUES("Java");
 INSERT INTO materia VALUES("PHP");

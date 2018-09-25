@@ -12,7 +12,7 @@
             </table>     
     
             <div class="col-12">
-                <p-table [value]="listaDeProfessores" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" >
+                <p-table [value]="listaDeProfessores" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" autoLayout="true">
                     <ng-template pTemplate="header" let-columns>
                         <tr>
                             <th *ngFor="let col of columns" class="titulo" style="color: white;">
@@ -24,10 +24,11 @@
                     <ng-template pTemplate="body" let-professores let-columns="columns">
                         <tr>
                             <td *ngFor="let col of columns" class="corpo">
+                                <img *ngIf="col.field == 'imagem'" src="../../../../assets/imgs/perfil/{{professores[col.field]}}" width="35" class="rounded-circle img-responsive">
                                 <span *ngIf="col.field == 'nascimento'" >
                                     {{professores[col.field] | date:'dd/MM/yyyy'}} 
                                 </span>
-                                <span *ngIf="col.field != 'nascimento'" >
+                                <span *ngIf="col.field != 'nascimento' && col.field != 'imagem'" >
                                     {{professores[col.field]}}
                                 </span>
                             </td>
@@ -117,7 +118,7 @@
                 <i class="fa fa-paper-plane-o ml-1"></i>
                 </button>
             </div>
-        </div>
+        </div> 
       </div>
     </div>
     

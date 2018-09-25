@@ -23,11 +23,24 @@ export class PerfilProfessorComponent implements OnInit {
   profEmail = [];
   profId: number;
 
+  imagemPerfil: string;
+
   constructor(private professorService: ProfessorService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService) { }
 
   ngOnInit() {
     this.carregarProfessorPorEmail();
     this.title.setTitle("Meu perfil");
+    this.imagemPerfil = "../../../../assets/imgs/perfil/" + localStorage.getItem('imagemPerfil');
+  }
+
+  pegarNomeDaFoto(nome){
+    this.professor.imagem = String(nome.xhr.response);
+    this.professorService.atualizarProfessor(this.professor.id, this.professor)
+        .then(() => {
+          localStorage.setItem('imagemPerfil',  this.professor.imagem);
+          this.imagemPerfil = "../../../../assets/imgs/perfil/" + this.professor.imagem;
+        })
+        .catch((res) => this.messageService.add({severity:'error', summary: 'Erro de edição', detail:res}));
   }
 
   chamarProfessor(matricula: number){
@@ -98,7 +111,10 @@ export class PerfilProfessorComponent implements OnInit {
       }
     }).catch( (erro) => console.log(erro));
     
-    
+  }
+
+  antesDoUploadDaImagem(event) {
+    event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
   }
 
 }

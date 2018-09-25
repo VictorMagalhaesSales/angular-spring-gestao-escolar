@@ -4,18 +4,18 @@
             <hr>
             <div class="row col-10 offset-1">
                 <div class="imagem col-2 animated bounceIn ">
-                    <img src="../../../../assets/imgs/g.jpg" width="200" class="rounded-circle img-responsive">
+                    <img src="{{imagemPerfil}}" width="200" class="rounded-circle img-responsive">
                 </div>
                 <div class="infprincipais col-9 animated zoomIn">
                     <br><br>
-                    <h2>Seja bem-vindo ao perfil de <b>{{ professor.nome }} {{ professor.sobrenome }}</b>!</h2>
+                    <h2>Seja bem-vindo ao perfil de <b>{{ professor.nome }}</b>!</h2>
                     <p>Aqui você tem a possibilidade de visualizar as suas informações, editá-las e salvá-las.</p>
                 </div>
             </div>
             <hr>
         </div>
         <div class="dados col-8 offset-2 animated fadeInUpBig">
-            <h4 style="color: #007E33;"><i class="fa fa-user" aria-hidden="true"></i> Informações do professor</h4>
+            <h4 style="color: #007E33;"><i class="fa fa-user" aria-hidden="true"></i><b> INFORMAÇOES DO PROFESSOR</b></h4>
             <br>
             <div class="row">
                 <table class="table  table-hover">
@@ -33,10 +33,10 @@
                     </tr>
                 </table>
             </div>
-            <div class="row col-s8 offset-2">
+            <div class="row col-s10 offset-2">
                 <button mdbBtn type="button" color="indigo" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame3.show()"  (click)="passarProfessor()"><i class="fa fa-vcard" aria-hidden="true"></i> Editar perfil</button>
                 <button mdbBtn type="button" color="dark-green" class="waves-light" mdbWavesEffect data-toggle="modal" data-target="#basicExample" (click)="frame1.show()"><i class="fa fa-lock" aria-hidden="true"></i> Alterar senha</button>
-                <button mdbBtn type="button" color="pink" class="waves-light" mdbWavesEffect><i class="fa fa-image" aria-hidden="true"></i> Alterar foto de perfil</button>
+                <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="alterarFotoModal.show()" mdbWavesEffect><i class="fa fa-image" aria-hidden="true"></i> Alterar foto de perfil</button>
             </div>
         </div>
     </div>
@@ -146,6 +146,24 @@
   </div>
 </div>
 
+
+<div mdbModal #alterarFotoModal="mdbModal" class="modal fade right" tabindex="-1" role="dialog" aria-labelledby="myAlterarFotoModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-full-height modal-bottom" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="alterarFotoModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel"><img src="../../../../assets/imgs/trocarimagem.png" width="50"> Atualizar foto de perfil</h4>
+      </div>
+      <div class="modal-body">
+        <p-fileUpload name="anexo" url="http://localhost:8080/aluno/anexo" accept="image/*" maxFileSize="1000000000"
+        (onBeforeSend)="antesDoUploadDaImagem($event)" (onUpload)="pegarNomeDaFoto($event)"></p-fileUpload>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- MENSAGENS DE ERRO -->
 <p-toast [style]="{marginTop: '80px'}" styleClass="custom-toast" position="bottom-right"></p-toast>

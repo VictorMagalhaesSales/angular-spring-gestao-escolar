@@ -5,7 +5,657 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2018-09-24T17:48:55Z</updated>
+  <updated>2018-09-25T15:33:40Z</updated>
+  <entry>
+    <title>Spring Cloud Function 2.0 and Azure Functions</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/25/spring-cloud-function-2-0-and-azure-functions" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Dave Syer</name>
+    </author>
+    <id>tag:spring.io,2018-09-25:3416</id>
+    <updated>2018-09-25T15:33:40Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;&lt;a href="https://github.com/spring-cloud/spring-cloud-function"&gt;Spring Cloud
+Function&lt;/a&gt; has had support for Microsoft
+&lt;a href="https://azure.microsoft.com/en-gb/services/functions"&gt;Azure Functions&lt;/a&gt;
+since version 1.0, but in the latest 2.0 releases (still in milestone
+phase) we decided to change the programming model a bit. This article
+describes what the changes mean for users, and provides a bit of
+background behind the shift. We in the Spring team had a lot of fun
+working on this and collaborating with the folks at Microsoft to get
+the best blend of the two technologies for our users.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="azure-functions-for-java"&gt;&lt;a class="anchor" href="#azure-functions-for-java"&gt;&lt;/a&gt;Azure Functions for Java&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Microsoft has had Java support in Azure Functions for a while, and it
+enables developers to easily write and deploy Java code that connects
+in a serverless way to a wide range of platform services (events,
+databases, storage, HTTP gateways, etc.) in Azure. It comes with an
+annotation-based programming model that puts the function
+implementations in Java methods. So you write a method and annotation
+it with &lt;code&gt;@FunctionName&lt;/code&gt;, and it becomes an Azure Function. There is a
+rich set of tools based on a Maven plugin (currently) that drives the
+Azure command line and can be used to build a function, run and debug
+it locally and deploy it to the cloud. There is a
+&lt;a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-first-java-maven"&gt;Quickstart
+Guide&lt;/a&gt; on the Azure website which will help you get all the
+pre-requisites installed and working, and there is more detailed
+documentation about how Azure Functions works in the
+&lt;a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-java"&gt;Developer&amp;#8217;s
+Guide&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The annotations also tie the function method parameters and return
+types to the services used at deployment time. For example, if you
+want to bind to an HTTP gateway at deployment time you use
+&lt;code&gt;@HttpTrigger&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@FunctionName("uppercase")
+public Bar execute(
+    @HttpTrigger(name = "req", methods = { HttpMethod.GET, HttpMethod.POST },
+        authLevel = AuthorizationLevel.ANONYMOUS) Foo foo,
+    ExecutionContext context) {
+  return new Bar(foo.getValue());
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In this example we accept an incoming HTTP POST request and Azure
+binds its body to a POJO of type &lt;code&gt;Foo&lt;/code&gt;. We transform the &lt;code&gt;Foo&lt;/code&gt; into a
+&lt;code&gt;Bar&lt;/code&gt; and it comes back to the caller in the HTTP response.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;HTTP triggers are in the top 5 most popular integrations in Azure
+Functions, but even more popular are the event-based and storage or
+database-based triggers. The complete list can be found in the
+&lt;a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings"&gt;Triggers
+and Bindings&lt;/a&gt; documentation - there is a table where you can click on
+a specific binding or trigger and it will take you to reference page
+where there are code samples in all languages, including Java.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Here&amp;#8217;s another example using the Azure Event Hub as an input and
+Cosmos DB as an output. This example is
+&lt;a href="https://github.com/dsyer/azure-docs"&gt;in github&lt;/a&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@FunctionName("uppercase")
+public Bar execute(
+  @EventHubTrigger(name = "data", eventHubName = "events",
+        connection = "TRANSACTIONS_EVENT_HUB_CONNECTION_STRING")
+    Foo data,
+    @CosmosDBOutput(name = "document", databaseName = "inventory",
+        collectionName = "messages",
+        connectionStringSetting = "PRODUCT_ITEMS_DOCUMENTDB_CONNECTION_STRING",
+        createIfNotExists = true)
+    OutputBinding&amp;lt;Bar&amp;gt; document,
+    final ExecutionContext context) {
+  return document.setValue(new Bar(foo.getValue()));
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+If the incoming JSON cannot be converted to the function input
+type (&lt;code&gt;Foo&lt;/code&gt; in this case) you will see Azure fail with a confusing &lt;code&gt;no
+such method&lt;/code&gt; error. If you see that you might be able to change the
+&lt;code&gt;@FunctionName&lt;/code&gt; method to a &lt;code&gt;String&lt;/code&gt; input and eyeball the data to
+make sure it is bindable to the desired input type.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The annotations carry connection credential information through an
+indirection to environment variables that are configured in the
+function deployment. The configuration for all that happens in the
+build &lt;code&gt;pom.xml&lt;/code&gt; through the Azure Functions Maven plugin. For example:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;plugin&amp;gt;
+  &amp;lt;groupId&amp;gt;com.microsoft.azure&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;azure-functions-maven-plugin&amp;lt;/artifactId&amp;gt;
+  &amp;lt;configuration&amp;gt;
+    &amp;lt;resourceGroup&amp;gt;${functionResourceGroup}&amp;lt;/resourceGroup&amp;gt;
+    &amp;lt;appName&amp;gt;${functionAppName}&amp;lt;/appName&amp;gt;
+    &amp;lt;region&amp;gt;${functionAppRegion}&amp;lt;/region&amp;gt;
+    &amp;lt;appSettings&amp;gt;
+            &amp;lt;property&amp;gt;
+              &amp;lt;name&amp;gt;FUNCTIONS_EXTENSION_VERSION&amp;lt;/name&amp;gt;
+              &amp;lt;value&amp;gt;beta&amp;lt;/value&amp;gt;
+            &amp;lt;/property&amp;gt;
+            &amp;lt;property&amp;gt;
+              &amp;lt;name&amp;gt;TRANSACTIONS_EVENT_HUB_CONNECTION_STRING&amp;lt;/name&amp;gt;
+            &amp;lt;value&amp;gt;${TRANSACTIONS_EVENT_HUB_CONNECTION_STRING}&amp;lt;/value&amp;gt;
+            &amp;lt;/property&amp;gt;
+            &amp;lt;property&amp;gt;
+              &amp;lt;name&amp;gt;PRODUCT_ITEMS_DOCUMENTDB_CONNECTION_STRING&amp;lt;/name&amp;gt;
+              &amp;lt;value&amp;gt;${PRODUCT_ITEMS_DOCUMENTDB_CONNECTION_STRING}&amp;lt;/value&amp;gt;
+            &amp;lt;/property&amp;gt;
+            &amp;lt;property&amp;gt;
+              &amp;lt;name&amp;gt;MSDEPLOY_RENAME_LOCKED_FILES&amp;lt;/name&amp;gt;
+              &amp;lt;value&amp;gt;1&amp;lt;/value&amp;gt;
+            &amp;lt;/property&amp;gt;
+    &amp;lt;/appSettings&amp;gt;
+  &amp;lt;/configuration&amp;gt;
+  &amp;lt;executions&amp;gt;
+    &amp;lt;execution&amp;gt;
+            &amp;lt;id&amp;gt;package-functions&amp;lt;/id&amp;gt;
+            &amp;lt;goals&amp;gt;
+              &amp;lt;goal&amp;gt;package&amp;lt;/goal&amp;gt;
+            &amp;lt;/goals&amp;gt;
+    &amp;lt;/execution&amp;gt;
+  &amp;lt;/executions&amp;gt;
+&amp;lt;/plugin&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In this case the environment variable names link the plugin
+configuration to the function binding declaration. For instance the
+&lt;code&gt;@EventHubTrigger&lt;/code&gt; has a &lt;code&gt;connection&lt;/code&gt; attribute that will be
+popeulated at runtime from the
+&lt;code&gt;TRANSACTIONS_EVENT_HUB_CONNECTION_STRING&lt;/code&gt; environment variable. The
+plugin configures it remotely using a local environment variable with
+the same name (notice the &lt;code&gt;${}&lt;/code&gt; placeholders), which the developer or
+CI process is responsible for setting up at runtime.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Your own personal connection strings are secrets and can be found in
+the &lt;a href="https://portal.azure.com"&gt;Azure Dashboard&lt;/a&gt; - when you click on the
+relevant resource there is usually a &lt;code&gt;Connection Strings&lt;/code&gt; link (or
+similar) that you can copy and paste to your local process (e.g. in a
+script that you run locally but do not check into source
+control). E.g. you might use a &lt;code&gt;setup-env.sh&lt;/code&gt; script like this:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code&gt;export PRODUCT_ITEMS_DOCUMENTDB_CONNECTION_STRING="AccountEndpoint=https://..."
+export TRANSACTIONS_EVENT_HUB_CONNECTION_STRING="Endpoint=sb://..."&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;and source it once at the beginning of a terminal session.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There are some other plugin declarations in the &lt;code&gt;pom.xml&lt;/code&gt; of the
+sample. They are all important but basically boilerplate - you should
+be able to copy them and re-use the same configuration in all Azure
+Function Applications.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="spring-cloud-function"&gt;&lt;a class="anchor" href="#spring-cloud-function"&gt;&lt;/a&gt;Spring Cloud Function&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Cloud Function aims to support similar serverless use cases
+when the application developer declares Spring beans of type
+&lt;code&gt;java.util.Function&lt;/code&gt;. The advantages of using Spring Cloud Function on
+Azure, as opposed to vanilla Java functions, are that the actual
+business logic code is (in principle) portable to other platforms, and
+it is a familiar programming model for existing Spring users. Also,
+all the usual benefits of Spring apply: dependency injection and
+comprehensive integration with many other Java libraries.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The equivalent of both the examples above would be a single &lt;code&gt;@Bean&lt;/code&gt;:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Bean
+public Function&amp;lt;Foo, Bar&amp;gt; uppercase() {
+  return foo -&amp;gt; new Bar(foo.getValue().toUpperCase());
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In version 1.0 of Spring Cloud Function, the user had to map the
+Microsoft annotations manually to a JSON deployment descriptor, and
+wrap it up manually into an archive with the right layout for the
+platform. The process was brittle (but independent of the Azure Java
+programming model).&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;In version 2.0 this would still work, but we have chosen to support
+the use of the Azure annotations a bit more explicitly. So now we have
+a base class that application developers can extend and decorate with
+the Azure annotations. The example above would be exactly the same
+&lt;code&gt;@Bean&lt;/code&gt; and one of the &lt;code&gt;execute&lt;/code&gt; methods above would be inserted into
+the subclass of the Spring Cloud handler. Example:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;public class UppercaseHandler extends AzureSpringBootRequestHandler&amp;lt;Foo, Bar&amp;gt; {
+  @FunctionName("uppercase")
+    @HttpTrigger(name = "req", methods = { HttpMethod.GET,
+        HttpMethod.POST }, authLevel = AuthorizationLevel.ANONYMOUS) Foo foo,
+    ExecutionContext context) {
+  return super.handle(foo, context);
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Notice that the base class &lt;code&gt;AzureSpringBootRequestHandler&lt;/code&gt; is generic
+with type parameters for input and output. You have to match the input
+type to the incoming event data, which will be presented in JSON and
+converted using Jackson by Azure before Spring has anything to
+do. There are 2 utility methods in the base class, one (&lt;code&gt;handle&lt;/code&gt;)
+which returns the response object, and one (&lt;code&gt;handleOutput&lt;/code&gt;) which
+accepts an &lt;code&gt;OutputBinding&lt;/code&gt; and binds it to the output from the user
+&lt;code&gt;Function&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+The base class is pure boilerplate, and serves only as
+an external representation of the binding of your Spring functions
+to the serverless platform services. The Azure bindings would be ignored
+if you were running in a different platform, or locally via the
+Spring Cloud Function web adapter, for instance. It might be possible
+in the future to replace it with an interface declaration - the
+Azure platform doesn&amp;#8217;t permit this currently, but it&amp;#8217;s something we
+are looking at with the Microsoft team.
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There are various configuration options that drive the runtime
+behaviour of the Azure Function. The most important (and only
+mandatory) one is the &lt;code&gt;MAIN_CLASS&lt;/code&gt;, which is the main
+&lt;code&gt;@SpringBootApplication&lt;/code&gt; class that carries the declaration of the
+&lt;code&gt;Function&lt;/code&gt; (or &lt;code&gt;Functions&lt;/code&gt;). You can specify this as an environment
+variable, or as the &lt;code&gt;Main-Class&lt;/code&gt; entry in the application jar
+manifest. As long as your app has a main class with precisely one
+function, there is no need to do anything else. In the sample app we
+use the manifest to define the main class:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-xml" data-lang="xml"&gt;&amp;lt;plugin&amp;gt;
+  &amp;lt;groupId&amp;gt;org.apache.maven.plugins&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;maven-jar-plugin&amp;lt;/artifactId&amp;gt;
+  &amp;lt;configuration&amp;gt;
+    &amp;lt;archive&amp;gt;
+      &amp;lt;manifest&amp;gt;
+        &amp;lt;mainClass&amp;gt;example.FunctionApplication&amp;lt;/mainClass&amp;gt;
+      &amp;lt;/manifest&amp;gt;
+    &amp;lt;/archive&amp;gt;
+  &amp;lt;/configuration&amp;gt;
+&amp;lt;/plugin&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;If your app has multiple &lt;code&gt;Function&lt;/code&gt; beans, they can be mapped to the
+Azure function though the &lt;code&gt;@FunctionName&lt;/code&gt; annotation - the bean name
+(or more precisely the name i nthe &lt;code&gt;FunctionCatalog&lt;/code&gt;) matches the
+function name. In this way you can create an Azure Function
+Application, which is a single deployment artifact for a group of
+functions. If you prefer, you can also use an arbitrary
+&lt;code&gt;@FunctionName&lt;/code&gt; and configure the Spring Cloud Function name through
+an environment variable &lt;code&gt;FUNCTION_NAME&lt;/code&gt; or a &lt;code&gt;function.name&lt;/code&gt; in your
+&lt;code&gt;application.properties&lt;/code&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;There is another simple sample of how to set up a Spring Cloud
+Function as an Azure Function in
+&lt;a href="https://github.com/spring-cloud/spring-cloud-function/blob/master/spring-cloud-function-samples/function-sample-azure/README.adoc"&gt;the
+project repo&lt;/a&gt; - this one is an HTTP trigger from an Azure perspective,
+but the Spring Cloud Function parts are very similar.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="admonitionblock note"&gt;
+&lt;table&gt;
+&lt;tr&gt;
+&lt;td class="icon"&gt;
+&lt;div class="title"&gt;Note&lt;/div&gt;
+&lt;/td&gt;
+&lt;td class="content"&gt;
+If you are at &lt;a href="https://springoneplatform.io"&gt;Spring One Platform&lt;/a&gt; this week, come along to a &lt;a href="https://springoneplatform.io/2018/sessions/running-serverless-applications-using-spring-and-microsoft-azure"&gt;presentation on Spring and Azure Functions&lt;/a&gt; by Jeff Hollan (Microsoft) and Oleg Zhurakousky (Pivotal).
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Tools 4 GA released</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/25/spring-tools-4-ga-released" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Martin Lippert</name>
+    </author>
+    <id>tag:spring.io,2018-09-20:3404</id>
+    <updated>2018-09-25T12:18:00Z</updated>
+    <content type="html">&lt;p&gt;&lt;img src="https://github.com/spring-projects/sts4/wiki/images/sts4-big.gif" alt="spring tools 4" /&gt;&lt;/p&gt;
+&lt;p&gt;After a decade of rolling out updates and improvements to the famous Spring Tool Suite and the Spring IDE components for Eclipse, a new era of Spring tooling starts today and we welcome you to the all-new &lt;a href="https://spring.io/tools"&gt;Spring Tools 4&lt;/a&gt;. After an intensive period of public betas, we are happy to announce the first official release today.&lt;/p&gt;
+&lt;p&gt;Spring Tools 4 is a completely new set of tools for working with Spring projects in your favorite IDEs and editors. They are re-built from scratch with the goal in mind to provide the best support for implementing enterprise-grade applications based on Spring and Spring Boot across development environments and lightweight editors. They provide a unique editor-centric experience for working with Spring projects, ranging from smart and Spring-aware content-assist to a unique new way of connecting your source code with and enriching it with detailed information and insights from your running Spring Boot applications. This puts your source code editor side-by-side with your running boot applications.&lt;/p&gt;&lt;h2&gt;&lt;a href="#spring-aware" class="anchor" name="spring-aware"&gt;&lt;/a&gt;Spring Aware&lt;/h2&gt;
+&lt;p&gt;The all-new Spring Tools 4 analyze your projects on the fly, understand the Spring constructs inside, and provide easy and super quick navigation to all your Spring elements. Finding a specific request mapping, an exact bean definition, or a newly created function was never as easy as with the new Spring Tools 4.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/spring-projects/sts4/wiki/images/screenshot-navigation.png" alt="smart code completion" /&gt;&lt;/p&gt;&lt;h2&gt;&lt;a href="#information-from-live-running-apps" class="anchor" name="information-from-live-running-apps"&gt;&lt;/a&gt;Information from live-running apps&lt;/h2&gt;
+&lt;p&gt;The all-new Spring Tools 4 introduces a new concept of overlaying your source code with detailed information from live-running Spring Boot apps. As soon as you run your boot app on your machine, additional information from this app will show up directly in your source code editor. The most powerful part here are the detailed wiring reports for your beans. You can see exactly which bean (from which source) got injected into your @Autowired-annotated dependency (for example), and where your bean got injected in your application. This provides a unique insight into the running application directly in your source code. You don’t have to collect that data yourself and find the right lines of code manually. The tooling does that for you automatically. And going one step further, you can get that information from remote Spring Boot apps too. This allows you to see bean wirings of cloud-deployed Spring applications directly in your source code editor.&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://github.com/spring-projects/sts4/wiki/images/screenshot-live-hovers.png" alt="live hover screenshot" /&gt;&lt;/p&gt;&lt;h2&gt;&lt;a href="#ide-agnostic" class="anchor" name="ide-agnostic"&gt;&lt;/a&gt;IDE agnostic&lt;/h2&gt;
+&lt;p&gt;We know that Spring developers love their IDEs and code editors. And we want them to continue to use the tools that they love. Therefore we implemented most parts of the Spring Tools 4 in an IDE-agnostic way. You can use them in:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Eclipse (&lt;a href="https://www.eclipse.org/downloads"&gt;https://www.eclipse.org/downloads&lt;/a&gt; or the STS4 distribution from &lt;a href="https://spring.io/tools"&gt;https://spring.io/tools&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Visual Studio Code (&lt;a href="https://code.visualstudio.com"&gt;https://code.visualstudio.com&lt;/a&gt;)&lt;/li&gt;
+  &lt;li&gt;Atom IDE (&lt;a href="https://ide.atom.io"&gt;https://ide.atom.io&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And that is just the beginning. We expect more environments to join this party in the future.&lt;/p&gt;&lt;h2&gt;&lt;a href="#re-built-from-scratch" class="anchor" name="re-built-from-scratch"&gt;&lt;/a&gt;Re-built from scratch&lt;/h2&gt;
+&lt;p&gt;To realize these all-new Spring Tools 4, we decided to re-write most of the Spring tooling from scratch - with these goals in mind from the beginning:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Let’s be IDE agnostic - let every developer continue to use the environments they love.&lt;/li&gt;
+  &lt;li&gt;Build for performance right from the start - we hate to wait for our IDE or editor to finish before we can continue coding. Therefore the Spring Tools 4 are designed to never block the user plus deliver results quickly.&lt;/li&gt;
+  &lt;li&gt;Build for modern Spring technologies - the tools focus on Spring Boot and annotation-driven Spring app development.&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;&lt;a href="#continuous-updates" class="anchor" name="continuous-updates"&gt;&lt;/a&gt;Continuous Updates&lt;/h2&gt;
+&lt;p&gt;Moving forward, the Spring Tools 4 will receive continuous updates with bug fixes as well as new and improved features. Those updates will appear as updates automatically in your installation across all environments. The Eclipse-based distribution will also be updated continuously, even across Eclipse platform versions, so you will always be on the latest and greatest.&lt;/p&gt;&lt;h2&gt;&lt;a href="#download" class="anchor" name="download"&gt;&lt;/a&gt;Download&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Download the release from here: &lt;a href="https://spring.io/tools"&gt;https://spring.io/tools&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Installation instructions: &lt;a href="https://github.com/spring-projects/sts4/wiki/Installation"&gt;https://github.com/spring-projects/sts4/wiki/Installation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;To learn more, take a look at the user guide here: &lt;a href="https://github.com/spring-projects/sts4/wiki/User-Guide"&gt;https://github.com/spring-projects/sts4/wiki/User-Guide&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;h2&gt;&lt;a href="#watch-spring-tools-4-in-action" class="anchor" name="watch-spring-tools-4-in-action"&gt;&lt;/a&gt;Watch Spring Tools 4 in Action&lt;/h2&gt;
+&lt;p&gt;Josh Long recorded a new and comprehensive &amp;ldquo;Getting Started with Spring Boot and Spring Tools 4&amp;rdquo; video, showing Spring Tools 4 for Eclipse in action. Take a look:&lt;/p&gt;
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/0ryrlJfSgfc" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen&gt;&lt;/iframe&gt;&lt;h2&gt;&lt;a href="#faq" class="anchor" name="faq"&gt;&lt;/a&gt;FAQ&lt;/h2&gt;&lt;h3&gt;&lt;a href="#what-will-happen-to-the-old-sts-3-9-x-tooling" class="anchor" name="what-will-happen-to-the-old-sts-3-9-x-tooling"&gt;&lt;/a&gt;What will happen to the old STS 3.9.x tooling?&lt;/h3&gt;
+&lt;p&gt;We will continue to ship updates for STS 3.9.x as a full distribution until mid of 2019 and will update the distribution to the upcoming Eclipse releases (2018-09, 2018-12, and beyond). In case you still need important parts of the old tooling in Eclipse that haven’t been supported in Spring Tools 4 for Eclipse, you will be able to install those parts as add-on features into the Spring Tools 4 Eclipse distribution and those parts will continue to receive maintenance updates until mid of 2019. After mid of 2019, the old STS 3.9.x tooling will receive no maintenance updates anymore.&lt;/p&gt;&lt;h3&gt;&lt;a href="#are-the-spring-tools-4-ready-for-boot-2-1-and-spring-framework-5-1" class="anchor" name="are-the-spring-tools-4-ready-for-boot-2-1-and-spring-framework-5-1"&gt;&lt;/a&gt;Are the Spring Tools 4 ready for Boot 2.1 and Spring Framework 5.1?&lt;/h3&gt;
+&lt;p&gt;Yes, the Spring Tools 4 are ready for usage with various Spring Boot versions (including 1.5.x, 2.0.x and 2.1.x) as well as the latest Spring Framework versions (including 4.x and 5.x).&lt;/p&gt;&lt;h3&gt;&lt;a href="#do-the-spring-tools-4-include-java-language-support" class="anchor" name="do-the-spring-tools-4-include-java-language-support"&gt;&lt;/a&gt;Do the Spring Tools 4 include Java language support?&lt;/h3&gt;
+&lt;p&gt;The ready-to-use Spring Tools 4 distribution on top of Eclipse includes the standard Java language tooling of Eclipse out-of-the-box. For Visual Studio Code, you should install the Java Extension Pack, which is a combination of the regular Java language tooling (provided from RedHat and Eclipse) and the launching, testing, and debugging support for Java for Visual Studio Code (from Microsoft). For Atom, there is also a Java extension around (that is based on the same code as the Java support for Visual Studio Code).&lt;/p&gt;&lt;h3&gt;&lt;a href="#do-the-spring-tools-4-support-jdk9-jdk10-jdk11" class="anchor" name="do-the-spring-tools-4-support-jdk9-jdk10-jdk11"&gt;&lt;/a&gt;Do the Spring Tools 4 support JDK9, JDK10, JDK11?&lt;/h3&gt;
+&lt;p&gt;Yes. You can use JDK 8/9/10/11 to run your Spring Tools 4. Language support for Java within your projects however is limited to JDK 8/9/10. Full language support for JDK11 will arrive with a future update soon.&lt;/p&gt;&lt;h3&gt;&lt;a href="#do-the-spring-tools-4-support-lombok" class="anchor" name="do-the-spring-tools-4-support-lombok"&gt;&lt;/a&gt;Do the Spring Tools 4 support Lombok?&lt;/h3&gt;
+&lt;p&gt;Yes, you can use Lombok in your projects when using the Spring Tools 4 in the various environments.&lt;/p&gt;&lt;h3&gt;&lt;a href="#can-i-install-and-use-spring-tools-4-in-intellij-idea" class="anchor" name="can-i-install-and-use-spring-tools-4-in-intellij-idea"&gt;&lt;/a&gt;Can I install and use Spring Tools 4 in IntelliJ IDEA?&lt;/h3&gt;
+&lt;p&gt;No. We implemented a prototype to integrate the Spring Tools 4 with IntelliJ IDEA, but the third-party support for the language server protocol for IntelliJ isn’t mature, stable, and feature-rich enough to implement a meaningful version of the Spring Tools 4 for IntelliJ yet. However, there is awesome support for Spring available out-of-the-box in the IntelliJ Ultimate Edition that you can use instead if you prefer IntelliJ.&lt;/p&gt;&lt;h3&gt;&lt;a href="#which-other-ides-and-editors-will-be-supported-in-the-future" class="anchor" name="which-other-ides-and-editors-will-be-supported-in-the-future"&gt;&lt;/a&gt;Which other IDEs and editors will be supported in the future?&lt;/h3&gt;
+&lt;p&gt;We don’t have exact plans yet, but we constantly monitoring the language server community for new and emerging clients and environments that might be good candidates for the Spring Tools 4. Eclipse Theia is one of the projects we are taking into account at the moment, for example.&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Spring Boot 2.1 M4 available now</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/25/spring-boot-2-1-m4-available-now" />
+    <category term="releases" label="Releases" />
+    <author>
+      <name>Madhura Bhave</name>
+    </author>
+    <id>tag:spring.io,2018-09-24:3414</id>
+    <updated>2018-09-25T01:38:00Z</updated>
+    <content type="html">&lt;p&gt;On behalf of the team and everyone that contributed, I am happy to announce that the fourth milestone of Spring Boot 2.1 has been released and is available from &lt;a href="http://repo.spring.io/milestone/"&gt;our milestone repository&lt;/a&gt;. This release closes over &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.1.0.M4"&gt;40 issues and pull requests&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;This milestone ships with the latest &lt;a href="https://spring.io/blog/2018/09/21/spring-framework-5-1-goes-ga"&gt;Spring Framework 5.1&lt;/a&gt; which went GA last week.&lt;/p&gt;
+&lt;p&gt;Along with the Spring Framework update, this release also includes a bunch of other &lt;a href="https://github.com/spring-projects/spring-boot/issues?q=is%3Aissue+milestone%3A2.1.0.M4+is%3Aclosed+label%3A%22type%3A+dependency-upgrade%22"&gt;dependency version updates&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For a complete list of changes and upgrade instructions, please see the &lt;a href="https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.1.0-M4-Release-Notes"&gt;Spring Boot 2.1 Release Notes&lt;/a&gt; on the wiki and the &lt;a href="http://docs.spring.io/spring-boot/docs/2.1.0.M4/reference/htmlsingle/"&gt;updated reference documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you want to get started with 2.1 and try out the new features, you can bootstrap a new project on &lt;a href="https://start.spring.io"&gt;https://start.spring.io&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;We hope to release a release candidate mid-October and the 2.1 GA towards the end of October.&lt;/p&gt;
+&lt;p&gt;&lt;a href="http://projects.spring.io/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.1.0.M4/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
+  </entry>
+  <entry>
+    <title>Hands on with Spring Vault 2.1</title>
+    <link rel="alternate" href="https://spring.io/blog/2018/09/24/hands-on-with-spring-vault-2-1" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Mark Paluch</name>
+    </author>
+    <id>tag:spring.io,2018-09-18:3397</id>
+    <updated>2018-09-24T21:27:03Z</updated>
+    <content type="html">&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Vault 2.1 is already in sight. I would like to use this post to take a deeper look at the changes and features that are in the upcoming release.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The team has been working on a whole bunch of new features:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Extending infrastructure-based authentication to support Google Cloud IAM and Azure Managed Service Identity&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Integrating Vault&amp;#8217;s versioned Key-Value backend&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Wrapping API support&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Java 11 compatibility&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Vault supports HashiCorp Vault versions 0.5 up to 0.11.
+You can find the Spring Vault and Spring Cloud Vault &lt;a href="https://github.com/mp911de/spring-cloud-vault-config-samples"&gt;examples repository on GitHub&lt;/a&gt;. Now, let&amp;#8217;s dive into the Spring Vault 2.1 features!&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="google-cloud-authentication"&gt;&lt;a class="anchor" href="#google-cloud-authentication"&gt;&lt;/a&gt;Google Cloud Authentication&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With version 0.8.1, Vault introduced authentication support for Google Cloud. GCP authentication uses GCP&amp;#8217;s IAM service to use one of the following authentication workflows:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="ulist"&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;IAM Login using service account credentials to generate a signed token&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;GCE Login using GCP&amp;#8217;s metadata service to retrieve a signed token&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Vault supports both methods. While using IAM authentication requires credentials to be set up (either through the environment or by using a credentials file), GCE authentication uses the platform as an identity provider, so GCE authentication has fewer requirements regarding the initial setup.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="iam-login"&gt;&lt;a class="anchor" href="#iam-login"&gt;&lt;/a&gt;IAM Login&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;IAM authentication uses Google&amp;#8217;s IAM service to generate a signed token by using the signature from Google&amp;#8217;s credentials. The signed token is passed on to Vault to verify the token. This authentication method requires credentials to be either provided through the &lt;code&gt;GOOGLE_APPLICATION_CREDENTIALS&lt;/code&gt; environment variable or configured through &lt;code&gt;GcpIamAuthenticationOptions&lt;/code&gt;. &lt;code&gt;GcpIamAuthentication&lt;/code&gt; uses Google&amp;#8217;s service API SDK (&lt;code&gt;google-api-services-iam&lt;/code&gt;) to interact with IAM. A client configuration could look like the following code sample:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Configuration
+class VaultConfiguration extends AbstractVaultConfiguration {
+
+  @Override
+  public ClientAuthentication clientAuthentication() {
+
+    try {
+
+      GcpIamAuthenticationOptions options = GcpIamAuthenticationOptions.builder()
+        .role("my-role")
+        .credential(GoogleCredential.getApplicationDefault())
+        .build();
+      return new GcpIamAuthentication(options, restOperations());
+
+    } catch (IOException e) {
+      throw new IllegalStateException(e);
+    }
+  }
+
+  // …
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;By default, the IAM authentication method derives project ID and service account Id from the credential. You can also configure specific values if you want to authenticate on behalf of a specific service account.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For more information, see the &lt;a href="https://docs.spring.io/spring-vault/docs/2.1.0.RC1/reference/html/#vault.authentication.gcpiam"&gt;reference documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect2"&gt;
+&lt;h3 id="gce-login"&gt;&lt;a class="anchor" href="#gce-login"&gt;&lt;/a&gt;GCE Login&lt;/h3&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The GCE (Google Compute Engine) authentication workflow is suitable for VM instances. It uses the metadata service (compute metadata) to obtain a signed token. The signed identity is passed on to Vault to verify the VM instance. A client configuration could look like the following code sample:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Configuration
+class VaultConfiguration extends AbstractVaultConfiguration {
+
+  @Override
+  public ClientAuthentication clientAuthentication() {
+
+    GcpComputeAuthenticationOptions options = GcpComputeAuthenticationOptions
+        .builder().path("my-role").build();
+
+    return new GcpComputeAuthentication(options, restOperations());
+  }
+
+  // …
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For more information, see the &lt;a href="https://docs.spring.io/spring-vault/docs/2.1.0.RC1/reference/html/#vault.authentication.gcpgce"&gt;reference documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="azure-authentication"&gt;&lt;a class="anchor" href="#azure-authentication"&gt;&lt;/a&gt;Azure Authentication&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;With version 0.10.0, Vault introduced authentication support for Azure. Applications running on Azure virtual machines can authenticate against Vault by using &lt;a href="https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview"&gt;managed service identities&lt;/a&gt;. A managed service identity (MSI) can be activated for a virtual machine that does not require provisioning of upfront credentials.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Vault obtains MSI credentials from the Azure Instance Metadata Service (IMDS). Vault requires additional details (subscriptionId, resource group name, VM name) to perform the authentication. By default, these values are also obtained from IMDS and passed on to Vault, along with the identity token.
+A possible client configuration could look like the following code sample:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;@Configuration
+class VaultConfiguration extends AbstractVaultConfiguration {
+
+  @Override
+  public ClientAuthentication clientAuthentication() {
+
+    AzureMsiAuthenticationOptions options = AzureMsiAuthenticationOptions.builder()
+        .role("my-role").build();
+    return new AzureMsiAuthentication(options, restOperations());
+  }
+
+  // …
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;For more information, see the &lt;a href="https://docs.spring.io/spring-vault/docs/2.1.0.RC1/reference/html/#vault.authentication.azuremsi"&gt;reference documentation&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="key-value-api"&gt;&lt;a class="anchor" href="#key-value-api"&gt;&lt;/a&gt;Key-Value API&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Vault introduced with version 0.10 a versioned variant of its Key-Value backend (which was also known as the generic secret backend a few versions ago). This change introduces another backend type with a similar external API regarding its operations (list, get, put, delete) but a different API implementation.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;To unify versioned and non-versioned API access, we introduced a common API with &lt;code&gt;VaultKeyValueOperations&lt;/code&gt;. &lt;code&gt;VaultKeyValueOperations&lt;/code&gt; exposes common functionality that you can use in a version-agnostic style if you do not want to interact with versioning metadata. The following example shows how you might use it:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;VaultOperations vaultOperations = …
+VaultKeyValueOperations operations = vaultOperations.opsForKeyValue("secret", KeyValueBackend.unversioned());
+
+Map&amp;lt;String, Object&amp;gt; secret = new HashMap&amp;lt;&amp;gt;();
+secret.put("key", "value");
+secret.put("ttl", "5");
+
+operations.put("key", secret);
+
+operations.put("key", new Person(…));
+
+VaultResponseSupport&amp;lt;Person&amp;gt; person = operations.get("key", Person.class);&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The variant shown above ignores versioning specifics even if they are provided by the targeted secret backend. You can obtain a versioned Key-Value API to interact with versions.
+&lt;code&gt;VaultVersionedKeyValueOperations&lt;/code&gt; exposes version-specific operations such as retrieval of a specific secret version or compare-and-set. Take a look at the following example:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;VaultOperations vaultOperations = …
+VaultVersionedKeyValueOperations operations = vaultOperations.opsForVersionedKeyValue("versioned");
+
+Map&amp;lt;String, Object&amp;gt; secret = new HashMap&amp;lt;&amp;gt;();
+secret.put("key", "value");
+secret.put("ttl", "5");
+
+Metadata metadata = operations.put("key", secret);
+
+Versioned&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt; versioned = operations.get("key", Version.from(42));
+
+Map&amp;lt;String, Object&amp;gt; update = new HashMap&amp;lt;&amp;gt;();
+update.put("key", "new-key");
+update.put("ttl", "5");
+
+Versioned&amp;lt;Map&amp;lt;String, Object&amp;gt;&amp;gt; compareAndSet = Versioned.create(secret, versioned.getVersion());
+
+operations.put("key", compareAndSet);
+
+operations.delete("key", Version.from(42));&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Requests and responses to versioned secrets wrap their content along with versioning metadata in a &lt;code&gt;Versioned&lt;/code&gt; object to attach a versioning context.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="wrapping-api-support"&gt;&lt;a class="anchor" href="#wrapping-api-support"&gt;&lt;/a&gt;Wrapping API Support&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;A core concept in Vault is to wrap responses and return a token to obtain the actual response body. Response wrapping is now supported by a dedicated API with &lt;code&gt;VaultWrappingOperations&lt;/code&gt;. Wrapping support allows lookup of wrapped responses. You can read these and rewrap the content. &lt;code&gt;VaultWrappingOperations&lt;/code&gt; does not support response wrapping of Spring Vault API calls. You can use &lt;code&gt;RestTemplate&lt;/code&gt; through &lt;code&gt;VaultOperations.doWithSession(…)&lt;/code&gt; directly if you need to create wrapped responses.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;The following example provides an overview of &lt;code&gt;VaultWrappingOperations&lt;/code&gt; use:&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="listingblock"&gt;
+&lt;div class="content"&gt;
+&lt;pre class="prettyprint highlight"&gt;&lt;code class="language-java" data-lang="java"&gt;VaultOperations vaultOperations = …
+VaultWrappingOperations operations = vaultOperations.opsForWrapping();
+
+VaultToken wrappingToken = VaultToken.of(…);
+
+// Metadata encapsulated TTL and Creation Time
+WrappedMetadata lookup = operations.lookup(wrappingToken);
+
+// Read the response as generic Map
+VaultResponse response = operations.read(wrappingToken);
+
+// Read the response applying a type hint.
+VaultResponseSupport&amp;lt;SocialSecurityNumber&amp;gt; response = operations.read(
+        wrappingToken, SocialSecurityNumber.class);
+
+// You can also wrap user-supplied data and get a token in return
+Map&amp;lt;String, String&amp;gt; map = Collections.singletonMap("key", "value");
+WrappedMetadata metadata = wrappingOperations.wrap(map, Duration.ofSeconds(100));&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="java-11-compatibility"&gt;&lt;a class="anchor" href="#java-11-compatibility"&gt;&lt;/a&gt;Java 11 Compatibility&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;Spring Vault fully supports Java 11 as its next long-term support release. In fact, we strongly recommend that you upgrade your Spring Vault version to the 2.1 release (in combination with Spring Framework 5.1) if you are developing for JDK 11, as it will give you a warning-free experience of Spring&amp;#8217;s libraries. All HTTP client integrations have JDK 11 support.&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="sect1"&gt;
+&lt;h2 id="outlook"&gt;&lt;a class="anchor" href="#outlook"&gt;&lt;/a&gt;Outlook&lt;/h2&gt;
+&lt;div class="sectionbody"&gt;
+&lt;div class="paragraph"&gt;
+&lt;p&gt;We are working towards the next Spring Vault 2.2 release to ship with annotation-based configuration for the versioned Vault key-value backend. We keep observing the Vault project and continue to work to provide integrations for features that make sense from an application perspective. Cheers, and stay tuned!&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;</content>
+  </entry>
   <entry>
     <title>Spring Integration, AMQP and Kafka Release Candidates Available</title>
     <link rel="alternate" href="https://spring.io/blog/2018/09/24/spring-integration-amqp-and-kafka-release-candidates-available" />
@@ -1499,85 +2149,5 @@ cf restart $APP_NAME
   &lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;&lt;/p&gt;
   &lt;p&gt;In both &lt;code&gt;run.sh&lt;/code&gt; and &lt;code&gt;deploy.sh&lt;/code&gt; we used &lt;code&gt;base64 -w0&lt;/code&gt; to encode the &lt;code&gt;.json&lt;/code&gt; service account file in Base64. One of us is running on Linux and the other on OS X. The &lt;code&gt;-w0&lt;/code&gt; operand ensures that the Base64 encoded file isn’t hard-wrapped, that it is one contiguous line of text, when running on Linux against the &lt;code&gt;GNU&lt;/code&gt; &lt;code&gt;base64&lt;/code&gt; utility.&lt;/p&gt;
 &lt;/blockquote&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Boot 2.0.5</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/12/spring-boot-2-0-5" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Andy Wilkinson</name>
-    </author>
-    <id>tag:spring.io,2018-09-12:3392</id>
-    <updated>2018-09-12T11:52:00Z</updated>
-    <content type="html">&lt;p&gt;It is my pleasure to announce that Spring Boot 2.0.5 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 2.0.5 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v2.0.5.RELEASE"&gt;87 fixes, improvements and dependency updates&lt;/a&gt; (including &lt;a href="https://pivotal.io/security/cve-2018-11087"&gt;an important security fix for Spring AMQP&lt;/a&gt;). Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/2.0.5.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Boot 1.5.16</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/11/spring-boot-1-5-16" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Andy Wilkinson</name>
-    </author>
-    <id>tag:spring.io,2018-09-11:3391</id>
-    <updated>2018-09-11T16:43:00Z</updated>
-    <content type="html">&lt;p&gt;On behalf of the team, I am pleased to announce that Spring Boot 1.5.16 has been released and is is now available from &lt;a href="http://repo.spring.io/release"&gt;repo.spring.io&lt;/a&gt; and &lt;a href="http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.springframework.boot%22"&gt;Maven Central&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Spring Boot 1.5.16 includes &lt;a href="https://github.com/spring-projects/spring-boot/releases/tag/v1.5.16.RELEASE"&gt;27 fixes, improvements and dependency updates&lt;/a&gt; (including &lt;a href="https://pivotal.io/security/cve-2018-11087"&gt;an important security fix for Spring AMQP&lt;/a&gt;). Thanks to all that have contributed with issue reports and pull requests.&lt;/p&gt;&lt;h3&gt;&lt;a href="#how-can-you-help" class="anchor" name="how-can-you-help"&gt;&lt;/a&gt;How can you help?&lt;/h3&gt;
-&lt;p&gt;If you&amp;rsquo;re interested in helping out, check out the &lt;a href="https://github.com/spring-projects/spring-boot/labels/status%3A%20ideal-for-contribution"&gt;&amp;ldquo;ideal for contribution&amp;rdquo; tag&lt;/a&gt; in the issue repository. If you have general questions, please ask on &lt;a href="http://stackoverflow.com"&gt;stackoverflow.com&lt;/a&gt; using the &lt;a href="http://stackoverflow.com/tags/spring-boot"&gt;&lt;code&gt;spring-boot&lt;/code&gt; tag&lt;/a&gt; or chat with the community on &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/projects/spring-boot/"&gt;Project Page&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot"&gt;GitHub&lt;/a&gt; | &lt;a href="https://github.com/spring-projects/spring-boot/issues"&gt;Issues&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-boot/docs/1.5.16.RELEASE/reference/htmlsingle"&gt;Documentation&lt;/a&gt; | &lt;a href="http://stackoverflow.com/questions/tagged/spring-boot"&gt;Stack Overflow&lt;/a&gt; | &lt;a href="https://gitter.im/spring-projects/spring-boot"&gt;Gitter&lt;/a&gt;&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Kotlin Support in Spring Cloud Function</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/11/kotlin-support-in-spring-cloud-function" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Oleg Zhurakousky</name>
-    </author>
-    <id>tag:spring.io,2018-09-11:3390</id>
-    <updated>2018-09-11T13:46:17Z</updated>
-    <content type="html">&lt;p&gt;Rarely we blog about a single feature, but given that &lt;a href="https://github.com/spring-cloud/spring-cloud-function/issues/77"&gt;this one&lt;/a&gt; was one of the most requested ones in &lt;a href="https://cloud.spring.io/spring-cloud-function/"&gt;Spring Cloud Function&lt;/a&gt; (relatively young project), we thought it may be appropriate, so here it is.&lt;/p&gt;
-&lt;p&gt;Initial support for &lt;a href="https://kotlinlang.org/"&gt;Kotlin&lt;/a&gt; lambdas has been added to Spring Cloud Function. What it means is that Spring Cloud Function can now recognize Kotlin lambdas that &lt;em&gt;effectively&lt;/em&gt; match to one of Java&amp;rsquo;s &lt;code&gt;Supplier&lt;/code&gt;, &lt;code&gt;Function&lt;/code&gt; or &lt;code&gt;Consumer&lt;/code&gt; and treat them as such.&lt;/p&gt;
-&lt;p&gt;That is:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="prettyprint $kotlin"&gt;@Bean&#xD;
-open fun kotlinFunction(): (String) -&amp;gt; String {&#xD;
-    return  { it.toUpperCase() }&#xD;
-}&#xD;
-&#xD;
-@Bean&#xD;
-open fun kotlinConsumer(): (String) -&amp;gt; Unit {&#xD;
-    return  { println(it) }&#xD;
-}&#xD;
-&#xD;
-@Bean&#xD;
-open fun kotlinSupplier(): () -&amp;gt; String {&#xD;
-    return  { &amp;quot;Hello Kotlin&amp;quot; }&#xD;
-}&#xD;
-
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Check out the sample project &lt;a href="https://github.com/olegz/demos/tree/master/demo-function-kotlin"&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;That is pretty much it. The feature is available in the current snapshot and will be part of Spring Cloud Function 2.0.0.RELEASE. This means that enhancements and modifications are still ongoing so your feedback is quite important.&lt;/p&gt;
-&lt;p&gt;For more on Spring Cloud Function see the following:&lt;/p&gt;
-&lt;p&gt;&lt;a href="https://spring.io/blog/2017/07/05/introducing-spring-cloud-function"&gt;https://spring.io/blog/2017/07/05/introducing-spring-cloud-function&lt;/a&gt;&lt;br/&gt;&lt;a href="https://www.nurkiewicz.com/2018/04/sneak-peek-at-spring-cloud-function.html"&gt;https://www.nurkiewicz.com/2018/04/sneak-peek-at-spring-cloud-function.html&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Enjoy!&lt;/p&gt;</content>
-  </entry>
-  <entry>
-    <title>Spring Security 5.0.8 and 4.2.8 Released</title>
-    <link rel="alternate" href="https://spring.io/blog/2018/09/11/spring-security-5-0-8-and-4-2-8-released" />
-    <category term="releases" label="Releases" />
-    <author>
-      <name>Josh Cummings</name>
-    </author>
-    <id>tag:spring.io,2018-09-10:3388</id>
-    <updated>2018-09-11T13:26:15Z</updated>
-    <content type="html">&lt;div class="paragraph"&gt;
-&lt;p&gt;On behalf of the community, I am pleased to announce that the Spring Security 5.0.8 (&lt;a href="https://github.com/spring-projects/spring-security/milestone/120?closed=1"&gt;changelog&lt;/a&gt;) and 4.2.8 (&lt;a href="https://github.com/spring-projects/spring-security/milestone/118?closed=1"&gt;changelog&lt;/a&gt;) have been released. The releases primarily deliver bug fixes and dependency version updates along with some minor improvements. The releases will be found in the upcoming Spring Boot maintenance releases coming this week.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class="paragraph"&gt;
-&lt;p&gt;&lt;a href="http://projects.spring.io/spring-security/"&gt;Project Site&lt;/a&gt; |
-&lt;a href="http://docs.spring.io/spring-security/site/docs/4.2.x/reference/htmlsingle/"&gt;4.x Reference&lt;/a&gt; | &lt;a href="http://docs.spring.io/spring-security/site/docs/5.0.x/reference/htmlsingle/"&gt;5.x Reference&lt;/a&gt;
-| &lt;a href="http://stackoverflow.com/questions/tagged/spring-security"&gt;Help&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;</content>
   </entry>
 </feed>

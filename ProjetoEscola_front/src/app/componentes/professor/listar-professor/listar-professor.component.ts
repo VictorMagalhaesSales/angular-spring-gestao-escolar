@@ -31,6 +31,7 @@ export class ListarProfessorComponent implements OnInit {
   listaDeProfessores = [];
 
   coluna: any[] = [
+    { field: 'imagem', header: '' },
     { field: 'id', header: 'id' },
     { field: 'nome', header: 'Nome' },
     { field: 'sobrenome', header: 'Sobrenome' },
@@ -55,14 +56,14 @@ export class ListarProfessorComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.pesquisar("a");
+    this.pesquisar("semFiltro");
     this.title.setTitle("Listar professores");
   }
 
   pesquisar(iniciar: string){
     let filtro = new ProfessorFiltro(this.nome, this.sobrenome, this.disciplina, this.email, this.telefone);
     
-    if(iniciar == "a" ){
+    if(iniciar == "semFiltro" ){
       filtro.nome = "";
       filtro.sobrenome = "";
       filtro.email = "";

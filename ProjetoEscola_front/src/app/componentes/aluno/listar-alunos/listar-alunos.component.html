@@ -31,10 +31,10 @@
                                 {{alunos[col.field]}}
                             </span>
                         </td>
-                        <td *ngIf="mostra('ROLE_DELETAR_ALUNO'  )" class="corpo corpoacoes">
-                            <button mdbBtn (click)="editarAluno(alunos)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="editarAlunoLista.show()" mdbWavesEffect style="padding-left: -50px;padding-right: -20px;"><i class="fa fa-edit fa-2x"></i></button>
-                            <button mdbBtn (click)="acionarExcluir(alunos)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="excluirAlunoLista.show()" mdbWavesEffect style="padding-left: -20px;padding-right: -20px;"><i class="fa fa-trash fa-2x"></i></button>
-                            <button mdbBtn [routerLink]="['../../notasfaltas', alunos.matricula]" type="button" color="default" size="sm"  mdbTooltip="Notas e faltas" mdbWavesEffect  style="padding-left: -20px;padding-right: -20px;"><i class="fa fa-calendar fa-2x"></i></button>
+                        <td *ngIf="mostra('ROLE_DELETAR_ALUNO')" class="corpo corpoacoes">
+                            <button mdbBtn (click)="editarAluno(alunos)" type="button" mdbTooltip="Editar" color="info" size="sm" class="waves-light"  data-toggle="modal" data-target="#basicExample" (click)="editarAlunoLista.show()" mdbWavesEffect style="padding-left: 15px !important; padding-right: 15px !important;"><i class="fa fa-edit fa-2x"></i></button>
+                            <button mdbBtn (click)="acionarExcluir(alunos)" type="button" mdbTooltip="Excluir" color="danger" size="sm" class="waves-light" data-toggle="modal" data-target="#basicExample" (click)="excluirAlunoLista.show()" mdbWavesEffect style="padding-left: 15px !important; padding-right: 15px !important;"><i class="fa fa-trash fa-2x"></i></button>
+                            <button mdbBtn [routerLink]="['../../notasfaltas', alunos.matricula]" type="button" color="default" size="sm"  mdbTooltip="Notas e faltas" mdbWavesEffect style="margin-right: -150px; padding-left: 15px !important; padding-right: 15px !important;"><i class="fa fa-calendar fa-2x"></i></button>
                         </td>
                     </tr>
                 </ng-template>

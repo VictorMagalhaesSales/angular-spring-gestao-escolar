@@ -1,5 +1,5 @@
 import { AuthService } from './../../../seguranca/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, DoCheck } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,9 +7,25 @@ import { Router } from '@angular/router';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit, DoCheck {
+
+  imagemPerfil: string;
   
   constructor(private auth: AuthService, private rota: Router) {
+   }
+
+   ngOnInit() {
+     let imagem = localStorage.getItem('imagemPerfil');
+     if(imagem != null) this.imagemPerfil = "../../../../assets/imgs/perfil/" + imagem;
+     else this.imagemPerfil = "../../../../assets/imgs/perfil/padrao.png";
+     console.log(imagem);
+     console.log(this.imagemPerfil);
+   }
+
+   ngDoCheck(){
+    let imagem = localStorage.getItem('imagemPerfil');
+    if(imagem != null) this.imagemPerfil = "../../../../assets/imgs/perfil/" + imagem;
+    else this.imagemPerfil = "../../../../assets/imgs/perfil/padrao.png";
    }
 
    estaLogado(){
@@ -37,7 +53,10 @@ export class NavbarComponent {
 
   logout(){
     this.auth.limparAcessToken()
-      .then(() => this.rota.navigate(['login']))
+      .then(() => {
+        this.rota.navigate(['login']);
+        localStorage.removeItem('imagemPerfil');
+      })
       .catch(() => null);
   }
 }

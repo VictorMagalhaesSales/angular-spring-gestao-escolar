@@ -5,19 +5,18 @@
           <table style="margin-left: 750px;">
             <tr>
               <td>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && !mostra('ROLE_EDITAR_PROFESSOR')" [routerLink]="['aluno/perfil']"><i class="fa fa-user-circle" aria-hidden="true"></i> Perfil</button>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_PROFESSOR')" [routerLink]="['professor/perfil']"><i class="fa fa-user-circle"></i> Perfil</button>
+                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && !mostra('ROLE_EDITAR_PROFESSOR')" [routerLink]="['aluno/perfil']">Perfil <img src="{{imagemPerfil}}" width="20px" class="rounded-circle img-responsive"></button>
+                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_PROFESSOR')" [routerLink]="['professor/perfil']">Perfil <img src="{{imagemPerfil}}" width="20px" class="rounded-circle img-responsive"></button>
               </td>
               <td>
                 <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="!estaLogado()" [routerLink]="['login']"><i class="fa fa-sign-in fa-1x" aria-hidden="true"></i> Login</button>
                 <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="estaLogado()" (click)="logout()"><i class="fa fa-sign-out fa-1x"></i> Sair</button>      
               </td>
             </tr>
-        </table>
-           </div>
+          </table>
+      </div>
   </mdb-navbar-brand>
 </mdb-navbar>
-
 <div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
   <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
     <div class="modal-content">

@@ -1,3 +1,4 @@
+import { FileUploadModule } from 'primeng/fileupload';
 import { TextMaskModule } from 'angular2-text-mask';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -49,7 +50,8 @@ import { WavesModule, ButtonsModule, TooltipModule, ModalModule, InputsModule } 
     DropdownModule,
     ToastModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    FileUploadModule
   ],
   exports: [AdicionarProfessorComponent]
 })

@@ -36,13 +36,13 @@ export class ListarAlunosComponent implements OnInit {
 
   ngOnInit() {
     this.alunoService.atualizarToken();
-    this.pesquisar("a");
+    this.pesquisar("semFiltro");
     this.title.setTitle("Listar alunos");
   }
 
   pesquisar(iniciar: string){
     let filtro = new AlunoFiltro(this.nome, this.sobrenome, this.email, this.telefone);
-    if(iniciar == "a" ){
+    if(iniciar == "semFiltro" ){
       filtro.nome = "";
       filtro.sobrenome = "";
       filtro.email = "";
