@@ -8,10 +8,10 @@
                 <td><input mdbInputDirective type="text" name="email" [(ngModel)]="email" (keyup)="pesquisar()" class="form-control" placeholder="Email" autocomplete="off" [mdbValidate]="false"></td>
                 <td><input mdbInputDirective type="text" name="telefone" [(ngModel)]="telefone" (keyup)="pesquisar()" class="form-control" placeholder="Telefone" autocomplete="off" [mdbValidate]="false"></td>
             </tr>
-        </table>     
+        </table>
 
         <div class="col-12">
-            <p-table [value]="listaDeAlunos" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" autoLayout="true" >
+            <p-table [value]="listaDeAlunos" [columns]="coluna" [paginator]="true" [rows]="5" selectionMode="single" autoLayout="true" [responsive]="true">
                 <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th *ngFor="let col of columns" class="titulo" style="color: white;">
@@ -25,7 +25,7 @@
                         <td *ngFor="let col of columns" class="corpo">
                             <img *ngIf="col.field == 'imagem'" src="../../../../assets/imgs/perfil/{{alunos[col.field]}}" width="35" class="rounded-circle img-responsive">
                             <span *ngIf="col.field == 'nascimento'" >
-                                {{alunos[col.field] | date:'dd/MM/yyyy'}} 
+                                {{alunos[col.field] | date:'dd/MM/yyyy'}}
                             </span>
                             <span *ngIf="col.field != 'nascimento' && col.field != 'imagem'" >
                                 {{alunos[col.field]}}
@@ -75,7 +75,7 @@
                     <div class="md-form">
                         <i class="fa fa-user prefix grey-text"></i>
                         <input type="text" id="nome" class="form-control validate" mdbInputDirective [(ngModel)]="alunoAtualizar.nome" mdbTooltip="Nome" [mdbValidate]="false">
-                    </div> 
+                    </div>
                  </td>
                  <td>
                     <div class="md-form">
@@ -106,7 +106,7 @@
                     </div>
                  </td>
              </tr>
-        </table> 
+        </table>
         <div class="modal-footer d-flex justify-content-center">
             <button mdbBtn color="unique" class="waves-light" mdbWavesEffect (click)="editarAlunoFinalizado()" (click)="editarAlunoLista.hide()" >Atualizar
             <i class="fa fa-paper-plane-o ml-1"></i>
