@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit, DoCheck {
 
   imagemPerfil: string;
-  
+
   constructor(private auth: AuthService, private rota: Router) {
    }
 
@@ -18,8 +18,6 @@ export class NavbarComponent implements OnInit, DoCheck {
      let imagem = localStorage.getItem('imagemPerfil');
      if(imagem != null) this.imagemPerfil = "../../../../assets/imgs/perfil/" + imagem;
      else this.imagemPerfil = "../../../../assets/imgs/perfil/padrao.png";
-     console.log(imagem);
-     console.log(this.imagemPerfil);
    }
 
    ngDoCheck(){
@@ -35,11 +33,11 @@ export class NavbarComponent implements OnInit, DoCheck {
      return this.auth.jwtPayload.user_name;
    }
 
-   escondeADM(permissao: string){ 
+   escondeADM(permissao: string){
      if(this.auth.jwtPayload != null){
       return this.auth.temPermissao(permissao) && this.auth.jwtPayload.user_name != "adm@adm.com";
      }
-     
+
    }
    mostra(permissao: string){
     if(this.auth.jwtPayload != null){
