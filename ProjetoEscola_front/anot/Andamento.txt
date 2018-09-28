@@ -4,9 +4,10 @@
 
 
 • Template
-(x) Adaptando template
-(x) Início
-( ) Favicon
+ (x) Adaptando template
+ (x) Início
+ (x) Imagem no BD
+ ( ) Favicon
 
 •===--- Alunos ---===•
  (x) Listar alunos
@@ -67,85 +68,11 @@
 	(x) Mensagens
 	(x) Corrigir todos
  (x) Letras passando da tabela
- ( ) Erros com mensagens padrão
-
- ( ) Imagem no BD
+ ( ) Erros com mensagens padrão(exeptionHandler)
  ( ) Acess token não vai de primeira
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-* Nome das variáveis;								!!CORRIGIDO!!
-* Nome dos métodos;								!!CORRIGIDO!!
-* Nomes das variáveis de url.							!!CORRIGIDO!!
-* Organizar os módulos em geral	no front					!!CORRIGIDO!!
 * Criar serviços no back-and e serparar regras de negócios do controller;				
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
