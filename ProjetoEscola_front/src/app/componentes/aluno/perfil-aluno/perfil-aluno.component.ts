@@ -21,11 +21,11 @@ export class PerfilAlunoComponent implements OnInit {
   novaSenha2: string;
 
   imagemPerfil: string;
-  
+
   profFIltro: AlunoFiltro = new AlunoFiltro(null,null,null,null);
   profEmail = [];
   profId: number;
-  
+
   arrayNotas: Array<NotasModel> = new Array<NotasModel>();
 
   constructor(private alunoService: AlunoService,private router: Router, private title: Title, private messageService: MessageService, private auth: AuthService){ }
@@ -33,25 +33,25 @@ export class PerfilAlunoComponent implements OnInit {
   ngOnInit() {
     this.alunoService.atualizarToken();
     this.carregarAlunoPorEmail();
-    this.title.setTitle("Meu perfil");
-    this.imagemPerfil = "../../../../assets/imgs/perfil/" + localStorage.getItem('imagemPerfil');
+    this.title.setTitle('Meu perfil');
+    this.imagemPerfil = '../../../../assets/imgs/perfil/' + localStorage.getItem('imagemPerfil');
   }
 
-  pegarNomeDaFoto(nome){
+  pegarNomeDaFoto(nome) {
     this.aluno.imagem = String(nome.xhr.response);
     this.alunoService.atualizarAluno(this.aluno.matricula, this.aluno)
         .then(() => {
           localStorage.setItem('imagemPerfil',  this.aluno.imagem);
-          this.imagemPerfil = "../../../../assets/imgs/perfil/" + this.aluno.imagem;
+          this.imagemPerfil = '../../../../assets/imgs/perfil/' + this.aluno.imagem;
         })
-        .catch((res) => this.messageService.add({severity:'error', summary: 'Erro de edição', detail:res}));
+        .catch((res) => this.messageService.add({severity: 'error', summary: 'Erro de edição', detail: res}));
   }
 
-  chamarAluno(matricula: number){
+  chamarAluno(matricula: number) {
     this.alunoService.pesquisarAlunoPorId(matricula).then( aluno => { this.aluno = aluno; } );
   }
 
-  passarAluno(){
+  passarAluno() {
     let matricula = this.aluno.matricula;
     let sobrenome = this.aluno.sobrenome ;
     let nome = this.aluno.nome;
@@ -71,7 +71,7 @@ export class PerfilAlunoComponent implements OnInit {
     this.alunoAtualizar.nascimento = nascimento;
     this.alunoAtualizar.telefone = telefone;
   }
-  
+
   editarAlunoNoModal(){
     this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar)
     .then( () => this.chamarAluno(this.aluno.matricula))
@@ -106,7 +106,7 @@ export class PerfilAlunoComponent implements OnInit {
       this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
     });
   }
-  
+
   fecharAviso() {
     this.messageService.clear('c');
   }
@@ -125,6 +125,7 @@ export class PerfilAlunoComponent implements OnInit {
 
    antesDoUploadDaImagem(event) {
     event.xhr.setRequestHeader('Authorization', 'Bearer ' + localStorage.getItem('token'));
+
   }
 
 }
