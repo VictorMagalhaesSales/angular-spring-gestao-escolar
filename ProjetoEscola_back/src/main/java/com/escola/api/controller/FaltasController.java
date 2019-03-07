@@ -19,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.escola.api.model.Faltas;
 import com.escola.api.model.FaltasId;
-import com.escola.api.model.Notas;
-import com.escola.api.model.NotasId;
 import com.escola.api.repository.FaltasRepository;
 
 @RestController
@@ -39,7 +37,6 @@ public class FaltasController {
 	@PostMapping
 	@PreAuthorize("hasAuthority('ROLE_LISTAR_FALTA')")
 	public ResponseEntity<Faltas> adicionarFalta(@Valid @RequestBody Faltas falta){
-		Faltas faltaok = this.faltasRepository.save(falta);
 		return ResponseEntity.ok(falta);
 	}
 	

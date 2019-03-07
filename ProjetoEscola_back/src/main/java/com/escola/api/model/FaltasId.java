@@ -4,10 +4,10 @@ import java.io.Serializable;
 
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Embeddable
 public class FaltasId implements Serializable{
+	private static final long serialVersionUID = 1L;
 
 	@NotNull(message="O campo matéria não pode ficar vazio")
 	private String materia;

@@ -5,9 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
-
-import javax.validation.ConstraintViolationException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -37,7 +34,7 @@ public class EscolaExceptionHandler extends ResponseEntityExceptionHandler{
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 		String mensagemParaOUsuario = "Mensagem enviada ilegível!";
 		String mensagemParaODesenvolvedor = ex.getCause().toString();
-		List<Erro> erros = Arrays.asList(new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor));
+		// List<Erro> erros = Arrays.asList(new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor));
 		return handleExceptionInternal(ex, new Erro(mensagemParaOUsuario, mensagemParaODesenvolvedor), headers, HttpStatus.BAD_REQUEST, request);
 	}
 	

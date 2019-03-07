@@ -1,10 +1,8 @@
 package com.escola.api.controller;
 
-import java.awt.List;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.Optional;
 
 import javax.validation.Valid;
 

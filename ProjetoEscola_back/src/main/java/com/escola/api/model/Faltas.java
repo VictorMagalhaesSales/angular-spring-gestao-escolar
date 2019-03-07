@@ -5,12 +5,12 @@ import java.io.Serializable;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="faltas")
 public class Faltas implements Serializable{
-	
+	private static final long serialVersionUID = 1L;
+
 	@EmbeddedId
 	private FaltasId faltasid;
 	

@@ -1,5 +1,0 @@
-package com.escola.api.configoauth.security.util;
-
-public class GeradorSenha {
-
-}

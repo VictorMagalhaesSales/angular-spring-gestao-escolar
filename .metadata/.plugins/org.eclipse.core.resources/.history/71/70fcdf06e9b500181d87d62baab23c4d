@@ -1,8 +1,0 @@
-package com.escola.api.model;
-
-import javax.persistence.Embeddable;
-
-@Embeddable
-public class FaltasId {
-
-}

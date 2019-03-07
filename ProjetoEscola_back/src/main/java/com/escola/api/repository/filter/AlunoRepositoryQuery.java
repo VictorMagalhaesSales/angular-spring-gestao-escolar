@@ -1,7 +1,5 @@
 package com.escola.api.repository.filter;
 
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
