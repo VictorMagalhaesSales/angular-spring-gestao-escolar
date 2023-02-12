@@ -3,3 +3,4 @@
 /Servers/
 ./*/.classpath
 ./*/.factorypath
+./*/package-lock.json
