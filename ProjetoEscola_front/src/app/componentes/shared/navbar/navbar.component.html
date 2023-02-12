@@ -1,70 +1,70 @@
 <mdb-navbar SideClass="navbar navbar-dark green darken-2">
-    <mdb-navbar-brand>
-      <div class="row">
-          <a color="deep-orange" style="padding: 10px; background-color: transparent; color: white; margin-left: 100px;" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" class="fa fa-bars fa-2x"></a>
-          <table style="margin-left: 750px;">
-            <tr>
-              <td>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && !mostra('ROLE_EDITAR_PROFESSOR')" [routerLink]="['aluno/perfil']">Perfil <img src="{{imagemPerfil}}" width="20px" class="rounded-circle img-responsive"></button>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_PROFESSOR')" [routerLink]="['professor/perfil']">Perfil <img src="{{imagemPerfil}}" width="20px" class="rounded-circle img-responsive"></button>
-              </td>
-              <td>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="!estaLogado()" [routerLink]="['login']"><i class="fa fa-sign-in fa-1x" aria-hidden="true"></i> Login</button>
-                <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="estaLogado()" (click)="logout()"><i class="fa fa-sign-out fa-1x"></i> Sair</button>      
-              </td>
-            </tr>
-          </table>
-      </div>
-  </mdb-navbar-brand>
-</mdb-navbar>
-<div mdbModal #frame="mdbModal" class="modal fade right" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
-  <div class="modal-dialog modal-full-height modal-right modal-notify modal-info" role="document">
-    <div class="modal-content">
-
-      <div class="modal-header green darken-2">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()" style=" color: #ad1457;">
-            <span aria-hidden="true" class="white-text"><b>×</b></span>
-        </button>
-        <img src="./../../assets/imgs/aprendiz.png" width="350px"><br>
-      </div>
-
-      <div class="modal-body animated bounceInRight itens">
-          <div class="accordion" id="accordionExample">
-
-            <a class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['']"> <img src="src../../../../../assets/imgs/home.png" width="45" class="mr-3">  Início</a>
-             
-            <div  *ngIf="estaLogado()" class="list-group list-group-flush"  id="headingOne">
-              <a class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: transparent;">
-                <img src="../../../assets/imgs/alunoicon.png" width="45" class="mr-3"> Alunos
-              </a>
-              <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                <a *ngIf="escondeADM('ROLE_LISTAR_NOTAS') && !mostra('ROLE_EDITAR_PROFESSOR')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['notasfaltas']"> <i class="fa fa-tasks fa-1x mr-3 green-text"></i>Minhas notas e faltas</a>
-                <a *ngIf="mostra('ROLE_LISTAR_ALUNOS')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['aluno/listaraluno']"><i class="fa fa-search fa-1x mr-3 green-text" aria-hidden="true"></i>Exibir alunos</a>
-                <a *ngIf="mostra('ROLE_SALVAR_ALUNO')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['aluno/adicionaraluno']"><i class="fa fa-user-plus fa-1x mr-3 green-text" aria-hidden="true"></i> Adicionar aluno</a>
-              </div>
-            </div>
-          
-            <div id="headingTwo" *ngIf="estaLogado()">
-              <a class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                <img src="../../../assets/imgs/proficon.png" width="45" class="mr-3"> Professor
-              </a>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                <a *ngIf="mostra('ROLE_LISTAR_PROFESSORES')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['professor/listarprofessor']"><i class="fa fa-search mr-3 green-text" aria-hidden="true"></i>Exibir professores</a>
-                <a *ngIf="mostra('ROLE_DELETAR_PROFESSOR')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['professor/adicionarprofessor']"><i class="fa fa-user-plus  mr-3 green-text" aria-hidden="true"></i> Adicionar professor</a>
-              </div>
-            </div>
-
-          </div>
-      </div>
-      
-
-      <div class="modal-footer justify-content-center">
-        <div class="text-center view overlay">
-            <img src="./../../assets/imgs/spring.png" width="250px" class="animated bounceInUp">
-        </div>
-      </div>
-
+  <mdb-navbar-brand>
+    <div class="row">
+        <a color="deep-orange" style="padding: 10px; background-color: transparent; color: white; margin-left: 100px;" data-toggle="modal" data-target="#basicExample" (click)="frame.show()" class="fa fa-bars fa-2x"></a>
+        <table style="margin-left: 750px;">
+          <tr>
+            <td>
+              <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_ALUNO') && !mostra('ROLE_EDITAR_PROFESSOR')" [routerLink]="['aluno/perfil']">Perfil <img src="{{imagemPerfil}}" width="20px" class="rounded-circle img-responsive"></button>
+              <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="escondeADM('ROLE_EDITAR_PROFESSOR')" [routerLink]="['professor/perfil']">Perfil <img src="{{imagemPerfil}}" width="20px" class="rounded-circle img-responsive"></button>
+            </td>
+            <td>
+              <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="!estaLogado()" [routerLink]="['login']"><i class="fa fa-sign-in fa-1x" aria-hidden="true"></i> Login</button>
+              <button mdbBtn type="button" color="success" class="waves-light login" mdbWavesEffect *ngIf="estaLogado()" (click)="logout()"><i class="fa fa-sign-out fa-1x"></i> Sair</button>      
+            </td>
+          </tr>
+        </table>
     </div>
+</mdb-navbar-brand>
+</mdb-navbar>
+<div mdbModal #frame="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" [config]="{backdrop: false, ignoreBackdropClick: true}">
+<div class="modal-dialog modal-full-height modal-left modal-notify modal-info" role="document">
+  <div class="modal-content">
+
+    <div class="modal-header green darken-2">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()" style=" color: #ad1457;">
+          <span aria-hidden="true" class="white-text"><b>×</b></span>
+      </button>
+      <img src="./../../assets/imgs/aprendiz.png" width="350px"><br>
+    </div>
+
+    <div class="modal-body animated bounceInRight itens">
+        <div class="accordion" id="accordionExample">
+
+          <a class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['']"> <img src="src../../../../../assets/imgs/home.png" width="45" class="mr-3">  Início</a>
+           
+          <div  *ngIf="estaLogado()" class="list-group list-group-flush"  id="headingOne">
+            <a class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background-color: transparent;">
+              <img src="../../../assets/imgs/alunoicon.png" width="45" class="mr-3"> Alunos
+            </a>
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <a *ngIf="escondeADM('ROLE_LISTAR_NOTAS') && !mostra('ROLE_EDITAR_PROFESSOR')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['notasfaltas']"> <i class="fa fa-tasks fa-1x mr-3 green-text"></i>Minhas notas e faltas</a>
+              <a *ngIf="mostra('ROLE_LISTAR_ALUNOS')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['aluno/listaraluno']"><i class="fa fa-search fa-1x mr-3 green-text" aria-hidden="true"></i>Exibir alunos</a>
+              <a *ngIf="mostra('ROLE_SALVAR_ALUNO')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['aluno/adicionaraluno']"><i class="fa fa-user-plus fa-1x mr-3 green-text" aria-hidden="true"></i> Adicionar aluno</a>
+            </div>
+          </div>
+        
+          <div id="headingTwo" *ngIf="estaLogado()">
+            <a class="list-group-item list-group-item-action" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              <img src="../../../assets/imgs/proficon.png" width="45" class="mr-3"> Professor
+            </a>
+            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+              <a *ngIf="mostra('ROLE_LISTAR_PROFESSORES')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['professor/listarprofessor']"><i class="fa fa-search mr-3 green-text" aria-hidden="true"></i>Exibir professores</a>
+              <a *ngIf="mostra('ROLE_DELETAR_PROFESSOR')" class="list-group-item list-group-item-action" routerLinkActive="ativo" [routerLink]="['professor/adicionarprofessor']"><i class="fa fa-user-plus  mr-3 green-text" aria-hidden="true"></i> Adicionar professor</a>
+            </div>
+          </div>
+
+        </div>
+    </div>
+    
+
+    <div class="modal-footer justify-content-center">
+      <div class="text-center view overlay">
+          <img src="./../../assets/imgs/spring.png" width="250px" class="animated bounceInUp">
+      </div>
+    </div>
+
   </div>
+</div>
 </div>
 
