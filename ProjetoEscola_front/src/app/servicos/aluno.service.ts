@@ -4,7 +4,7 @@ import { AuthService } from './../seguranca/auth.service';
 import { AlunoModel, NotasModel, FaltasModel } from './../componentes/model';
 import { AlunoFiltro } from './../componentes/aluno/aluno-filtro.model';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 const auth = new JwtHelperService();
@@ -23,44 +23,36 @@ export class AlunoService{
 
   pesquisarAlunos(filtro: AlunoFiltro): Promise<any>{
     if (this.auth.isAcessTokenInvalid()){
-        this.auth.obterNovoAcessToken().then( () => { 
-        if(filtro.nome == null){
-          filtro.nome = "";
-        }if(filtro.sobrenome == null){
-            filtro.sobrenome = "";
-        }if(filtro.email == null){
-          filtro.email = "";
-        }if(filtro.telefone == null){
-          filtro.telefone = "";
-        }
-
-        return this.http.get(`${this.url}/aluno`,{params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "email": filtro.email, "telefone": filtro.telefone} })
-            .toPromise()
-            .then(response => response )
-            .catch( response => {
-              console.log(response);
-              return Promise.reject("Você não tem autorização para operar esse conteúdo.");
-            });
-      });      
+      this.auth.obterNovoAcessToken()
+        .then(() => { 
+          return this.buscarAlunoRequest(filtro);
+        });      
     }else{
-      if(filtro.nome == null){
-        filtro.nome = "";
-      }if(filtro.sobrenome == null){
-          filtro.sobrenome = "";
-      }if(filtro.email == null){
-        filtro.email = "";
-      }if(filtro.telefone == null){
-        filtro.telefone = "";
-      }
-
-      return this.http.get(`${this.url}/aluno`, {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "email": filtro.email, "telefone": filtro.telefone} })
-          .toPromise()
-          .then(response => response )
-          .catch( response => {
-            console.log(response);
-            return Promise.reject("Você não tem autorização para operar esse conteúdo.");
-          });
+      return this.buscarAlunoRequest(filtro);
     }
+  }
+
+  private buscarAlunoRequest(filtro: AlunoFiltro): Promise<any> {
+    let params = new HttpParams();
+    if(this.isValidValue(filtro.email)) {
+      params = params.append("email", filtro.email);
+    }
+    if(this.isValidValue(filtro.nome)) {
+      params = params.append("nome", filtro.nome);
+    }
+    if(this.isValidValue(filtro.sobrenome)) {
+      params = params.append("sobrenome", filtro.sobrenome);
+    }
+    if(this.isValidValue(filtro.telefone)) {
+      params = params.append("telefone", filtro.telefone);
+    }
+    return this.http.get(`${this.url}/aluno`, {params})
+      .toPromise()
+      .then(response => response )
+      .catch( response => {
+        console.log(response);
+        return Promise.reject("Você não tem autorização para operar esse conteúdo.");
+      });
   }
 
   pesquisarAlunoPorId(matricula: number): Promise<any>{
@@ -172,6 +164,10 @@ export class AlunoService{
     if (this.auth.isAcessTokenInvalid()){
       this.auth.obterNovoAcessToken();
     }
+  }
+
+  private isValidValue(value: string): boolean {
+    return value != null && value != "" && value != undefined;
   }
 
 }

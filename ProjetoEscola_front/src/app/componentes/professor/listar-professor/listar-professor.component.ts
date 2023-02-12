@@ -56,31 +56,18 @@ export class ListarProfessorComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.pesquisar("semFiltro");
+    this.pesquisar();
     this.title.setTitle("Listar professores");
   }
 
-  pesquisar(iniciar: string){
+  pesquisar(){
     let filtro = new ProfessorFiltro(this.nome, this.sobrenome, this.disciplina, this.email, this.telefone);
-    
-    if(iniciar == "semFiltro" ){
-      filtro.nome = "";
-      filtro.sobrenome = "";
-      filtro.email = "";
-      filtro.telefone = "";
-      filtro.disciplina = "";
-      this.professorService.pesquisarProfessores(filtro)
-        .then( professores => this.listaDeProfessores = professores )
-        .catch(erro => {
-          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
-        });
-    }else{
-      this.professorService.pesquisarProfessores(filtro)
-        .then( professores => this.listaDeProfessores = professores )
-        .catch(erro => {
-          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
-        });
-    }
+
+    this.professorService.pesquisarProfessores(filtro)
+      .then( professores => this.listaDeProfessores = professores )
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
   }
 
   excluirProfessor(){
@@ -88,7 +75,7 @@ export class ListarProfessorComponent implements OnInit {
       console.log("Sem código");
     }else{
       this.professorService.deletarProfessor(this.paraExcluir)
-        .then( () => {this.pesquisar("")})
+        .then( () => {this.pesquisar()})
         .catch(erro => {
           this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
         });
@@ -102,7 +89,7 @@ export class ListarProfessorComponent implements OnInit {
   editarProfessor2(){
     this.professorAtualizar.disciplina = this.disciplinaSelecionada.nome;
     this.professorService.atualizarProfessor(this.professorAtualizar.id, this.professorAtualizar)
-      .then(()=> this.pesquisar(""))
+      .then(()=> this.pesquisar())
       .catch(erro => {
         this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
       });

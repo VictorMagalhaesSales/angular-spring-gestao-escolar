@@ -36,29 +36,17 @@ export class ListarAlunosComponent implements OnInit {
 
   ngOnInit() {
     this.alunoService.atualizarToken();
-    this.pesquisar("semFiltro");
+    this.pesquisar();
     this.title.setTitle("Listar alunos");
   }
 
-  pesquisar(iniciar: string){
+  pesquisar(){
     let filtro = new AlunoFiltro(this.nome, this.sobrenome, this.email, this.telefone);
-    if(iniciar == "semFiltro" ){
-      filtro.nome = "";
-      filtro.sobrenome = "";
-      filtro.email = "";
-      filtro.telefone = "";
-      this.alunoService.pesquisarAlunos(filtro)
-        .then( alunos => this.listaDeAlunos = alunos.content)
-        .catch(erro => {
-          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
-        });
-    }else{
-      this.alunoService.pesquisarAlunos(filtro)
-        .then( alunos => this.listaDeAlunos = alunos.content)
-        .catch(erro => {
-          this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
-        });
-    }
+    this.alunoService.pesquisarAlunos(filtro)
+      .then( alunos => this.listaDeAlunos = alunos.content)
+      .catch(erro => {
+        this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
+      });
   }
 
   excluirAluno(){
@@ -66,7 +54,7 @@ export class ListarAlunosComponent implements OnInit {
       console.log("Sem código");
     }else{
       this.alunoService.deletarAluno(this.paraExcluir)
-        .then( () => {this.pesquisar("")} )
+        .then( () => {this.pesquisar()} )
         .catch(erro => {
           this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
         });
@@ -83,7 +71,7 @@ export class ListarAlunosComponent implements OnInit {
   }
   editarAlunoFinalizado(){
     this.alunoService.atualizarAluno(this.alunoAtualizar.matricula, this.alunoAtualizar)
-      .then(()=> this.pesquisar(""))
+      .then(()=> this.pesquisar())
       .catch(erro => {
         this.messageService.add({severity:'error', summary: 'Erro de permissão', detail:'Você não tem permissão para operar esse conteúdo'});
       });

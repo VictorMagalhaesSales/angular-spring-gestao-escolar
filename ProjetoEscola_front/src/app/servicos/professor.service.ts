@@ -2,7 +2,7 @@ import { environment } from './../../environments/environment';
 import { AuthService } from './../seguranca/auth.service';
 import { ProfessorModel } from './../componentes/model';
 import { ProfessorFiltro } from './../componentes/professor/professor-filtro.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
@@ -18,18 +18,23 @@ export class ProfessorService{
   pesquisarProfessores(filtro: ProfessorFiltro): Promise<any>{
     this.atualizarToken();
 
-    if(filtro.nome == null){
-      filtro.nome = "";
-    }if(filtro.sobrenome == null){
-      filtro.sobrenome = "";
-    }if(filtro.disciplina == null){
-      filtro.disciplina = "";
-    }if(filtro.email == null){
-      filtro.email = "";
-    }if(filtro.telefone == null){
-      filtro.telefone = "";
+    let params = new HttpParams();
+    if(this.isValidValue(filtro.nome)) {
+      params = params.append("nome", filtro.nome);
     }
-    return this.http.get(`${this.url}/professor`, {params: {"nome": filtro.nome, "sobrenome": filtro.sobrenome, "disciplina": filtro.disciplina, "email": filtro.email, "telefone": filtro.telefone} })
+    if(this.isValidValue(filtro.sobrenome)) {
+      params = params.append("sobrenome", filtro.sobrenome);
+    }
+    if(this.isValidValue(filtro.disciplina)) {
+      params = params.append("disciplina", filtro.disciplina);
+    }
+    if(this.isValidValue(filtro.email)) {
+      params = params.append("email", filtro.email);
+    }
+    if(this.isValidValue(filtro.telefone)) {
+      params = params.append("telefone", filtro.telefone);
+    }
+    return this.http.get(`${this.url}/professor`, {params})
           .toPromise()
           .then(response => response)
           .catch( response => {
@@ -101,6 +106,10 @@ export class ProfessorService{
     if (this.auth.isAcessTokenInvalid()){
       this.auth.obterNovoAcessToken();
     }
+  }
+
+  private isValidValue(value: string): boolean {
+    return value != null && value != "" && value != undefined;
   }
   
 }
